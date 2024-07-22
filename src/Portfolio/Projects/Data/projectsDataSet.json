@@ -1,0 +1,55 @@
+{
+  "projects": [
+    {
+      "projectName": "Portfolio Website",
+      "description": "A personal portfolio website to showcase my projects and skills.",
+      "projectType": "React",
+      "duration": "2 Day",
+      "teamMembers": ["Me"],
+      "platformTechnologiesUsed": ["React", "Tailwind CSS"],
+      "role": "Frontend Developer",
+      "date": "July 2024",
+      "linkToProject": "https://myportfolio.com",
+      "screenshotsMedia": ["null"],
+      "challenges": "null",
+      "learnings": "Improved my React and CSS skills.",
+      "status": "Completed",
+      "librariesFrameworks": ["React Router", "Mobile Responsive"],
+      "stateManagement": "null",
+      "apis": ["GitHub API"]
+    },
+    {
+      "projectName": "Wasana Bakers Group Of Company",
+      "description": "We build the system for three out of five of their companies. ",
+      "more": "Wasana Bakery, Gimanahala, Reception Hall. including, branch Map, online ordering, branch request, hall and room booking...",
+      "projectType": "React",
+      "duration": "1 Year",
+      "teamMembers": ["Ravindu", "Channa", "Sandeepa", "Nipuni", "Me"],
+      "platformTechnologiesUsed": ["React", "Tailwind CSS", "MySQL"],
+      "role": "Fullstack Developer",
+      "date": "Oct 2023",
+      "linkToProject": "secured",
+      "screenshotsMedia": ["null"],
+      "challenges": "Companies request more features",
+      "learnings": "Database Connecting, Responsive system, Group management, ",
+      "status": "On Going..",
+      "responsiveDesign": true
+    },
+    {
+      "projectName": "Resource Hub",
+      "description": "That allows the Departments to the access and allocation for their resources.",
+      "projectType": "PHP",
+      "duration": "3 months",
+      "teamMembers": ["Sankalpa", "Ruwini", "Mayuran", "Amila", "Me"],
+      "platformTechnologiesUsed": ["PHP", "CSS", "JavaScript", "MySQL"],
+      "role": "Frontend Developer",
+      "date": "May 2023",
+      "linkToProject": "https://000.com/..",
+      "screenshotsMedia": ["ecommerce1.png", "ecommerce2.png"],
+      "challenges": "Integrating with third-party APIs.",
+      "learnings": "PHP, MYSQL",
+      "status": "Completed",
+      "responsiveDesign": true
+    }
+  ]
+}

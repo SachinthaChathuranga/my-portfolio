@@ -17,7 +17,7 @@ function MobileNavigationList({ handleClose }) {
           className={listStyle}
           onClick={() => {
             handleClose();
-            navigate("/", {state: {id: "home"}});
+            navigate("/my-portfolio/", {state: {id: "home"}});
           }}
         >
           Home
@@ -26,7 +26,7 @@ function MobileNavigationList({ handleClose }) {
           className={listStyle}
           onClick={() => {
             handleClose();
-            navigate("/projects");
+            navigate("/my-portfolio/projects");
           }}
         >
           Projects
@@ -35,7 +35,7 @@ function MobileNavigationList({ handleClose }) {
           className={listStyle}
           onClick={() => {
             handleClose();
-            navigate("/", { state: { id: "about" } });
+            navigate("/my-portfolio/", { state: { id: "about" } });
           }}
         >
           {/* () => navigate('/', { state: { id: 'about' } }) */}
@@ -45,7 +45,7 @@ function MobileNavigationList({ handleClose }) {
           className={listStyle}
           onClick={() => {
             handleClose();
-            navigate("/blog");
+            navigate("/my-portfolio/blog");
           }}
         >
           Blog

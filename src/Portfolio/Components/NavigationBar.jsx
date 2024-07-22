@@ -78,11 +78,11 @@ function NavigationBar() {
       </div>
       <div>
         <ul className="hidden sm:flex">
-          <li className={listStyle} onClick={() => handleNavigation('/', 'home')} >Home</li>
+          <li className={listStyle} onClick={() => handleNavigation('/my-portfolio/', 'home')} >Home</li>
           {/* <li className={listStyle} onClick={() => navigate('/', { state: { id: 'about' } })} >About</li> */}
-          <li className={listStyle} onClick={() => navigate('/projects')} >Projects</li>
-          <li className={listStyle} onClick={() => handleNavigation('/', 'about')} >About</li>
-          <li className={listStyle} onClick={() => navigate('/blog')}  >Blog</li>
+          <li className={listStyle} onClick={() => navigate('/my-portfolio/projects')} >Projects</li>
+          <li className={listStyle} onClick={() => handleNavigation('/my-portfolio/', 'about')} >About</li>
+          <li className={listStyle} onClick={() => navigate('/my-portfolio/blog')}  >Blog</li>
         </ul>
       </div>
       <div>

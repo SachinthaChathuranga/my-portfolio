@@ -10,19 +10,19 @@ import { Link } from 'react-router-dom';
 function SocialButton() {
   return (
     <div className='flex w-full text-primaryBlue1 text-3xl sm:text-4xl justify-around px-16 mt-6'>
-      <Link to={'#'}>
+      <Link to={'https://www.linkedin.com/in/sachintha-chathuranga-5b5750247/'}>
       <FaLinkedin />
       </Link>
-      <Link to={'#'}>
+      <Link to={'https://github.com/SachinthaChathuranga'}>
       <FaGithub />
       </Link>
-      <Link to={'#'}>
+      <Link to={'https://web.facebook.com/sms.chathu.79'}>
       <FaFacebookSquare />
       </Link>
-      <Link to={'#'}>
+      <Link to={'https://www.instagram.com/imsmschathu/'}>
       <FaInstagramSquare />
       </Link>
-      <Link to={'#'}>
+      <Link to={'https://youtube.com/@smscarya795?si=qKSh6XO2lLCYIVcf'}>
       <FaYoutube />
       </Link>
       <Link to={'#'}>

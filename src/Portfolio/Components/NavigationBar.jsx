@@ -29,12 +29,13 @@ const Sun = () => (
   </svg>
 );
 
-const listStyle = "px-10 font-bold cursor-pointer hover:text-primaryBlue1";
+const listStyle = "px-10 font-bold cursor-pointer hover:text-primaryColor5 dark:hover:text-dPrimaryColor9";
 
 function NavigationBar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isVisibleMobile, setIsVisibleMobile] = useState(false);
-  const navigate = useNavigate()
+  const [bgColor, setBgColor] = useState("transparent"); // State for the background color
+  const navigate = useNavigate();
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
@@ -42,11 +43,25 @@ function NavigationBar() {
       window.document.documentElement.classList.add("dark");
       setIsDarkMode(true);
     }
+
+    // Scroll event listener to change background color on scroll
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setBgColor("bg-gradient-to-r from-primaryColor1 to-primaryColor5 dark:bg-gradient-to-r dark:from-dPrimaryColor4 dark:to-dPrimaryColor5"); // Change background color when scrollY > 50
+      } else {
+        setBgColor("transparent"); // Reset to transparent if scroll position is less than 50
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
- 
   const handleClick = () => {
-
     if (isDarkMode) {
       window.document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
@@ -72,23 +87,44 @@ function NavigationBar() {
   };
 
   return (
-    <div className="fixed w-screen  px-5 sm:px-0 bg-white  dark:bg-black flex justify-between sm:justify-around py-4 text-lg overflow-clip">
+    <div
+      className={`h-fit fixed inset-0 z-20 w-screen px-5 sm:px-0 flex justify-between sm:justify-around py-4 text-lg overflow-clip ${bgColor}`}
+    >
       <div className="">
-        <h1 className="text-primaryBlue1 "> Mr.SMSC</h1>
+        <h1 className="text-primaryColor5 font-bold dark:text-dPrimaryColor9"> Mr.SMSC</h1>
       </div>
       <div>
         <ul className="hidden sm:flex">
-          <li className={listStyle} onClick={() => handleNavigation('/my-portfolio/', 'home')} >Home</li>
-          {/* <li className={listStyle} onClick={() => navigate('/', { state: { id: 'about' } })} >About</li> */}
-          <li className={listStyle} onClick={() => navigate('/my-portfolio/projects')} >Projects</li>
-          <li className={listStyle} onClick={() => handleNavigation('/my-portfolio/', 'about')} >About</li>
-          <li className={listStyle} onClick={() => navigate('/my-portfolio/blog')}  >Blog</li>
+          <li
+            className={listStyle}
+            onClick={() => handleNavigation("/my-portfolio/", "home")}
+          >
+            Home
+          </li>
+          <li
+            className={listStyle}
+            onClick={() => navigate("/my-portfolio/projects")}
+          >
+            Projects
+          </li>
+          <li
+            className={listStyle}
+            onClick={() => handleNavigation("/my-portfolio/", "about")}
+          >
+            About
+          </li>
+          <li
+            className={listStyle}
+            onClick={() => navigate("/my-portfolio/blog")}
+          >
+            Blog
+          </li>
         </ul>
       </div>
       <div>
         <div className="flex">
           <button
-            className="text-gray-400 hover:bg-slate-200 p-1 flex items-center justify-center rounded-md dark:hover:bg-slate-700"
+            className="text-primaryColor1 dark:text-dPrimaryColor1 hover:bg-primaryColor1 hover:text-primaryColor4 p-1 flex items-center justify-center rounded-md dark:hover:bg-dPrimaryColor4"
             onClick={handleClick}
             aria-label={`Toggle ${isDarkMode ? "light" : "dark"} mode`}
           >

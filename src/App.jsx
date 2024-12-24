@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./Portfolio/Home";
+// import Home from "./Portfolio/Home";
 import Project from "./Portfolio/Components/Project";
 import NavigationBar from "./Portfolio/Components/NavigationBar";
 import ProjectsSection from "./Portfolio/ProjectsSection";
 import BlogSection from "./Portfolio/BlogSection";
+import Home from "./newPortfolio24/Home";
+import Footer from "./newPortfolio24/Components/Footer";
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
           <Route path="/my-portfolio/projects" element={<ProjectsSection />} />
           <Route path="/my-portfolio/blog" element={<BlogSection />} />
         </Routes>
+        
       </BrowserRouter>
     </>
   );

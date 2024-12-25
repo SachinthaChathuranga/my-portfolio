@@ -83,7 +83,7 @@ function Contact() {
           <span className="animate-pulse">Contact Us</span>
         </h1>
         <form
-          className="grid grid-rows-3 grid-flow-col gap-4"
+          className="grid sm:grid-rows-3 sm:grid-flow-col gap-4"
           onSubmit={handleSubmit}
         >
           {/* Left-hand side: Inputs */}
@@ -95,7 +95,7 @@ function Contact() {
               onChange={handleChange}
               placeholder="Name"
               required
-              className="p-3 border border-gray-300 dark:border-dPrimaryColor8 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryColor2 dark:focus:ring-dPrimaryColor7 dark:bg-dPrimaryColor8 "
+              className=" p-3 border border-gray-300 dark:border-dPrimaryColor8 rounded-md focus:outline-none focus:ring-2 focus:ring-primaryColor2 dark:focus:ring-dPrimaryColor7 dark:bg-dPrimaryColor8 "
             />
             <input
               type="email"

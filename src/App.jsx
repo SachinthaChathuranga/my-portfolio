@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import Home from "./Portfolio/Home";
-import Project from "./Portfolio/Components/Project";
+// import Project from "./Portfolio/Components/Project";
 import NavigationBar from "./Portfolio/Components/NavigationBar";
 import ProjectsSection from "./Portfolio/ProjectsSection";
 import BlogSection from "./Portfolio/BlogSection";
 import Home from "./newPortfolio24/Home";
-import Footer from "./newPortfolio24/Components/Footer";
+import Project from "./newPortfolio24/Project";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route exact path="/my-portfolio/" element={<Home />} />
-          <Route path="/my-portfolio/projects" element={<ProjectsSection />} />
+          <Route path="/my-portfolio/projects" element={<Project />} />
           <Route path="/my-portfolio/blog" element={<BlogSection />} />
         </Routes>
         

@@ -18,7 +18,7 @@ function ShortDescriptoin() {
       <div className="h-fit w-full flex justify-center items-center animate-bounceSlow" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="500">
         <div className="m-1 overflow-hidden sm:flex justify-center items-center shadow-lg rounded-lg bg-primaryColor9 dark:bg-dPrimaryColor8 text-primaryColor1 dark:text-dPrimaryColor4" >
           {/* details */}
-          <div className="px-5">
+          <div className="pt-5 sm:pt-0 px-5">
             <p className="text-xl">{`Hello, It's Me`}</p>
             <h1 className="text-3xl font-serif font-bold text-primaryColor2 dark:text-dPrimaryColor1 animate-pulse  ">
               Sachintha Chathuranga
@@ -33,7 +33,7 @@ function ShortDescriptoin() {
               I specialize in building scalable web applications and have a knack
               for creating efficient and elegant solutions.
             </h1>
-            <div className="pt-5">
+            <div className="pt-5 pb-5 sm:pb-0">
               <SocialButton />
             </div>
           </div>

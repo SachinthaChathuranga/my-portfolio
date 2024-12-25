@@ -16,16 +16,16 @@ function PersonalDetails() {
 
   return (
     <div
-      className="flex font-poppins mt-5  "
+      className="sm:flex font-poppins mt-5  "
       data-aos="fade-up"
       data-aos-duration="1000"
       data-aos-delay="700"
     >
-      <div className="h-[350px] w-1/3  animate-pulse ">
+      <div className="h-[350px] sm:w-1/3  animate-pulse ">
         <img src={me} alt="" className="w-full h-full object-cover rounded-lg " />
         <div className="h-[400px] w-full  m-auto mt-[-400px] rounded-full"></div>
       </div>
-      <div className="w-2/3 px-5 items-center justify-center">
+      <div className="sm:w-2/3 px-5 items-center justify-center">
         <h1 className="text-3xl font-serif font-bold text-primaryColor2 dark:text-dPrimaryColor1 animate-pulse text-center">
           Personal Details
         </h1>
@@ -71,7 +71,7 @@ function PersonalDetails() {
             <p className="text-xl font-medium text-primaryColor1 dark:text-dPrimaryColor4 ">
               Email
             </p>
-            <p className="text-primaryColor4 dark:text-dPrimaryColor3 font-medium text-xl animate-pulse">
+            <p className="overflow-y-scroll text-primaryColor4 dark:text-dPrimaryColor3 font-medium text-xl animate-pulse">
               smschathu1234@gmail.com
             </p>
           </div>

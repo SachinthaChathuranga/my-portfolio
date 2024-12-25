@@ -30,8 +30,8 @@ function Footer() {
           </a>
         </div> */}
         <div className="mt-4">
-          <p>Follow us:</p>
-          <div className="w-2/5 m-auto">
+          <p>Follow me:</p>
+          <div className="sm:w-2/5 m-auto">
             <SocialButton />
           </div>
         </div>

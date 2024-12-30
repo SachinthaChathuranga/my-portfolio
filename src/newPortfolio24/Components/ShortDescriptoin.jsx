@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import me from "../assests/smscbgbw.jpg";
 import SocialButton from "../../Portfolio/Components/SocialButton";
+import AOS from "aos";
 
 function ShortDescriptoin() {
     const skills = ["Front-end Developer", "Graphic Designer", "UI/UX Designer"];

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import MobileDevelopments from "./MobileDevelopments";
 import WebDevelopments from "./WebDevelopments";
@@ -8,11 +8,11 @@ import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 import { RiMenuFold2Fill } from "react-icons/ri";
 import { FaWindowClose } from "react-icons/fa";
 import { FaRegWindowClose } from "react-icons/fa";
-
 import mobileDevData from "./mobileDevData.json";
 import webDevData from "./webDevData.json";
 import uiuxDevData from "./data/figma/uiuxImages";
 import graphicDevData from "./data/graphic/graphicImages";
+import AOS from "aos";
 
 function ProjectDashboard() {
   const [expandedSections, setExpandedSections] = useState({
@@ -38,10 +38,18 @@ function ProjectDashboard() {
     setShowSideBar(false);
   };
 
+    useEffect(() => {
+      AOS.init({
+        duration: 1000, // Customize duration of the animation (optional)
+        easing: "ease-in-out", // Customize easing function (optional)
+        once: true, // Whether to animate only once (optional)
+      });
+    }, []);
+
   return (
     <div className="sm:h-screen w-screen sm:flex ">
       {/* Sidebar */}
-      <div className="sm:hidden">
+      <div className="sm:hidden ">
         <div className="relative px-3 text-2xl bg-primaryColor5 flex mt-16 text-primaryColor2 dark:text-dPrimaryColor4">
           {!showSideBar && (
             <RiMenuFold2Fill
@@ -58,7 +66,7 @@ function ProjectDashboard() {
         </div>
       </div>
       {showSideBar && (
-        <div className="sm:w-3/12 sm:h-[98vh] overflow-clip bg-primaryColor6 dark:bg-dPrimaryColor8">
+        <div className="mt-7 sm:mt-0 sm:w-3/12 sm:h-[98vh] overflow-clip bg-primaryColor6 dark:bg-dPrimaryColor8" data-aos="fade-right">
           <ul className="text-primaryColor9 sm:mt-20 text-lg font-poppin ">
             <li className="px-5 py-2 text-center text-2xl text-primaryColor2 dark:text-dPrimaryColor2">
               Projects

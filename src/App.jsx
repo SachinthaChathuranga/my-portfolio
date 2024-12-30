@@ -14,7 +14,7 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route exact path="/my-portfolio/" element={<Home />} />
-          <Route path="/my-portfolio/projects" element={<Project />} />
+          <Route path="/my-portfolio/projects/*" element={<Project />} />
           <Route path="/my-portfolio/blog" element={<BlogSection />} />
         </Routes>
         

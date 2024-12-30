@@ -1,0 +1,70 @@
+{
+    "projects": [
+      {
+        "id": "m01",
+        "projectName": "Food Recipe App",
+        "description": "A mobile app to browse, search, and save favorite recipes. Includes categorized recipes, ingredient lists, step-by-step instructions, and video tutorials.",
+        "projectType": "Mobile App",
+        "duration": "6 months",
+        "teamMembers": ["Nipuni", "Me"],
+        "platformTechnologiesUsed": ["React Native", "Firebase"],
+        "role": "Fullstack Developer",
+        "date": "November 2024",
+        "linkToProject": "https://play.google.com/store/apps/details?id=com.recipebook",
+        "screenshotsMedia": ["recipe1.png", "recipe2.png", "recipe3.png"],
+        "challenges": "Optimizing app performance and implementing language switching.",
+        "learnings": "Firebase integration, multi-language support, and mobile-friendly UI design.",
+        "status": "Published",
+        "responsiveDesign": true,
+        "librariesFrameworks": ["React Navigation", "Expo"],
+        "stateManagement": "Context API",
+        "apis": ["Firebase Firestore", "Firebase Authentication", "YouTube API"],
+        "features": [
+          "Browse recipes by category",
+          "Search and filter recipes",
+          "Save favorite recipes",
+          "Watch video tutorials",
+          "Multi-language support (Sinhala and English)"
+        ]
+      },
+      {
+        "id": "m02",
+        "projectName": "Astro Budget App",
+        "description": "An app to manage your budget by scheduling incomes, expenses, and summarizing financial data.",
+        "projectType": "React Native",
+        "duration": "3 Months",
+        "teamMembers": ["Nipuni","Me"],
+        "platformTechnologiesUsed": ["React Native", "Firebase"],
+        "role": "Mobile App Developer",
+        "date": "Dec 2024",
+        "linkToProject": "https://astro-budget-app.example.com",
+        "screenshotsMedia": ["null"],
+        "challenges": "Ensuring accurate synchronization of data across devices.",
+        "learnings": "Enhanced knowledge of state management and data visualization.",
+        "status": "On Going..",
+        "librariesFrameworks": ["Redux", "React Navigation"],
+        "stateManagement": "Redux",
+        "apis": ["Firebase Authentication", "Cloud Firestore"]
+      },
+      {
+        "id": "m03",
+        "projectName": "Work Schedule App",
+        "description": "An app to plan work schedules and set reminders for tasks.",
+        "projectType": "React Native",
+        "duration": "2 Months",
+        "teamMembers": ["Me"],
+        "platformTechnologiesUsed": ["React Native", "Expo"],
+        "role": "Mobile App Developer",
+        "date": "Dec 2024",
+        "linkToProject": "https://work-schedule-app.example.com",
+        "screenshotsMedia": ["null"],
+        "challenges": "Implementing reliable cross-platform notifications.",
+        "learnings": "Gained expertise in integrating third-party notification services.",
+        "status": "On Going..",
+        "librariesFrameworks": ["Expo Notifications", "React Navigation"],
+        "stateManagement": "Context API",
+        "apis": ["Google Calendar API", "Expo Notifications"]
+      }
+    ]
+  }
+  

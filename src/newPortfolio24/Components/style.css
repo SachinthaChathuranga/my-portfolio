@@ -1,0 +1,26 @@
+@keyframes draw-border {
+    0% {
+      border-color: transparent;
+      border-width: 4px;
+    }
+    25% {
+      border-color: transparent;
+      border-width: 4px 4px 0 0;
+    }
+    50% {
+      border-color: transparent;
+      border-width: 4px 0 4px 0;
+    }
+    75% {
+      border-color: transparent;
+      border-width: 0 4px 4px 4px;
+    }
+    100% {
+      border-color: currentColor;
+    }
+  }
+  
+  .animate-draw-border {
+    animation: draw-border 3s linear forwards;
+  }
+  

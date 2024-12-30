@@ -22,7 +22,7 @@
       {
         "id": "w02",
         "projectName": "Wasana Bakers Group Of Company",
-        "description": "We built the system exclusively for Wasana Bakers, focusing on features such as branch mapping, online ordering, and branch requests, excluding hall and room booking functionalities.",
+        "description": "We built the system exclusively for Wasana Bakers, focusing on features such as branch mapping, online ordering, and branch requestsfunctionalities.",
         "more": "Wasana Bakers Group of Company is a renowned brand specializing in high-quality baked goods, including bread, cakes, and pastries. With a strong focus on customer satisfaction, the company operates multiple branches, offering services like online ordering and catering. Their commitment to quality and excellence has made them a trusted name in the industry.",
         "projectType": "React",
         "duration": "1 Year",

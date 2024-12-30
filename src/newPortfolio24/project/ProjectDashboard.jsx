@@ -38,13 +38,34 @@ function ProjectDashboard() {
     setShowSideBar(false);
   };
 
-    useEffect(() => {
-      AOS.init({
-        duration: 1000, // Customize duration of the animation (optional)
-        easing: "ease-in-out", // Customize easing function (optional)
-        once: true, // Whether to animate only once (optional)
-      });
-    }, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Customize duration of the animation (optional)
+      easing: "ease-in-out", // Customize easing function (optional)
+      once: true, // Whether to animate only once (optional)
+    });
+  }, []);
+
+  const [webView, setWebView] = useState(true); // Default to 4 slides on larger screens
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setWebView(false); // Show 1 slide on mobile
+      } else {
+        setWebView(true); // Show 4 slides on larger screens
+      }
+    };
+
+    // Initialize the slide count based on the current window size
+    handleResize();
+
+    // Add event listener for window resizing
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="sm:h-screen w-screen sm:flex ">
@@ -65,8 +86,11 @@ function ProjectDashboard() {
           )}
         </div>
       </div>
-      {showSideBar && (
-        <div className="mt-7 sm:mt-0 sm:w-3/12 sm:h-[98vh] overflow-clip bg-primaryColor6 dark:bg-dPrimaryColor8" data-aos="fade-right">
+      {(showSideBar || webView) && (
+        <div
+          className="mt-7 sm:mt-0 sm:w-3/12 sm:h-[98vh] overflow-clip bg-primaryColor6 dark:bg-dPrimaryColor8"
+          data-aos="fade-right"
+        >
           <ul className="text-primaryColor9 sm:mt-20 text-lg font-poppin ">
             <li className="px-5 py-2 text-center text-2xl text-primaryColor2 dark:text-dPrimaryColor2">
               Projects
@@ -191,7 +215,7 @@ function ProjectDashboard() {
       )}
 
       {/* Content Area */}
-      {!showSideBar && (
+      {(!showSideBar || webView) && (
         <div className="sm:w-9/12 h-screen overflow-clip ">
           <Routes>
             <Route exact path="/mobile/*" element={<MobileDevelopments />} />

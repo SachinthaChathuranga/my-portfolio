@@ -20,7 +20,7 @@ const imagesData = [
     },
     {
       id: "u02",
-      title: "Wasana",
+      title: "Wasana Bakers",
       subtitle: "Web App",
       images: convertGlobToArray(wasnabakers),
       method: "figma",

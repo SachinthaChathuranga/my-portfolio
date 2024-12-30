@@ -19,7 +19,7 @@ function AlbumBox({ project, link }) {
           <h1 className="font-poppins  text-lg font-medium">
             {/* {project.title} */}
           </h1>
-          <div className="flex justify-between">
+          <div className="flex justify-between text-sm">
             <p className="bg-primaryColor6 text-primaryColor2 px-3 rounded-full dark:bg-dPrimaryColor4 dark:text-dPrimaryColor5 w-fit">
               {project.title || "hey"}
             </p>

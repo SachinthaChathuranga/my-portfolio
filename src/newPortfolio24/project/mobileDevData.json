@@ -5,7 +5,7 @@
         "projectName": "Food Recipe App",
         "description": "A mobile app to browse, search, and save favorite recipes. Includes categorized recipes, ingredient lists, step-by-step instructions, and video tutorials.",
         "projectType": "Mobile App",
-        "duration": "6 months",
+        "duration": "2 months",
         "teamMembers": ["Nipuni", "Me"],
         "platformTechnologiesUsed": ["React Native", "Firebase"],
         "role": "Fullstack Developer",

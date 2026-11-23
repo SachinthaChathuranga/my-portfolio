@@ -1,74 +1,80 @@
 /** @type {import('tailwindcss').Config} */
-
-
-
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  darkMode: "class", // or 'media' or 'class'
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        void: {
+          950: "#06040D",
+          900: "#0B0716",
+          800: "#120D24",
+          700: "#1B1433",
+        },
+        neon: {
+          magenta: "#F012A8",
+          pink: "#FF3CC7",
+          cyan: "#00D4FF",
+          cobalt: "#007BFF",
+          amber: "#FF8A1F",
+          gold: "#FFC247",
+          crimson: "#D61F48",
+        },
+        ink: {
+          primary: "#F8F6FF",
+          secondary: "#C4BFE0",
+          muted: "#8B84AB",
+        },
+      },
+      fontFamily: {
+        display: ["Syne", "Space Grotesk", "sans-serif"],
+        heading: ["Space Grotesk", "Plus Jakarta Sans", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+      },
+      boxShadow: {
+        "neon-magenta": "0 0 40px -8px rgba(240, 18, 168, 0.55)",
+        "neon-cyan": "0 0 40px -8px rgba(0, 212, 255, 0.5)",
+        "neon-amber": "0 0 40px -8px rgba(255, 138, 31, 0.45)",
+        "glass-3d": "0 24px 60px -15px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
+      },
       animation: {
-        bounceSlow: 'bounce 3s infinite',
-        fadeIn: 'fadeIn 2s ease-in forwards',
+        "float-slow": "floatSlow 7s ease-in-out infinite",
+        "pulse-glow": "pulseGlow 4s ease-in-out infinite",
+        "spin-slow": "spin 18s linear infinite",
+        "marquee": "marquee 32s linear infinite",
       },
       keyframes: {
-        bounce: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+        floatSlow: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-14px)" },
         },
-        fadeIn: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
+        pulseGlow: {
+          "0%, 100%": { opacity: "0.55" },
+          "50%": { opacity: "0.95" },
         },
-      },
-      colors: {  
-        primaryBlue1: "#1d99ff",
-        primaryGreen1: "#14FF00",
-        test:'#00C2FF',
-
-        primaryColor1: "#00260A",
-        primaryColor2: "#00591B",
-        primaryColor3: "#028B34",
-        primaryColor4: "#09BD56",
-        primaryColor5: "#1AF081",
-        primaryColor6: "#50F9AB",
-        primaryColor7: "#86FDCE",
-        primaryColor8: "#BDFFE8",
-        primaryColor9: "#F2FFFB",
-        
-        dPrimaryColor1: "#FFF5F2",
-        dPrimaryColor2: "#FBF3F2",
-        dPrimaryColor3: "#DFDADA",
-        dPrimaryColor4: "#939292",
-        dPrimaryColor5: "#000000",
-        dPrimaryColor6: "#0A0808",
-        dPrimaryColor7: "#131010",
-        dPrimaryColor8: "#1D1717",
-        dPrimaryColor9: "#261F1F",
-      },
-
-      fontFamily: {
-        footFont1: ["Lalezar", "system-ui"],
-        footFont2: ["Lilita One", "sans-serif"],
-        poppins: ['Poppins', 'sans-serif'],
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [
     function ({ addUtilities }) {
       addUtilities({
-        '.scrollbar-hide': {
-          '-ms-overflow-style': 'none', /* IE and Edge */
-          'scrollbar-width': 'none', /* Firefox */
+        ".scrollbar-hide": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
         },
-        '.scrollbar-hide::-webkit-scrollbar': {
-          display: 'none', /* Chrome, Safari, and Opera */
+        ".scrollbar-hide::-webkit-scrollbar": {
+          display: "none",
+        },
+        ".perspective-1200": {
+          perspective: "1200px",
+        },
+        ".preserve-3d": {
+          "transform-style": "preserve-3d",
         },
       });
     },

@@ -3,10 +3,127 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-      @apply bg-primaryColor8 dark:bg-dPrimaryColor9 text-black dark:text-white;
-    }
+  html {
+    background-color: #06040d;
+    color: #f8f6ff;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    scroll-behavior: smooth;
   }
 
+  body {
+    background-color: #06040d;
+    color: #f8f6ff;
+    overflow-x: hidden;
+  }
 
-  
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #06040d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #f012a8 0%, #00d4ff 50%, #ff8a1f 100%);
+    border-radius: 9999px;
+  }
+}
+
+/* Signature neon gradient text synced to the 3 corridor portraits */
+.text-neon-gradient {
+  background: linear-gradient(110deg, #ff3cc7 0%, #f8f6ff 38%, #00d4ff 70%, #ffc247 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-magenta-cyan {
+  background: linear-gradient(95deg, #ff3cc7 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-panel {
+  background: linear-gradient(
+    145deg,
+    rgba(22, 16, 40, 0.72) 0%,
+    rgba(11, 7, 22, 0.82) 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.neon-corridor-frame {
+  position: relative;
+}
+.neon-corridor-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    130deg,
+    rgba(240, 18, 168, 0.65),
+    rgba(255, 255, 255, 0.08) 42%,
+    rgba(0, 212, 255, 0.65) 78%,
+    rgba(255, 138, 31, 0.55)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Subtle film grain overlay for editorial photographic depth */
+.noise-overlay {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+/* 3D Corridor Tunnel Animation for Preloader */
+@keyframes tunnelZoom {
+  0% {
+    transform: translate3d(-50%, -50%, -900px) scale(0.35);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 320px) scale(1.65);
+    opacity: 0;
+  }
+}
+
+.corridor-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(62vw, 520px);
+  height: min(44vh, 340px);
+  border-radius: 20px;
+  animation: tunnelZoom 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes spinPrism3D {
+  0% {
+    transform: rotateX(18deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(18deg) rotateY(360deg);
+  }
+}
+
+.prism-spin-3d {
+  transform-style: preserve-3d;
+  animation: spinPrism3D 9s linear infinite;
+}

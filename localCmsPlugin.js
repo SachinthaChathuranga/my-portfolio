@@ -72,31 +72,49 @@ function toHttpsGitHubUrl(remoteUrl = "") {
   return remoteUrl;
 }
 
-async function gitPushSmart(cwd, targetRemote, refspec, { force = false, setUpstream = false } = {}) {
-  const baseArgs = ["-c", "http.postBuffer=524288000", "push"];
-  if (force) baseArgs.push("--force");
-  if (setUpstream) baseArgs.push("-u");
+function toSsh443GitHubUrl(remoteUrl = "") {
+  const m = remoteUrl.match(/github\.com[:/]([^/]+\/[^/]+?)(?:\.git)?$/i);
+  if (m) return `ssh://git@ssh.github.com:443/${m[1]}.git`;
+  return "";
+}
 
-  try {
-    return await runProcess("git", [...baseArgs, targetRemote, refspec], cwd);
-  } catch (firstErr) {
-    // If SSH port 22 failed or timed out, automatically retry via HTTPS GitHub URL
-    let resolvedUrl = targetRemote;
-    if (targetRemote === "origin") {
-      try {
-        resolvedUrl = (await runProcess("git", ["remote", "get-url", "origin"], cwd)).stdout;
-      } catch {
-        throw firstErr;
-      }
+async function gitPushSmart(cwd, targetRemote, refspec, { force = false, setUpstream = false } = {}) {
+  let resolvedUrl = targetRemote;
+  if (targetRemote === "origin") {
+    try {
+      resolvedUrl = (await runProcess("git", ["remote", "get-url", "origin"], cwd)).stdout;
+    } catch {
+      resolvedUrl = targetRemote;
     }
-    const httpsUrl = toHttpsGitHubUrl(resolvedUrl);
-    if (httpsUrl && httpsUrl !== resolvedUrl && /^https:\/\//i.test(httpsUrl)) {
-      const retryArgs = ["-c", "http.postBuffer=524288000", "push"];
-      if (force) retryArgs.push("--force");
-      return await runProcess("git", [...retryArgs, httpsUrl, refspec], cwd);
-    }
-    throw firstErr;
   }
+
+  const ssh443Url = toSsh443GitHubUrl(resolvedUrl);
+  const httpsUrl = toHttpsGitHubUrl(resolvedUrl);
+
+  const candidates = Array.from(
+    new Set([targetRemote, ssh443Url, httpsUrl].filter(Boolean))
+  );
+
+  let lastErr = null;
+  for (const remote of candidates) {
+    const args = [
+      "-c",
+      "http.postBuffer=524288000",
+      "-c",
+      "core.sshCommand=ssh -o ConnectTimeout=10 -o ServerAliveInterval=15",
+      "push",
+    ];
+    if (force) args.push("--force");
+    if (setUpstream && remote === targetRemote) args.push("-u");
+    args.push(remote, refspec);
+
+    try {
+      return await runProcess("git", args, cwd);
+    } catch (err) {
+      lastErr = err;
+    }
+  }
+  throw lastErr;
 }
 
 function deriveGitHubPagesUrl(remoteUrl = "") {

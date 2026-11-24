@@ -1,4 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import AmbientCorridor3D from "./components/AmbientCorridor3D";
 import Preloader3D from "./components/Preloader3D";
 import Navbar from "./components/Navbar";
@@ -14,12 +15,12 @@ import ProjectModal from "./components/ProjectModal";
 import StorePreviewModal from "./components/StorePreviewModal";
 import WorkArchivePage from "./pages/WorkArchivePage";
 import GalleryArchivePage from "./pages/GalleryArchivePage";
-import { assetUrl, fetchPortfolioData, IS_LOCAL_STUDIO } from "./utils/portfolioApi";
+import BlogPage from "./pages/BlogPage";
+import StudioAuthGate from "./studio/StudioAuthGate";
+import { auth } from "./utils/firebase";
+import { assetUrl, fetchPortfolioData } from "./utils/portfolioApi";
 
-// Strictly lazy-loaded ONLY in local dev; completely tree-shaken in production GitHub Pages builds
-const LocalStudioDashboard = IS_LOCAL_STUDIO
-  ? lazy(() => import("./studio/LocalStudioDashboard"))
-  : null;
+const LocalStudioDashboard = lazy(() => import("./studio/LocalStudioDashboard"));
 
 function parseHashRoute() {
   const raw = window.location.hash || "";
@@ -33,7 +34,11 @@ function parseHashRoute() {
     const params = new URLSearchParams(query);
     return { page: "gallery", filter: params.get("filter") || "all" };
   }
-  if (IS_LOCAL_STUDIO && raw.startsWith("#/studio")) {
+  if (raw.startsWith("#/blog")) {
+    const sub = raw.slice("#/blog".length).split("?")[0].replace(/^\/+/, "");
+    return { page: "blog", postId: sub || null };
+  }
+  if (raw.startsWith("#/studio")) {
     return { page: "studio" };
   }
   return { page: "home" };
@@ -48,6 +53,16 @@ export default function App() {
 
   const [route, setRoute] = useState(() => parseHashRoute());
   const [studioProjectId, setStudioProjectId] = useState(null);
+  const [authUser, setAuthUser] = useState(null);
+  const [authChecked, setAuthChecked] = useState(false);
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      setAuthUser(user);
+      setAuthChecked(true);
+    });
+    return () => unsub();
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -96,7 +111,10 @@ export default function App() {
   const navigateWork = (category = "all") => {
     setSelectedProject(null);
     setStorePreview(null);
-    const hash = category && category !== "all" ? `#/work?category=${encodeURIComponent(category)}` : "#/work";
+    const hash =
+      category && category !== "all"
+        ? `#/work?category=${encodeURIComponent(category)}`
+        : "#/work";
     window.location.hash = hash;
     setRoute({ page: "work", category });
   };
@@ -104,13 +122,22 @@ export default function App() {
   const navigateGallery = (filter = "all") => {
     setSelectedProject(null);
     setStorePreview(null);
-    const hash = filter && filter !== "all" ? `#/gallery?filter=${encodeURIComponent(filter)}` : "#/gallery";
+    const hash =
+      filter && filter !== "all"
+        ? `#/gallery?filter=${encodeURIComponent(filter)}`
+        : "#/gallery";
     window.location.hash = hash;
     setRoute({ page: "gallery", filter });
   };
 
+  const navigateBlog = (postId = null) => {
+    setSelectedProject(null);
+    setStorePreview(null);
+    window.location.hash = postId ? `#/blog/${encodeURIComponent(postId)}` : "#/blog";
+    setRoute({ page: "blog", postId });
+  };
+
   const openStudio = (projectId = null) => {
-    if (!IS_LOCAL_STUDIO) return;
     setSelectedProject(null);
     setStorePreview(null);
     setStudioProjectId(projectId);
@@ -124,6 +151,11 @@ export default function App() {
     navigateHome();
   };
 
+  const handleSignOut = async () => {
+    await signOut(auth);
+    exitStudio();
+  };
+
   if (loadError) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#06040D] p-6 text-center text-white">
@@ -135,21 +167,35 @@ export default function App() {
     );
   }
 
-  // Dev-only Local Studio Dashboard View
-  if (IS_LOCAL_STUDIO && route.page === "studio" && portfolio && LocalStudioDashboard) {
+  // Protected Cloud Studio View (Available on live site & locally via #/studio)
+  if (route.page === "studio") {
+    if (!authChecked || !portfolio) {
+      return (
+        <div className="flex min-h-screen items-center justify-center bg-[#06040D] font-mono text-xs text-ink-secondary">
+          Checking Cloud Studio session...
+        </div>
+      );
+    }
+
+    if (!authUser) {
+      return <StudioAuthGate onBack={exitStudio} />;
+    }
+
     return (
       <Suspense
         fallback={
           <div className="flex min-h-screen items-center justify-center bg-[#06040D] font-mono text-xs text-ink-secondary">
-            Opening Local Studio...
+            Opening SMSC Cloud Studio...
           </div>
         }
       >
         <LocalStudioDashboard
           data={portfolio}
+          authUser={authUser}
           initialProjectId={studioProjectId}
           onDataSaved={(updated) => setPortfolio(updated)}
           onExitStudio={exitStudio}
+          onSignOut={handleSignOut}
         />
       </Suspense>
     );
@@ -174,7 +220,7 @@ export default function App() {
             onNavigateHome={navigateHome}
             onNavigateWork={() => navigateWork("all")}
             onNavigateGallery={() => navigateGallery("all")}
-            onOpenStudio={IS_LOCAL_STUDIO ? () => openStudio(null) : undefined}
+            onNavigateBlog={() => navigateBlog(null)}
           />
 
           {route.page === "work" ? (
@@ -192,6 +238,14 @@ export default function App() {
               gallery={portfolio.gallery}
               initialFilter={route.filter}
               onBackHome={() => navigateHome("gallery")}
+            />
+          ) : route.page === "blog" ? (
+            <BlogPage
+              blogs={portfolio.blogs || []}
+              activePostId={route.postId}
+              onSelectPost={(id) => navigateBlog(id)}
+              onBackToBlogList={() => navigateBlog(null)}
+              onBackHome={() => navigateHome(null)}
             />
           ) : (
             <main className="relative z-10">
@@ -227,14 +281,14 @@ export default function App() {
             onNavigateHome={navigateHome}
             onNavigateWork={() => navigateWork("all")}
             onNavigateGallery={() => navigateGallery("all")}
+            onNavigateBlog={() => navigateBlog(null)}
+            onOpenStudio={() => openStudio(null)}
           />
 
           <ProjectModal
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
-            onEditInStudio={
-              IS_LOCAL_STUDIO ? (id) => openStudio(id) : undefined
-            }
+            onEditInStudio={authUser ? (id) => openStudio(id) : undefined}
             onOpenStorePreview={(project, store) =>
               setStorePreview({ project, store })
             }

@@ -36,7 +36,12 @@ import {
   Terminal,
   Award,
   Loader2,
+  BookOpen,
+  Cloud,
+  LogOut,
+  Shield,
 } from "lucide-react";
+import BlogStudioTab from "./BlogStudioTab";
 import {
   assetUrl,
   checkLocalCmsHealth,
@@ -45,6 +50,8 @@ import {
   deleteLocalImage,
   fetchGitStatus,
   fetchPortfolioData,
+  fetchStaticPortfolioJson,
+  IS_LOCAL_DEV,
   publishGitBranch,
   pushGitBranch,
   savePortfolioData,
@@ -54,9 +61,10 @@ import {
 const TABS = [
   { id: "projects", label: "Projects", icon: FolderKanban },
   { id: "gallery", label: "My Gallery", icon: Camera },
+  { id: "blog", label: "Blog & Notes", icon: BookOpen },
   { id: "profile", label: "Profile & Portraits", icon: User },
   { id: "skills", label: "Experience & Skills", icon: GraduationCap },
-  { id: "publish", label: "GitHub Publish", icon: Rocket },
+  { id: "publish", label: "Cloud & Publish", icon: Cloud },
 ];
 
 const CATEGORIES = [
@@ -107,9 +115,11 @@ function createEmptyProject() {
 
 export default function LocalStudioDashboard({
   data,
+  authUser = null,
   initialProjectId = null,
   onDataSaved,
   onExitStudio,
+  onSignOut,
 }) {
   const [draft, setDraft] = useState(() => structuredClone(data));
   const [activeTab, setActiveTab] = useState("projects");
@@ -142,6 +152,106 @@ export default function LocalStudioDashboard({
   const [commitMessage, setCommitMessage] = useState("Update portfolio via Local Studio");
   const [pushBeforePublish, setPushBeforePublish] = useState(true);
   const [gitLog, setGitLog] = useState("");
+  const [migrationProgress, setMigrationProgress] = useState(null); // { done, total, failed }
+
+  const countLocalImages = (obj) => {
+    const set = new Set();
+    const scan = (v) => {
+      if (typeof v === "string" && v.startsWith("images/")) set.add(v);
+    };
+    if (obj?.profile?.portraits) Object.values(obj.profile.portraits).forEach(scan);
+    (obj?.projects || []).forEach((p) => {
+      scan(p.logo);
+      scan(p.coverImage);
+      (p.images || []).forEach(scan);
+    });
+    (obj?.gallery || []).forEach((g) => {
+      scan(g.image);
+      (g.photos || []).forEach((ph) => scan(ph.image));
+    });
+    (obj?.blogs || []).forEach((b) => {
+      scan(b.coverImage);
+      (b.blocks || []).forEach((blk) => scan(blk.image));
+    });
+    return Array.from(set);
+  };
+
+  const localImagesRemaining = useMemo(() => countLocalImages(draft), [draft]);
+
+  const handleMigrateLocalImagesToCloudinary = async () => {
+    const targets = countLocalImages(draft);
+    if (targets.length === 0) {
+      showToast("info", "All images are already hosted on Cloudinary!");
+      return;
+    }
+    if (
+      !window.confirm(
+        `Upload all ${targets.length} local images to Cloudinary (dtpff8781) and update your portfolio & Firestore?`
+      )
+    ) {
+      return;
+    }
+
+    setMigrationProgress({ done: 0, total: targets.length, failed: 0 });
+    const uploadedMap = {};
+    let done = 0;
+    let failed = 0;
+
+    for (const relPath of targets) {
+      try {
+        const resp = await fetch(assetUrl(relPath));
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const blob = await resp.blob();
+        const filename = relPath.split("/").pop() || "image.png";
+        const file = new File([blob], filename, { type: blob.type || "image/png" });
+        const folder = relPath
+          .replace(/^images\//, "")
+          .split("/")
+          .slice(0, -1)
+          .join("/");
+        const up = await uploadLocalImage(file, folder || "migrated");
+        uploadedMap[relPath] = up.path;
+      } catch (err) {
+        console.error("Migration failed for", relPath, err);
+        failed++;
+      }
+      done++;
+      setMigrationProgress({ done, total: targets.length, failed });
+    }
+
+    const swap = (v) => (typeof v === "string" && uploadedMap[v] ? uploadedMap[v] : v);
+    const updated = structuredClone(draft);
+    if (updated.profile?.portraits) {
+      for (const k of Object.keys(updated.profile.portraits)) {
+        updated.profile.portraits[k] = swap(updated.profile.portraits[k]);
+      }
+    }
+    updated.projects = (updated.projects || []).map((p) => ({
+      ...p,
+      logo: p.logo ? swap(p.logo) : p.logo,
+      coverImage: p.coverImage ? swap(p.coverImage) : p.coverImage,
+      images: (p.images || []).map(swap),
+    }));
+    updated.gallery = (updated.gallery || []).map((g) => ({
+      ...g,
+      image: g.image ? swap(g.image) : g.image,
+      photos: (g.photos || []).map((ph) => ({ ...ph, image: swap(ph.image) })),
+    }));
+    updated.blogs = (updated.blogs || []).map((b) => ({
+      ...b,
+      coverImage: b.coverImage ? swap(b.coverImage) : b.coverImage,
+      blocks: (b.blocks || []).map((blk) =>
+        blk.image ? { ...blk, image: swap(blk.image) } : blk
+      ),
+    }));
+
+    setDraft(updated);
+    await persistToDisk(
+      updated,
+      `Migrated ${done - failed}/${targets.length} images to Cloudinary & saved!`
+    );
+    setMigrationProgress(null);
+  };
 
   const loadGitStatus = async () => {
     setGitLoading(true);
@@ -165,10 +275,26 @@ export default function LocalStudioDashboard({
   };
 
   useEffect(() => {
-    if (activeTab === "publish") {
+    if (activeTab === "publish" && IS_LOCAL_DEV) {
       loadGitStatus();
     }
   }, [activeTab]);
+
+  const handleSyncStaticToFirestore = async () => {
+    setSaving(true);
+    try {
+      const staticJson = await fetchStaticPortfolioJson();
+      await savePortfolioData(staticJson);
+      setDraft(structuredClone(staticJson));
+      setDirty(false);
+      onDataSaved({ ...staticJson, _source: "firestore" });
+      showToast("success", "Synced all projects, Cloudinary URLs, gallery & blog to Firestore!");
+    } catch (err) {
+      showToast("error", err?.message || "Firestore sync failed — verify your Firestore rules.");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const handleCreateBranch = async () => {
     const clean = newBranchName.trim();
@@ -302,10 +428,10 @@ export default function LocalStudioDashboard({
     try {
       await savePortfolioData(nextData);
       setDirty(false);
-      onDataSaved(nextData);
-      showToast("success", customMsg || "Saved directly to public/data/portfolio.json");
+      onDataSaved({ ...nextData, _source: "firestore" });
+      showToast("success", customMsg || "Saved live to Firebase Firestore!");
     } catch (err) {
-      showToast("error", err?.message || "Failed to write portfolio.json");
+      showToast("error", err?.message || "Failed to save to Firestore");
     } finally {
       setSaving(false);
     }
@@ -789,16 +915,15 @@ export default function LocalStudioDashboard({
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-display text-base font-bold text-white">
-                  SMSC Local Studio
+                  SMSC Cloud Studio
                 </span>
-                <span className="rounded-full border border-[#FF8A1F]/40 bg-[#FF8A1F]/15 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-[#FFC247]">
-                  Dev Only
+                <span className="rounded-full border border-[#00D4FF]/40 bg-[#00D4FF]/15 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-[#7EE8FF]">
+                  Firestore + Cloudinary
                 </span>
               </div>
               <p className="font-mono text-[11px] text-ink-muted">
-                {cmsHealth?.ok
-                  ? `Connected to disk • ${cmsHealth.dataFile}`
-                  : "Local file writer active"}
+                {authUser?.email ? `Signed in as ${authUser.email}` : "Cloud Studio Active"}
+                {data?._source === "static" ? " • Ready to sync to Firestore" : " • Live Cloud"}
               </p>
             </div>
           </div>
@@ -820,8 +945,19 @@ export default function LocalStudioDashboard({
               }}
             >
               <Save className="h-4 w-4" />
-              <span>{saving ? "Writing to disk..." : "Save to Disk"}</span>
+              <span>{saving ? "Saving to Cloud..." : "Save Live"}</span>
             </button>
+            {onSignOut && (
+              <button
+                type="button"
+                onClick={onSignOut}
+                title="Sign out"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-2.5 text-xs font-semibold text-ink-secondary transition hover:border-rose-400/50 hover:text-rose-200"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+                <span className="hidden sm:inline">Sign Out</span>
+              </button>
+            )}
           </div>
         </div>
       </header>
@@ -878,21 +1014,24 @@ export default function LocalStudioDashboard({
                       {draft.gallery?.length || 0}
                     </span>
                   )}
+                  {tab.id === "blog" && (
+                    <span className="rounded-full bg-white/10 px-2 py-0.5 font-mono text-[11px]">
+                      {draft.blogs?.length || 0}
+                    </span>
+                  )}
                 </button>
               );
             })}
 
             <div className="mt-4 rounded-xl border border-white/10 bg-black/30 p-3.5 text-xs text-ink-muted">
               <div className="flex items-center gap-2 font-mono text-[11px] font-semibold text-[#00D4FF]">
-                <HardDrive className="h-3.5 w-3.5" />
-                Local Storage Paths
+                <Cloud className="h-3.5 w-3.5" />
+                Cloud Storage
               </div>
               <p className="mt-2 font-mono text-[11px] leading-relaxed text-ink-secondary">
-                Data: <span className="text-white">public/data/portfolio.json</span>
+                DB: <span className="text-white">Firebase Firestore</span>
                 <br />
-                Projects: <span className="text-white">public/images/projects/</span>
-                <br />
-                Gallery: <span className="text-white">public/images/gallery/</span>
+                Media: <span className="text-white">Cloudinary (dtpff8781)</span>
               </p>
               <p className="mt-2 text-[11px] text-ink-muted">
                 Public: <span className="text-emerald-300">{publicProjectCount}</span> • Hidden:{" "}
@@ -2046,6 +2185,19 @@ export default function LocalStudioDashboard({
             </div>
           )}
 
+          {/* ================= BLOG & NOTES TAB ================= */}
+          {activeTab === "blog" && (
+            <BlogStudioTab
+              blogs={draft.blogs || []}
+              onChangeBlogs={(nextBlogs) =>
+                updateDraft((prev) => ({ ...prev, blogs: nextBlogs }))
+              }
+              showToast={showToast}
+              inputClass={inputClass}
+              labelClass={labelClass}
+            />
+          )}
+
           {/* ================= PROFILE & PORTRAITS TAB ================= */}
           {activeTab === "profile" && (
             <div className="space-y-6 rounded-2xl border border-white/10 bg-[#100B20] p-6">
@@ -2771,9 +2923,106 @@ export default function LocalStudioDashboard({
             </div>
           )}
 
-          {/* ================= GITHUB BRANCH, PUSH & PUBLISH TAB ================= */}
+          {/* ================= CLOUD SYNC & GITHUB PUBLISH TAB ================= */}
           {activeTab === "publish" && (
             <div className="space-y-6">
+              {/* Firestore Cloud Sync & Rules Helper */}
+              <div className="space-y-4 rounded-2xl border border-[#00D4FF]/35 bg-[#100B20] p-6">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#00D4FF]/20 text-[#7EE8FF]">
+                      <Cloud className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <h2 className="font-display text-xl font-bold text-white">
+                        Firebase Firestore & Cloudinary Cloud Sync
+                      </h2>
+                      <p className="text-xs text-ink-muted">
+                        Edits saved with &ldquo;Save Live&rdquo; go straight to Firestore and update your live site instantly.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    {localImagesRemaining.length > 0 && (
+                      <button
+                        type="button"
+                        disabled={Boolean(migrationProgress) || saving}
+                        onClick={handleMigrateLocalImagesToCloudinary}
+                        className="inline-flex items-center gap-2 rounded-full border border-[#FF8A1F]/55 bg-[#FF8A1F]/15 px-4 py-2.5 text-xs font-bold text-[#FFC247] transition hover:bg-[#FF8A1F]/25 disabled:opacity-50"
+                      >
+                        {migrationProgress ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <Upload className="h-4 w-4" />
+                        )}
+                        <span>
+                          {migrationProgress
+                            ? `Uploading ${migrationProgress.done}/${migrationProgress.total}...`
+                            : `Migrate ${localImagesRemaining.length} Local Images → Cloudinary`}
+                        </span>
+                      </button>
+                    )}
+
+                    <button
+                      type="button"
+                      disabled={saving || Boolean(migrationProgress)}
+                      onClick={handleSyncStaticToFirestore}
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#F012A8] to-[#0099FF] px-5 py-2.5 text-xs font-bold text-white shadow-neon-magenta transition hover:scale-[1.02] disabled:opacity-50"
+                    >
+                      <Cloud className="h-4 w-4" />
+                      <span>Sync Portfolio → Firestore</span>
+                    </button>
+                  </div>
+                </div>
+
+                {migrationProgress && (
+                  <div className="rounded-xl border border-[#FF8A1F]/35 bg-black/40 p-4">
+                    <div className="mb-2 flex items-center justify-between font-mono text-xs text-[#FFC247]">
+                      <span>
+                        Uploading local images to Cloudinary (dtpff8781)...
+                      </span>
+                      <span>
+                        {migrationProgress.done} / {migrationProgress.total}
+                        {migrationProgress.failed > 0
+                          ? ` (${migrationProgress.failed} failed)`
+                          : ""}
+                      </span>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-[#F012A8] via-[#FF8A1F] to-[#00D4FF] transition-all"
+                        style={{
+                          width: `${Math.round(
+                            (migrationProgress.done /
+                              Math.max(1, migrationProgress.total)) *
+                              100
+                          )}%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                <div className="rounded-xl border border-white/10 bg-[#070510] p-4">
+                  <p className="mb-2 flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-[#FFC247]">
+                    <Shield className="h-3.5 w-3.5" />
+                    Required Firestore Security Rules (Firebase Console → Firestore → Rules)
+                  </p>
+                  <pre className="overflow-x-auto font-mono text-[11px] leading-relaxed text-[#7EE8FF]">{`rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /portfolio/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}`}</pre>
+                </div>
+              </div>
+
+              {/* Local Dev-Only Git Branch & Pages Controls */}
+              {IS_LOCAL_DEV && (
+                <>
               {/* Live Git Status Banner */}
               <div className="rounded-2xl border border-white/10 bg-[#100B20] p-6">
                 <div className="flex flex-wrap items-center justify-between gap-4">
@@ -3130,6 +3379,8 @@ export default function LocalStudioDashboard({
                   {gitPublishCommand}
                 </pre>
               </div>
+                </>
+              )}
             </div>
           )}
         </main>

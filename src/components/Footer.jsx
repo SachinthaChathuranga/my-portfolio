@@ -1,10 +1,13 @@
 import React from "react";
+import { Lock } from "lucide-react";
 
 export default function Footer({
   profile,
   onNavigateHome,
   onNavigateWork,
   onNavigateGallery,
+  onNavigateBlog,
+  onOpenStudio,
 }) {
   return (
     <footer className="relative z-10 border-t border-white/10 py-10">
@@ -14,7 +17,9 @@ export default function Footer({
             {profile?.brand || "SMSC"}
           </span>
           <p className="mt-1 text-xs text-ink-muted">
-            © {new Date().getFullYear()} {profile?.fullName || "S.M. Sachintha Chathuranga"}. Crafted with React, Motion UI & Neon Optics.
+            © {new Date().getFullYear()}{" "}
+            {profile?.fullName || "S.M. Sachintha Chathuranga"}. Crafted with React,
+            Motion UI & Neon Optics.
           </p>
         </div>
 
@@ -42,11 +47,29 @@ export default function Footer({
           </button>
           <button
             type="button"
+            onClick={() => onNavigateBlog?.()}
+            className="transition hover:text-white"
+          >
+            Blog
+          </button>
+          <button
+            type="button"
             onClick={() => onNavigateHome?.("contact")}
             className="transition hover:text-white"
           >
             Contact
           </button>
+          {onOpenStudio && (
+            <button
+              type="button"
+              onClick={onOpenStudio}
+              title="Owner Studio Login"
+              className="inline-flex items-center gap-1 opacity-55 transition hover:text-[#FFC247] hover:opacity-100"
+            >
+              <Lock className="h-3 w-3" />
+              <span>Studio</span>
+            </button>
+          )}
         </div>
       </div>
     </footer>

@@ -18,9 +18,9 @@
     "email": "smschathu1234@gmail.com",
     "availability": "Associate Software Engineer @ INTTEQ",
     "portraits": {
-      "hero": "images/portraits/hero-corridor.png",
-      "about": "images/portraits/vertical-portrait.png",
-      "contact": "images/portraits/scroll-portrait.png"
+      "hero": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png",
+      "about": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503313/smsc_portfolio/w2fycotqxqwj4vndiqtq.png",
+      "contact": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503341/smsc_portfolio/n77spvhqy1wpjhcvxgyz.png"
     },
     "socials": {
       "linkedin": "https://www.linkedin.com/in/sachintha-chathuranga-5b5750247/",
@@ -191,17 +191,17 @@
       "photos": [
         {
           "id": "ph-grad-1",
-          "image": "images/gallery/neon-corridor-graduation.png",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
           "caption": "Neon Corridor Full-Frame Graduation Portrait"
         },
         {
           "id": "ph-grad-2",
-          "image": "images/gallery/neon-cinematic-portrait.png",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png",
           "caption": "Vertical Neon Rim-Light Study"
         },
         {
           "id": "ph-grad-3",
-          "image": "images/gallery/neon-scroll-closeup.png",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png",
           "caption": "Ceremonial Scroll Close-Up"
         }
       ]
@@ -209,24 +209,26 @@
     {
       "type": "photo",
       "id": "gal-mwtt309v-6gq",
-      "title": "DSC01705",
+      "title": "Amma & Thaththa",
       "caption": "",
-      "tag": "Personal",
+      "tag": "Family",
       "date": "2026",
       "aspect": "tall",
       "isPublic": true,
-      "image": "images/gallery/dsc01705-mwtt309o.jpg"
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505408/smsc_portfolio/e89us1vc6dchccw5l1ve.jpg",
+      "photos": []
     },
     {
       "type": "photo",
       "id": "gal-mwtt2x5l-3dp",
-      "title": "DSC01701",
+      "title": "Amma & Thaththa",
       "caption": "",
-      "tag": "Personal",
+      "tag": "Convocation",
       "date": "2026",
       "aspect": "wide",
       "isPublic": true,
-      "image": "images/gallery/dsc01701-mwtt2x5f.jpg"
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505475/smsc_portfolio/qipnybwxqut52hsuorrf.jpg",
+      "photos": []
     },
     {
       "type": "photo",
@@ -237,7 +239,8 @@
       "date": "2025",
       "aspect": "wide",
       "isPublic": true,
-      "image": "images/gallery/neon-corridor-graduation.png"
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
+      "photos": []
     },
     {
       "type": "photo",
@@ -248,7 +251,8 @@
       "date": "2025",
       "aspect": "tall",
       "isPublic": true,
-      "image": "images/gallery/neon-cinematic-portrait.png"
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png",
+      "photos": []
     },
     {
       "type": "photo",
@@ -259,7 +263,8 @@
       "date": "2025",
       "aspect": "standard",
       "isPublic": true,
-      "image": "images/gallery/neon-scroll-closeup.png"
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png",
+      "photos": []
     }
   ],
   "projects": [
@@ -299,31 +304,31 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/cv-dealrax/untitled-design-14-mwtsmwrp.png",
-        "images/projects/cv-dealrax/real-deals-real-savings-mwtsryro.png",
-        "images/projects/cv-dealrax/lightning-deals-shopping-showcase-mwtsryq5.png",
-        "images/projects/cv-dealrax/never-miss-a-deal-mwtsryqg.png",
-        "images/projects/cv-dealrax/ai-powered-deal-check-mwtsryl2.png",
-        "images/projects/cv-dealrax/real-deals-real-savings-daily-mwtsryrb.png",
-        "images/projects/cv-dealrax/share-deals-climb-the-board-mwtsrys0.png",
-        "images/projects/cv-dealrax/price-check-made-easy-mwtsryqv.png",
-        "images/projects/cv-dealrax/smart-shopping-made-simple-mwtsryse.png",
-        "images/projects/cv-dealrax/img_7692-mwtsryn1.png",
-        "images/projects/cv-dealrax/img_7691-mwtsrymw.png",
-        "images/projects/cv-dealrax/img_7693-mwtsryn8.png",
-        "images/projects/cv-dealrax/img_7694-mwtsrync.png",
-        "images/projects/cv-dealrax/img_7695-mwtsryni.png",
-        "images/projects/cv-dealrax/img_7696-mwtsryns.png",
-        "images/projects/cv-dealrax/img_7697-mwtsryo8.png",
-        "images/projects/cv-dealrax/img_7698-mwtsryou.png",
-        "images/projects/cv-dealrax/img_7701-mwtsrypl.png",
-        "images/projects/cv-dealrax/img_7702-mwtsrypq.png",
-        "images/projects/cv-dealrax/img_7703-mwtsrypv.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503400/smsc_portfolio/hxb7etvxh2t1t3xk7mha.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503427/smsc_portfolio/hl99uascf7ev99ydi14w.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503439/smsc_portfolio/n1kzjvffo1wdygciazjk.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503449/smsc_portfolio/t6wlhytk6wgfwfibhz3a.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503466/smsc_portfolio/isxgeicd0n7jm9sltzct.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503500/smsc_portfolio/hzsjewnxowgnoajugysx.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503525/smsc_portfolio/e3r8vg4ijo34f4xyd44o.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503537/smsc_portfolio/ijboualqqhearcfefofw.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503548/smsc_portfolio/ekrvh2hyzfthzpdjy2fk.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503552/smsc_portfolio/ov7gmaezm8ykggqbjbhw.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503562/smsc_portfolio/ltv2yrkwhykpgyhhslgs.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503566/smsc_portfolio/cfz0ah0itrlm5tr0qm6k.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503570/smsc_portfolio/tyt0q0ec3hr1fqemo2cf.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503577/smsc_portfolio/trwr5fgnp1lfwgpnj3g0.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503590/smsc_portfolio/liynlqkidtyrmyalfsl8.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503607/smsc_portfolio/h5snfwuyyof0yzzejh5x.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503626/smsc_portfolio/v1ozbkza8voe63mzotnc.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503639/smsc_portfolio/dhmkocdqzw2y1yqll5um.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503644/smsc_portfolio/ophgwljsax02bwoakigb.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503646/smsc_portfolio/w2palda9tzadnceszzvw.png"
       ],
       "appStoreUrl": "https://apps.apple.com/us/app/dealrax/id6837411366",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dealrax.mobile",
-      "logo": "images/projects/cv-dealrax/logo/dealraxicon-mwtu4e60.png",
-      "coverImage": "images/projects/cv-dealrax/cover/cheerful-3d-shopping-deals-banner-mwtu4x1z.png"
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503355/smsc_portfolio/udu08j1sdslvagxzggyo.png",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503372/smsc_portfolio/wkhxndsgfnciwora6dlg.png"
     },
     {
       "id": "cv-mangaliyam",
@@ -359,14 +364,14 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/cv-mangaliyam/matches-chosen-around-you-mwtu90f8.png",
-        "images/projects/cv-mangaliyam/talk-when-you-re-both-ready-mwtu90g0.png",
-        "images/projects/cv-mangaliyam/your-photos-your-privacy-mwtu90gg.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503760/smsc_portfolio/vq3wk45ibhm2twwledis.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503783/smsc_portfolio/j2efgtftdxmyiyacivdi.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503805/smsc_portfolio/xnsafsmrep2trnpm8eoi.png"
       ],
       "appStoreUrl": "https://apps.apple.com/us/app/mangaliyam/id6836705877",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.mangaliyam.app",
-      "logo": "images/projects/cv-mangaliyam/logo/20261119_154934-mwtu71a7.png",
-      "coverImage": "images/projects/cv-mangaliyam/cover/untitled-design-12-mwtu80jg.png"
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503696/smsc_portfolio/dssmj2zzsf0bgvcjujb8.png",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503742/smsc_portfolio/cbgzzshwnlxv4rm1gv5s.png"
     },
     {
       "id": "cv-doc4baby",
@@ -377,7 +382,7 @@
       "featured": true,
       "isPublic": true,
       "description": "Healthcare mobile and web ecosystem by INTTEQ (Pvt) Ltd connecting parents with pediatric doctors, supporting child health management and PayHere subscription payments.",
-      "more": "Built across React Native (Expo) for iOS/Android and Next.js for the web portal, integrating secure PayHere payment gateway subscriptions, doctor consultations, and timely health push notifications.",
+      "more": "Built across React Native (Expo) for iOS/Android and Next.js for the web portal, integrating secure PayHere payment gateway subscriptions, doctor consultations, and timely health push notifications.\n\nDoc4Baby is a baby and child health record app that keeps your child's clinic visits, vaccinations, medicine reminders and growth in one secure place, from newborn to school age.\n\nCHILD HEALTH RECORDS\n• Save clinic visits, doctor notes, prescriptions and lab reports\n• Add photos and PDF documents to each record\n• Share records with your child's pediatrician\n• See your child's full medical history anytime, anywhere\n\nVACCINATION & IMMUNIZATION TRACKER\n• Keep track of your child's vaccination schedule and history\n• Get reminders so you never miss a vaccine\n• Save batch numbers, dates and vaccine card photos\n\nMEDICINE & APPOINTMENT REMINDERS\n• Baby medicine reminders for morning, afternoon, evening and night\n• Repeat every 4, 6, 8, 12 or 24 hours\n• Doctor appointment and checkup reminders\n• Full-screen alerts that are hard to miss\n• Swipe to mark a dose as done\n\nBABY GROWTH TRACKER\n• Record weight, height and head circumference\n• See your child's growth over time with clear charts\n\nDOCTOR & CARE TEAM SHARING\n• Connect with your child's doctor using a QR code\n• Invite family members and caregivers\n• You choose who can view and manage your child's profile\n• Doctors get a simple patient view to follow your child's health\n\nHOME HEALTH LOG\n• Log temperature, symptoms and home care\n• Track fever, cold, rash and other symptoms between doctor visits\n\nMULTIPLE CHILDREN\n• Manage all your children from one parent account\n• Switch between child profiles in one tap\n• Separate, organised records for each child\n\nPRIVATE & SECURE\n• PIN lock and Face ID / fingerprint protection\n• Your child's health data is shared only with people you invite\n\nPLANS\n• New users get a 1-month free trial\n• Monthly plan: renews automatically every month until you cancel. Cancel anytime in the app under Profile > Your Plan. You keep access until the end of the paid month.\n• Annual plan: one payment for 12 months. It does not renew automatically and you won't be charged again.\n\nDoc4Baby helps you organise your child's health information. It does not provide medical advice, diagnosis or treatment. Always speak to a qualified doctor about your child's health.\n\nPrivacy Policy: https://dashboard.doc4baby.com/privacy\nTerms of Use: https://dashboard.doc4baby.com/terms\nRefund Policy: https://dashboard.doc4baby.com/refund-policy",
       "role": "Associate Software Engineer",
       "duration": "Commercial Release",
       "date": "2025",
@@ -404,9 +409,59 @@
       "learnings": "Healthcare UX trust patterns and third-party payment gateway integration.",
       "liveUrl": "",
       "repoUrl": "",
+      "images": [
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505989/smsc_portfolio/kbtl1hnsug5mwlfhqmya.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506025/smsc_portfolio/ahjg9mxwyeuhb4xt8brg.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506062/smsc_portfolio/uwuppnbj9fi75wmvknoa.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506096/smsc_portfolio/g6lvhingrjrrd8nsedpu.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506135/smsc_portfolio/xs2amcfvtwbkr1ftzsxu.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506139/smsc_portfolio/wjeavjqfzfp8uxnfadp7.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506161/smsc_portfolio/ooitpbo4m3dfq8ewkdi9.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506300/smsc_portfolio/ugmvnqbtymhxttgsb1ia.png"
+      ],
+      "appStoreUrl": "",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.doc4baby",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505728/smsc_portfolio/hhy3zvqsata8jirprake.png",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505930/smsc_portfolio/lmiocpnl3jo18epo1qp1.png"
+    },
+    {
+      "id": "cv-bigblast",
+      "title": "BigBlast — Offline QR Ticket Scanner",
+      "subtitle": "Sri Lanka • BigBlast Events (Private)",
+      "category": "mobile",
+      "projectType": "React Native (Expo) • Private",
+      "featured": false,
+      "isPublic": true,
+      "description": "Private QR ticket-scanning mobile application built for BigBlast Events gate staff, supporting offline ticket validation and real-time synchronization through a local relay server.",
+      "more": "Engineered for high-throughput event gates where internet connectivity is unreliable — validates tickets instantaneously offline and syncs across gate devices via a local relay server. Distributed privately (not publicly listed).",
+      "role": "Associate Software Engineer",
+      "duration": "Private Enterprise Release",
+      "date": "2025",
+      "status": "Private Release",
+      "teamMembers": [
+        "INTTEQ Team",
+        "Sachintha"
+      ],
+      "technologies": [
+        "React Native",
+        "Expo",
+        "QR Scanning",
+        "Offline Sync",
+        "Local Relay Server"
+      ],
+      "features": [
+        "High-speed QR ticket scanning",
+        "Offline gate validation",
+        "Local relay server synchronization",
+        "Private enterprise distribution"
+      ],
+      "challenges": "Preventing duplicate ticket entries across multiple gate scanners under offline conditions.",
+      "learnings": "Offline-first mobile architecture and local network relay synchronization.",
+      "liveUrl": "",
+      "repoUrl": "",
       "images": [],
       "appStoreUrl": "",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.doc4baby"
+      "playStoreUrl": ""
     },
     {
       "id": "cv-playzone",
@@ -520,25 +575,25 @@
       "liveUrl": "https://dev.wasanabakers.lk",
       "repoUrl": "",
       "images": [
-        "images/projects/w02/wb-1-.png",
-        "images/projects/w02/wb-10-.png",
-        "images/projects/w02/wb-11-.png",
-        "images/projects/w02/wb-12-.png",
-        "images/projects/w02/wb-13-.png",
-        "images/projects/w02/wb-14-.png",
-        "images/projects/w02/wb-15-.png",
-        "images/projects/w02/wb-16-.png",
-        "images/projects/w02/wb-17-.png",
-        "images/projects/w02/wb-18-.png",
-        "images/projects/w02/wb-19-.png",
-        "images/projects/w02/wb-2-.png",
-        "images/projects/w02/wb-3-.png",
-        "images/projects/w02/wb-4-.png",
-        "images/projects/w02/wb-5-.png",
-        "images/projects/w02/wb-6-.png",
-        "images/projects/w02/wb-7-.png",
-        "images/projects/w02/wb-8-.png",
-        "images/projects/w02/wb-9-.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503818/smsc_portfolio/upmlei5nzcy2bcos8zbj.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503828/smsc_portfolio/ekr4f8aqco133y3w9j38.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503840/smsc_portfolio/nfd5igtbrza0gguiycea.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503848/smsc_portfolio/uefnabuttd1zszpmpxvo.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503851/smsc_portfolio/yurtfddlnupz5cgpqgxv.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503853/smsc_portfolio/bmuvs9dmnqgtw9i4yanm.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503858/smsc_portfolio/ojoemthvpp25bqgvb2yx.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503861/smsc_portfolio/mhfwytez7dtsknkyttod.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503863/smsc_portfolio/nn9yyc6fpiucly2fzszc.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503866/smsc_portfolio/nkiznp5bqpoetkiuvm4i.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503868/smsc_portfolio/fdy1zgrl3vamxlp72cpa.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503886/smsc_portfolio/rgiqtnznucm192ki3gwm.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503892/smsc_portfolio/f4btnk1dgmrfnmzbwb96.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503909/smsc_portfolio/dffeprq7sesrh9n4dx6l.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503917/smsc_portfolio/hwxl76rdzpwgejd1pfeq.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503921/smsc_portfolio/flmn9g5xulkdzcddtrws.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503925/smsc_portfolio/dxlkj6maiamjkzfm8g2q.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503934/smsc_portfolio/kj4bxxznsp2jhjbxgby7.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503940/smsc_portfolio/sxhhn4lub8afobf69dzs.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -579,45 +634,6 @@
       "repoUrl": "",
       "images": [],
       "appStoreUrl": "https://apps.apple.com/us/app/three-dots-learning-attendance/id6759114278",
-      "playStoreUrl": ""
-    },
-    {
-      "id": "cv-bigblast",
-      "title": "BigBlast — Offline QR Ticket Scanner",
-      "subtitle": "Sri Lanka • BigBlast Events (Private)",
-      "category": "mobile",
-      "projectType": "React Native (Expo) • Private",
-      "featured": false,
-      "isPublic": true,
-      "description": "Private QR ticket-scanning mobile application built for BigBlast Events gate staff, supporting offline ticket validation and real-time synchronization through a local relay server.",
-      "more": "Engineered for high-throughput event gates where internet connectivity is unreliable — validates tickets instantaneously offline and syncs across gate devices via a local relay server. Distributed privately (not publicly listed).",
-      "role": "Associate Software Engineer",
-      "duration": "Private Enterprise Release",
-      "date": "2025",
-      "status": "Private Release",
-      "teamMembers": [
-        "INTTEQ Team",
-        "Sachintha"
-      ],
-      "technologies": [
-        "React Native",
-        "Expo",
-        "QR Scanning",
-        "Offline Sync",
-        "Local Relay Server"
-      ],
-      "features": [
-        "High-speed QR ticket scanning",
-        "Offline gate validation",
-        "Local relay server synchronization",
-        "Private enterprise distribution"
-      ],
-      "challenges": "Preventing duplicate ticket entries across multiple gate scanners under offline conditions.",
-      "learnings": "Offline-first mobile architecture and local network relay synchronization.",
-      "liveUrl": "",
-      "repoUrl": "",
-      "images": [],
-      "appStoreUrl": "",
       "playStoreUrl": ""
     },
     {
@@ -725,13 +741,13 @@
       "liveUrl": "https://play.google.com/store/apps/details?id=com.recipebook",
       "repoUrl": "",
       "images": [
-        "images/projects/m01/feature-grapic.png",
-        "images/projects/m01/1.png",
-        "images/projects/m01/2.png",
-        "images/projects/m01/3.png",
-        "images/projects/m01/4.png",
-        "images/projects/m01/5.png",
-        "images/projects/m01/6.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503942/smsc_portfolio/s23qz7uzmp5hyyyztbmr.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503948/smsc_portfolio/ff6jypbpoduuthxyjj38.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503955/smsc_portfolio/azlq9uzasglommg9bmdx.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503963/smsc_portfolio/fkjna7xqfbwmewlxy6xn.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503971/smsc_portfolio/ufrhf1nhyg8pe2bnwqcm.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503978/smsc_portfolio/fruub3jiubovoeqnqwm5.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503985/smsc_portfolio/nmibrdfxllectumkwjm2.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -770,7 +786,7 @@
       "liveUrl": "https://sachinthachathuranga.github.io/my-portfolio/",
       "repoUrl": "https://github.com/SachinthaChathuranga/my-portfolio",
       "images": [
-        "images/projects/w01/smscp.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503989/smsc_portfolio/rcgwzyviuctns9l0eoa0.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -885,10 +901,10 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/u05/1iphone-14-15-pro-max-13.png",
-        "images/projects/u05/2iphone-14-15-pro-max-7.png",
-        "images/projects/u05/iphone-14-15-pro-max-1.png",
-        "images/projects/u05/iphone-14-15-pro-max-10.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503995/smsc_portfolio/zcvgpaygmftekjxg6opr.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503996/smsc_portfolio/rjctixunuoeopbwloonv.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503997/smsc_portfolio/ozqccspywpd6ol35bzwc.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504000/smsc_portfolio/n5z4mzk4f848a4fqp2ge.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -925,19 +941,19 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/u01/1home.png",
-        "images/projects/u01/2dish-delight-4.png",
-        "images/projects/u01/3dish-delight-0.png",
-        "images/projects/u01/dish-delight-10.png",
-        "images/projects/u01/dish-delight-11.png",
-        "images/projects/u01/dish-delight-2.png",
-        "images/projects/u01/dish-delight-3.png",
-        "images/projects/u01/dish-delight-5.png",
-        "images/projects/u01/dish-delight-7.png",
-        "images/projects/u01/dish-delight-8.png",
-        "images/projects/u01/dish-delight-9.png",
-        "images/projects/u01/home-1.png",
-        "images/projects/u01/home-2.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504003/smsc_portfolio/uikqrfgg1bdvup9ukgml.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504006/smsc_portfolio/frkouagwuijpasphjncx.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504009/smsc_portfolio/erzivyzmjatmrgd59dnx.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504010/smsc_portfolio/nx1pjb8r6fmv33vkbgwb.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504011/smsc_portfolio/fl9bihmo0kk6ozwr9tj7.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504014/smsc_portfolio/ejrhdsyskdgizengk947.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504018/smsc_portfolio/rzyzrnupple65amhzwfi.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504022/smsc_portfolio/s4tntzxaoxueh3w878hm.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504026/smsc_portfolio/zcr0uwanudg1acfjxe16.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504027/smsc_portfolio/jy3ri33bahbqiqvzjtsf.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504028/smsc_portfolio/ovu9qb78exjd1s15xpan.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504029/smsc_portfolio/czp06drirv47varck1wr.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504030/smsc_portfolio/c0ub5kd0jm3gxbis5ioc.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -974,19 +990,19 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/u02/1iphone-16-pro-max-2.jpg",
-        "images/projects/u02/1main-page-0001.jpg",
-        "images/projects/u02/2macbook-pro-16-3.jpg",
-        "images/projects/u02/3.jpg",
-        "images/projects/u02/branchapplication.jpg",
-        "images/projects/u02/branchapplication0.jpg",
-        "images/projects/u02/branchapplication2.jpg",
-        "images/projects/u02/branchapplication3.jpg",
-        "images/projects/u02/desktop-14.jpg",
-        "images/projects/u02/desktop-15.jpg",
-        "images/projects/u02/gallery-12.png",
-        "images/projects/u02/macbook-pro-16-2.jpg",
-        "images/projects/u02/macbook-pro-16-9.jpg"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504043/smsc_portfolio/py9vew9efovxtrgd457k.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504112/smsc_portfolio/ah1bkugaximzi2oa4rdn.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504128/smsc_portfolio/wwvadiyhubjaupiyq4nh.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504148/smsc_portfolio/ia8donvkfg5bhediylqc.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504159/smsc_portfolio/j9wdhjvhzyvjwiwxsgtg.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504164/smsc_portfolio/ord8wav8s667k3kv4cce.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504168/smsc_portfolio/i1fzznj7koqwqmacfys8.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504172/smsc_portfolio/tflc2dwsu1lrgfvzeg3j.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504174/smsc_portfolio/pnxympqupsryka4mff6o.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504176/smsc_portfolio/vsuquupvbhgp3wjaw3co.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504183/smsc_portfolio/kjb6giwyiolkxvqdazgw.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504228/smsc_portfolio/ooredssgwknwy4gxnu8c.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504242/smsc_portfolio/gdsijluxjspxrpyfbwhw.jpg"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1023,18 +1039,18 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/u04/toongalaxy01.png",
-        "images/projects/u04/toongalaxy02.png",
-        "images/projects/u04/toongalaxy03.png",
-        "images/projects/u04/toongalaxy04.png",
-        "images/projects/u04/toongalaxy05.png",
-        "images/projects/u04/toongalaxy06.png",
-        "images/projects/u04/toongalaxy07.png",
-        "images/projects/u04/toongalaxy09.png",
-        "images/projects/u04/toongalaxy10.png",
-        "images/projects/u04/toongalaxy11.png",
-        "images/projects/u04/toongalaxy16.png",
-        "images/projects/u04/toongalaxy17.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504247/smsc_portfolio/s4jwo3ht3oxbdt3bhkcg.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504252/smsc_portfolio/f7apf91zpltronywoyal.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504258/smsc_portfolio/uwghd7vzgukm8ij63cmq.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504261/smsc_portfolio/xvmqqqprsjfua9ibe1wb.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504265/smsc_portfolio/mzzvwh2msyori5qo9mrc.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504268/smsc_portfolio/aj99v8xox0p5ifmjs0ei.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504269/smsc_portfolio/jooxvnmwwh1dpmhw88oh.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504271/smsc_portfolio/accxbi4qkb6htecdyp2w.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504272/smsc_portfolio/xh4fio8rxcpqmkyeyzvn.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504273/smsc_portfolio/tbcmrxuwwazw0kkxf5kd.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504274/smsc_portfolio/koc4ugblmzegz6dkm2il.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504278/smsc_portfolio/wfwytrwvvw92gos9nuwl.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1071,13 +1087,13 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/u06/1iphone-14-15-pro-max-17.png",
-        "images/projects/u06/2iphone-14-15-pro-max-18.png",
-        "images/projects/u06/3.png",
-        "images/projects/u06/iphone-14-15-pro-max-15.png",
-        "images/projects/u06/iphone-14-15-pro-max-16.png",
-        "images/projects/u06/iphone-14-15-pro-max-19.png",
-        "images/projects/u06/iphone-14-15-pro-max-20.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504279/smsc_portfolio/j9zrtgtprzvhajnrfmo4.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504281/smsc_portfolio/xus51hs1cll11pjxbyok.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504284/smsc_portfolio/kjqhvmhnfxtzcuedixt5.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504286/smsc_portfolio/kxb6pmhyfjy00pgskedc.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504288/smsc_portfolio/xmv8hnishvqx2nagcewx.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504289/smsc_portfolio/apo8keqf41y1ovrijt6t.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504291/smsc_portfolio/s0s9dvuya6qqvm850q4n.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1114,19 +1130,19 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/u05/1iphone-14-15-pro-max-13.png",
-        "images/projects/u05/2iphone-14-15-pro-max-7.png",
-        "images/projects/u05/iphone-14-15-pro-max-1.png",
-        "images/projects/u05/iphone-14-15-pro-max-10.png",
-        "images/projects/u05/iphone-14-15-pro-max-11.png",
-        "images/projects/u05/iphone-14-15-pro-max-12.png",
-        "images/projects/u05/iphone-14-15-pro-max-2.png",
-        "images/projects/u05/iphone-14-15-pro-max-3.png",
-        "images/projects/u05/iphone-14-15-pro-max-4.png",
-        "images/projects/u05/iphone-14-15-pro-max-5.png",
-        "images/projects/u05/iphone-14-15-pro-max-6.png",
-        "images/projects/u05/iphone-14-15-pro-max-8.png",
-        "images/projects/u05/iphone-14-15-pro-max-9.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503995/smsc_portfolio/zcvgpaygmftekjxg6opr.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503996/smsc_portfolio/rjctixunuoeopbwloonv.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503997/smsc_portfolio/ozqccspywpd6ol35bzwc.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504000/smsc_portfolio/n5z4mzk4f848a4fqp2ge.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504299/smsc_portfolio/umiok49muwhw2zaakq5n.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504303/smsc_portfolio/qro2vsobuhnr7qoweht3.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504304/smsc_portfolio/kocmiydsrka3idloe8oi.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504305/smsc_portfolio/q75grjrtwm5ypjbnjiuf.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504305/smsc_portfolio/sb3um0a1oorl3fsvt71y.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504306/smsc_portfolio/pirx6hwdqyutv070ufiu.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504307/smsc_portfolio/ou1w1wocbcifwbakueac.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504309/smsc_portfolio/kr3deohgkqd4b9uxwi9r.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504310/smsc_portfolio/uwtcqpdd4jb2acpvtokk.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1163,13 +1179,13 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/u07/frame-1.png",
-        "images/projects/u07/frame-2.png",
-        "images/projects/u07/frame-3.png",
-        "images/projects/u07/frame-4.png",
-        "images/projects/u07/frame-5.png",
-        "images/projects/u07/frame-6.png",
-        "images/projects/u07/frame-7.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504339/smsc_portfolio/gsr7xd7bees1cxs37aqo.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504362/smsc_portfolio/aggn4quktzzrrgysf0c1.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504384/smsc_portfolio/vqbeadb6hkqrx9dpsetz.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504412/smsc_portfolio/re5azczxue24zztxofho.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504431/smsc_portfolio/jddikh0ju3h8c4v2gmdf.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504454/smsc_portfolio/sox3irxznncyrpqmohu9.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504460/smsc_portfolio/lg3o5znjnbomg1c3bhmq.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1204,10 +1220,10 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/u03/desktop-1.png",
-        "images/projects/u03/desktop-2.png",
-        "images/projects/u03/desktop-3.png",
-        "images/projects/u03/desktop-4.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504464/smsc_portfolio/knjj6kwlz6jrrhhmrbyu.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504466/smsc_portfolio/herzb2awp7cvp16wjruf.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504468/smsc_portfolio/ih0cljqiuwc5ck0o62wu.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504469/smsc_portfolio/ryril1gjvmpwftp89ehc.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1244,33 +1260,33 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/g05/1day1.4.jpg",
-        "images/projects/g05/221211-co-chair.jpg",
-        "images/projects/g05/2photo-2024-12-30-14-46-29.jpg",
-        "images/projects/g05/3454545-01.jpg",
-        "images/projects/g05/a.jpg",
-        "images/projects/g05/agenda2.jpg",
-        "images/projects/g05/b.jpg",
-        "images/projects/g05/b3.jpg",
-        "images/projects/g05/banner.jpg",
-        "images/projects/g05/bhathusha.jpg",
-        "images/projects/g05/congrat-page-0001.jpg",
-        "images/projects/g05/day1.1.jpg",
-        "images/projects/g05/day1.2.jpg",
-        "images/projects/g05/invitation-01.jpg",
-        "images/projects/g05/judge.png",
-        "images/projects/g05/krish.jpg",
-        "images/projects/g05/mani-manohari.jpg",
-        "images/projects/g05/mayumika.jpg",
-        "images/projects/g05/oc-post-1.png",
-        "images/projects/g05/oc-post-2.png",
-        "images/projects/g05/pc-certificate-winners-2-01.png",
-        "images/projects/g05/photo-2024-12-30-14-46-33.jpg",
-        "images/projects/g05/photo-2024-12-30-14-49-49.jpg",
-        "images/projects/g05/photo-2024-12-30-14-57-06.jpg",
-        "images/projects/g05/shathvithan-01-01.jpg",
-        "images/projects/g05/sms-chathuranga.jpg",
-        "images/projects/g05/uoj-vs-uov.jpg"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504480/smsc_portfolio/g1zfwsx4vzag2jcaqrwd.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504498/smsc_portfolio/tgbwrfippdsjikhzw4nn.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504502/smsc_portfolio/y1i1r8p824fvryx60whz.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504536/smsc_portfolio/gfqmpju8seolcw2nolhc.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504540/smsc_portfolio/aqubltrwleb831covacj.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504546/smsc_portfolio/tb0z51bnui9o07qwd406.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504548/smsc_portfolio/yplz1an0ldyxitqrp1x2.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504557/smsc_portfolio/mytsssztd94n48u69ct0.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504719/smsc_portfolio/rnvgvjshma852dcswch6.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504729/smsc_portfolio/e84ea61ssjadnd2mrvic.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504773/smsc_portfolio/ffcmahy6hcvd5h8u7gpx.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504789/smsc_portfolio/bgacyntzkrrrnvwqkkb7.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504803/smsc_portfolio/tw656bb88yfzz3diovtj.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504812/smsc_portfolio/jpyjh0qjaqklfjmzjzeh.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504886/smsc_portfolio/nx7unhvn0dfpuxeukcs1.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504892/smsc_portfolio/h0ldxlpfzhectm7hciua.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504899/smsc_portfolio/ivghk6ycm2pzmu0nvzab.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504903/smsc_portfolio/hq4bf9vtbgwbcbamwcaz.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504950/smsc_portfolio/ypyhud6eokblmzliyx5g.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505009/smsc_portfolio/bu7nylpgb5iiowftpuer.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505017/smsc_portfolio/dghfrludwtr5hcpfynan.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505018/smsc_portfolio/wqgt8iyai9zlljae7odm.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505020/smsc_portfolio/l0ggxumlieksph6zilvf.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505021/smsc_portfolio/j3lsfshxcyiiuoljmmng.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505026/smsc_portfolio/nppannxcvhgpgul60qm0.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505034/smsc_portfolio/woetnmoh9wc4w9seagsy.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505070/smsc_portfolio/giiklkiiodmgayh0rsas.jpg"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1306,12 +1322,12 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/g01/1movie.jpg",
-        "images/projects/g01/1spiderman.jpg",
-        "images/projects/g01/3smsc.jpg",
-        "images/projects/g01/ashani.jpg",
-        "images/projects/g01/avishka.jpg",
-        "images/projects/g01/catdog.jpg"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505073/smsc_portfolio/a8obfbyxrpyuzng7vpgj.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505077/smsc_portfolio/buifvhxeqavj10fniqwe.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505080/smsc_portfolio/jaa4nhih9xfneumjpqb6.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505081/smsc_portfolio/c188o54hoxz262f5brjn.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505082/smsc_portfolio/wmr4wcbumhf0u6wigazb.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505084/smsc_portfolio/upejfqfydfvjbapdpe4p.jpg"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1347,11 +1363,11 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/g03/1cnantclubs.png",
-        "images/projects/g03/2recipebooklogo.png",
-        "images/projects/g03/3toongalaxy.png",
-        "images/projects/g03/cndev.png",
-        "images/projects/g03/rbicon.png"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505085/smsc_portfolio/ltjuyqegztzlu78eswdy.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505093/smsc_portfolio/brg8jrdrcge28cekl3wu.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505103/smsc_portfolio/qxvbkvrz9dhk95ttghfg.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505106/smsc_portfolio/or79gmwic6ccaefb9jhs.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505108/smsc_portfolio/rnbzuwyncul5lk6h0ewb.png"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1387,11 +1403,11 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/g04/1.jpg",
-        "images/projects/g04/2.jpg",
-        "images/projects/g04/3invitation-01.jpg",
-        "images/projects/g04/banner.jpg",
-        "images/projects/g04/photo-2024-12-30-14-57-06.jpg"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505111/smsc_portfolio/buy75sxcnfishas5ezn7.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505115/smsc_portfolio/cymal2ocwfymhfxzr9wb.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505126/smsc_portfolio/pnpvs6fhuzmrybcu7abb.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505267/smsc_portfolio/xyewmvpgounibnxqxknr.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505271/smsc_portfolio/lrdemasz3mwbee3d403l.jpg"
       ],
       "isPublic": true,
       "appStoreUrl": "",
@@ -1426,15 +1442,61 @@
       "liveUrl": "",
       "repoUrl": "",
       "images": [
-        "images/projects/g02/1start.jpg",
-        "images/projects/g02/ashani1.jpg",
-        "images/projects/g02/ashani2.jpg",
-        "images/projects/g02/nipuni0.jpg",
-        "images/projects/g02/nipuni1.jpg"
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505273/smsc_portfolio/p49tgg58mlawrjykpmwp.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505274/smsc_portfolio/ozgd6dcdjmxim3abmqwv.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505277/smsc_portfolio/xkgx1xgttichbq1k50wv.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505279/smsc_portfolio/tlgexytuku6izrzs72ry.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505281/smsc_portfolio/frgkctitcg3kihwzmnwv.jpg"
       ],
       "isPublic": true,
       "appStoreUrl": "",
       "playStoreUrl": ""
     }
-  ]
+  ],
+  "blogs": [
+    {
+      "id": "blog-shipping-expo-apps",
+      "title": "Shipping Cross-Platform Apps to App Store & Google Play with Expo",
+      "subtitle": "Field notes from building production React Native applications at INTTEQ.",
+      "category": "Engineering",
+      "tags": [
+        "React Native",
+        "Expo",
+        "Mobile",
+        "Notes"
+      ],
+      "date": "Nov 2026",
+      "readTime": "3 min read",
+      "isPublic": true,
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png",
+      "blocks": [
+        {
+          "id": "blk-1",
+          "type": "h2",
+          "content": "Why React Native + Expo Scales Fast"
+        },
+        {
+          "id": "blk-2",
+          "type": "paragraph",
+          "content": "Building production mobile applications across iOS and Android demands predictable release pipelines, rock-solid native integrations, and fast iteration cycles. Across projects like Dealrax, Doc4Baby, PlayZone, and Mangaliyam, Expo EAS builds dramatically reduced store submission friction."
+        },
+        {
+          "id": "blk-3",
+          "type": "quote",
+          "content": "Good mobile architecture isn’t just about screens — it’s reliable push notifications, resilient offline sync, and clean payment flows."
+        },
+        {
+          "id": "blk-4",
+          "type": "h3",
+          "content": "Production Release Checklist"
+        },
+        {
+          "id": "blk-5",
+          "type": "paragraph",
+          "content": "Always verify deep-link handling, test PayHere and third-party payment callbacks on physical devices, and validate push notification payloads in background, killed, and foreground states before submitting to App Store Connect or Play Console."
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-11-24T07:48:25.132Z"
 }

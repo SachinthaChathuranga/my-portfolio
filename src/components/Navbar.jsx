@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, SlidersHorizontal, ArrowUpRight } from "lucide-react";
-import { IS_LOCAL_STUDIO } from "../utils/portfolioApi";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 export default function Navbar({
   brand = "SMSC",
@@ -9,7 +8,7 @@ export default function Navbar({
   onNavigateHome,
   onNavigateWork,
   onNavigateGallery,
-  onOpenStudio,
+  onNavigateBlog,
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -30,6 +29,11 @@ export default function Navbar({
       label: "My Gallery",
       action: () => onNavigateGallery?.(),
       active: activePage === "gallery",
+    },
+    {
+      label: "Blog",
+      action: () => onNavigateBlog?.(),
+      active: activePage === "blog",
     },
     { label: "Contact", action: () => onNavigateHome?.("contact"), active: false },
   ];
@@ -65,7 +69,7 @@ export default function Navbar({
           </button>
 
           {/* Editorial Navigation Links */}
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {navItems.map((item) => (
               <button
                 key={item.label}
@@ -84,18 +88,6 @@ export default function Navbar({
 
           {/* Actions */}
           <div className="flex items-center gap-2.5">
-            {IS_LOCAL_STUDIO && onOpenStudio && (
-              <button
-                type="button"
-                onClick={onOpenStudio}
-                className="hidden items-center gap-2 rounded-full border border-[#FF8A1F]/45 bg-[#FF8A1F]/15 px-3.5 py-2 font-mono text-xs font-medium text-[#FFC247] transition-all duration-300 hover:border-[#FF8A1F] hover:bg-[#FF8A1F]/25 hover:shadow-neon-amber sm:inline-flex"
-                title="Local-only Portfolio Studio (hidden in published GitHub Pages build)"
-              >
-                <SlidersHorizontal className="h-3.5 w-3.5" />
-                <span>Local Studio</span>
-              </button>
-            )}
-
             <button
               type="button"
               onClick={() => onNavigateHome?.("contact")}
@@ -144,19 +136,6 @@ export default function Navbar({
                   </span>
                 </button>
               ))}
-              {IS_LOCAL_STUDIO && onOpenStudio && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileOpen(false);
-                    onOpenStudio();
-                  }}
-                  className="mt-2 flex items-center justify-center gap-2 rounded-2xl border border-[#FF8A1F]/50 bg-[#FF8A1F]/15 py-3 font-mono text-xs font-semibold text-[#FFC247]"
-                >
-                  <SlidersHorizontal className="h-4 w-4" />
-                  Open Local Studio Dashboard
-                </button>
-              )}
             </div>
           </motion.div>
         )}

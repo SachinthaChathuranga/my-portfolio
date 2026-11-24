@@ -7,6 +7,7 @@ export default function Footer({
   onNavigateWork,
   onNavigateGallery,
   onNavigateBlog,
+  onNavigateGames,
   onOpenStudio,
 }) {
   return (
@@ -51,6 +52,13 @@ export default function Footer({
             className="transition hover:text-white"
           >
             Blog
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigateGames?.()}
+            className="transition hover:text-white"
+          >
+            Games
           </button>
           <button
             type="button"

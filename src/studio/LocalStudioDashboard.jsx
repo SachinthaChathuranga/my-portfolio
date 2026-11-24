@@ -594,7 +594,7 @@ export default function LocalStudioDashboard({
       setDraft(next);
       await persistToDisk(
         next,
-        `Uploaded ${uploadedPaths.length} image(s) to public/images/projects/${selectedProject.id}/`
+        `Uploaded ${uploadedPaths.length} image(s) to Cloudinary & saved!`
       );
     } catch (err) {
       showToast("error", err?.message || "Image upload failed");
@@ -672,7 +672,7 @@ export default function LocalStudioDashboard({
       setDraft(next);
       await persistToDisk(
         next,
-        `Uploaded ${added.length} single photo(s) to public/images/gallery/`
+        `Uploaded ${added.length} single photo(s) to Cloudinary & saved!`
       );
     } catch (err) {
       showToast("error", err?.message || "Gallery upload failed");
@@ -727,7 +727,7 @@ export default function LocalStudioDashboard({
       setDraft(next);
       await persistToDisk(
         next,
-        `Added ${uploaded.length} photo(s) to album in public/images/gallery/albums/${albumId}/`
+        `Added ${uploaded.length} photo(s) to album on Cloudinary & saved!`
       );
     } catch (err) {
       showToast("error", err?.message || "Album photo upload failed");

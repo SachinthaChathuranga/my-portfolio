@@ -66,6 +66,39 @@ function copyDirRecursive(src, dest) {
   }
 }
 
+function toHttpsGitHubUrl(remoteUrl = "") {
+  const sshMatch = remoteUrl.match(/^git@github\.com:([^/]+\/[^/]+?)(?:\.git)?$/i);
+  if (sshMatch) return `https://github.com/${sshMatch[1]}.git`;
+  return remoteUrl;
+}
+
+async function gitPushSmart(cwd, targetRemote, refspec, { force = false, setUpstream = false } = {}) {
+  const baseArgs = ["-c", "http.postBuffer=524288000", "push"];
+  if (force) baseArgs.push("--force");
+  if (setUpstream) baseArgs.push("-u");
+
+  try {
+    return await runProcess("git", [...baseArgs, targetRemote, refspec], cwd);
+  } catch (firstErr) {
+    // If SSH port 22 failed or timed out, automatically retry via HTTPS GitHub URL
+    let resolvedUrl = targetRemote;
+    if (targetRemote === "origin") {
+      try {
+        resolvedUrl = (await runProcess("git", ["remote", "get-url", "origin"], cwd)).stdout;
+      } catch {
+        throw firstErr;
+      }
+    }
+    const httpsUrl = toHttpsGitHubUrl(resolvedUrl);
+    if (httpsUrl && httpsUrl !== resolvedUrl && /^https:\/\//i.test(httpsUrl)) {
+      const retryArgs = ["-c", "http.postBuffer=524288000", "push"];
+      if (force) retryArgs.push("--force");
+      return await runProcess("git", [...retryArgs, httpsUrl, refspec], cwd);
+    }
+    throw firstErr;
+  }
+}
+
 function deriveGitHubPagesUrl(remoteUrl = "") {
   const match = remoteUrl.match(/github\.com[:/]([^/]+)\/([^/.]+)(?:\.git)?$/i);
   if (!match) return "";
@@ -371,7 +404,9 @@ export function localCmsPlugin() {
               logs.push("Working tree already clean — pushing existing commits.");
             }
 
-            const push = await runProcess("git", ["push", "-u", "origin", cleanBranch], rootDir);
+            const push = await gitPushSmart(rootDir, "origin", cleanBranch, {
+              setUpstream: true,
+            });
             logs.push(`$ git push -u origin ${cleanBranch}\n${push.stdout || push.stderr || "Pushed successfully!"}`);
 
             const status = await getGitStatus(rootDir);
@@ -414,11 +449,13 @@ export function localCmsPlugin() {
                 const commit = await runProcess("git", ["commit", "-m", safeMsg], rootDir);
                 logs.push(`$ git commit -m "${safeMsg}"\n${commit.stdout || commit.stderr}`);
               }
-              const pushSrc = await runProcess("git", ["push", "-u", "origin", cleanBranch], rootDir);
+              const pushSrc = await gitPushSmart(rootDir, "origin", cleanBranch, {
+                setUpstream: true,
+              });
               logs.push(`$ git push -u origin ${cleanBranch}\n${pushSrc.stdout || pushSrc.stderr || "Source branch pushed"}`);
             }
 
-            // 3. Build production bundle (Local Studio completely stripped)
+            // 3. Build production bundle
             const buildRes = await runProcess("npm", ["run", "build"], rootDir);
             logs.push(`$ npm run build\n${buildRes.stdout.split("\n").slice(-6).join("\n")}`);
 
@@ -432,6 +469,8 @@ export function localCmsPlugin() {
             if (!remoteUrl) {
               throw new Error("Git origin remote URL is not configured.");
             }
+            const authorName = (await runProcess("git", ["config", "user.name"], rootDir).catch(() => ({ stdout: "SMSC Portfolio" }))).stdout || "SMSC Portfolio";
+            const authorEmail = (await runProcess("git", ["config", "user.email"], rootDir).catch(() => ({ stdout: "smschathu1234@gmail.com" }))).stdout || "smschathu1234@gmail.com";
             const shortSha = (await runProcess("git", ["rev-parse", "--short", "HEAD"], rootDir)).stdout;
             const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "smsc-gh-pages-"));
 
@@ -440,16 +479,19 @@ export function localCmsPlugin() {
               fs.writeFileSync(path.join(tmpDir, ".nojekyll"), "", "utf8");
 
               await runProcess("git", ["init", "-b", "gh-pages"], tmpDir);
+              await runProcess("git", ["config", "user.name", authorName], tmpDir);
+              await runProcess("git", ["config", "user.email", authorEmail], tmpDir);
               await runProcess("git", ["add", "-A"], tmpDir);
               await runProcess(
                 "git",
                 ["commit", "-m", `Deploy ${cleanBranch}@${shortSha} to GitHub Pages`],
                 tmpDir
               );
-              const deployOut = await runProcess(
-                "git",
-                ["push", "--force", remoteUrl, "HEAD:refs/heads/gh-pages"],
-                tmpDir
+              const deployOut = await gitPushSmart(
+                tmpDir,
+                remoteUrl,
+                "HEAD:refs/heads/gh-pages",
+                { force: true }
               );
               logs.push(
                 `$ publish dist/ -> origin/gh-pages\n${deployOut.stdout || deployOut.stderr || "Deployed to gh-pages!"}`

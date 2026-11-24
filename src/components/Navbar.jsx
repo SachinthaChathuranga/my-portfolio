@@ -9,6 +9,7 @@ export default function Navbar({
   onNavigateWork,
   onNavigateGallery,
   onNavigateBlog,
+  onNavigateGames,
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -34,6 +35,11 @@ export default function Navbar({
       label: "Blog",
       action: () => onNavigateBlog?.(),
       active: activePage === "blog",
+    },
+    {
+      label: "Games",
+      action: () => onNavigateGames?.(),
+      active: activePage === "games",
     },
     { label: "Contact", action: () => onNavigateHome?.("contact"), active: false },
   ];

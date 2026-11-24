@@ -1,98 +1,274 @@
 {
+  "gallery": [
+    {
+      "title": "Graduation — Neon Corridor Edition",
+      "isPublic": true,
+      "aspect": "wide",
+      "date": "2025",
+      "caption": "Complete 4-frame BSc (Hons) Computer Science graduation portrait series.",
+      "tag": "Graduation Album",
+      "photos": [
+        {
+          "id": "ph-grad-1",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
+          "caption": "Neon Corridor Full-Frame Graduation Portrait"
+        },
+        {
+          "caption": "Vertical Neon Rim-Light Study",
+          "id": "ph-grad-2",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png"
+        },
+        {
+          "id": "ph-grad-3",
+          "caption": "Ceremonial Scroll Close-Up",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png"
+        }
+      ],
+      "type": "album",
+      "id": "alb-neon-graduation"
+    },
+    {
+      "aspect": "tall",
+      "tag": "Family",
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505408/smsc_portfolio/e89us1vc6dchccw5l1ve.jpg",
+      "caption": "",
+      "title": "Amma & Thaththa",
+      "isPublic": true,
+      "date": "2026",
+      "id": "gal-mwtt309v-6gq",
+      "photos": [],
+      "type": "photo"
+    },
+    {
+      "tag": "Convocation",
+      "aspect": "wide",
+      "date": "2026",
+      "type": "photo",
+      "caption": "",
+      "photos": [],
+      "id": "gal-mwtt2x5l-3dp",
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505475/smsc_portfolio/qipnybwxqut52hsuorrf.jpg",
+      "isPublic": true,
+      "title": "Amma & Thaththa"
+    },
+    {
+      "photos": [],
+      "id": "gal-1",
+      "tag": "Graduation",
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
+      "type": "photo",
+      "date": "2025",
+      "title": "Neon Corridor — Graduation Portrait",
+      "caption": "BSc (Hons) Computer Science graduation portrait under magenta & cyan corridor lights.",
+      "isPublic": true,
+      "aspect": "wide"
+    },
+    {
+      "date": "2025",
+      "aspect": "tall",
+      "type": "photo",
+      "id": "gal-2",
+      "tag": "Portrait",
+      "isPublic": true,
+      "caption": "Vertical cinematic editorial study illuminated by electric blue, magenta, and warm amber.",
+      "title": "Ceremonial Scroll & Neon Rim Light",
+      "photos": [],
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png"
+    },
+    {
+      "type": "photo",
+      "aspect": "standard",
+      "date": "2025",
+      "id": "gal-3",
+      "isPublic": true,
+      "caption": "Celebrating the University of Jaffna Computer Science Honours milestone.",
+      "photos": [],
+      "title": "Close-Up — Neon Corridor Edition",
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png",
+      "tag": "Milestone"
+    }
+  ],
+  "references": [
+    {
+      "id": "ref-1",
+      "organization": "Department of Computer Science, University of Jaffna",
+      "name": "Dr. (Ms.) J. Samantha Tharani",
+      "phone": "+94 76 369 2831",
+      "title": "University Research Supervisor • Senior Lecturer Gr.II",
+      "email": "samantha@univ.jfn.ac.lk"
+    },
+    {
+      "name": "K. Mathotkadar",
+      "phone": "+94 77 209 2673",
+      "email": "mathot@intteq.com",
+      "title": "CTO & Founder",
+      "organization": "INTTEQ",
+      "id": "ref-2"
+    }
+  ],
   "profile": {
-    "brand": "SMSC",
-    "firstName": "Sachintha",
-    "lastName": "Chathuranga",
-    "fullName": "S.M. Sachintha Chathuranga",
+    "birthday": "Dec 3, 2000",
+    "emailjs": {
+      "templateId": "template_z8relid",
+      "serviceId": "service_ayccxmc",
+      "publicKey": "ErooJ7sWSFqBZCdv3"
+    },
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/sachintha-chathuranga-5b5750247/",
+      "youtube": "https://youtube.com/@smscarya795?si=qKSh6XO2lLCYIVcf",
+      "instagram": "https://www.instagram.com/imsmschathu/",
+      "facebook": "https://web.facebook.com/sms.chathu.79",
+      "twitter": "",
+      "github": "https://github.com/SachinthaChathuranga"
+    },
+    "email": "smschathu1234@gmail.com",
+    "portraits": {
+      "hero": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png",
+      "contact": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503341/smsc_portfolio/n77spvhqy1wpjhcvxgyz.png",
+      "about": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503313/smsc_portfolio/w2fycotqxqwj4vndiqtq.png"
+    },
+    "location": "Madampe, Chilaw, Sri Lanka",
     "headline": "Associate Software Engineer crafting cross-platform mobile apps, scalable web platforms & expressive visual interfaces.",
-    "bio": "Associate Software Engineer at INTTEQ with a BSc (Hons) in Computer Science (Second Class Lower Division, GPA 3.17) from the University of Jaffna. Hands-on experience building cross-platform mobile apps with React Native, Expo, Flutter, and Next.js — integrating REST APIs, PayHere & third-party payment gateways, push notifications, and publishing releases to the Apple App Store and Google Play Store.",
+    "roleTitle": "Associate Software Engineer",
+    "languages": [
+      "Sinhala",
+      "English"
+    ],
     "roles": [
       "Associate Software Engineer",
       "React Native & Expo Developer",
       "Full-Stack Web Developer",
       "UI/UX & Graphic Designer"
     ],
-    "birthday": "Dec 3, 2000",
-    "location": "Madampe, Chilaw, Sri Lanka",
+    "firstName": "Sachintha",
+    "fullName": "S.M. Sachintha Chathuranga",
     "phone": "+94 76 686 2420",
-    "email": "smschathu1234@gmail.com",
     "availability": "Associate Software Engineer @ INTTEQ",
-    "portraits": {
-      "hero": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png",
-      "about": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503313/smsc_portfolio/w2fycotqxqwj4vndiqtq.png",
-      "contact": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503341/smsc_portfolio/n77spvhqy1wpjhcvxgyz.png"
-    },
-    "socials": {
-      "linkedin": "https://www.linkedin.com/in/sachintha-chathuranga-5b5750247/",
-      "github": "https://github.com/SachinthaChathuranga",
-      "facebook": "https://web.facebook.com/sms.chathu.79",
-      "instagram": "https://www.instagram.com/imsmschathu/",
-      "youtube": "https://youtube.com/@smscarya795?si=qKSh6XO2lLCYIVcf",
-      "twitter": ""
-    },
-    "emailjs": {
-      "serviceId": "service_ayccxmc",
-      "templateId": "template_z8relid",
-      "publicKey": "ErooJ7sWSFqBZCdv3"
-    },
-    "roleTitle": "Associate Software Engineer",
-    "languages": [
-      "Sinhala",
-      "English"
-    ]
+    "lastName": "Chathuranga",
+    "bio": "Associate Software Engineer at INTTEQ with a BSc (Hons) in Computer Science (Second Class Lower Division, GPA 3.17) from the University of Jaffna. Hands-on experience building cross-platform mobile apps with React Native, Expo, Flutter, and Next.js — integrating REST APIs, PayHere & third-party payment gateways, push notifications, and publishing releases to the Apple App Store and Google Play Store.",
+    "brand": "SMSC"
   },
   "experience": [
     {
       "id": "exp-1",
-      "role": "Associate Software Engineer",
-      "company": "INTTEQ",
       "period": "1 Dec 2025 — Present",
-      "type": "Full-Time",
+      "company": "INTTEQ",
       "highlights": [
         "Develop and maintain cross-platform mobile applications using React Native and Expo.",
         "Integrate mobile applications with backend REST APIs and third-party payment services (including PayHere).",
         "Implement push-notification functionality to support timely in-app user communication.",
         "Prepare production application builds and support releases to the Apple App Store and Google Play Store."
-      ]
+      ],
+      "role": "Associate Software Engineer",
+      "type": "Full-Time"
     },
     {
-      "id": "exp-2",
-      "role": "Software Engineer Intern",
-      "company": "INTTEQ",
-      "period": "1 Jun 2025 — 30 Nov 2025",
-      "type": "Internship",
       "highlights": [
         "Completed a six-month internship gaining hands-on commercial experience in mobile application development.",
         "Collaborated with the engineering team on cross-platform application features and production deliverables."
-      ]
+      ],
+      "company": "INTTEQ",
+      "period": "1 Jun 2025 — 30 Nov 2025",
+      "role": "Software Engineer Intern",
+      "type": "Internship",
+      "id": "exp-2"
     },
     {
       "id": "exp-3",
-      "role": "Graphic Designer (Volunteer)",
-      "company": "IEEE Innovation Nation Sri Lanka — Northern Province",
       "period": "2022 — 2023",
+      "company": "IEEE Innovation Nation Sri Lanka — Northern Province",
+      "role": "Graphic Designer (Volunteer)",
       "type": "Volunteering",
       "highlights": [
         "Designed flyers, banners, certificates, and tokens of appreciation for the INSL Provincial Competitions as part of the organizing team."
       ]
     },
     {
-      "id": "exp-4",
-      "role": "Trainee",
-      "company": "People’s Bank Nattandiya",
-      "period": "17 Sep 2020 — 17 Aug 2021",
-      "type": "Banking",
       "highlights": [
         "Assisted with cash-counter operations and day-to-day customer transactions.",
         "Supported account-opening procedures, pawning-related services, and daily collection activities."
-      ]
+      ],
+      "period": "17 Sep 2020 — 17 Aug 2021",
+      "type": "Banking",
+      "role": "Trainee",
+      "company": "People’s Bank Nattandiya",
+      "id": "exp-4"
+    }
+  ],
+  "updatedAt": "2026-11-24T08:22:11.538Z",
+  "education": [
+    {
+      "id": "edu-1",
+      "degree": "Bachelor of Science (Hons) in Computer Science",
+      "period": "2021 — 2025",
+      "institution": "University of Jaffna",
+      "highlight": "Second Class Lower Division • GPA: 3.17",
+      "details": "Completed honours research on YOLO-based recognition of electrical components in hand-drawn circuit diagrams (presented at SL-SWCS’25)."
+    },
+    {
+      "period": "Aug 2019",
+      "id": "edu-2",
+      "degree": "G.C.E. Advanced Level (Physical Science)",
+      "highlight": "Results: BCC • Z-Score: 1.0067",
+      "details": "Physical Science stream with strong foundations in Combined Mathematics, Physics, and Chemistry.",
+      "institution": "Ch/ Senanayake National School, Madampe"
+    },
+    {
+      "id": "edu-3",
+      "institution": "Ch/ Senanayake National School, Madampe",
+      "highlight": "Results: 7As & 2Cs",
+      "details": "Strong academic foundation across mathematics, science, ICT, and arts.",
+      "period": "Dec 2016",
+      "degree": "G.C.E. Ordinary Level"
+    }
+  ],
+  "blogs": [
+    {
+      "date": "Nov 2026",
+      "tags": [
+        "React Native",
+        "Expo",
+        "Mobile",
+        "Notes"
+      ],
+      "blocks": [
+        {
+          "id": "blk-1",
+          "content": "Why React Native + Expo Scales Fast",
+          "type": "h2"
+        },
+        {
+          "id": "blk-2",
+          "type": "paragraph",
+          "content": "Building production mobile applications across iOS and Android demands predictable release pipelines, rock-solid native integrations, and fast iteration cycles. Across projects like Dealrax, Doc4Baby, PlayZone, and Mangaliyam, Expo EAS builds dramatically reduced store submission friction."
+        },
+        {
+          "type": "quote",
+          "content": "Good mobile architecture isn’t just about screens — it’s reliable push notifications, resilient offline sync, and clean payment flows.",
+          "id": "blk-3"
+        },
+        {
+          "content": "Production Release Checklist",
+          "id": "blk-4",
+          "type": "h3"
+        },
+        {
+          "type": "paragraph",
+          "content": "Always verify deep-link handling, test PayHere and third-party payment callbacks on physical devices, and validate push notification payloads in background, killed, and foreground states before submitting to App Store Connect or Play Console.",
+          "id": "blk-5"
+        }
+      ],
+      "id": "blog-shipping-expo-apps",
+      "subtitle": "Field notes from building production React Native applications at INTTEQ.",
+      "readTime": "3 min read",
+      "category": "Engineering",
+      "isPublic": true,
+      "title": "Shipping Cross-Platform Apps to App Store & Google Play with Expo",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png"
     }
   ],
   "skills": [
     {
-      "id": "sk-mobile-web",
-      "category": "Mobile & Front-End",
-      "accent": "magenta",
       "items": [
         "React Native",
         "Expo",
@@ -102,12 +278,12 @@
         "Tailwind CSS",
         "JavaScript",
         "Framer Motion"
-      ]
+      ],
+      "accent": "magenta",
+      "id": "sk-mobile-web",
+      "category": "Mobile & Front-End"
     },
     {
-      "id": "sk-backend-release",
-      "category": "APIs, Payments & AI",
-      "accent": "cyan",
       "items": [
         "REST APIs",
         "PayHere Payments",
@@ -117,12 +293,13 @@
         "MySQL & MongoDB",
         "Spring Boot",
         "YOLOv8 / YOLO11"
-      ]
+      ],
+      "accent": "cyan",
+      "id": "sk-backend-release",
+      "category": "APIs, Payments & AI"
     },
     {
-      "id": "sk-design",
       "category": "UI/UX & Visual Craft",
-      "accent": "amber",
       "items": [
         "Figma",
         "UI/UX Design",
@@ -131,178 +308,19 @@
         "Adobe Photoshop",
         "Brand Identity",
         "Git & GitHub"
-      ]
-    }
-  ],
-  "education": [
-    {
-      "id": "edu-1",
-      "degree": "Bachelor of Science (Hons) in Computer Science",
-      "institution": "University of Jaffna",
-      "period": "2021 — 2025",
-      "highlight": "Second Class Lower Division • GPA: 3.17",
-      "details": "Completed honours research on YOLO-based recognition of electrical components in hand-drawn circuit diagrams (presented at SL-SWCS’25)."
-    },
-    {
-      "id": "edu-2",
-      "degree": "G.C.E. Advanced Level (Physical Science)",
-      "institution": "Ch/ Senanayake National School, Madampe",
-      "period": "Aug 2019",
-      "highlight": "Results: BCC • Z-Score: 1.0067",
-      "details": "Physical Science stream with strong foundations in Combined Mathematics, Physics, and Chemistry."
-    },
-    {
-      "id": "edu-3",
-      "degree": "G.C.E. Ordinary Level",
-      "institution": "Ch/ Senanayake National School, Madampe",
-      "period": "Dec 2016",
-      "highlight": "Results: 7As & 2Cs",
-      "details": "Strong academic foundation across mathematics, science, ICT, and arts."
-    }
-  ],
-  "references": [
-    {
-      "id": "ref-1",
-      "name": "Dr. (Ms.) J. Samantha Tharani",
-      "title": "University Research Supervisor • Senior Lecturer Gr.II",
-      "organization": "Department of Computer Science, University of Jaffna",
-      "email": "samantha@univ.jfn.ac.lk",
-      "phone": "+94 76 369 2831"
-    },
-    {
-      "id": "ref-2",
-      "name": "K. Mathotkadar",
-      "title": "CTO & Founder",
-      "organization": "INTTEQ",
-      "email": "mathot@intteq.com",
-      "phone": "+94 77 209 2673"
-    }
-  ],
-  "gallery": [
-    {
-      "id": "alb-neon-graduation",
-      "type": "album",
-      "title": "Graduation — Neon Corridor Edition",
-      "caption": "Complete 4-frame BSc (Hons) Computer Science graduation portrait series.",
-      "tag": "Graduation Album",
-      "date": "2025",
-      "aspect": "wide",
-      "isPublic": true,
-      "photos": [
-        {
-          "id": "ph-grad-1",
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
-          "caption": "Neon Corridor Full-Frame Graduation Portrait"
-        },
-        {
-          "id": "ph-grad-2",
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png",
-          "caption": "Vertical Neon Rim-Light Study"
-        },
-        {
-          "id": "ph-grad-3",
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png",
-          "caption": "Ceremonial Scroll Close-Up"
-        }
-      ]
-    },
-    {
-      "type": "photo",
-      "id": "gal-mwtt309v-6gq",
-      "title": "Amma & Thaththa",
-      "caption": "",
-      "tag": "Family",
-      "date": "2026",
-      "aspect": "tall",
-      "isPublic": true,
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505408/smsc_portfolio/e89us1vc6dchccw5l1ve.jpg",
-      "photos": []
-    },
-    {
-      "type": "photo",
-      "id": "gal-mwtt2x5l-3dp",
-      "title": "Amma & Thaththa",
-      "caption": "",
-      "tag": "Convocation",
-      "date": "2026",
-      "aspect": "wide",
-      "isPublic": true,
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505475/smsc_portfolio/qipnybwxqut52hsuorrf.jpg",
-      "photos": []
-    },
-    {
-      "type": "photo",
-      "id": "gal-1",
-      "title": "Neon Corridor — Graduation Portrait",
-      "caption": "BSc (Hons) Computer Science graduation portrait under magenta & cyan corridor lights.",
-      "tag": "Graduation",
-      "date": "2025",
-      "aspect": "wide",
-      "isPublic": true,
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
-      "photos": []
-    },
-    {
-      "type": "photo",
-      "id": "gal-2",
-      "title": "Ceremonial Scroll & Neon Rim Light",
-      "caption": "Vertical cinematic editorial study illuminated by electric blue, magenta, and warm amber.",
-      "tag": "Portrait",
-      "date": "2025",
-      "aspect": "tall",
-      "isPublic": true,
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png",
-      "photos": []
-    },
-    {
-      "type": "photo",
-      "id": "gal-3",
-      "title": "Close-Up — Neon Corridor Edition",
-      "caption": "Celebrating the University of Jaffna Computer Science Honours milestone.",
-      "tag": "Milestone",
-      "date": "2025",
-      "aspect": "standard",
-      "isPublic": true,
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png",
-      "photos": []
+      ],
+      "id": "sk-design",
+      "accent": "amber"
     }
   ],
   "projects": [
     {
-      "id": "cv-dealrax",
-      "title": "Dealrax — Deals & Rewards App",
-      "subtitle": "USA • Ceyrax Solutions LLC",
-      "category": "mobile",
-      "projectType": "React Native (Expo)",
-      "featured": true,
-      "isPublic": true,
-      "description": "Cross-platform mobile deals and rewards application built for Ceyrax Solutions LLC (USA), helping shoppers discover genuine deals and verified coupon codes shared by the community.",
-      "more": "Engineered with React Native & Expo with REST API integrations, real-time deal discovery, push notifications, and production releases prepared for both the Apple App Store and Google Play Store.",
-      "role": "Associate Software Engineer",
-      "duration": "Commercial Release",
-      "date": "2025",
-      "status": "Published",
-      "teamMembers": [
-        "INTTEQ Team",
-        "Sachintha"
-      ],
-      "technologies": [
-        "React Native",
-        "Expo",
-        "REST API",
-        "Push Notifications",
-        "App Store",
-        "Play Store"
-      ],
-      "features": [
-        "Community-verified deals & coupon discovery",
-        "Real-time push notifications",
-        "Cross-platform iOS & Android builds"
-      ],
-      "challenges": "Delivering fast deal feeds and reliable store release pipelines across iOS and Android.",
       "learnings": "Production mobile release management for US consumer apps.",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503355/smsc_portfolio/udu08j1sdslvagxzggyo.png",
       "liveUrl": "",
-      "repoUrl": "",
+      "status": "Published",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503372/smsc_portfolio/wkhxndsgfnciwora6dlg.png",
+      "isPublic": true,
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503400/smsc_portfolio/hxb7etvxh2t1t3xk7mha.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503427/smsc_portfolio/hl99uascf7ev99ydi14w.png",
@@ -325,80 +343,87 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503644/smsc_portfolio/ophgwljsax02bwoakigb.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503646/smsc_portfolio/w2palda9tzadnceszzvw.png"
       ],
-      "appStoreUrl": "https://apps.apple.com/us/app/dealrax/id6837411366",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dealrax.mobile",
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503355/smsc_portfolio/udu08j1sdslvagxzggyo.png",
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503372/smsc_portfolio/wkhxndsgfnciwora6dlg.png"
-    },
-    {
-      "id": "cv-mangaliyam",
-      "title": "Mangaliyam — Tamil Matrimonial App",
-      "subtitle": "Paris, France • International Release",
-      "category": "mobile",
-      "projectType": "React Native (Expo)",
-      "featured": false,
-      "isPublic": true,
-      "description": "Cross-platform Tamil matrimonial application crafted for an international audience in Paris, France — enabling users to build profiles, discover compatible matches, and connect safely.",
-      "more": "Built with React Native and Expo with smooth profile discovery, privacy-aware match browsing, and store-ready builds for iOS and Android.",
-      "role": "Associate Software Engineer",
       "duration": "Commercial Release",
-      "date": "2025",
-      "status": "Published",
+      "projectType": "React Native (Expo)",
+      "repoUrl": "",
+      "title": "Dealrax — Deals & Rewards App",
+      "subtitle": "USA • Ceyrax Solutions LLC",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dealrax.mobile",
+      "more": "Engineered with React Native & Expo with REST API integrations, real-time deal discovery, push notifications, and production releases prepared for both the Apple App Store and Google Play Store.",
+      "description": "Cross-platform mobile deals and rewards application built for Ceyrax Solutions LLC (USA), helping shoppers discover genuine deals and verified coupon codes shared by the community.",
+      "features": [
+        "Community-verified deals & coupon discovery",
+        "Real-time push notifications",
+        "Cross-platform iOS & Android builds"
+      ],
+      "appStoreUrl": "https://apps.apple.com/us/app/dealrax/id6837411366",
+      "challenges": "Delivering fast deal feeds and reliable store release pipelines across iOS and Android.",
+      "role": "Associate Software Engineer",
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
       ],
+      "category": "mobile",
+      "id": "cv-dealrax",
+      "featured": true,
+      "date": "2025",
+      "technologies": [
+        "React Native",
+        "Expo",
+        "REST API",
+        "Push Notifications",
+        "App Store",
+        "Play Store"
+      ]
+    },
+    {
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.mangaliyam.app",
+      "subtitle": "Paris, France • International Release",
+      "projectType": "React Native (Expo)",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503696/smsc_portfolio/dssmj2zzsf0bgvcjujb8.png",
+      "id": "cv-mangaliyam",
+      "duration": "Commercial Release",
+      "challenges": "Designing culturally thoughtful matchmaking flows with strong privacy controls.",
+      "isPublic": true,
       "technologies": [
         "React Native",
         "Expo",
         "REST API",
         "iOS & Android"
       ],
-      "features": [
-        "Guided profile creation",
-        "Smart match browsing & filters",
-        "Direct connection workflows"
-      ],
-      "challenges": "Designing culturally thoughtful matchmaking flows with strong privacy controls.",
+      "description": "Cross-platform Tamil matrimonial application crafted for an international audience in Paris, France — enabling users to build profiles, discover compatible matches, and connect safely.",
+      "appStoreUrl": "https://apps.apple.com/us/app/mangaliyam/id6836705877",
+      "status": "Published",
+      "title": "Mangaliyam — Tamil Matrimonial App",
       "learnings": "International mobile UX and cross-platform performance tuning.",
-      "liveUrl": "",
-      "repoUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503760/smsc_portfolio/vq3wk45ibhm2twwledis.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503783/smsc_portfolio/j2efgtftdxmyiyacivdi.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503805/smsc_portfolio/xnsafsmrep2trnpm8eoi.png"
       ],
-      "appStoreUrl": "https://apps.apple.com/us/app/mangaliyam/id6836705877",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.mangaliyam.app",
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503696/smsc_portfolio/dssmj2zzsf0bgvcjujb8.png",
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503742/smsc_portfolio/cbgzzshwnlxv4rm1gv5s.png"
-    },
-    {
-      "id": "cv-doc4baby",
-      "title": "Doc4Baby — Child Healthcare Platform",
-      "subtitle": "Sri Lanka • INTTEQ (Pvt) Ltd",
-      "category": "mobile",
-      "projectType": "React Native (Expo) + Next.js",
-      "featured": true,
-      "isPublic": true,
-      "description": "Healthcare mobile and web ecosystem by INTTEQ (Pvt) Ltd connecting parents with pediatric doctors, supporting child health management and PayHere subscription payments.",
-      "more": "Built across React Native (Expo) for iOS/Android and Next.js for the web portal, integrating secure PayHere payment gateway subscriptions, doctor consultations, and timely health push notifications.\n\nDoc4Baby is a baby and child health record app that keeps your child's clinic visits, vaccinations, medicine reminders and growth in one secure place, from newborn to school age.\n\nCHILD HEALTH RECORDS\n• Save clinic visits, doctor notes, prescriptions and lab reports\n• Add photos and PDF documents to each record\n• Share records with your child's pediatrician\n• See your child's full medical history anytime, anywhere\n\nVACCINATION & IMMUNIZATION TRACKER\n• Keep track of your child's vaccination schedule and history\n• Get reminders so you never miss a vaccine\n• Save batch numbers, dates and vaccine card photos\n\nMEDICINE & APPOINTMENT REMINDERS\n• Baby medicine reminders for morning, afternoon, evening and night\n• Repeat every 4, 6, 8, 12 or 24 hours\n• Doctor appointment and checkup reminders\n• Full-screen alerts that are hard to miss\n• Swipe to mark a dose as done\n\nBABY GROWTH TRACKER\n• Record weight, height and head circumference\n• See your child's growth over time with clear charts\n\nDOCTOR & CARE TEAM SHARING\n• Connect with your child's doctor using a QR code\n• Invite family members and caregivers\n• You choose who can view and manage your child's profile\n• Doctors get a simple patient view to follow your child's health\n\nHOME HEALTH LOG\n• Log temperature, symptoms and home care\n• Track fever, cold, rash and other symptoms between doctor visits\n\nMULTIPLE CHILDREN\n• Manage all your children from one parent account\n• Switch between child profiles in one tap\n• Separate, organised records for each child\n\nPRIVATE & SECURE\n• PIN lock and Face ID / fingerprint protection\n• Your child's health data is shared only with people you invite\n\nPLANS\n• New users get a 1-month free trial\n• Monthly plan: renews automatically every month until you cancel. Cancel anytime in the app under Profile > Your Plan. You keep access until the end of the paid month.\n• Annual plan: one payment for 12 months. It does not renew automatically and you won't be charged again.\n\nDoc4Baby helps you organise your child's health information. It does not provide medical advice, diagnosis or treatment. Always speak to a qualified doctor about your child's health.\n\nPrivacy Policy: https://dashboard.doc4baby.com/privacy\nTerms of Use: https://dashboard.doc4baby.com/terms\nRefund Policy: https://dashboard.doc4baby.com/refund-policy",
-      "role": "Associate Software Engineer",
-      "duration": "Commercial Release",
-      "date": "2025",
-      "status": "Published",
+      "liveUrl": "",
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
       ],
-      "technologies": [
-        "React Native",
-        "Expo",
-        "Next.js",
-        "PayHere",
-        "REST API",
-        "Push Notifications"
+      "repoUrl": "",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503742/smsc_portfolio/cbgzzshwnlxv4rm1gv5s.png",
+      "role": "Associate Software Engineer",
+      "features": [
+        "Guided profile creation",
+        "Smart match browsing & filters",
+        "Direct connection workflows"
       ],
+      "more": "Built with React Native and Expo with smooth profile discovery, privacy-aware match browsing, and store-ready builds for iOS and Android.",
+      "date": "2025",
+      "category": "mobile",
+      "featured": false
+    },
+    {
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.doc4baby",
+      "projectType": "React Native (Expo) + Next.js",
+      "category": "mobile",
+      "featured": true,
       "features": [
         "Parent-to-doctor healthcare connection",
         "Child health & milestone tracking",
@@ -406,9 +431,10 @@
         "Web, iOS & Android ecosystem"
       ],
       "challenges": "Coordinating seamless subscription billing via PayHere across mobile and Next.js web clients.",
+      "status": "Published",
+      "date": "2025",
       "learnings": "Healthcare UX trust patterns and third-party payment gateway integration.",
-      "liveUrl": "",
-      "repoUrl": "",
+      "more": "Built across React Native (Expo) for iOS/Android and Next.js for the web portal, integrating secure PayHere payment gateway subscriptions, doctor consultations, and timely health push notifications.\n\nDoc4Baby is a baby and child health record app that keeps your child's clinic visits, vaccinations, medicine reminders and growth in one secure place, from newborn to school age.\n\nCHILD HEALTH RECORDS\n• Save clinic visits, doctor notes, prescriptions and lab reports\n• Add photos and PDF documents to each record\n• Share records with your child's pediatrician\n• See your child's full medical history anytime, anywhere\n\nVACCINATION & IMMUNIZATION TRACKER\n• Keep track of your child's vaccination schedule and history\n• Get reminders so you never miss a vaccine\n• Save batch numbers, dates and vaccine card photos\n\nMEDICINE & APPOINTMENT REMINDERS\n• Baby medicine reminders for morning, afternoon, evening and night\n• Repeat every 4, 6, 8, 12 or 24 hours\n• Doctor appointment and checkup reminders\n• Full-screen alerts that are hard to miss\n• Swipe to mark a dose as done\n\nBABY GROWTH TRACKER\n• Record weight, height and head circumference\n• See your child's growth over time with clear charts\n\nDOCTOR & CARE TEAM SHARING\n• Connect with your child's doctor using a QR code\n• Invite family members and caregivers\n• You choose who can view and manage your child's profile\n• Doctors get a simple patient view to follow your child's health\n\nHOME HEALTH LOG\n• Log temperature, symptoms and home care\n• Track fever, cold, rash and other symptoms between doctor visits\n\nMULTIPLE CHILDREN\n• Manage all your children from one parent account\n• Switch between child profiles in one tap\n• Separate, organised records for each child\n\nPRIVATE & SECURE\n• PIN lock and Face ID / fingerprint protection\n• Your child's health data is shared only with people you invite\n\nPLANS\n• New users get a 1-month free trial\n• Monthly plan: renews automatically every month until you cancel. Cancel anytime in the app under Profile > Your Plan. You keep access until the end of the paid month.\n• Annual plan: one payment for 12 months. It does not renew automatically and you won't be charged again.\n\nDoc4Baby helps you organise your child's health information. It does not provide medical advice, diagnosis or treatment. Always speak to a qualified doctor about your child's health.\n\nPrivacy Policy: https://dashboard.doc4baby.com/privacy\nTerms of Use: https://dashboard.doc4baby.com/terms\nRefund Policy: https://dashboard.doc4baby.com/refund-policy",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505989/smsc_portfolio/kbtl1hnsug5mwlfhqmya.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506025/smsc_portfolio/ahjg9mxwyeuhb4xt8brg.png",
@@ -419,28 +445,54 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506161/smsc_portfolio/ooitpbo4m3dfq8ewkdi9.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506300/smsc_portfolio/ugmvnqbtymhxttgsb1ia.png"
       ],
-      "appStoreUrl": "",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.doc4baby",
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505728/smsc_portfolio/hhy3zvqsata8jirprake.png",
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505930/smsc_portfolio/lmiocpnl3jo18epo1qp1.png"
-    },
-    {
-      "id": "cv-bigblast",
-      "title": "BigBlast — Offline QR Ticket Scanner",
-      "subtitle": "Sri Lanka • BigBlast Events (Private)",
-      "category": "mobile",
-      "projectType": "React Native (Expo) • Private",
-      "featured": false,
-      "isPublic": true,
-      "description": "Private QR ticket-scanning mobile application built for BigBlast Events gate staff, supporting offline ticket validation and real-time synchronization through a local relay server.",
-      "more": "Engineered for high-throughput event gates where internet connectivity is unreliable — validates tickets instantaneously offline and syncs across gate devices via a local relay server. Distributed privately (not publicly listed).",
+      "id": "cv-doc4baby",
       "role": "Associate Software Engineer",
-      "duration": "Private Enterprise Release",
-      "date": "2025",
-      "status": "Private Release",
+      "duration": "Commercial Release",
+      "isPublic": true,
+      "technologies": [
+        "React Native",
+        "Expo",
+        "Next.js",
+        "PayHere",
+        "REST API",
+        "Push Notifications"
+      ],
+      "liveUrl": "",
+      "repoUrl": "",
+      "subtitle": "Sri Lanka • INTTEQ (Pvt) Ltd",
+      "appStoreUrl": "",
+      "description": "Healthcare mobile and web ecosystem by INTTEQ (Pvt) Ltd connecting parents with pediatric doctors, supporting child health management and PayHere subscription payments.",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505930/smsc_portfolio/lmiocpnl3jo18epo1qp1.png",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505728/smsc_portfolio/hhy3zvqsata8jirprake.png",
+      "title": "Doc4Baby — Child Healthcare Platform",
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
+      ]
+    },
+    {
+      "images": [],
+      "learnings": "Offline-first mobile architecture and local network relay synchronization.",
+      "teamMembers": [
+        "INTTEQ Team",
+        "Sachintha"
+      ],
+      "duration": "Private Enterprise Release",
+      "date": "2025",
+      "id": "cv-bigblast",
+      "featured": false,
+      "category": "mobile",
+      "isPublic": true,
+      "role": "Associate Software Engineer",
+      "appStoreUrl": "",
+      "liveUrl": "",
+      "playStoreUrl": "",
+      "description": "Private QR ticket-scanning mobile application built for BigBlast Events gate staff, supporting offline ticket validation and real-time synchronization through a local relay server.",
+      "features": [
+        "High-speed QR ticket scanning",
+        "Offline gate validation",
+        "Local relay server synchronization",
+        "Private enterprise distribution"
       ],
       "technologies": [
         "React Native",
@@ -449,38 +501,26 @@
         "Offline Sync",
         "Local Relay Server"
       ],
-      "features": [
-        "High-speed QR ticket scanning",
-        "Offline gate validation",
-        "Local relay server synchronization",
-        "Private enterprise distribution"
-      ],
-      "challenges": "Preventing duplicate ticket entries across multiple gate scanners under offline conditions.",
-      "learnings": "Offline-first mobile architecture and local network relay synchronization.",
-      "liveUrl": "",
+      "status": "Private Release",
+      "more": "Engineered for high-throughput event gates where internet connectivity is unreliable — validates tickets instantaneously offline and syncs across gate devices via a local relay server. Distributed privately (not publicly listed).",
+      "subtitle": "Sri Lanka • BigBlast Events (Private)",
       "repoUrl": "",
-      "images": [],
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "challenges": "Preventing duplicate ticket entries across multiple gate scanners under offline conditions.",
+      "title": "BigBlast — Offline QR Ticket Scanner",
+      "projectType": "React Native (Expo) • Private"
     },
     {
-      "id": "cv-playzone",
-      "title": "PlayZone — Sports Ground Booking",
-      "subtitle": "Sri Lanka • INTTEQ (Pvt) Ltd",
-      "category": "mobile",
-      "projectType": "React Native (Expo)",
-      "featured": true,
-      "isPublic": true,
-      "description": "Sports facility booking mobile application by INTTEQ (Pvt) Ltd enabling players to book sports grounds, form teams, and chat in groups while owners manage facilities and branches.",
-      "more": "Dual-sided experience bridging recreational athletes and venue owners with real-time slot scheduling, team group messaging, and multi-branch management.",
-      "role": "Associate Software Engineer",
       "duration": "Commercial Release",
-      "date": "2025",
       "status": "Published",
-      "teamMembers": [
-        "INTTEQ Team",
-        "Sachintha"
-      ],
+      "isPublic": true,
+      "category": "mobile",
+      "featured": true,
+      "images": [],
+      "projectType": "React Native (Expo)",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.playzone",
+      "challenges": "Synchronizing live ground availability alongside team chat and notifications.",
+      "learnings": "Multi-role mobile app architecture for marketplaces.",
+      "liveUrl": "",
       "technologies": [
         "React Native",
         "Expo",
@@ -493,86 +533,62 @@
         "Team creation & group chat",
         "Multi-branch facility management for owners"
       ],
-      "challenges": "Synchronizing live ground availability alongside team chat and notifications.",
-      "learnings": "Multi-role mobile app architecture for marketplaces.",
-      "liveUrl": "",
-      "repoUrl": "",
-      "images": [],
-      "appStoreUrl": "https://apps.apple.com/us/app/playzone-booking/id6758370079",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.playzone"
-    },
-    {
-      "id": "cv-golumbiaprint",
-      "title": "Golumbiaprint — Route Optimisation App",
-      "subtitle": "Canada • Logistics & Field Delivery",
-      "category": "mobile",
-      "projectType": "Flutter Mobile App",
-      "featured": false,
-      "isPublic": true,
-      "description": "Route planning and job management mobile application built with Flutter for Canadian delivery drivers, logistics teams, and field service businesses.",
-      "more": "Supports multi-stop route optimization, live job assignment, and delivery completion tracking across mobile fleets.",
-      "role": "Mobile App Developer",
-      "duration": "Commercial Release",
+      "id": "cv-playzone",
       "date": "2025",
-      "status": "Published",
+      "subtitle": "Sri Lanka • INTTEQ (Pvt) Ltd",
+      "repoUrl": "",
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
       ],
+      "role": "Associate Software Engineer",
+      "title": "PlayZone — Sports Ground Booking",
+      "more": "Dual-sided experience bridging recreational athletes and venue owners with real-time slot scheduling, team group messaging, and multi-branch management.",
+      "description": "Sports facility booking mobile application by INTTEQ (Pvt) Ltd enabling players to book sports grounds, form teams, and chat in groups while owners manage facilities and branches.",
+      "appStoreUrl": "https://apps.apple.com/us/app/playzone-booking/id6758370079"
+    },
+    {
+      "images": [],
+      "features": [
+        "Automated route optimization",
+        "Driver job assignment",
+        "Real-time completion tracking"
+      ],
+      "learnings": "Production Flutter development and logistics domain workflows.",
+      "liveUrl": "",
+      "title": "Golumbiaprint — Route Optimisation App",
+      "duration": "Commercial Release",
+      "projectType": "Flutter Mobile App",
+      "featured": false,
+      "category": "mobile",
+      "isPublic": true,
+      "status": "Published",
       "technologies": [
         "Flutter",
         "Dart",
         "Route Optimization",
         "REST API"
       ],
-      "features": [
-        "Automated route optimization",
-        "Driver job assignment",
-        "Real-time completion tracking"
-      ],
-      "challenges": "Keeping field-service workflows responsive and clear for drivers on the move.",
-      "learnings": "Production Flutter development and logistics domain workflows.",
-      "liveUrl": "",
+      "role": "Mobile App Developer",
       "repoUrl": "",
-      "images": [],
-      "appStoreUrl": "",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.routeoptimizerapp"
-    },
-    {
-      "id": "w02",
-      "title": "Wasana Bakers Group Ecosystem",
-      "subtitle": "Sri Lanka • Wasana Bakers, Horana",
-      "category": "web",
-      "projectType": "Full-Stack Web App",
-      "featured": true,
-      "description": "Comprehensive web system built exclusively for Wasana Bakers Group of Companies featuring branch mapping, online ordering, hall & room bookings, and inter-branch request workflows.",
-      "more": "Wasana Bakers Group of Company is a renowned Sri Lankan brand specializing in high-quality baked goods, catering, and hospitality. We architected an integrated web ecosystem covering their Bakery, Gimanahala, and Reception Hall divisions with real-time branch coordination and responsive customer experiences.",
-      "role": "Full-Stack Developer",
-      "duration": "1 Year",
-      "date": "Dec 2024",
-      "status": "Completed",
+      "more": "Supports multi-stop route optimization, live job assignment, and delivery completion tracking across mobile fleets.",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.routeoptimizerapp",
+      "challenges": "Keeping field-service workflows responsive and clear for drivers on the move.",
       "teamMembers": [
-        "Ravindu",
-        "Channa",
-        "Sandeepa",
-        "Nipuni",
+        "INTTEQ Team",
         "Sachintha"
       ],
-      "technologies": [
-        "React",
-        "Tailwind CSS",
-        "MySQL",
-        "REST API"
-      ],
-      "features": [
-        "Interactive Branch Map",
-        "Online Ordering System",
-        "Branch Stock Requests",
-        "Reception Hall & Room Booking"
-      ],
-      "challenges": "Managing complex evolving requirements across three distinct business divisions.",
+      "date": "2025",
+      "subtitle": "Canada • Logistics & Field Delivery",
+      "appStoreUrl": "",
+      "description": "Route planning and job management mobile application built with Flutter for Canadian delivery drivers, logistics teams, and field service businesses.",
+      "id": "cv-golumbiaprint"
+    },
+    {
       "learnings": "Enterprise database design, scalable responsive systems, and agile team leadership.",
-      "liveUrl": "https://dev.wasanabakers.lk",
+      "status": "Completed",
+      "appStoreUrl": "",
+      "description": "Comprehensive web system built exclusively for Wasana Bakers Group of Companies featuring branch mapping, online ordering, hall & room bookings, and inter-branch request workflows.",
       "repoUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503818/smsc_portfolio/upmlei5nzcy2bcos8zbj.png",
@@ -595,65 +611,104 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503934/smsc_portfolio/kj4bxxznsp2jhjbxgby7.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503940/smsc_portfolio/sxhhn4lub8afobf69dzs.png"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
-    },
-    {
-      "id": "cv-threedots",
-      "title": "Three Dots Learning — Attendance App",
-      "subtitle": "United Kingdom • EdTech",
-      "category": "mobile",
-      "projectType": "React Native (Expo)",
-      "featured": false,
-      "isPublic": true,
-      "description": "Digital attendance management mobile application built for schools, educational institutes, and training centres in the UK.",
-      "more": "Streamlines classroom roll-calls, institute attendance tracking, and reporting inside a clean React Native interface.",
-      "role": "Associate Software Engineer",
-      "duration": "Commercial Release",
-      "date": "2025",
-      "status": "Published",
+      "challenges": "Managing complex evolving requirements across three distinct business divisions.",
+      "id": "w02",
+      "subtitle": "Sri Lanka • Wasana Bakers, Horana",
       "teamMembers": [
-        "INTTEQ Team",
+        "Ravindu",
+        "Channa",
+        "Sandeepa",
+        "Nipuni",
         "Sachintha"
       ],
+      "features": [
+        "Interactive Branch Map",
+        "Online Ordering System",
+        "Branch Stock Requests",
+        "Reception Hall & Room Booking"
+      ],
+      "projectType": "Full-Stack Web App",
+      "date": "Dec 2024",
+      "liveUrl": "https://dev.wasanabakers.lk",
+      "isPublic": true,
+      "category": "web",
+      "more": "Wasana Bakers Group of Company is a renowned Sri Lankan brand specializing in high-quality baked goods, catering, and hospitality. We architected an integrated web ecosystem covering their Bakery, Gimanahala, and Reception Hall divisions with real-time branch coordination and responsive customer experiences.",
+      "featured": true,
+      "technologies": [
+        "React",
+        "Tailwind CSS",
+        "MySQL",
+        "REST API"
+      ],
+      "duration": "1 Year",
+      "playStoreUrl": "",
+      "title": "Wasana Bakers Group Ecosystem",
+      "role": "Full-Stack Developer"
+    },
+    {
+      "isPublic": true,
+      "category": "mobile",
+      "featured": false,
       "technologies": [
         "React Native",
         "Expo",
         "REST API",
         "iOS App Store"
       ],
+      "projectType": "React Native (Expo)",
+      "duration": "Commercial Release",
+      "learnings": "EdTech workflows and Apple App Store publishing standards.",
+      "playStoreUrl": "",
+      "id": "cv-threedots",
+      "repoUrl": "",
+      "title": "Three Dots Learning — Attendance App",
       "features": [
         "Fast digital attendance marking",
         "Multi-class & institute management",
         "Attendance record synchronization"
       ],
+      "role": "Associate Software Engineer",
       "challenges": "Making rapid classroom attendance marking effortless for educators.",
-      "learnings": "EdTech workflows and Apple App Store publishing standards.",
       "liveUrl": "",
-      "repoUrl": "",
-      "images": [],
       "appStoreUrl": "https://apps.apple.com/us/app/three-dots-learning-attendance/id6759114278",
-      "playStoreUrl": ""
+      "subtitle": "United Kingdom • EdTech",
+      "description": "Digital attendance management mobile application built for schools, educational institutes, and training centres in the UK.",
+      "more": "Streamlines classroom roll-calls, institute attendance tracking, and reporting inside a clean React Native interface.",
+      "status": "Published",
+      "images": [],
+      "date": "2025",
+      "teamMembers": [
+        "INTTEQ Team",
+        "Sachintha"
+      ]
     },
     {
-      "id": "cv-research-circuit",
-      "title": "Hand-Drawn Circuit Component Recognition",
-      "subtitle": "SL-SWCS’25 Research Poster • University of Jaffna",
-      "category": "research",
-      "projectType": "Computer Vision • YOLOv8 & YOLO11",
-      "featured": true,
-      "isPublic": true,
       "description": "Computer vision research project developing YOLO-based deep learning models (YOLOv8 and YOLO11) to detect and classify 13 electrical components in hand-drawn circuit diagrams with high detection accuracy.",
-      "more": "Conducted as undergraduate Honours research at the Department of Computer Science, University of Jaffna under Dr. (Ms.) J. Samantha Tharani, and presented as a research poster at SL-SWCS’25.",
-      "role": "Undergraduate Researcher",
-      "duration": "Honours Research",
-      "date": "2025",
-      "status": "Presented at SL-SWCS’25",
+      "images": [],
+      "appStoreUrl": "",
+      "features": [
+        "Detects & classifies 13 electrical components",
+        "Comparative evaluation of YOLOv8 vs YOLO11",
+        "Hand-drawn circuit diagram dataset curation",
+        "Poster presentation at SL-SWCS’25"
+      ],
+      "liveUrl": "",
+      "title": "Hand-Drawn Circuit Component Recognition",
       "teamMembers": [
         "S.M. Sachintha Chathuranga",
         "Supervised by Dr. (Ms.) J. Samantha Tharani"
       ],
+      "duration": "Honours Research",
+      "featured": true,
+      "learnings": "Object detection pipelines, dataset augmentation, and rigorous academic evaluation.",
+      "category": "research",
+      "isPublic": true,
+      "status": "Presented at SL-SWCS’25",
+      "role": "Undergraduate Researcher",
+      "repoUrl": "",
+      "projectType": "Computer Vision • YOLOv8 & YOLO11",
+      "more": "Conducted as undergraduate Honours research at the Department of Computer Science, University of Jaffna under Dr. (Ms.) J. Samantha Tharani, and presented as a research poster at SL-SWCS’25.",
+      "date": "2025",
       "technologies": [
         "Python",
         "YOLOv8",
@@ -661,85 +716,42 @@
         "Computer Vision",
         "Deep Learning"
       ],
-      "features": [
-        "Detects & classifies 13 electrical components",
-        "Comparative evaluation of YOLOv8 vs YOLO11",
-        "Hand-drawn circuit diagram dataset curation",
-        "Poster presentation at SL-SWCS’25"
-      ],
-      "challenges": "Handling wide handwriting variability and overlapping strokes in freehand electrical schematics.",
-      "learnings": "Object detection pipelines, dataset augmentation, and rigorous academic evaluation.",
-      "liveUrl": "",
-      "repoUrl": "",
-      "images": [],
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "subtitle": "SL-SWCS’25 Research Poster • University of Jaffna",
+      "id": "cv-research-circuit",
+      "playStoreUrl": "",
+      "challenges": "Handling wide handwriting variability and overlapping strokes in freehand electrical schematics."
     },
     {
-      "id": "p-mwtsaod3",
-      "title": "New Project",
-      "subtitle": "",
-      "category": "web",
-      "projectType": "React Web App",
-      "featured": false,
-      "description": "",
-      "more": "",
-      "role": "Full-Stack Developer",
-      "duration": "1 Month",
-      "date": "Nov 2026",
-      "status": "Completed",
+      "features": [],
       "teamMembers": [
         "Sachintha"
       ],
+      "liveUrl": "",
+      "status": "Completed",
+      "isPublic": true,
+      "category": "web",
+      "playStoreUrl": "",
+      "images": [],
+      "featured": false,
+      "title": "New Project",
+      "duration": "1 Month",
+      "description": "",
+      "appStoreUrl": "",
       "technologies": [
         "React",
         "Tailwind CSS"
       ],
-      "features": [],
-      "challenges": "",
       "learnings": "",
-      "liveUrl": "",
+      "more": "",
+      "id": "p-mwtsaod3",
+      "role": "Full-Stack Developer",
       "repoUrl": "",
-      "images": [],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "projectType": "React Web App",
+      "subtitle": "",
+      "challenges": "",
+      "date": "Nov 2026"
     },
     {
-      "id": "m01",
-      "title": "Dish & Delight — Food Recipe App",
-      "subtitle": "Bilingual Mobile Culinary Companion",
-      "category": "mobile",
-      "projectType": "React Native Mobile App",
-      "featured": true,
-      "description": "A cross-platform mobile application to browse, search, and save curated recipes with categorized ingredients, step-by-step instructions, YouTube tutorials, and Sinhala/English language switching.",
-      "more": "Designed and developed end-to-end with Expo and Firebase, delivering fast offline-friendly browsing, authentication, personal favorites, and seamless localization for Sri Lankan and international audiences.",
-      "role": "Full-Stack Mobile Developer",
-      "duration": "2 Months",
-      "date": "Nov 2024",
-      "status": "Published",
-      "teamMembers": [
-        "Nipuni",
-        "Sachintha"
-      ],
-      "technologies": [
-        "React Native",
-        "Expo",
-        "Firebase Firestore",
-        "Context API",
-        "YouTube API"
-      ],
-      "features": [
-        "Browse recipes by category",
-        "Instant search & filters",
-        "Save favorite recipes",
-        "Embedded video tutorials",
-        "Multi-language support (Sinhala & English)"
-      ],
-      "challenges": "Optimizing media-heavy list performance and seamless real-time language switching.",
-      "learnings": "Firebase integration, localization architecture, and smooth mobile-first UX.",
-      "liveUrl": "https://play.google.com/store/apps/details?id=com.recipebook",
-      "repoUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503942/smsc_portfolio/s23qz7uzmp5hyyyztbmr.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503948/smsc_portfolio/ff6jypbpoduuthxyjj38.png",
@@ -749,62 +761,110 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503978/smsc_portfolio/fruub3jiubovoeqnqwm5.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503985/smsc_portfolio/nmibrdfxllectumkwjm2.png"
       ],
-      "isPublic": true,
+      "challenges": "Optimizing media-heavy list performance and seamless real-time language switching.",
+      "features": [
+        "Browse recipes by category",
+        "Instant search & filters",
+        "Save favorite recipes",
+        "Embedded video tutorials",
+        "Multi-language support (Sinhala & English)"
+      ],
       "appStoreUrl": "",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.recipebook"
-    },
-    {
-      "id": "w01",
-      "title": "Interactive Developer Portfolio",
-      "subtitle": "Personal Brand & Project Showcase",
-      "category": "web",
-      "projectType": "React + Motion UI",
+      "repoUrl": "",
+      "description": "A cross-platform mobile application to browse, search, and save curated recipes with categorized ingredients, step-by-step instructions, YouTube tutorials, and Sinhala/English language switching.",
+      "duration": "2 Months",
       "featured": true,
-      "description": "Personal portfolio showcasing software engineering, mobile applications, UI/UX design systems, and graphic art with custom motion choreography and a local-only CMS.",
-      "more": "Engineered for speed and expressive storytelling, deployed via automated GitHub Actions to GitHub Pages.",
-      "role": "Creator & Frontend Engineer",
-      "duration": "Ongoing",
-      "date": "2024 - 2026",
-      "status": "Completed",
+      "status": "Published",
+      "isPublic": true,
+      "category": "mobile",
       "teamMembers": [
+        "Nipuni",
         "Sachintha"
       ],
+      "date": "Nov 2024",
+      "projectType": "React Native Mobile App",
       "technologies": [
-        "React",
-        "Vite",
-        "Tailwind CSS",
-        "Framer Motion"
+        "React Native",
+        "Expo",
+        "Firebase Firestore",
+        "Context API",
+        "YouTube API"
       ],
+      "learnings": "Firebase integration, localization architecture, and smooth mobile-first UX.",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.recipebook",
+      "id": "m01",
+      "role": "Full-Stack Mobile Developer",
+      "liveUrl": "https://play.google.com/store/apps/details?id=com.recipebook",
+      "subtitle": "Bilingual Mobile Culinary Companion",
+      "title": "Dish & Delight — Food Recipe App",
+      "more": "Designed and developed end-to-end with Expo and Firebase, delivering fast offline-friendly browsing, authentication, personal favorites, and seamless localization for Sri Lankan and international audiences."
+    },
+    {
+      "status": "Completed",
+      "role": "Creator & Frontend Engineer",
+      "more": "Engineered for speed and expressive storytelling, deployed via automated GitHub Actions to GitHub Pages.",
       "features": [
         "3D Perspective Preloader",
         "Motion UI & Tilt Cards",
         "Interactive Media Lightbox",
         "Local Studio CMS"
       ],
-      "challenges": "Balancing rich visual depth and 3D interactions with smooth 60fps performance.",
+      "projectType": "React + Motion UI",
+      "date": "2024 - 2026",
+      "duration": "Ongoing",
+      "playStoreUrl": "",
       "learnings": "Advanced motion design, Vite custom middleware, and modern editorial layouts.",
-      "liveUrl": "https://sachinthachathuranga.github.io/my-portfolio/",
-      "repoUrl": "https://github.com/SachinthaChathuranga/my-portfolio",
+      "category": "web",
+      "isPublic": true,
+      "technologies": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "featured": true,
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503989/smsc_portfolio/rcgwzyviuctns9l0eoa0.png"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "liveUrl": "https://sachinthachathuranga.github.io/my-portfolio/",
+      "title": "Interactive Developer Portfolio",
+      "repoUrl": "https://github.com/SachinthaChathuranga/my-portfolio",
+      "challenges": "Balancing rich visual depth and 3D interactions with smooth 60fps performance.",
+      "teamMembers": [
+        "Sachintha"
+      ],
+      "subtitle": "Personal Brand & Project Showcase",
+      "id": "w01",
+      "description": "Personal portfolio showcasing software engineering, mobile applications, UI/UX design systems, and graphic art with custom motion choreography and a local-only CMS.",
+      "appStoreUrl": ""
     },
     {
-      "id": "w03",
-      "title": "University Resource Hub",
-      "subtitle": "Departmental Allocation System",
-      "category": "web",
+      "repoUrl": "",
+      "date": "May 2023",
       "projectType": "PHP Web Platform",
+      "status": "Completed",
+      "features": [
+        "Departmental resource directory",
+        "Conflict-free booking workflow",
+        "Responsive admin views"
+      ],
+      "duration": "3 Months",
+      "technologies": [
+        "PHP",
+        "JavaScript",
+        "CSS",
+        "MySQL"
+      ],
+      "images": [],
+      "role": "Frontend Developer",
+      "more": "Built to eliminate scheduling conflicts across faculty departments with role-based approvals and clear availability calendars.",
+      "category": "web",
+      "isPublic": true,
+      "playStoreUrl": "",
       "featured": false,
       "description": "Web platform enabling university departments to manage, request, and allocate shared academic rooms, lab equipment, and institutional resources.",
-      "more": "Built to eliminate scheduling conflicts across faculty departments with role-based approvals and clear availability calendars.",
-      "role": "Frontend Developer",
-      "duration": "3 Months",
-      "date": "May 2023",
-      "status": "Completed",
+      "learnings": "Structured PHP/MySQL workflows and collaborative university team development.",
+      "appStoreUrl": "",
       "teamMembers": [
         "Sankalpa",
         "Ruwini",
@@ -812,134 +872,99 @@
         "Amila",
         "Sachintha"
       ],
-      "technologies": [
-        "PHP",
-        "JavaScript",
-        "CSS",
-        "MySQL"
-      ],
-      "features": [
-        "Departmental resource directory",
-        "Conflict-free booking workflow",
-        "Responsive admin views"
-      ],
+      "id": "w03",
+      "subtitle": "Departmental Allocation System",
+      "title": "University Resource Hub",
       "challenges": "Coordinating multi-department data models and third-party integrations.",
-      "learnings": "Structured PHP/MySQL workflows and collaborative university team development.",
-      "liveUrl": "",
-      "repoUrl": "",
-      "images": [],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "liveUrl": ""
     },
     {
-      "id": "m02",
-      "title": "Astro Budget App",
-      "subtitle": "Smart Personal Finance Tracker",
-      "category": "mobile",
-      "projectType": "React Native + Redux",
-      "featured": false,
-      "description": "Mobile finance companion for scheduling recurring incomes, tracking daily expenses, and visualizing monthly cash-flow insights across devices.",
-      "more": "Architected with Redux state management and Cloud Firestore synchronization for instant multi-device reliability.",
-      "role": "Mobile App Developer",
-      "duration": "3 Months",
       "date": "Dec 2024",
-      "status": "In Progress",
-      "teamMembers": [
-        "Nipuni",
-        "Sachintha"
-      ],
+      "liveUrl": "",
+      "subtitle": "Smart Personal Finance Tracker",
+      "projectType": "React Native + Redux",
+      "role": "Mobile App Developer",
+      "more": "Architected with Redux state management and Cloud Firestore synchronization for instant multi-device reliability.",
+      "featured": false,
       "technologies": [
         "React Native",
         "Redux",
         "Firebase Auth",
         "Cloud Firestore"
       ],
+      "isPublic": true,
+      "category": "mobile",
+      "images": [],
+      "teamMembers": [
+        "Nipuni",
+        "Sachintha"
+      ],
+      "challenges": "Ensuring accurate real-time synchronization of financial records across devices.",
+      "title": "Astro Budget App",
+      "id": "m02",
+      "playStoreUrl": "",
+      "duration": "3 Months",
+      "learnings": "Predictable Redux state architecture and mobile data visualization.",
+      "status": "In Progress",
       "features": [
         "Scheduled income & expense tracking",
         "Financial summaries & charts",
         "Cloud sync across devices"
       ],
-      "challenges": "Ensuring accurate real-time synchronization of financial records across devices.",
-      "learnings": "Predictable Redux state architecture and mobile data visualization.",
-      "liveUrl": "",
-      "repoUrl": "",
-      "images": [],
-      "isPublic": true,
+      "description": "Mobile finance companion for scheduling recurring incomes, tracking daily expenses, and visualizing monthly cash-flow insights across devices.",
       "appStoreUrl": "",
-      "playStoreUrl": ""
+      "repoUrl": ""
     },
     {
-      "id": "m03",
-      "title": "Work Schedule App",
-      "subtitle": "Task & Reminder Planner",
-      "category": "mobile",
-      "projectType": "React Native + Expo",
       "featured": false,
-      "description": "Productivity mobile application to organize work shifts, plan daily schedules, and fire reliable cross-platform task reminders.",
-      "more": "Integrates Expo Notifications and Google Calendar workflows to keep busy professionals on track.",
-      "role": "Mobile App Developer",
-      "duration": "2 Months",
-      "date": "Dec 2024",
-      "status": "In Progress",
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "technologies": [
-        "React Native",
-        "Expo",
-        "Expo Notifications",
-        "Google Calendar API"
-      ],
-      "features": [
-        "Smart shift scheduling",
-        "Push reminder alerts",
-        "Calendar synchronization"
-      ],
       "challenges": "Implementing reliable cross-platform background notifications.",
-      "learnings": "Push notification lifecycles and external calendar API integration.",
+      "isPublic": true,
+      "category": "mobile",
       "liveUrl": "",
-      "repoUrl": "",
+      "description": "Productivity mobile application to organize work shifts, plan daily schedules, and fire reliable cross-platform task reminders.",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503995/smsc_portfolio/zcvgpaygmftekjxg6opr.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503996/smsc_portfolio/rjctixunuoeopbwloonv.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503997/smsc_portfolio/ozqccspywpd6ol35bzwc.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504000/smsc_portfolio/n5z4mzk4f848a4fqp2ge.png"
       ],
-      "isPublic": true,
       "appStoreUrl": "",
-      "playStoreUrl": ""
-    },
-    {
-      "id": "u01",
-      "title": "Dish & Delight — UI/UX System",
-      "subtitle": "Mobile App Figma Case Study",
-      "category": "uiux",
-      "projectType": "Figma Mobile Design",
-      "featured": true,
-      "description": "Complete mobile interface design system for the Recipe Book app featuring warm culinary hierarchy, intuitive filtering, and distraction-free cooking screens.",
-      "more": "Crafted end-to-end in Figma with reusable component libraries, typography scales, and interactive user flows.",
-      "role": "UI/UX Designer",
-      "duration": "3 Weeks",
-      "date": "2024",
-      "status": "Completed",
+      "title": "Work Schedule App",
+      "duration": "2 Months",
+      "status": "In Progress",
+      "features": [
+        "Smart shift scheduling",
+        "Push reminder alerts",
+        "Calendar synchronization"
+      ],
       "teamMembers": [
         "Sachintha"
       ],
+      "learnings": "Push notification lifecycles and external calendar API integration.",
+      "projectType": "React Native + Expo",
+      "playStoreUrl": "",
+      "date": "Dec 2024",
       "technologies": [
-        "Figma",
-        "Design System",
-        "Mobile UX"
+        "React Native",
+        "Expo",
+        "Expo Notifications",
+        "Google Calendar API"
       ],
+      "subtitle": "Task & Reminder Planner",
+      "more": "Integrates Expo Notifications and Google Calendar workflows to keep busy professionals on track.",
+      "id": "m03",
+      "role": "Mobile App Developer",
+      "repoUrl": ""
+    },
+    {
+      "appStoreUrl": "",
+      "role": "UI/UX Designer",
+      "description": "Complete mobile interface design system for the Recipe Book app featuring warm culinary hierarchy, intuitive filtering, and distraction-free cooking screens.",
       "features": [
         "13+ high-fidelity mobile screens",
         "Component library",
         "Interactive onboarding & recipe flow"
       ],
-      "challenges": "Keeping ingredient lists and step-by-step instructions readable while cooking.",
-      "learnings": "Mobile accessibility, touch-target ergonomics, and visual appetite appeal.",
-      "liveUrl": "",
-      "repoUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504003/smsc_portfolio/uikqrfgg1bdvup9ukgml.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504006/smsc_portfolio/frkouagwuijpasphjncx.png",
@@ -955,40 +980,36 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504029/smsc_portfolio/czp06drirv47varck1wr.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504030/smsc_portfolio/c0ub5kd0jm3gxbis5ioc.png"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
-    },
-    {
-      "id": "u02",
-      "title": "Wasana Bakers — Web & Mobile UX",
-      "subtitle": "Multi-Device Commerce Experience",
-      "category": "uiux",
-      "projectType": "Figma Web & Mobile UI",
-      "featured": false,
-      "description": "Responsive web and mobile interface concepts for Wasana Bakers covering storefront ordering, branch locator, and corporate applications.",
-      "more": "Designed cohesive desktop and mobile journeys bridging brand heritage with modern e-commerce clarity.",
-      "role": "UI/UX Designer",
-      "duration": "1 Month",
+      "more": "Crafted end-to-end in Figma with reusable component libraries, typography scales, and interactive user flows.",
       "date": "2024",
+      "liveUrl": "",
       "status": "Completed",
       "teamMembers": [
         "Sachintha"
       ],
+      "duration": "3 Weeks",
+      "featured": true,
+      "category": "uiux",
+      "isPublic": true,
+      "title": "Dish & Delight — UI/UX System",
+      "id": "u01",
+      "repoUrl": "",
+      "projectType": "Figma Mobile Design",
       "technologies": [
         "Figma",
-        "Responsive UI",
-        "E-Commerce UX"
+        "Design System",
+        "Mobile UX"
       ],
-      "features": [
-        "Desktop & mobile views",
-        "Branch application workflows",
-        "Product showcase layouts"
+      "subtitle": "Mobile App Figma Case Study",
+      "challenges": "Keeping ingredient lists and step-by-step instructions readable while cooking.",
+      "playStoreUrl": "",
+      "learnings": "Mobile accessibility, touch-target ergonomics, and visual appetite appeal."
+    },
+    {
+      "teamMembers": [
+        "Sachintha"
       ],
-      "challenges": "Unifying bakery, hospitality, and branch management flows under one visual language.",
-      "learnings": "Responsive grid adaptation and multi-audience information architecture.",
       "liveUrl": "",
-      "repoUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504043/smsc_portfolio/py9vew9efovxtrgd457k.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504112/smsc_portfolio/ah1bkugaximzi2oa4rdn.jpg",
@@ -1004,40 +1025,50 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504228/smsc_portfolio/ooredssgwknwy4gxnu8c.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504242/smsc_portfolio/gdsijluxjspxrpyfbwhw.jpg"
       ],
-      "isPublic": true,
+      "title": "Wasana Bakers — Web & Mobile UX",
+      "subtitle": "Multi-Device Commerce Experience",
+      "status": "Completed",
+      "playStoreUrl": "",
+      "description": "Responsive web and mobile interface concepts for Wasana Bakers covering storefront ordering, branch locator, and corporate applications.",
       "appStoreUrl": "",
-      "playStoreUrl": ""
+      "technologies": [
+        "Figma",
+        "Responsive UI",
+        "E-Commerce UX"
+      ],
+      "featured": false,
+      "learnings": "Responsive grid adaptation and multi-audience information architecture.",
+      "isPublic": true,
+      "category": "uiux",
+      "date": "2024",
+      "duration": "1 Month",
+      "more": "Designed cohesive desktop and mobile journeys bridging brand heritage with modern e-commerce clarity.",
+      "features": [
+        "Desktop & mobile views",
+        "Branch application workflows",
+        "Product showcase layouts"
+      ],
+      "id": "u02",
+      "projectType": "Figma Web & Mobile UI",
+      "challenges": "Unifying bakery, hospitality, and branch management flows under one visual language.",
+      "role": "UI/UX Designer",
+      "repoUrl": ""
     },
     {
-      "id": "u04",
-      "title": "Toon Galaxy — Entertainment App UI",
-      "subtitle": "Playful Mobile Streaming Concept",
-      "category": "uiux",
-      "projectType": "Figma Mobile UI",
-      "featured": false,
-      "description": "Vibrant cartoon and animation discovery app interface featuring expressive character cards, bold color blocks, and smooth episode browsing.",
-      "more": "Explored energetic visual storytelling tailored for animation fans with dark-mode cinema appeal.",
-      "role": "UI/UX Designer",
-      "duration": "2 Weeks",
-      "date": "2024",
-      "status": "Completed",
-      "teamMembers": [
-        "Sachintha"
-      ],
+      "learnings": "Dark-mode color contrast and entertainment UX patterns.",
       "technologies": [
         "Figma",
         "Prototyping",
         "Visual Design"
       ],
-      "features": [
-        "12+ mobile screens",
-        "Character & show discovery",
-        "Custom dark UI accents"
+      "more": "Explored energetic visual storytelling tailored for animation fans with dark-mode cinema appeal.",
+      "id": "u04",
+      "teamMembers": [
+        "Sachintha"
       ],
-      "challenges": "Balancing playful illustration vibrancy with legible navigation.",
-      "learnings": "Dark-mode color contrast and entertainment UX patterns.",
-      "liveUrl": "",
-      "repoUrl": "",
+      "role": "UI/UX Designer",
+      "playStoreUrl": "",
+      "subtitle": "Playful Mobile Streaming Concept",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504247/smsc_portfolio/s4jwo3ht3oxbdt3bhkcg.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504252/smsc_portfolio/f7apf91zpltronywoyal.png",
@@ -1052,40 +1083,55 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504274/smsc_portfolio/koc4ugblmzegz6dkm2il.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504278/smsc_portfolio/wfwytrwvvw92gos9nuwl.png"
       ],
-      "isPublic": true,
+      "status": "Completed",
+      "description": "Vibrant cartoon and animation discovery app interface featuring expressive character cards, bold color blocks, and smooth episode browsing.",
+      "date": "2024",
+      "repoUrl": "",
       "appStoreUrl": "",
-      "playStoreUrl": ""
+      "featured": false,
+      "liveUrl": "",
+      "category": "uiux",
+      "isPublic": true,
+      "title": "Toon Galaxy — Entertainment App UI",
+      "challenges": "Balancing playful illustration vibrancy with legible navigation.",
+      "duration": "2 Weeks",
+      "projectType": "Figma Mobile UI",
+      "features": [
+        "12+ mobile screens",
+        "Character & show discovery",
+        "Custom dark UI accents"
+      ]
     },
     {
-      "id": "u06",
-      "title": "Chat AI Assistant — Mobile UI",
-      "subtitle": "Conversational AI Interface",
-      "category": "uiux",
+      "learnings": "Conversational UI spacing and micro-interaction affordances.",
       "projectType": "Figma Mobile UI",
-      "featured": false,
-      "description": "Sleek conversational AI assistant mobile interface designed for prompt discovery, clean chat threads, and rapid voice/text interaction.",
-      "more": "Focused on reducing cognitive clutter in AI chat experiences with clear message hierarchy.",
+      "liveUrl": "",
+      "id": "u06",
+      "subtitle": "Conversational AI Interface",
+      "title": "Chat AI Assistant — Mobile UI",
       "role": "UI/UX Designer",
-      "duration": "2 Weeks",
-      "date": "2024",
       "status": "Completed",
-      "teamMembers": [
-        "Sachintha"
+      "features": [
+        "Clean chat thread UX",
+        "Prompt suggestion cards",
+        "Minimalist dark/light contrast"
       ],
       "technologies": [
         "Figma",
         "AI UX",
         "Mobile Interface"
       ],
-      "features": [
-        "Clean chat thread UX",
-        "Prompt suggestion cards",
-        "Minimalist dark/light contrast"
-      ],
-      "challenges": "Structuring rich AI responses without overwhelming small viewports.",
-      "learnings": "Conversational UI spacing and micro-interaction affordances.",
-      "liveUrl": "",
+      "more": "Focused on reducing cognitive clutter in AI chat experiences with clear message hierarchy.",
+      "playStoreUrl": "",
+      "appStoreUrl": "",
+      "description": "Sleek conversational AI assistant mobile interface designed for prompt discovery, clean chat threads, and rapid voice/text interaction.",
+      "category": "uiux",
+      "isPublic": true,
+      "date": "2024",
+      "featured": false,
       "repoUrl": "",
+      "challenges": "Structuring rich AI responses without overwhelming small viewports.",
+      "duration": "2 Weeks",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504279/smsc_portfolio/j9zrtgtprzvhajnrfmo4.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504281/smsc_portfolio/xus51hs1cll11pjxbyok.png",
@@ -1095,40 +1141,14 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504289/smsc_portfolio/apo8keqf41y1ovrijt6t.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504291/smsc_portfolio/s0s9dvuya6qqvm850q4n.png"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
-    },
-    {
-      "id": "u05",
-      "title": "Work Schedule — Mobile UX",
-      "subtitle": "Productivity Planner Interface",
-      "category": "uiux",
-      "projectType": "Figma Mobile UI",
-      "featured": false,
-      "description": "Time-blocking and shift planning mobile UI crafted for effortless calendar navigation, quick task creation, and notification clarity.",
-      "more": "Complete 13-screen Figma blueprint later translated into the React Native application.",
-      "role": "UI/UX Designer",
-      "duration": "2 Weeks",
-      "date": "2024",
-      "status": "Completed",
       "teamMembers": [
         "Sachintha"
-      ],
-      "technologies": [
-        "Figma",
-        "Productivity UX",
-        "Mobile Design"
-      ],
-      "features": [
-        "Timeline schedule view",
-        "Task priority indicators",
-        "Reminder configuration flow"
-      ],
-      "challenges": "Making dense schedules feel calm and scannable at a glance.",
-      "learnings": "Calendar density balance and visual hierarchy for productivity tools.",
-      "liveUrl": "",
-      "repoUrl": "",
+      ]
+    },
+    {
+      "subtitle": "Productivity Planner Interface",
+      "projectType": "Figma Mobile UI",
+      "status": "Completed",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503995/smsc_portfolio/zcvgpaygmftekjxg6opr.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503996/smsc_portfolio/rjctixunuoeopbwloonv.png",
@@ -1144,40 +1164,63 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504309/smsc_portfolio/kr3deohgkqd4b9uxwi9r.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504310/smsc_portfolio/uwtcqpdd4jb2acpvtokk.png"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
-    },
-    {
-      "id": "u07",
-      "title": "Samson Bakers — Mobile UI",
-      "subtitle": "Bakery Ordering Experience",
-      "category": "uiux",
-      "projectType": "Figma Mobile UI",
-      "featured": false,
-      "description": "Warm, appetizing mobile ordering experience crafted for Samson Bakers with streamlined product customization and checkout screens.",
-      "more": "Designed focused mobile flows emphasizing product photography and quick reordering.",
-      "role": "UI/UX Designer",
-      "duration": "2 Weeks",
+      "liveUrl": "",
       "date": "2024",
-      "status": "Completed",
+      "duration": "2 Weeks",
+      "learnings": "Calendar density balance and visual hierarchy for productivity tools.",
+      "repoUrl": "",
+      "category": "uiux",
+      "isPublic": true,
+      "challenges": "Making dense schedules feel calm and scannable at a glance.",
+      "title": "Work Schedule — Mobile UX",
+      "description": "Time-blocking and shift planning mobile UI crafted for effortless calendar navigation, quick task creation, and notification clarity.",
+      "featured": false,
+      "appStoreUrl": "",
+      "id": "u05",
+      "role": "UI/UX Designer",
+      "technologies": [
+        "Figma",
+        "Productivity UX",
+        "Mobile Design"
+      ],
       "teamMembers": [
         "Sachintha"
       ],
+      "more": "Complete 13-screen Figma blueprint later translated into the React Native application.",
+      "playStoreUrl": "",
+      "features": [
+        "Timeline schedule view",
+        "Task priority indicators",
+        "Reminder configuration flow"
+      ]
+    },
+    {
+      "subtitle": "Bakery Ordering Experience",
+      "projectType": "Figma Mobile UI",
+      "learnings": "Food commerce visual psychology and conversion-focused layouts.",
+      "title": "Samson Bakers — Mobile UI",
+      "liveUrl": "",
+      "description": "Warm, appetizing mobile ordering experience crafted for Samson Bakers with streamlined product customization and checkout screens.",
+      "status": "Completed",
+      "id": "u07",
+      "duration": "2 Weeks",
+      "appStoreUrl": "",
+      "repoUrl": "",
+      "category": "uiux",
+      "isPublic": true,
+      "challenges": "Keeping checkout frictionless in minimal taps.",
+      "featured": false,
+      "date": "2024",
       "technologies": [
         "Figma",
         "Mobile Commerce",
         "UI Design"
       ],
-      "features": [
-        "7 mobile frames",
-        "Category browsing",
-        "Cart & checkout flow"
+      "teamMembers": [
+        "Sachintha"
       ],
-      "challenges": "Keeping checkout frictionless in minimal taps.",
-      "learnings": "Food commerce visual psychology and conversion-focused layouts.",
-      "liveUrl": "",
-      "repoUrl": "",
+      "more": "Designed focused mobile flows emphasizing product photography and quick reordering.",
+      "role": "UI/UX Designer",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504339/smsc_portfolio/gsr7xd7bees1cxs37aqo.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504362/smsc_portfolio/aggn4quktzzrrgysf0c1.png",
@@ -1187,78 +1230,75 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504454/smsc_portfolio/sox3irxznncyrpqmohu9.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504460/smsc_portfolio/lg3o5znjnbomg1c3bhmq.png"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "playStoreUrl": "",
+      "features": [
+        "7 mobile frames",
+        "Category browsing",
+        "Cart & checkout flow"
+      ]
     },
     {
-      "id": "u03",
-      "title": "Portfolio Concept — Web UI",
-      "subtitle": "Desktop Layout Exploration",
-      "category": "uiux",
-      "projectType": "Figma Web Design",
-      "featured": false,
-      "description": "Early desktop UI explorations and layout wireframes designed in Figma for personal portfolio architecture.",
-      "more": "Explored hero composition, project galleries, and typography pacing.",
       "role": "UI/UX Designer",
-      "duration": "1 Week",
-      "date": "2024",
-      "status": "Completed",
+      "liveUrl": "",
       "teamMembers": [
         "Sachintha"
       ],
+      "more": "Explored hero composition, project galleries, and typography pacing.",
+      "appStoreUrl": "",
+      "playStoreUrl": "",
+      "description": "Early desktop UI explorations and layout wireframes designed in Figma for personal portfolio architecture.",
+      "date": "2024",
       "technologies": [
         "Figma",
         "Web Design"
       ],
+      "subtitle": "Desktop Layout Exploration",
       "features": [
         "4 desktop layouts",
         "Grid & section pacing"
       ],
-      "challenges": "Balancing personal story with technical credibility.",
-      "learnings": "Editorial composition and section rhythm.",
-      "liveUrl": "",
-      "repoUrl": "",
+      "id": "u03",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504464/smsc_portfolio/knjj6kwlz6jrrhhmrbyu.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504466/smsc_portfolio/herzb2awp7cvp16wjruf.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504468/smsc_portfolio/ih0cljqiuwc5ck0o62wu.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504469/smsc_portfolio/ryril1gjvmpwftp89ehc.png"
       ],
+      "title": "Portfolio Concept — Web UI",
+      "featured": false,
       "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "category": "uiux",
+      "challenges": "Balancing personal story with technical credibility.",
+      "repoUrl": "",
+      "learnings": "Editorial composition and section rhythm.",
+      "duration": "1 Week",
+      "projectType": "Figma Web Design",
+      "status": "Completed"
     },
     {
-      "id": "g05",
-      "title": "IEEE & University Event Visuals",
-      "subtitle": "INSL, Gavel Club & IEEE SB UOJ",
-      "category": "graphic",
-      "projectType": "Event Branding & Social Media",
-      "featured": true,
-      "description": "Extensive collection of official posters, speaker spotlights, certificates, invitations, and campaign banners crafted for IEEE Student Branch of University of Jaffna, INSL, and Gavel Club.",
-      "more": "Delivered 25+ cohesive campaign visuals across competitions, workshops, ceremonies, and student leadership announcements.",
-      "role": "Lead Graphic Designer",
-      "duration": "2023 - 2025",
-      "date": "2024",
-      "status": "Completed",
-      "teamMembers": [
-        "Sachintha"
-      ],
       "technologies": [
         "Adobe Illustrator",
         "Adobe Photoshop",
         "Brand Design"
       ],
-      "features": [
-        "27+ campaign artworks",
-        "Event banners & agendas",
-        "Certificates & social media kits"
+      "subtitle": "INSL, Gavel Club & IEEE SB UOJ",
+      "teamMembers": [
+        "Sachintha"
       ],
-      "challenges": "Maintaining consistent institutional branding under rapid event deadlines.",
-      "learnings": "High-speed campaign systems, print/digital layout precision, and typography.",
-      "liveUrl": "",
+      "more": "Delivered 25+ cohesive campaign visuals across competitions, workshops, ceremonies, and student leadership announcements.",
+      "role": "Lead Graphic Designer",
+      "id": "g05",
       "repoUrl": "",
+      "playStoreUrl": "",
+      "appStoreUrl": "",
+      "description": "Extensive collection of official posters, speaker spotlights, certificates, invitations, and campaign banners crafted for IEEE Student Branch of University of Jaffna, INSL, and Gavel Club.",
+      "date": "2024",
+      "title": "IEEE & University Event Visuals",
+      "duration": "2023 - 2025",
+      "featured": true,
+      "isPublic": true,
+      "category": "graphic",
+      "learnings": "High-speed campaign systems, print/digital layout precision, and typography.",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504480/smsc_portfolio/g1zfwsx4vzag2jcaqrwd.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504498/smsc_portfolio/tgbwrfippdsjikhzw4nn.jpg",
@@ -1288,39 +1328,32 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505034/smsc_portfolio/woetnmoh9wc4w9seagsy.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505070/smsc_portfolio/giiklkiiodmgayh0rsas.jpg"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "liveUrl": "",
+      "status": "Completed",
+      "challenges": "Maintaining consistent institutional branding under rapid event deadlines.",
+      "features": [
+        "27+ campaign artworks",
+        "Event banners & agendas",
+        "Certificates & social media kits"
+      ],
+      "projectType": "Event Branding & Social Media"
     },
     {
-      "id": "g01",
-      "title": "Digital Art & Vector Portraits",
-      "subtitle": "Stylized Character & Portrait Art",
-      "category": "graphic",
       "projectType": "Vector Illustration",
       "featured": false,
-      "description": "Expressive vector illustrations, cinematic movie poster tributes, and stylized digital portraits crafted in Adobe Illustrator.",
-      "more": "Explores bold lighting, dramatic silhouettes, and layered shading techniques.",
-      "role": "Digital Illustrator",
+      "id": "g01",
+      "challenges": "Capturing human likeness and dramatic light using crisp vector geometry.",
+      "isPublic": true,
+      "category": "graphic",
+      "liveUrl": "",
       "duration": "Collection",
-      "date": "2024",
-      "status": "Completed",
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "technologies": [
-        "Adobe Illustrator",
-        "Digital Art"
-      ],
       "features": [
         "Vector portraits",
         "Pop-culture & movie art",
         "Layered lighting studies"
       ],
-      "challenges": "Capturing human likeness and dramatic light using crisp vector geometry.",
       "learnings": "Color theory, shading gradients, and pen-tool precision.",
-      "liveUrl": "",
-      "repoUrl": "",
+      "date": "2024",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505073/smsc_portfolio/a8obfbyxrpyuzng7vpgj.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505077/smsc_portfolio/buifvhxeqavj10fniqwe.jpg",
@@ -1329,39 +1362,49 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505082/smsc_portfolio/wmr4wcbumhf0u6wigazb.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505084/smsc_portfolio/upejfqfydfvjbapdpe4p.jpg"
       ],
-      "isPublic": true,
+      "title": "Digital Art & Vector Portraits",
+      "description": "Expressive vector illustrations, cinematic movie poster tributes, and stylized digital portraits crafted in Adobe Illustrator.",
+      "subtitle": "Stylized Character & Portrait Art",
       "appStoreUrl": "",
-      "playStoreUrl": ""
-    },
-    {
-      "id": "g03",
-      "title": "Brand Identities & Logos",
-      "subtitle": "Custom Marks & App Icons",
-      "category": "graphic",
-      "projectType": "Logo Design",
-      "featured": false,
-      "description": "Original brand marks, club emblems, developer monograms, and mobile app icons crafted for digital products and student communities.",
-      "more": "Built as scalable vector marks that stay sharp from tiny app icons to large banners.",
-      "role": "Brand Designer",
-      "duration": "Collection",
-      "date": "2024",
+      "role": "Digital Illustrator",
       "status": "Completed",
+      "playStoreUrl": "",
       "teamMembers": [
         "Sachintha"
       ],
       "technologies": [
         "Adobe Illustrator",
-        "Brand Identity"
+        "Digital Art"
       ],
+      "more": "Explores bold lighting, dramatic silhouettes, and layered shading techniques.",
+      "repoUrl": ""
+    },
+    {
+      "date": "2024",
       "features": [
         "App icons",
         "Community & club marks",
         "Scalable vector geometry"
       ],
-      "challenges": "Distilling brand personality into memorable, minimal silhouettes.",
-      "learnings": "Grid construction, optical balance, and scalable iconography.",
-      "liveUrl": "",
+      "teamMembers": [
+        "Sachintha"
+      ],
+      "title": "Brand Identities & Logos",
+      "isPublic": true,
+      "category": "graphic",
+      "role": "Brand Designer",
+      "featured": false,
       "repoUrl": "",
+      "description": "Original brand marks, club emblems, developer monograms, and mobile app icons crafted for digital products and student communities.",
+      "duration": "Collection",
+      "appStoreUrl": "",
+      "more": "Built as scalable vector marks that stay sharp from tiny app icons to large banners.",
+      "status": "Completed",
+      "id": "g03",
+      "liveUrl": "",
+      "learnings": "Grid construction, optical balance, and scalable iconography.",
+      "playStoreUrl": "",
+      "projectType": "Logo Design",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505085/smsc_portfolio/ltjuyqegztzlu78eswdy.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505093/smsc_portfolio/brg8jrdrcge28cekl3wu.png",
@@ -1369,26 +1412,39 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505106/smsc_portfolio/or79gmwic6ccaefb9jhs.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505108/smsc_portfolio/rnbzuwyncul5lk6h0ewb.png"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
+      "subtitle": "Custom Marks & App Icons",
+      "challenges": "Distilling brand personality into memorable, minimal silhouettes.",
+      "technologies": [
+        "Adobe Illustrator",
+        "Brand Identity"
+      ]
     },
     {
-      "id": "g04",
-      "title": "Promotional Flyers & Banners",
+      "challenges": "Communicating dense event information while keeping designs eye-catching.",
+      "appStoreUrl": "",
       "subtitle": "Print & Digital Campaigns",
-      "category": "graphic",
-      "projectType": "Commercial Graphics",
-      "featured": false,
+      "liveUrl": "",
       "description": "High-impact promotional flyers, event invitations, and large-format banners combining bold typography and clean visual hierarchy.",
-      "more": "Designed for both digital social feeds and high-resolution physical print.",
-      "role": "Graphic Designer",
-      "duration": "Collection",
-      "date": "2024",
-      "status": "Completed",
       "teamMembers": [
         "Sachintha"
       ],
+      "id": "g04",
+      "date": "2024",
+      "isPublic": true,
+      "category": "graphic",
+      "projectType": "Commercial Graphics",
+      "featured": false,
+      "duration": "Collection",
+      "status": "Completed",
+      "images": [
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505111/smsc_portfolio/buy75sxcnfishas5ezn7.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505115/smsc_portfolio/cymal2ocwfymhfxzr9wb.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505126/smsc_portfolio/pnpvs6fhuzmrybcu7abb.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505267/smsc_portfolio/xyewmvpgounibnxqxknr.jpg",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505271/smsc_portfolio/lrdemasz3mwbee3d403l.jpg"
+      ],
+      "learnings": "Print bleed/margins, visual contrast, and focal composition.",
+      "repoUrl": "",
       "technologies": [
         "Adobe Illustrator",
         "Adobe Photoshop"
@@ -1398,49 +1454,29 @@
         "Large-format banners",
         "Social campaign posters"
       ],
-      "challenges": "Communicating dense event information while keeping designs eye-catching.",
-      "learnings": "Print bleed/margins, visual contrast, and focal composition.",
-      "liveUrl": "",
-      "repoUrl": "",
-      "images": [
-        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505111/smsc_portfolio/buy75sxcnfishas5ezn7.jpg",
-        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505115/smsc_portfolio/cymal2ocwfymhfxzr9wb.jpg",
-        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505126/smsc_portfolio/pnpvs6fhuzmrybcu7abb.jpg",
-        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505267/smsc_portfolio/xyewmvpgounibnxqxknr.jpg",
-        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505271/smsc_portfolio/lrdemasz3mwbee3d403l.jpg"
-      ],
-      "isPublic": true,
-      "appStoreUrl": "",
+      "role": "Graphic Designer",
+      "title": "Promotional Flyers & Banners",
+      "more": "Designed for both digital social feeds and high-resolution physical print.",
       "playStoreUrl": ""
     },
     {
-      "id": "g02",
-      "title": "Traditional Pencil Portraits",
-      "subtitle": "Hand-Drawn Graphite Artwork",
-      "category": "graphic",
-      "projectType": "Fine Art",
-      "featured": false,
-      "description": "Hand-drawn graphite pencil portraits exploring realistic shading, subtle skin textures, and expressive portraiture.",
-      "more": "Traditional art practice that directly informs my sense of lighting, shadow, and composition in digital UI design.",
-      "role": "Fine Artist",
       "duration": "Collection",
-      "date": "2023 - 2024",
+      "title": "Traditional Pencil Portraits",
+      "role": "Fine Artist",
+      "repoUrl": "",
       "status": "Completed",
       "teamMembers": [
         "Sachintha"
       ],
-      "technologies": [
-        "Graphite Pencils",
-        "Fine Art Shading"
-      ],
-      "features": [
-        "Hand-drawn portraits",
-        "Value & contrast studies"
-      ],
+      "isPublic": true,
+      "category": "graphic",
+      "id": "g02",
+      "featured": false,
+      "more": "Traditional art practice that directly informs my sense of lighting, shadow, and composition in digital UI design.",
+      "appStoreUrl": "",
       "challenges": "Achieving lifelike depth and expression purely through tonal gradation.",
-      "learnings": "Observation, patience, and mastery of light and shadow.",
-      "liveUrl": "",
-      "repoUrl": "",
+      "date": "2023 - 2024",
+      "description": "Hand-drawn graphite pencil portraits exploring realistic shading, subtle skin textures, and expressive portraiture.",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505273/smsc_portfolio/p49tgg58mlawrjykpmwp.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505274/smsc_portfolio/ozgd6dcdjmxim3abmqwv.jpg",
@@ -1448,55 +1484,19 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505279/smsc_portfolio/tlgexytuku6izrzs72ry.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505281/smsc_portfolio/frgkctitcg3kihwzmnwv.jpg"
       ],
-      "isPublic": true,
-      "appStoreUrl": "",
-      "playStoreUrl": ""
-    }
-  ],
-  "blogs": [
-    {
-      "id": "blog-shipping-expo-apps",
-      "title": "Shipping Cross-Platform Apps to App Store & Google Play with Expo",
-      "subtitle": "Field notes from building production React Native applications at INTTEQ.",
-      "category": "Engineering",
-      "tags": [
-        "React Native",
-        "Expo",
-        "Mobile",
-        "Notes"
+      "features": [
+        "Hand-drawn portraits",
+        "Value & contrast studies"
       ],
-      "date": "Nov 2026",
-      "readTime": "3 min read",
-      "isPublic": true,
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png",
-      "blocks": [
-        {
-          "id": "blk-1",
-          "type": "h2",
-          "content": "Why React Native + Expo Scales Fast"
-        },
-        {
-          "id": "blk-2",
-          "type": "paragraph",
-          "content": "Building production mobile applications across iOS and Android demands predictable release pipelines, rock-solid native integrations, and fast iteration cycles. Across projects like Dealrax, Doc4Baby, PlayZone, and Mangaliyam, Expo EAS builds dramatically reduced store submission friction."
-        },
-        {
-          "id": "blk-3",
-          "type": "quote",
-          "content": "Good mobile architecture isn’t just about screens — it’s reliable push notifications, resilient offline sync, and clean payment flows."
-        },
-        {
-          "id": "blk-4",
-          "type": "h3",
-          "content": "Production Release Checklist"
-        },
-        {
-          "id": "blk-5",
-          "type": "paragraph",
-          "content": "Always verify deep-link handling, test PayHere and third-party payment callbacks on physical devices, and validate push notification payloads in background, killed, and foreground states before submitting to App Store Connect or Play Console."
-        }
-      ]
+      "subtitle": "Hand-Drawn Graphite Artwork",
+      "playStoreUrl": "",
+      "technologies": [
+        "Graphite Pencils",
+        "Fine Art Shading"
+      ],
+      "learnings": "Observation, patience, and mastery of light and shadow.",
+      "liveUrl": "",
+      "projectType": "Fine Art"
     }
-  ],
-  "updatedAt": "2026-11-24T07:48:25.132Z"
+  ]
 }

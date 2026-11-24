@@ -16,6 +16,7 @@ import StorePreviewModal from "./components/StorePreviewModal";
 import WorkArchivePage from "./pages/WorkArchivePage";
 import GalleryArchivePage from "./pages/GalleryArchivePage";
 import BlogPage from "./pages/BlogPage";
+import GamesPage from "./pages/GamesPage";
 import StudioAuthGate from "./studio/StudioAuthGate";
 import { auth } from "./utils/firebase";
 import { assetUrl, fetchPortfolioData } from "./utils/portfolioApi";
@@ -37,6 +38,9 @@ function parseHashRoute() {
   if (raw.startsWith("#/blog")) {
     const sub = raw.slice("#/blog".length).split("?")[0].replace(/^\/+/, "");
     return { page: "blog", postId: sub || null };
+  }
+  if (raw.startsWith("#/games")) {
+    return { page: "games" };
   }
   if (raw.startsWith("#/studio")) {
     return { page: "studio" };
@@ -137,6 +141,13 @@ export default function App() {
     setRoute({ page: "blog", postId });
   };
 
+  const navigateGames = () => {
+    setSelectedProject(null);
+    setStorePreview(null);
+    window.location.hash = "#/games";
+    setRoute({ page: "games" });
+  };
+
   const openStudio = (projectId = null) => {
     setSelectedProject(null);
     setStorePreview(null);
@@ -221,6 +232,7 @@ export default function App() {
             onNavigateWork={() => navigateWork("all")}
             onNavigateGallery={() => navigateGallery("all")}
             onNavigateBlog={() => navigateBlog(null)}
+            onNavigateGames={navigateGames}
           />
 
           {route.page === "work" ? (
@@ -247,6 +259,8 @@ export default function App() {
               onBackToBlogList={() => navigateBlog(null)}
               onBackHome={() => navigateHome(null)}
             />
+          ) : route.page === "games" ? (
+            <GamesPage onBackHome={() => navigateHome(null)} />
           ) : (
             <main className="relative z-10">
               <HeroSection profile={portfolio.profile} />
@@ -282,6 +296,7 @@ export default function App() {
             onNavigateWork={() => navigateWork("all")}
             onNavigateGallery={() => navigateGallery("all")}
             onNavigateBlog={() => navigateBlog(null)}
+            onNavigateGames={navigateGames}
             onOpenStudio={() => openStudio(null)}
           />
 

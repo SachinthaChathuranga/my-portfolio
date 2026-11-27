@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "./firebase";
 
 const LOCAL_LB_KEY = "smsc_arcade_leaderboards_v1";
@@ -45,8 +45,30 @@ function writeLocalAll(data) {
   }
 }
 
+function parseSnapshot(snap) {
+  const list = [];
+  snap.forEach((docSnap) => {
+    const d = docSnap.data();
+    if (d && typeof d.score === "number" && d.playerName) {
+      list.push({
+        id: docSnap.id,
+        clientId: d.clientId || docSnap.id,
+        gameId: d.gameId,
+        playerName: String(d.playerName).slice(0, 24),
+        score: Math.floor(d.score),
+        badge: d.badge || "",
+        meta: d.meta || "",
+        createdAt: Number(d.createdAt || Date.now()),
+        fromCloud: true,
+      });
+    }
+  });
+  return list;
+}
+
 function mergeAndSort(cloudList, localList, maxCount = 15) {
   const seen = new Map();
+  // Prefer cloud records first so `fromCloud` flag stays true
   for (const item of [...cloudList, ...localList]) {
     if (!item || !item.playerName) continue;
     const key = item.clientId || `${item.playerName}_${item.score}_${item.createdAt}`;
@@ -58,8 +80,7 @@ function mergeAndSort(cloudList, localList, maxCount = 15) {
 }
 
 /**
- * Fetch top leaderboard entries for a specific game.
- * Queries Firestore without needing a composite index + merges local cache seamlessly.
+ * One-shot fetch (used for manual refresh button).
  */
 export async function fetchGameLeaderboard(gameId, maxCount = 15) {
   const localAll = readLocalAll();
@@ -68,36 +89,99 @@ export async function fetchGameLeaderboard(gameId, maxCount = 15) {
   try {
     const q = query(collection(db, COLLECTION_NAME), where("gameId", "==", gameId));
     const snap = await getDocs(q);
-    const cloudEntries = [];
-    snap.forEach((docSnap) => {
-      const d = docSnap.data();
-      if (d && typeof d.score === "number" && d.playerName) {
-        cloudEntries.push({
-          id: docSnap.id,
-          clientId: d.clientId || docSnap.id,
-          gameId: d.gameId,
-          playerName: String(d.playerName).slice(0, 24),
-          score: Math.floor(d.score),
-          badge: d.badge || "",
-          meta: d.meta || "",
-          createdAt: Number(d.createdAt || Date.now()),
-        });
-      }
-    });
+    const cloudEntries = parseSnapshot(snap);
     return {
       entries: mergeAndSort(cloudEntries, localEntries, maxCount),
       cloudConnected: true,
+      error: "",
     };
-  } catch {
+  } catch (err) {
     return {
       entries: mergeAndSort([], localEntries, maxCount),
       cloudConnected: false,
+      error: err?.code || err?.message || "offline",
     };
   }
 }
 
 /**
- * Submit a player's score & name to both localStorage (instant) and Firestore (global).
+ * Real-time Firebase Firestore listener (onSnapshot) for instant live leaderboard updates
+ * across all players and devices!
+ */
+export function subscribeGameLeaderboard(gameId, onData, maxCount = 15) {
+  const getLocal = () => {
+    const all = readLocalAll();
+    return Array.isArray(all[gameId]) ? all[gameId] : [];
+  };
+
+  let lastCloudEntries = [];
+  let isCloudLive = false;
+
+  const emitLocalRefresh = () => {
+    onData({
+      entries: mergeAndSort(lastCloudEntries, getLocal(), maxCount),
+      cloudConnected: isCloudLive,
+      error: "",
+    });
+  };
+
+  // Emit cached local entries immediately for zero-flicker render
+  emitLocalRefresh();
+
+  const onLocalEvent = (e) => {
+    if (!e?.detail?.gameId || e.detail.gameId === gameId) {
+      emitLocalRefresh();
+    }
+  };
+  if (typeof window !== "undefined") {
+    window.addEventListener("smsc-leaderboard-updated", onLocalEvent);
+  }
+
+  let unsub = () => {};
+  try {
+    const q = query(collection(db, COLLECTION_NAME), where("gameId", "==", gameId));
+    unsub = onSnapshot(
+      q,
+      (snap) => {
+        isCloudLive = true;
+        lastCloudEntries = parseSnapshot(snap);
+        onData({
+          entries: mergeAndSort(lastCloudEntries, getLocal(), maxCount),
+          cloudConnected: true,
+          error: "",
+        });
+      },
+      (err) => {
+        isCloudLive = false;
+        onData({
+          entries: mergeAndSort([], getLocal(), maxCount),
+          cloudConnected: false,
+          error: err?.code || err?.message || "firestore-error",
+        });
+      }
+    );
+  } catch (err) {
+    onData({
+      entries: mergeAndSort([], getLocal(), maxCount),
+      cloudConnected: false,
+      error: err?.message || "init-error",
+    });
+  }
+
+  return () => {
+    try {
+      unsub();
+    } catch {
+      // ignore
+    }
+    if (typeof window !== "undefined") {
+      window.removeEventListener("smsc-leaderboard-updated", onLocalEvent);
+    }
+  };
+}
+
+/**
+ * Submit a player's score & name to both localStorage (instant) and Firebase Firestore (live global).
  */
 export async function submitGameScore({ gameId, playerName, score, badge = "", meta = "" }) {
   const cleanName = String(playerName || "")
@@ -120,25 +204,28 @@ export async function submitGameScore({ gameId, playerName, score, badge = "", m
     createdAt: Date.now(),
   };
 
-  // 1. Always save locally for instant UI feedback
+  // 1. Save locally for instant feedback
   const localAll = readLocalAll();
   const prev = Array.isArray(localAll[gameId]) ? localAll[gameId] : [];
   localAll[gameId] = mergeAndSort([], [entry, ...prev], 30);
   writeLocalAll(localAll);
 
-  // 2. Push to Firebase Firestore global leaderboard
+  // 2. Push to Firebase Firestore (`game_leaderboards` collection)
   let syncedToCloud = false;
+  let cloudError = "";
   try {
     await addDoc(collection(db, COLLECTION_NAME), entry);
     syncedToCloud = true;
-  } catch {
+  } catch (err) {
     syncedToCloud = false;
+    cloudError = err?.code || err?.message || "permission-denied";
+    console.warn("[Leaderboard Firebase write skipped]", cloudError);
   }
 
-  // 3. Notify live GameLeaderboard panel to refresh immediately
+  // 3. Notify local listeners immediately
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("smsc-leaderboard-updated", { detail: { gameId } }));
   }
 
-  return { entry, syncedToCloud };
+  return { entry, syncedToCloud, cloudError };
 }

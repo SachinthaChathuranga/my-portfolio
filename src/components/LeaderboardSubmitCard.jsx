@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Trophy, CheckCircle2, Send, Sparkles } from "lucide-react";
+import { Trophy, CheckCircle2, Send, Sparkles, AlertCircle } from "lucide-react";
 import { getSavedPlayerName, submitGameScore } from "../utils/leaderboardApi";
 
 /**
@@ -15,7 +15,7 @@ export default function LeaderboardSubmitCard({
 }) {
   const [name, setName] = useState(() => getSavedPlayerName());
   const [submitting, setSubmitting] = useState(false);
-  const [savedState, setSavedState] = useState(null); // { name, syncedToCloud }
+  const [savedState, setSavedState] = useState(null); // { name, syncedToCloud, cloudError }
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -35,7 +35,11 @@ export default function LeaderboardSubmitCard({
         badge,
         meta,
       });
-      setSavedState({ name: res.entry.playerName, syncedToCloud: res.syncedToCloud });
+      setSavedState({
+        name: res.entry.playerName,
+        syncedToCloud: res.syncedToCloud,
+        cloudError: res.cloudError,
+      });
     } catch (err) {
       setError(err?.message || "Could not save score.");
     } finally {
@@ -50,11 +54,16 @@ export default function LeaderboardSubmitCard({
           <CheckCircle2 className="h-4 w-4" />
           Saved to Leaderboard as {savedState.name}!
         </p>
-        <p className="mt-0.5 font-mono text-[10px] text-emerald-200/75">
-          {savedState.syncedToCloud
-            ? "Synced globally to live leaderboard below."
-            : "Saved to this device's leaderboard below."}
-        </p>
+        {savedState.syncedToCloud ? (
+          <p className="mt-0.5 font-mono text-[10px] text-emerald-200/80">
+            ● Live synced to Firebase Firestore global leaderboard!
+          </p>
+        ) : (
+          <p className="mt-1 inline-flex items-center justify-center gap-1 font-mono text-[10px] text-amber-300">
+            <AlertCircle className="h-3 w-3 shrink-0" />
+            Saved locally (Firebase: {savedState.cloudError || "publish game_leaderboards rule for public sync"}).
+          </p>
+        )}
       </div>
     );
   }

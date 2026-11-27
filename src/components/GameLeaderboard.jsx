@@ -1,6 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Trophy, RefreshCw, Medal, Crown, Globe, HardDrive } from "lucide-react";
-import { fetchGameLeaderboard, LEADERBOARD_GAMES } from "../utils/leaderboardApi";
+import {
+  fetchGameLeaderboard,
+  LEADERBOARD_GAMES,
+  subscribeGameLeaderboard,
+} from "../utils/leaderboardApi";
 
 export default function GameLeaderboard({ activeGame }) {
   const [selectedTab, setSelectedTab] = useState(activeGame || "vanguard");
@@ -8,34 +12,33 @@ export default function GameLeaderboard({ activeGame }) {
   const [loading, setLoading] = useState(true);
   const [cloudConnected, setCloudConnected] = useState(false);
 
-  // Sync leaderboard tab automatically when user switches the active game
+  // Sync leaderboard tab automatically when user switches active game
   useEffect(() => {
     if (activeGame) setSelectedTab(activeGame);
   }, [activeGame]);
 
-  const load = useCallback(async (gameId) => {
+  // Real-time Firebase Firestore subscription (updates live automatically across all devices!)
+  useEffect(() => {
     setLoading(true);
-    const res = await fetchGameLeaderboard(gameId, 12);
+    const unsub = subscribeGameLeaderboard(
+      selectedTab,
+      (res) => {
+        setEntries(res.entries);
+        setCloudConnected(res.cloudConnected);
+        setLoading(false);
+      },
+      12
+    );
+    return () => unsub();
+  }, [selectedTab]);
+
+  const manualRefresh = useCallback(async () => {
+    setLoading(true);
+    const res = await fetchGameLeaderboard(selectedTab, 12);
     setEntries(res.entries);
     setCloudConnected(res.cloudConnected);
     setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    load(selectedTab);
-  }, [selectedTab, load]);
-
-  // Listen for instant score submissions from any of the 4 games
-  useEffect(() => {
-    const onUpdated = (e) => {
-      const updatedGameId = e?.detail?.gameId;
-      if (!updatedGameId || updatedGameId === selectedTab) {
-        load(selectedTab);
-      }
-    };
-    window.addEventListener("smsc-leaderboard-updated", onUpdated);
-    return () => window.removeEventListener("smsc-leaderboard-updated", onUpdated);
-  }, [selectedTab, load]);
+  }, [selectedTab]);
 
   const activeMeta =
     LEADERBOARD_GAMES.find((g) => g.id === selectedTab) || LEADERBOARD_GAMES[0];
@@ -55,7 +58,7 @@ export default function GameLeaderboard({ activeGame }) {
         <div>
           <p className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-[#FFC247]">
             <Trophy className="h-3.5 w-3.5" />
-            Hall of Fame • Per-Game Rankings
+            Hall of Fame • Per-Game Live Rankings
           </p>
           <h3 className="mt-1 font-display text-2xl font-extrabold text-white sm:text-3xl">
             Arcade <span className="text-neon-gradient">Leaderboard</span>
@@ -66,13 +69,14 @@ export default function GameLeaderboard({ activeGame }) {
           <span
             className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[10px] font-semibold ${
               cloudConnected
-                ? "border-emerald-400/35 bg-emerald-500/10 text-emerald-300"
+                ? "border-emerald-400/40 bg-emerald-500/15 text-emerald-300"
                 : "border-white/15 bg-white/5 text-ink-muted"
             }`}
           >
             {cloudConnected ? (
               <>
-                <Globe className="h-3 w-3" /> Live Global Board
+                <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+                <Globe className="h-3 w-3" /> Live Firebase Sync
               </>
             ) : (
               <>
@@ -83,7 +87,7 @@ export default function GameLeaderboard({ activeGame }) {
 
           <button
             type="button"
-            onClick={() => load(selectedTab)}
+            onClick={manualRefresh}
             className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 font-mono text-[11px] font-semibold text-white transition hover:border-[#00D4FF]/60 hover:bg-[#00D4FF]/15"
             title="Refresh Leaderboard"
           >
@@ -119,7 +123,7 @@ export default function GameLeaderboard({ activeGame }) {
       <div className="mt-5">
         {loading && entries.length === 0 ? (
           <div className="py-10 text-center font-mono text-xs text-ink-muted">
-            Loading {activeMeta.title} rankings...
+            Connecting to Firebase live rankings for {activeMeta.title}...
           </div>
         ) : entries.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-white/15 bg-white/[0.02] px-6 py-10 text-center">

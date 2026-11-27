@@ -1,16 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Gamepad2, Crosshair, Target, Sparkles } from "lucide-react";
+import { ArrowLeft, Gamepad2, Crosshair, Target, Sparkles, Car, Shield } from "lucide-react";
 import NeonShooter3D from "../games/NeonShooter3D";
 import TacticalIgi3D from "../games/TacticalIgi3D";
+import ApexRacer3D from "../games/ApexRacer3D";
+import VanguardArmy3D from "../games/VanguardArmy3D";
+import GameLeaderboard from "../components/GameLeaderboard";
 
 const GAMES = [
+  {
+    id: "vanguard",
+    title: "Vanguard: Frontline Ops",
+    tag: "True WebGL 3D Army FPS",
+    badge: "NEW • 5 War Theaters",
+    desc: "Next-gen WebGL 3D Special Forces campaign with enterable buildings, breachable doors, shoot-through windows, 5 distinct weather theaters, sequential mission unlocks, frag grenades & 3D soldiers.",
+    accent: "border-emerald-400/60 bg-emerald-500/10",
+  },
+  {
+    id: "racer",
+    title: "Apex Horizon: Night Drive",
+    tag: "3D Highway Racing Sim",
+    badge: "Realistic 3D",
+    desc: "6-speed twin-turbo GT supercar with rolling hills, banked curves, 2-way highway traffic, cockpit cam, drift physics & live RPM engine audio.",
+    accent: "border-[#FF8A1F]/60 bg-[#FF8A1F]/10",
+  },
   {
     id: "igi",
     title: "Operation: Neon I.G.I.",
     tag: "3D Tactical Stealth FPS",
-    badge: "NEW • I.G.I. Style",
-    desc: "First-person 3D compound infiltration with silenced pistol, M4 rifle, scoped sniper, satellite radar, cameras & server hack mission.",
+    badge: "4 Missions • I.G.I.",
+    desc: "4-mission tactical campaign (Iron Compound, Arctic Airbase, Desert Sandstorm, Blacksite Night Raid) with textured compounds, animated soldiers, NVG, C4 & sniper scope.",
     accent: "border-[#00D4FF]/55 bg-[#00D4FF]/10",
   },
   {
@@ -24,7 +43,7 @@ const GAMES = [
 ];
 
 export default function GamesPage({ onBackHome }) {
-  const [activeGame, setActiveGame] = useState("igi");
+  const [activeGame, setActiveGame] = useState("vanguard");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -64,8 +83,8 @@ export default function GamesPage({ onBackHome }) {
           </h1>
         </motion.div>
 
-        {/* Game Switcher Cards */}
-        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {/* 4-Game Switcher Cards */}
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {GAMES.map((g) => {
             const selected = activeGame === g.id;
             return (
@@ -73,15 +92,19 @@ export default function GamesPage({ onBackHome }) {
                 key={g.id}
                 type="button"
                 onClick={() => setActiveGame(g.id)}
-                className={`rounded-2xl border p-5 text-left transition ${
+                className={`rounded-2xl border p-4 text-left transition ${
                   selected
                     ? `${g.accent} shadow-glass-3d`
                     : "border-white/10 bg-white/[0.025] hover:border-white/25"
                 }`}
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFC247]">
-                    {g.id === "igi" ? (
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[9.5px] font-bold uppercase tracking-wider text-[#FFC247]">
+                    {g.id === "vanguard" ? (
+                      <Shield className="h-3.5 w-3.5 text-emerald-400" />
+                    ) : g.id === "racer" ? (
+                      <Car className="h-3.5 w-3.5 text-[#FF8A1F]" />
+                    ) : g.id === "igi" ? (
                       <Target className="h-3.5 w-3.5 text-[#00D4FF]" />
                     ) : (
                       <Sparkles className="h-3.5 w-3.5 text-[#FF3CC7]" />
@@ -89,7 +112,7 @@ export default function GamesPage({ onBackHome }) {
                     {g.tag}
                   </span>
                   <span
-                    className={`rounded-full px-2.5 py-0.5 font-mono text-[10px] font-semibold ${
+                    className={`shrink-0 rounded-full px-2 py-0.5 font-mono text-[9.5px] font-semibold ${
                       selected
                         ? "bg-emerald-500/25 text-emerald-300"
                         : "bg-white/10 text-ink-muted"
@@ -98,7 +121,7 @@ export default function GamesPage({ onBackHome }) {
                     {selected ? "Playing" : g.badge}
                   </span>
                 </div>
-                <h2 className="mt-2.5 font-display text-xl font-bold text-white">
+                <h2 className="mt-2 font-display text-base font-bold text-white sm:text-lg">
                   {g.title}
                 </h2>
                 <p className="mt-1.5 text-xs leading-relaxed text-ink-secondary">
@@ -110,7 +133,18 @@ export default function GamesPage({ onBackHome }) {
         </div>
 
         {/* Active 3D Game Stage */}
-        {activeGame === "igi" ? <TacticalIgi3D /> : <NeonShooter3D />}
+        {activeGame === "vanguard" ? (
+          <VanguardArmy3D />
+        ) : activeGame === "racer" ? (
+          <ApexRacer3D />
+        ) : activeGame === "igi" ? (
+          <TacticalIgi3D />
+        ) : (
+          <NeonShooter3D />
+        )}
+
+        {/* Per-Game Live Hall of Fame Leaderboard */}
+        <GameLeaderboard activeGame={activeGame} />
       </div>
     </div>
   );

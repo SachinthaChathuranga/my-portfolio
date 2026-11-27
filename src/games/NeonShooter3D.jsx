@@ -12,6 +12,7 @@ import {
   Crosshair,
   Trophy,
 } from "lucide-react";
+import LeaderboardSubmitCard from "../components/LeaderboardSubmitCard";
 
 const HIGH_SCORE_KEY = "smsc_neon_shooter_highscore_v1";
 
@@ -1264,19 +1265,19 @@ export default function NeonShooter3D() {
 
         {/* Game Over Overlay */}
         {gameState === "gameover" && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#06040D]/82 p-6 text-center backdrop-blur-md">
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center overflow-y-auto bg-[#06040D]/85 p-5 text-center backdrop-blur-md">
             {hud.isNewHigh && (
-              <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-[#FFC247]/60 bg-[#FFC247]/20 px-4 py-1 font-mono text-xs font-bold text-[#FFC247]">
+              <span className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-[#FFC247]/60 bg-[#FFC247]/20 px-4 py-1 font-mono text-xs font-bold text-[#FFC247]">
                 <Trophy className="h-3.5 w-3.5" />
                 NEW HIGH SCORE!
               </span>
             )}
 
-            <h3 className="font-display text-4xl font-extrabold text-white">
+            <h3 className="font-display text-3xl font-extrabold text-white sm:text-4xl">
               SHIELD DEPLETED
             </h3>
 
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {[
                 { label: "Final Score", val: hud.score.toLocaleString(), color: "text-white" },
                 { label: "Best Score", val: hud.highScore.toLocaleString(), color: "text-[#FFC247]" },
@@ -1285,7 +1286,7 @@ export default function NeonShooter3D() {
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3"
+                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-2.5"
                 >
                   <p className="font-mono text-[10px] uppercase tracking-widest text-ink-muted">
                     {stat.label}
@@ -1297,10 +1298,26 @@ export default function NeonShooter3D() {
               ))}
             </div>
 
+            {hud.score > 0 && (
+              <LeaderboardSubmitCard
+                key={`corridor-${hud.score}-${hud.kills}`}
+                gameId="corridor"
+                score={hud.score}
+                badge={`WAVE ${hud.wave}`}
+                meta={`${hud.kills} Kills • ${accuracy}% Accuracy`}
+                highlightLabel={
+                  hud.isNewHigh
+                    ? "New Best Score! Add Your Name"
+                    : "Save Score to Leaderboard"
+                }
+                isNewRecord={hud.isNewHigh}
+              />
+            )}
+
             <button
               type="button"
               onClick={resetGame}
-              className="mt-8 inline-flex items-center gap-2 rounded-full px-8 py-3.5 font-heading text-sm font-bold text-white shadow-neon-magenta transition hover:scale-105"
+              className="mt-5 inline-flex items-center gap-2 rounded-full px-8 py-3 font-heading text-sm font-bold text-white shadow-neon-magenta transition hover:scale-105"
               style={{
                 background:
                   "linear-gradient(110deg, #F012A8 0%, #9E1EFF 48%, #0099FF 100%)",

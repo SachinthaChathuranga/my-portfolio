@@ -73,7 +73,7 @@ export default function StudioAuthGate({ onBack }) {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="smschathu1234@gmail.com"
+              placeholder="abc@gmail.com"
               className="w-full rounded-xl border border-white/12 bg-[#0D091A] px-4 py-3 text-sm text-white placeholder-ink-muted/70 outline-none transition focus:border-[#00D4FF]"
             />
           </div>

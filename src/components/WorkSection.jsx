@@ -383,7 +383,7 @@ export default function WorkSection({
           <button
             type="button"
             onClick={() => onNavigateWork?.(activeCategory)}
-            className="group inline-flex shrink-0 items-center gap-2.5 rounded-full px-7 py-3.5 font-heading text-sm font-semibold text-white shadow-neon-magenta transition-transform duration-300 hover:scale-[1.03]"
+            className="btn-sheen group inline-flex shrink-0 items-center gap-2.5 rounded-full px-7 py-3.5 font-heading text-sm font-semibold text-white shadow-neon-magenta transition-transform duration-300 hover:scale-[1.03]"
             style={{
               background:
                 "linear-gradient(110deg, #F012A8 0%, #9E1EFF 48%, #0099FF 100%)",

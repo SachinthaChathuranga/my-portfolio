@@ -19,19 +19,20 @@ import {
   MapPin,
   CloudRain,
 } from "lucide-react";
+import * as THREE from "three";
 import { VANGUARD_MISSIONS } from "./vanguardMissions";
-import { createVanguardTextures } from "./vanguardTextures";
-import {
-  buildMissionWorld,
-  createWebGLRenderer,
-  drawSoldier3D,
-  mat4LookAt,
-  mat4Perspective,
-  mat4Transform,
-} from "./vanguardEngine";
+import { getExpandedMission } from "./vanguard/missionExpand";
+import { buildWorld } from "./vanguard/world";
+import { SoldierFactory } from "./vanguard/soldiers";
+import { ViewModel } from "./vanguard/viewmodel";
+import { FX } from "./vanguard/fx";
+import { loadSoldierModel, setMaxAnisotropy } from "./vanguard/assets";
 import LeaderboardSubmitCard from "../components/LeaderboardSubmitCard";
 
 const CAMPAIGN_STORAGE_KEY = "smsc_vanguard_army_campaign_v1";
+
+// Large-scale theaters (≈130 m) with ordered TASK 1 → 2 → 3 objectives
+const VANGUARD_OPS = VANGUARD_MISSIONS.map(getExpandedMission);
 
 function loadCampaign() {
   try {
@@ -39,7 +40,7 @@ function loadCampaign() {
     if (!raw) return { unlockedCount: 1, records: {} };
     const parsed = JSON.parse(raw);
     return {
-      unlockedCount: Math.max(1, Math.min(VANGUARD_MISSIONS.length, Number(parsed.unlockedCount || 1))),
+      unlockedCount: Math.max(1, Math.min(VANGUARD_OPS.length, Number(parsed.unlockedCount || 1))),
       records: parsed.records || {},
     };
   } catch {
@@ -191,21 +192,105 @@ function createArmyAudio() {
     }
   };
 
+  // Low-frequency body ("thump") that makes gunshots & blasts feel heavy
+  const thump = (freq, dur, vol) => {
+    try {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime;
+      const o = c.createOscillator();
+      const g = c.createGain();
+      o.type = "sine";
+      o.frequency.setValueAtTime(freq, now);
+      o.frequency.exponentialRampToValueAtTime(Math.max(30, freq * 0.35), now + dur);
+      g.gain.setValueAtTime(vol, now);
+      g.gain.exponentialRampToValueAtTime(0.001, now + dur);
+      o.connect(g).connect(c.destination);
+      o.start(now);
+      o.stop(now + dur + 0.02);
+    } catch {
+      // ignore
+    }
+  };
+  const tone = (f, dur, vol, type = "sine", delay = 0) => {
+    try {
+      const c = ensure();
+      if (!c) return;
+      const now = c.currentTime + delay;
+      const o = c.createOscillator();
+      const g = c.createGain();
+      o.type = type;
+      o.frequency.setValueAtTime(f, now);
+      g.gain.setValueAtTime(vol, now);
+      g.gain.exponentialRampToValueAtTime(0.001, now + dur);
+      o.connect(g).connect(c.destination);
+      o.start(now);
+      o.stop(now + dur + 0.02);
+    } catch {
+      // ignore
+    }
+  };
+
   return {
     shoot(wId, muted) {
       if (muted) return;
-      if (wId === 0) burst(0.12, 1600, 220, 0.24);
-      else if (wId === 1) burst(0.075, 2400, 720, 0.13); // Suppressed MP5SD
-      else if (wId === 2) burst(0.32, 980, 75, 0.36, "lowpass"); // M24 Sniper crack
-      else burst(0.24, 1100, 95, 0.34, "lowpass"); // M870 Shotgun blast
+      if (wId === 0) {
+        burst(0.12, 1700, 220, 0.24);
+        thump(140, 0.14, 0.32);
+        setTimeout(() => burst(0.35, 700, 120, 0.05, "lowpass"), 60); // outdoor echo tail
+      } else if (wId === 1) {
+        burst(0.075, 2400, 720, 0.12); // Suppressed MP5SD
+        thump(220, 0.05, 0.08);
+      } else if (wId === 2) {
+        burst(0.32, 1200, 75, 0.36, "lowpass"); // M24 Sniper crack
+        thump(90, 0.3, 0.45);
+        setTimeout(() => burst(0.7, 500, 60, 0.08, "lowpass"), 110);
+      } else {
+        burst(0.24, 1100, 95, 0.34, "lowpass"); // M870 Shotgun blast
+        thump(80, 0.25, 0.5);
+        setTimeout(() => tone(320, 0.05, 0.05, "square"), 260); // pump rack
+        setTimeout(() => tone(240, 0.06, 0.05, "square"), 360);
+      }
     },
-    enemyShot(muted) {
+    enemyShot(muted, dist = 10) {
       if (muted) return;
-      burst(0.11, 1250, 220, 0.14);
+      const att = Math.max(0.12, 1 - dist / 60);
+      burst(0.11, 1250 * (0.6 + att * 0.4), 220, 0.14 * att);
+      thump(120, 0.1, 0.12 * att);
+    },
+    whiz(muted) {
+      if (muted) return;
+      burst(0.09, 3800, 1600, 0.05, "highpass");
+    },
+    hurt(muted) {
+      if (muted) return;
+      thump(70, 0.18, 0.25);
+    },
+    step(muted, ground, sprint) {
+      if (muted) return;
+      const f = ground === "snowGround" ? 900 : ground === "desertSand" ? 1300 : ground === "asphalt" ? 2200 : 1600;
+      burst(0.06, f, f * 0.4, sprint ? 0.05 : 0.032, "bandpass");
+    },
+    radio(muted) {
+      if (muted) return;
+      tone(1240, 0.07, 0.05, "square");
+      tone(1640, 0.08, 0.05, "square", 0.09);
+      setTimeout(() => burst(0.25, 3000, 2000, 0.025, "bandpass"), 200);
+    },
+    thunder(muted) {
+      if (muted) return;
+      burst(2.2, 220, 30, 0.38, "lowpass");
+      thump(45, 1.6, 0.3);
+    },
+    dryFire(muted) {
+      if (muted) return;
+      tone(2400, 0.03, 0.06, "square");
     },
     explosion(muted) {
       if (muted) return;
       burst(0.75, 420, 42, 0.45, "lowpass");
+      thump(60, 0.9, 0.6);
+      setTimeout(() => burst(1.4, 260, 40, 0.12, "lowpass"), 180);
     },
     reload(muted) {
       try {
@@ -375,7 +460,6 @@ function createRuntimeState(mission) {
     stance: "stand", // "stand" | "crouch" | "prone"
     eyeHeight: 1.68,
     landDip: 0,
-    shells: [],
     muzzleFlash: 0,
     recoil: 0,
     walkBob: 0,
@@ -388,7 +472,12 @@ function createRuntimeState(mission) {
     headshots: 0,
     elapsed: 0,
     lightningFlash: 0,
-    alertText: `DEPLOYED TO ${mission.theater.toUpperCase()} — BREACH BUILDINGS & COMPLETE OBJECTIVES`,
+    alertText: `DEPLOYED TO ${mission.theater.toUpperCase()} — ${mission.objectives[0]?.taskLabel || "TASK 1"}: ${(mission.objectives[0]?.label || "").toUpperCase()}`,
+    taskIndex: 0,
+    taskBanner: null,
+    moving: false,
+    sprinting: false,
+    cycle: 0,
     killFeed: [],
     mouseDown: false,
     dragging: false,
@@ -414,36 +503,8 @@ function createRuntimeState(mission) {
       deathAnim: 0,
     })),
     pickups: mission.pickups.map((p) => ({ ...p, taken: false })),
-    objectives: mission.objectives.map((o) => ({ ...o, completed: false, progress: 0 })),
+    objectives: mission.objectives.map((o) => ({ ...o, completed: false, progress: 0, targetDown: false })),
     extraction: { ...mission.extraction },
-    weatherDrops: Array.from({ length: 85 }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      speed: 0.5 + Math.random() * 0.8,
-      size: 1.2 + Math.random() * 2.2,
-      drift: (Math.random() - 0.5) * 0.25,
-    })),
-  };
-}
-
-/** Project 3D point into 2D viewport screen coordinates (or null if behind camera) */
-function projectToScreen(wx, wy, wz, viewMat, projMat, w, h) {
-  const vx = viewMat[0] * wx + viewMat[4] * wy + viewMat[8] * wz + viewMat[12];
-  const vy = viewMat[1] * wx + viewMat[5] * wy + viewMat[9] * wz + viewMat[13];
-  const vz = viewMat[2] * wx + viewMat[6] * wy + viewMat[10] * wz + viewMat[14];
-  const vw = viewMat[3] * wx + viewMat[7] * wy + viewMat[11] * wz + viewMat[15];
-
-  const cx = projMat[0] * vx + projMat[4] * vy + projMat[8] * vz + projMat[12] * vw;
-  const cy = projMat[1] * vx + projMat[5] * vy + projMat[9] * vz + projMat[13] * vw;
-  const cw = projMat[3] * vx + projMat[7] * vy + projMat[11] * vz + projMat[15] * vw;
-
-  if (cw <= 0.1) return null;
-  const ndcX = cx / cw;
-  const ndcY = cy / cw;
-  return {
-    x: (ndcX * 0.5 + 0.5) * w,
-    y: (-ndcY * 0.5 + 0.5) * h,
-    visible: ndcX >= -1.05 && ndcX <= 1.05 && ndcY >= -1.05 && ndcY <= 1.05,
   };
 }
 
@@ -453,8 +514,14 @@ export default function VanguardArmy3D() {
   const hudCanvasRef = useRef(null);
   const audioRef = useRef(null);
   const rendererRef = useRef(null);
-  const texturesRef = useRef(null);
+  const sceneRef = useRef(null);
   const worldRef = useRef(null);
+  const fxRef = useRef(null);
+  const soldiersRef = useRef(null);
+  const soldierViewsRef = useRef(new Map());
+  const viewModelRef = useRef(null);
+  const soldierGltfRef = useRef(null);
+  const [assetsReady, setAssetsReady] = useState(false);
 
   if (!audioRef.current) audioRef.current = createArmyAudio();
 
@@ -468,7 +535,7 @@ export default function VanguardArmy3D() {
   const [justUnlockedTitle, setJustUnlockedTitle] = useState("");
   const [webglError, setWebglError] = useState(false);
 
-  const selectedMission = VANGUARD_MISSIONS[selectedIdx] || VANGUARD_MISSIONS[0];
+  const selectedMission = VANGUARD_OPS[selectedIdx] || VANGUARD_OPS[0];
 
   const [hud, setHud] = useState(() => ({
     hp: 100,
@@ -481,9 +548,11 @@ export default function VanguardArmy3D() {
     stance: "stand",
     insideBuilding: null,
     allObjectivesDone: false,
-    objectives: selectedMission.objectives.map((o) => ({
+    objectives: selectedMission.objectives.map((o, i) => ({
       id: o.id,
       label: o.label,
+      taskLabel: o.taskLabel,
+      status: i === 0 ? "active" : "locked",
       completed: false,
       dist: 0,
     })),
@@ -513,27 +582,89 @@ export default function VanguardArmy3D() {
       height: 560,
       keys: {},
       codes: {},
-      ...createRuntimeState(VANGUARD_MISSIONS[0]),
+      ...createRuntimeState(VANGUARD_OPS[0]),
     };
   }
 
-  const rebuildWorldForMission = useCallback((mission) => {
-    const renderer = rendererRef.current;
-    if (!renderer) return;
-    if (worldRef.current) {
-      worldRef.current.dispose();
-    }
-    worldRef.current = buildMissionWorld(renderer.gl, mission);
+  const disposeWorld = useCallback(() => {
+    soldiersRef.current?.dispose();
+    soldiersRef.current = null;
+    soldierViewsRef.current.clear();
+    fxRef.current?.dispose();
+    fxRef.current = null;
+    viewModelRef.current?.dispose();
+    viewModelRef.current = null;
+    worldRef.current?.dispose();
+    worldRef.current = null;
   }, []);
+
+  const spawnSoldiers = useCallback((mission) => {
+    const gltf = soldierGltfRef.current;
+    const sc = sceneRef.current;
+    if (!gltf || !sc) return;
+    soldiersRef.current?.dispose();
+    soldierViewsRef.current.clear();
+    const fac = new SoldierFactory(gltf, mission.env.uniform);
+    soldiersRef.current = fac;
+    for (const e of simRef.current.enemies) {
+      const view = fac.spawn(e);
+      sc.scene.add(view.root);
+      soldierViewsRef.current.set(e.id, view);
+    }
+  }, []);
+
+  // Dev-only debug handle for automated visual checks
+  if (import.meta.env.DEV && typeof window !== "undefined") window.__vanguard = simRef;
+
+  const rebuildWorldForMission = useCallback(
+    (mission) => {
+      const renderer = rendererRef.current;
+      const sc = sceneRef.current;
+      if (!renderer || !sc) return;
+      disposeWorld();
+      const world = buildWorld(mission, renderer);
+      sc.scene.add(world.root);
+      sc.scene.environment = world.envMap;
+      sc.scene.environmentIntensity = world.night ? 0.45 : 0.85;
+      sc.scene.fog = new THREE.FogExp2(world.fogColor, mission.env.fogDensity);
+      worldRef.current = world;
+      fxRef.current = new FX(sc.scene, { night: world.night, weather: mission.env.weather });
+      const vm = new ViewModel(mission.env.uniform);
+      vm.setEnvironment(world.envMap);
+      vm.setSize(simRef.current.width, simRef.current.height);
+      viewModelRef.current = vm;
+      if (soldierGltfRef.current) spawnSoldiers(mission);
+    },
+    [disposeWorld, spawnSoldiers]
+  );
+
+  // Rigged soldier model loads once, in the background
+  useEffect(() => {
+    let alive = true;
+    loadSoldierModel()
+      .then((gltf) => {
+        if (!alive) return;
+        soldierGltfRef.current = gltf;
+        setAssetsReady(true);
+        if (worldRef.current && !soldiersRef.current) spawnSoldiers(simRef.current.mission);
+      })
+      .catch((err) => {
+        console.error("[Vanguard] soldier model failed to load", err);
+        setAssetsReady(true);
+      });
+    return () => {
+      alive = false;
+    };
+  }, [spawnSoldiers]);
 
   const syncHud = useCallback((finalRank = "A") => {
     const s = simRef.current;
     if (!s) return;
-    const allObjectivesDone = s.objectives.every((o) => o.completed);
+    const allObjectivesDone = s.taskIndex >= s.objectives.length;
     const bldg = findBuildingAt(s.mission.buildings, s.px, s.pz);
 
     let nearInteract = null;
-    const objList = s.objectives.map((o) => {
+    const objList = s.objectives.map((o, i) => {
       let ox = o.x;
       let oz = o.z;
       if (o.type === "eliminate" && o.targetId) {
@@ -544,15 +675,18 @@ export default function VanguardArmy3D() {
         }
       }
       const dist = Math.hypot(ox - s.px, oz - s.pz);
-      if (!o.completed && o.type === "interact" && dist < 2.8) {
+      const status = o.completed ? "done" : i === s.taskIndex ? "active" : "locked";
+      if (status === "active" && o.type === "interact" && dist < 2.8) {
         nearInteract = {
-          verb: o.actionVerb,
+          verb: `${o.taskLabel}: ${o.actionVerb}`,
           progress: Math.round(o.progress * 100),
         };
       }
       return {
         id: o.id,
         label: o.label,
+        taskLabel: o.taskLabel,
+        status,
         completed: o.completed,
         dist: Math.round(dist),
       };
@@ -585,7 +719,7 @@ export default function VanguardArmy3D() {
     (idx) => {
       // Strictly enforce sequential mission unlocking!
       if (idx >= campaign.unlockedCount) return;
-      const m = VANGUARD_MISSIONS[idx] || VANGUARD_MISSIONS[0];
+      const m = VANGUARD_OPS[idx] || VANGUARD_OPS[0];
       setSelectedIdx(idx);
       selectedIdxRef.current = idx;
       setJustUnlockedTitle("");
@@ -604,7 +738,7 @@ export default function VanguardArmy3D() {
   const deployMission = useCallback(
     (overrideIdx = null) => {
       const idx = typeof overrideIdx === "number" ? overrideIdx : selectedIdxRef.current;
-      const m = VANGUARD_MISSIONS[idx] || VANGUARD_MISSIONS[0];
+      const m = VANGUARD_OPS[idx] || VANGUARD_OPS[0];
       setSelectedIdx(idx);
       selectedIdxRef.current = idx;
       setJustUnlockedTitle("");
@@ -789,22 +923,33 @@ export default function VanguardArmy3D() {
     };
   }, [syncHud, throwGrenade]);
 
-  // ================= MAIN 60FPS WEBGL 3D + TACTICAL HUD ENGINE =================
+  // ================= MAIN 60FPS THREE.JS 3D + TACTICAL HUD ENGINE =================
   useEffect(() => {
     const glCanvas = glCanvasRef.current;
     const hudCanvas = hudCanvasRef.current;
     if (!glCanvas || !hudCanvas) return;
 
-    const renderer = createWebGLRenderer(glCanvas);
-    if (!renderer) {
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas: glCanvas, antialias: true, powerPreference: "high-performance" });
+    } catch {
       setWebglError(true);
       return;
     }
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.autoClear = false;
+    setMaxAnisotropy(renderer.capabilities.getMaxAnisotropy());
     rendererRef.current = renderer;
-    const { gl, prog, loc, unitBox, drawMesh } = renderer;
-    const textures = createVanguardTextures(gl);
-    texturesRef.current = textures;
-    worldRef.current = buildMissionWorld(gl, simRef.current.mission);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(68, 16 / 9, 0.1, 1400);
+    camera.rotation.order = "YXZ";
+    sceneRef.current = { scene, camera };
+
+    rebuildWorldForMission(simRef.current.mission);
 
     const hudCtx = hudCanvas.getContext("2d");
 
@@ -813,17 +958,18 @@ export default function VanguardArmy3D() {
       const cssW = Math.max(320, Math.floor(rect.width || glCanvas.parentElement?.clientWidth || 960));
       const cssH = Math.max(260, Math.floor(rect.height || glCanvas.parentElement?.clientHeight || 560));
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      renderer.setPixelRatio(dpr);
+      renderer.setSize(cssW, cssH, false);
       const pw = Math.floor(cssW * dpr);
       const ph = Math.floor(cssH * dpr);
-      if (glCanvas.width !== pw || glCanvas.height !== ph) {
-        glCanvas.width = pw;
-        glCanvas.height = ph;
-      }
       if (hudCanvas.width !== pw || hudCanvas.height !== ph) {
         hudCanvas.width = pw;
         hudCanvas.height = ph;
       }
       hudCtx?.setTransform(dpr, 0, 0, dpr, 0, 0);
+      camera.aspect = cssW / cssH;
+      camera.updateProjectionMatrix();
+      viewModelRef.current?.setSize(cssW, cssH);
       simRef.current.width = cssW;
       simRef.current.height = cssH;
     };
@@ -836,25 +982,64 @@ export default function VanguardArmy3D() {
       ro.observe(glCanvas.parentElement);
     }
 
+    const V = (x, y, z) => new THREE.Vector3(x, y, z);
+    const tmpV = new THREE.Vector3();
+    const tmpMuzzle = new THREE.Vector3();
+
     const pushKillFeed = (s, text, color = "#FFC247") => {
       s.killFeed.unshift({ id: Date.now() + Math.random(), text, color, ttl: 4.0 });
       if (s.killFeed.length > 4) s.killFeed.pop();
     };
 
+    // ---------- Sequential TASK 1 → 2 → 3 chain ----------
+    const advanceTasks = (s) => {
+      let advanced = false;
+      while (s.taskIndex < s.objectives.length) {
+        const cur = s.objectives[s.taskIndex];
+        const done = cur.completed || (cur.type === "eliminate" && cur.targetDown);
+        if (!done) break;
+        cur.completed = true;
+        cur.progress = 1;
+        s.taskIndex += 1;
+        advanced = true;
+        audioRef.current?.pickup(mutedRef.current);
+        audioRef.current?.radio?.(mutedRef.current);
+        const nxt = s.objectives[s.taskIndex];
+        s.taskBanner = {
+          title: `${cur.taskLabel} COMPLETE`,
+          sub: nxt ? `HQ: Confirmed. Proceed to ${nxt.taskLabel} — ${nxt.label}` : `HQ: All tasks confirmed. Extract at ${s.extraction.label}`,
+          t: 3.6,
+        };
+        s.alertText = nxt
+          ? `${cur.taskLabel} SUBMITTED ✓ — NOW ${nxt.taskLabel}: ${nxt.label.toUpperCase()}`
+          : `ALL TASKS SUBMITTED ✓ — EXTRACT AT ${s.extraction.label}`;
+      }
+      return advanced;
+    };
+
+    const onEnemyKilled = (s, e) => {
+      for (const o of s.objectives) {
+        if (o.type === "eliminate" && o.targetId === e.id) {
+          o.targetDown = true;
+          if (s.objectives[s.taskIndex] !== o) {
+            pushKillFeed(s, `HVT DOWN — confirm when ${o.taskLabel} is active`, "#F012A8");
+          }
+        }
+      }
+      advanceTasks(s);
+    };
+
     const triggerExplosion = (s, world, ex, ey, ez, radius, causeLabel) => {
       audioRef.current?.explosion(mutedRef.current);
-      s.explosions.push({ x: ex, y: ey, z: ez, life: 1.0, maxRadius: radius * 0.55 });
+      fxRef.current?.explosion(V(ex, ey, ez), radius);
+      s.explosions.push({ x: ex, y: ey, z: ez, life: 1.0 });
       const distP = Math.hypot(s.px - ex, s.pz - ez);
-      if (distP < 14) {
-        s.shake = Math.max(s.shake, (1 - distP / 14) * 18);
-      }
+      if (distP < 16) s.shake = Math.max(s.shake, (1 - distP / 16) * 18);
       if (distP < radius * 0.72) {
         const selfDmg = Math.round((1 - distP / (radius * 0.72)) * 38);
         s.hp = Math.max(0, s.hp - selfDmg);
         s.damageFlash = 1;
       }
-
-      // Blast nearby enemies!
       for (const e of s.enemies) {
         if (!e.alive) continue;
         const d = Math.hypot(e.x - ex, e.z - ez);
@@ -868,35 +1053,69 @@ export default function VanguardArmy3D() {
             e.deathAnim = 0.05;
             s.kills++;
             pushKillFeed(s, `💥 ${causeLabel} • ${e.kind.toUpperCase()} KIA`, "#FF8A1F");
-            for (const o of s.objectives) {
-              if (o.type === "eliminate" && o.targetId === e.id && !o.completed) {
-                o.completed = true;
-                o.progress = 1;
-                audioRef.current?.pickup(mutedRef.current);
-              }
-            }
+            onEnemyKilled(s, e);
           }
         }
       }
-
-      // Chain-detonate nearby explosive barrels!
       for (const b of world.barrels) {
         if (!b.intact) continue;
         if (Math.hypot(b.x - ex, b.z - ez) < radius * 0.85) {
-          b.intact = false;
-          triggerExplosion(s, world, b.x, 0.7, b.z, 6.2, "CHAIN BARREL");
+          destroyBarrel(s, world, b);
         }
       }
+    };
+
+    const destroyBarrel = (s, world, b) => {
+      b.intact = false;
+      if (b.mesh) b.mesh.visible = false;
+      if (b.wreck) b.wreck.visible = true;
+      fxRef.current?.burning(V(b.x, 0.2, b.z), 10);
+      triggerExplosion(s, world, b.x, 0.75, b.z, 6.2, "FUEL BARREL");
+    };
+
+    /** Ray vs. world colliders → nearest hit distance + surface normal */
+    const raycastWorld = (colliders, ox, oy, oz, dx, dy, dz, maxDist) => {
+      let best = maxDist;
+      let hitC = null;
+      for (let i = 0; i < colliders.length; i++) {
+        const c = colliders[i];
+        const t = rayAABB(ox, oy, oz, dx, dy, dz, c.minX, c.maxX, c.minBulletY, c.maxBulletY, c.minZ, c.maxZ);
+        if (t < best) {
+          best = t;
+          hitC = c;
+        }
+      }
+      // ground plane
+      if (dy < -1e-4) {
+        const tg = -oy / dy;
+        if (tg < best) return { t: tg, normal: V(0, 1, 0), ground: true };
+      }
+      if (!hitC) return { t: best, normal: null };
+      const hx = ox + dx * best;
+      const hy = oy + dy * best;
+      const hz = oz + dz * best;
+      const cands = [
+        [Math.abs(hx - hitC.minX), V(-1, 0, 0)],
+        [Math.abs(hx - hitC.maxX), V(1, 0, 0)],
+        [Math.abs(hz - hitC.minZ), V(0, 0, -1)],
+        [Math.abs(hz - hitC.maxZ), V(0, 0, 1)],
+        [Math.abs(hy - Math.min(hitC.maxBulletY, 40)), V(0, 1, 0)],
+      ];
+      cands.sort((a, b) => a[0] - b[0]);
+      return { t: best, normal: cands[0][1] };
     };
 
     const fireWeapon = (s, world) => {
       const wp = ARMY_WEAPONS[s.weaponId];
       if (s.fireCd > 0 || s.reloading > 0) return;
+      if (s.stance === "stand" && s.sprinting) return;
       if (s.mags[s.weaponId] <= 0) {
         if (s.reserves[s.weaponId] > 0) {
           s.reloading = wp.reloadTime;
           s.ads = false;
           audioRef.current?.reload(mutedRef.current);
+        } else {
+          audioRef.current?.dryFire?.(mutedRef.current);
         }
         return;
       }
@@ -904,33 +1123,24 @@ export default function VanguardArmy3D() {
       s.mags[s.weaponId] -= 1;
       s.fireCd = wp.fireRate;
       s.muzzleFlash = 1;
+      s.cycle = wp.id === 3 || wp.id === 2 ? 1 : 0;
       const stanceRecoil = s.stance === "prone" ? 0.45 : s.stance === "crouch" ? 0.72 : 1.0;
       s.recoil = (wp.id === 2 || wp.id === 3 ? 1.25 : 0.85) * stanceRecoil;
-      // Eject spinning brass shell casing on screen!
-      s.shells.push({
-        x: s.width * (0.68 - s.adsLerp * 0.16) + 18,
-        y: s.height - 120,
-        vx: 150 + Math.random() * 110,
-        vy: -140 - Math.random() * 80,
-        rot: Math.random() * Math.PI,
-        vrot: 10 + Math.random() * 12,
-        life: 0.75,
-        isShotgun: wp.id === 3,
-      });
+      s.pitch = Math.min(0.6, s.pitch + (wp.id === 2 ? 0.03 : wp.id === 3 ? 0.035 : 0.008) * stanceRecoil);
+      s.yaw += (Math.random() - 0.5) * 0.006 * stanceRecoil;
+      viewModelRef.current?.ejectShell(wp.id === 3);
       audioRef.current?.shoot(s.weaponId, mutedRef.current);
 
-      // Alert enemies within gunshot hearing range
       for (const e of s.enemies) {
         if (!e.alive) continue;
-        if (Math.hypot(e.x - s.px, e.z - s.pz) <= wp.noiseRadius) {
-          e.state = "combat";
-        }
+        if (Math.hypot(e.x - s.px, e.z - s.pz) <= wp.noiseRadius) e.state = "combat";
       }
 
       const eyeY = s.eyeHeight + s.playerY;
       const stanceSpread = s.stance === "prone" ? 0.42 : s.stance === "crouch" ? 0.7 : 1;
       const airPenalty = s.playerY > 0.1 ? 1.65 : 1;
-      const spread = (s.ads ? wp.adsSpread : wp.spread) * stanceSpread * airPenalty;
+      const moveSpread = s.moving ? 1.35 : 1;
+      const spread = (s.ads ? wp.adsSpread : wp.spread) * stanceSpread * airPenalty * moveSpread;
 
       for (let p = 0; p < wp.pellets; p++) {
         const syaw = s.yaw + (Math.random() - 0.5) * spread * 2;
@@ -939,39 +1149,44 @@ export default function VanguardArmy3D() {
         const dy = Math.sin(spitch);
         const dz = -Math.cos(syaw) * Math.cos(spitch);
 
-        const wallDist = raycastWalls(world.colliders, s.px, eyeY, s.pz, dx, dy, dz, 55);
+        const hit = raycastWorld(world.colliders, s.px, eyeY, s.pz, dx, dy, dz, 140);
+        const wallDist = hit.t;
 
-        // Check explosive barrels first
         let bestBarrel = null;
         let bestBarrelT = wallDist;
         for (const b of world.barrels) {
           if (!b.intact) continue;
-          const t = rayAABB(s.px, eyeY, s.pz, dx, dy, dz, b.x - 0.48, b.x + 0.48, 0, 1.28, b.z - 0.48, b.z + 0.48);
+          const t = rayAABB(s.px, eyeY, s.pz, dx, dy, dz, b.x - 0.36, b.x + 0.36, 0, 1.12, b.z - 0.36, b.z + 0.36);
           if (t < bestBarrelT) {
             bestBarrelT = t;
             bestBarrel = b;
           }
         }
 
-        // Check true 3D articulated soldier head & body hitboxes!
         let bestEnemy = null;
         let bestEnemyT = bestBarrelT;
         let hitHead = false;
         for (const e of s.enemies) {
           if (!e.alive) continue;
-          const r = e.kind === "heavy" ? 0.44 : 0.36;
-          const tHead = rayAABB(s.px, eyeY, s.pz, dx, dy, dz, e.x - 0.24, e.x + 0.24, 1.36, 1.82, e.z - 0.24, e.z + 0.24);
+          const r = e.kind === "heavy" ? 0.4 : 0.33;
+          const tHead = rayAABB(s.px, eyeY, s.pz, dx, dy, dz, e.x - 0.17, e.x + 0.17, 1.5, 1.86, e.z - 0.17, e.z + 0.17);
           if (tHead < bestEnemyT) {
             bestEnemyT = tHead;
             bestEnemy = e;
             hitHead = true;
           }
-          const tBody = rayAABB(s.px, eyeY, s.pz, dx, dy, dz, e.x - r, e.x + r, 0.05, 1.38, e.z - r, e.z + r);
+          const tBody = rayAABB(s.px, eyeY, s.pz, dx, dy, dz, e.x - r, e.x + r, 0.05, 1.5, e.z - r, e.z + r);
           if (tBody < bestEnemyT) {
             bestEnemyT = tBody;
             bestEnemy = e;
             hitHead = false;
           }
+        }
+
+        const endT = bestEnemy ? bestEnemyT : bestBarrel ? bestBarrelT : Math.min(wallDist, 140);
+        if (p === 0 && (s.shotCount = (s.shotCount || 0) + 1) % 3 === 0 && wp.id !== 1) {
+          const from = V(s.px + dx * 0.9 + Math.cos(s.yaw) * 0.18, eyeY - 0.12, s.pz + dz * 0.9 + Math.sin(s.yaw) * 0.18);
+          fxRef.current?.spawnTracer(from, V(s.px + dx * endT, eyeY + dy * endT, s.pz + dz * endT), 260);
         }
 
         if (bestEnemy) {
@@ -982,13 +1197,7 @@ export default function VanguardArmy3D() {
           s.hitMarker = 1;
           if (hitHead) s.headshotFlash = 1;
           audioRef.current?.hit(mutedRef.current, hitHead);
-          s.impacts.push({
-            x: s.px + dx * bestEnemyT,
-            y: eyeY + dy * bestEnemyT,
-            z: s.pz + dz * bestEnemyT,
-            color: [0.95, 0.2, 0.25],
-            life: 0.35,
-          });
+          fxRef.current?.impact(V(s.px + dx * bestEnemyT, eyeY + dy * bestEnemyT, s.pz + dz * bestEnemyT), null, "blood");
 
           if (bestEnemy.hp <= 0) {
             bestEnemy.alive = false;
@@ -1003,42 +1212,17 @@ export default function VanguardArmy3D() {
                 : bestEnemy.kind === "sniper"
                 ? "SNIPER"
                 : "SOLDIER";
-            pushKillFeed(
-              s,
-              hitHead ? `★ HEADSHOT • ${tag} KIA` : `☠ ${tag} NEUTRALIZED`,
-              hitHead ? "#FACC15" : "#00D4FF"
-            );
-            for (const o of s.objectives) {
-              if (o.type === "eliminate" && o.targetId === bestEnemy.id && !o.completed) {
-                o.completed = true;
-                o.progress = 1;
-                audioRef.current?.pickup(mutedRef.current);
-              }
-            }
+            pushKillFeed(s, hitHead ? `★ HEADSHOT • ${tag} KIA` : `☠ ${tag} NEUTRALIZED`, hitHead ? "#FACC15" : "#00D4FF");
+            onEnemyKilled(s, bestEnemy);
           }
         } else if (bestBarrel) {
           bestBarrel.hp -= wp.damage;
           s.hitMarker = 0.8;
-          s.impacts.push({
-            x: s.px + dx * bestBarrelT,
-            y: eyeY + dy * bestBarrelT,
-            z: s.pz + dz * bestBarrelT,
-            color: [1.0, 0.65, 0.2],
-            life: 0.35,
-          });
-          if (bestBarrel.hp <= 0) {
-            bestBarrel.intact = false;
-            triggerExplosion(s, world, bestBarrel.x, 0.75, bestBarrel.z, 6.2, "FUEL BARREL");
-          }
-        } else if (wallDist < 50) {
-          // 3D Bullet wall impact spark puff
-          s.impacts.push({
-            x: s.px + dx * (wallDist - 0.08),
-            y: eyeY + dy * (wallDist - 0.08),
-            z: s.pz + dz * (wallDist - 0.08),
-            color: [1.0, 0.85, 0.55],
-            life: 0.28,
-          });
+          fxRef.current?.impact(V(s.px + dx * bestBarrelT, eyeY + dy * bestBarrelT, s.pz + dz * bestBarrelT), null, "wall");
+          if (bestBarrel.hp <= 0) destroyBarrel(s, world, bestBarrel);
+        } else if (wallDist < 139) {
+          const pt = V(s.px + dx * (wallDist - 0.01), eyeY + dy * (wallDist - 0.01), s.pz + dz * (wallDist - 0.01));
+          fxRef.current?.impact(pt, hit.normal, hit.ground ? "ground" : "wall");
         }
       }
     };
@@ -1046,6 +1230,7 @@ export default function VanguardArmy3D() {
     let raf = 0;
     let last = performance.now();
     let hudTick = 0;
+    const clock0 = performance.now();
 
     const tick = (now) => {
       raf = requestAnimationFrame(tick);
@@ -1053,6 +1238,7 @@ export default function VanguardArmy3D() {
       try {
         const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
         last = now;
+        const time = (now - clock0) / 1000;
         const s = simRef.current;
         const world = worldRef.current;
         if (!s || !world) return;
@@ -1062,26 +1248,18 @@ export default function VanguardArmy3D() {
         const h = Math.max(260, s.height);
         const env = s.mission.env;
 
-        // Animate weather particles
-        for (const wd of s.weatherDrops) {
-          const speedMult = env.weather === "rain" || env.weather === "storm" ? 1.85 : 0.26;
-          wd.y += dt * speedMult * wd.speed;
-          wd.x += dt * (env.weather === "dust" ? 0.38 : wd.drift);
-          if (wd.y > 1) {
-            wd.y = 0;
-            wd.x = Math.random();
-          }
-          if (wd.x > 1) wd.x -= 1;
-          if (wd.x < 0) wd.x += 1;
-        }
-
-        // Occasional lightning flash in Midnight Fortress storm
         if (env.weather === "storm") {
           s.lightningFlash = Math.max(0, s.lightningFlash - dt * 3.5);
-          if (Math.random() < dt * 0.14) s.lightningFlash = 0.85;
+          if (Math.random() < dt * 0.14) {
+            s.lightningFlash = 0.85;
+            setTimeout(() => audioRef.current?.thunder?.(mutedRef.current), 400 + Math.random() * 900);
+          }
         } else {
           s.lightningFlash = 0;
         }
+
+        let moving = false;
+        let sprinting = false;
 
         // ================= GAMEPLAY SIMULATION =================
         if (phaseRef.current === "playing") {
@@ -1089,6 +1267,7 @@ export default function VanguardArmy3D() {
           s.fireCd = Math.max(0, s.fireCd - dt);
           s.muzzleFlash = Math.max(0, s.muzzleFlash - dt * 11);
           s.recoil = Math.max(0, s.recoil - dt * 7);
+          s.cycle = Math.max(0, (s.cycle || 0) - dt * 1.6);
           s.hitMarker = Math.max(0, s.hitMarker - dt * 5);
           s.headshotFlash = Math.max(0, s.headshotFlash - dt * 2.2);
           s.damageFlash = Math.max(0, s.damageFlash - dt * 2.4);
@@ -1097,8 +1276,11 @@ export default function VanguardArmy3D() {
           const targetEyeH = s.stance === "prone" ? 0.42 : s.stance === "crouch" ? 1.04 : 1.68;
           s.eyeHeight += (targetEyeH - s.eyeHeight) * Math.min(1, dt * 10.5);
           s.landDip = Math.max(0, s.landDip - dt * 4.5);
+          if (s.taskBanner) {
+            s.taskBanner.t -= dt;
+            if (s.taskBanner.t <= 0) s.taskBanner = null;
+          }
 
-          // Real 3D Jump & Gravity Physics!
           if (s.playerY > 0 || s.playerVy > 0) {
             s.playerVy -= 18.5 * dt;
             s.playerY += s.playerVy * dt;
@@ -1109,17 +1291,6 @@ export default function VanguardArmy3D() {
             }
           }
 
-          // Update ejecting brass shell casings
-          for (let sh = s.shells.length - 1; sh >= 0; sh--) {
-            const c = s.shells[sh];
-            c.vy += 680 * dt;
-            c.x += c.vx * dt;
-            c.y += c.vy * dt;
-            c.rot += c.vrot * dt;
-            c.life -= dt;
-            if (c.life <= 0) s.shells.splice(sh, 1);
-          }
-
           for (let k = s.killFeed.length - 1; k >= 0; k--) {
             s.killFeed[k].ttl -= dt;
             if (s.killFeed[k].ttl <= 0) s.killFeed.splice(k, 1);
@@ -1128,6 +1299,7 @@ export default function VanguardArmy3D() {
           if (s.reloading > 0) {
             s.reloading -= dt;
             if (s.reloading <= 0) {
+              s.reloading = 0;
               const wp = ARMY_WEAPONS[s.weaponId];
               const need = wp.magSize - s.mags[s.weaponId];
               const take = Math.min(need, s.reserves[s.weaponId]);
@@ -1136,12 +1308,10 @@ export default function VanguardArmy3D() {
             }
           }
 
-          // Keyboard Look Fallback (ArrowLeft / ArrowRight / Q)
           const turnSpd = s.ads ? 1.25 : 2.35;
           if (s.keys["arrowleft"] || s.codes["ArrowLeft"] || s.keys["q"] || s.codes["KeyQ"]) s.yaw -= turnSpd * dt;
           if (s.keys["arrowright"] || s.codes["ArrowRight"]) s.yaw += turnSpd * dt;
 
-          // Movement (WASD / Arrows + Sprint + Standing / Crouching / Prone Crawl!)
           let mf = 0;
           let ms = 0;
           if (s.keys["w"] || s.codes["KeyW"] || s.keys["arrowup"] || s.codes["ArrowUp"]) mf += 1;
@@ -1149,25 +1319,14 @@ export default function VanguardArmy3D() {
           if (s.keys["a"] || s.codes["KeyA"]) ms -= 1;
           if (s.keys["d"] || s.codes["KeyD"]) ms += 1;
 
-          const wantSprint = Boolean(
-            (s.keys["shift"] || s.codes["ShiftLeft"] || s.codes["ShiftRight"]) && !s.ads && mf > 0
-          );
-          if (wantSprint && s.stance !== "stand" && s.playerY <= 0.02) {
-            s.stance = "stand";
-          }
-          const sprinting = wantSprint && s.stance === "stand";
-          const spd =
-            s.stance === "prone"
-              ? 1.95
-              : s.stance === "crouch"
-              ? 3.6
-              : s.ads
-              ? 3.4
-              : sprinting
-              ? 8.4
-              : 5.8;
+          const wantSprint = Boolean((s.keys["shift"] || s.codes["ShiftLeft"] || s.codes["ShiftRight"]) && !s.ads && mf > 0);
+          if (wantSprint && s.stance !== "stand" && s.playerY <= 0.02) s.stance = "stand";
+          sprinting = wantSprint && s.stance === "stand" && s.reloading <= 0;
+          s.sprinting = sprinting;
+          const spd = s.stance === "prone" ? 1.95 : s.stance === "crouch" ? 3.6 : s.ads ? 3.4 : sprinting ? 8.6 : 5.9;
 
           if (mf !== 0 || ms !== 0) {
+            moving = true;
             const len = Math.hypot(mf, ms);
             mf /= len;
             ms /= len;
@@ -1180,25 +1339,28 @@ export default function VanguardArmy3D() {
             if (!collidesWalk(world.colliders, s.px + vx, s.pz, 0.42, s.playerY)) s.px += vx;
             if (!collidesWalk(world.colliders, s.px, s.pz + vz, 0.42, s.playerY)) s.pz += vz;
             if (s.playerY <= 0.05) {
+              const prev = s.walkBob;
               s.walkBob += dt * (sprinting ? 12 : s.stance === "prone" ? 4.2 : s.stance === "crouch" ? 5.8 : 8.5);
+              if (Math.floor(prev / Math.PI) !== Math.floor(s.walkBob / Math.PI)) {
+                audioRef.current?.step?.(mutedRef.current, env.groundTex, sprinting);
+              }
             }
           }
+          s.moving = moving;
 
-          // Animate Enterable Building Doors (auto-swing open when player or soldier approaches!)
           for (const d of world.doors) {
             const nearPlayer = Math.hypot(s.px - d.cx, s.pz - d.cz) < 3.4;
             const nearEnemy = s.enemies.some((e) => e.alive && Math.hypot(e.x - d.cx, e.z - d.cz) < 2.6);
             const target = nearPlayer || nearEnemy ? 1 : 0;
             d.openAmount += (target - d.openAmount) * Math.min(1, dt * 6.5);
+            d.pivot.rotation.y = d.baseAngle + d.openAmount * 1.52;
           }
 
-          // Weapon Fire (Left-Click — Spacebar is now dedicated to 3D Jump!)
           if (s.mouseDown) {
             fireWeapon(s, world);
             if (!ARMY_WEAPONS[s.weaponId].auto) s.mouseDown = false;
           }
 
-          // Physics 3D Frag Grenades
           for (let gi = s.activeGrenades.length - 1; gi >= 0; gi--) {
             const g = s.activeGrenades[gi];
             g.fuse -= dt;
@@ -1210,8 +1372,8 @@ export default function VanguardArmy3D() {
             if (collidesWalk(world.colliders, g.x, nz, 0.2)) g.vz *= -0.45;
             else g.z = nz;
             g.y += g.vy * dt;
-            if (g.y < 0.16) {
-              g.y = 0.16;
+            if (g.y < 0.1) {
+              g.y = 0.1;
               g.vy = Math.abs(g.vy) * 0.35;
               g.vx *= 0.65;
               g.vz *= 0.65;
@@ -1222,21 +1384,11 @@ export default function VanguardArmy3D() {
             }
           }
 
-          // Update Explosions, Impacts & Tracers
           for (let i = s.explosions.length - 1; i >= 0; i--) {
             s.explosions[i].life -= dt * 1.9;
             if (s.explosions[i].life <= 0) s.explosions.splice(i, 1);
           }
-          for (let i = s.impacts.length - 1; i >= 0; i--) {
-            s.impacts[i].life -= dt;
-            if (s.impacts[i].life <= 0) s.impacts.splice(i, 1);
-          }
-          for (let i = s.tracers.length - 1; i >= 0; i--) {
-            s.tracers[i].life -= dt * 6;
-            if (s.tracers[i].life <= 0) s.tracers.splice(i, 1);
-          }
 
-          // Pickups (Medkits & Ammo/Grenade Resupply)
           for (const pk of s.pickups) {
             if (pk.taken) continue;
             if (Math.hypot(pk.x - s.px, pk.z - s.pz) < 1.3) {
@@ -1258,43 +1410,41 @@ export default function VanguardArmy3D() {
             }
           }
 
-          // Objectives Interaction (Inside Buildings!)
+          // Only the ACTIVE task can be worked on (strict TASK 1 → 2 → 3 order)
           const holdingE = Boolean(s.keys["e"] || s.codes["KeyE"]);
-          for (const o of s.objectives) {
-            if (o.completed || o.type !== "interact") continue;
-            const dObj = Math.hypot(o.x - s.px, o.z - s.pz);
-            if (dObj < 2.8 && (holdingE || dObj < 1.6)) {
-              o.progress = Math.min(1, o.progress + dt / (o.duration || 2.1));
-              s.alertText = `${o.actionVerb}... ${Math.round(o.progress * 100)}%`;
-              if (o.progress >= 1) {
-                o.completed = true;
-                audioRef.current?.pickup(mutedRef.current);
-                const allDone = s.objectives.every((x) => x.completed);
-                s.alertText = allDone
-                  ? `ALL OBJECTIVES COMPLETE! EXTRACT AT ${s.extraction.label}`
-                  : `OBJECTIVE COMPLETED: ${o.label.toUpperCase()}`;
-                // Alert nearby hostiles
+          const curTask = s.objectives[s.taskIndex];
+          if (curTask && curTask.type === "interact" && !curTask.completed) {
+            const dObj = Math.hypot(curTask.x - s.px, curTask.z - s.pz);
+            if (dObj < 2.8 && holdingE) {
+              curTask.progress = Math.min(1, curTask.progress + dt / (curTask.duration || 2.1));
+              s.alertText = `${curTask.taskLabel}: ${curTask.actionVerb}... ${Math.round(curTask.progress * 100)}%`;
+              if (curTask.progress >= 1) {
+                curTask.completed = true;
                 s.enemies.forEach((en) => {
-                  if (en.alive && Math.hypot(en.x - o.x, en.z - o.z) < 16) en.state = "combat";
+                  if (en.alive && Math.hypot(en.x - curTask.x, en.z - curTask.z) < 18) en.state = "combat";
                 });
+                advanceTasks(s);
               }
+            } else if (dObj < 2.8) {
+              s.alertText = `HOLD [E] TO ${curTask.actionVerb} (${curTask.taskLabel})`;
+            }
+          }
+          // Locked tasks: tell the player to follow the order
+          for (const o of s.objectives) {
+            if (o.order > s.taskIndex && o.type === "interact" && Math.hypot(o.x - s.px, o.z - s.pz) < 2.6) {
+              s.alertText = `${o.taskLabel} LOCKED — COMPLETE ${s.objectives[s.taskIndex]?.taskLabel || "PREVIOUS TASK"} FIRST`;
             }
           }
 
-          // Extraction Victory Check + Sequential Mission Unlocking!
-          const allDone = s.objectives.every((o) => o.completed);
-          if (allDone && Math.hypot(s.px - s.extraction.x, s.pz - s.extraction.z) < 2.3) {
+          const allDone = s.taskIndex >= s.objectives.length;
+          if (allDone && Math.hypot(s.px - s.extraction.x, s.pz - s.extraction.z) < 3.2) {
             const rank = s.hp >= 70 ? "S" : s.hp >= 40 ? "A" : "B";
             const current = loadCampaign();
-            const nextUnlocked = Math.max(
-              current.unlockedCount,
-              Math.min(VANGUARD_MISSIONS.length, s.mission.index + 2)
-            );
+            const nextUnlocked = Math.max(current.unlockedCount, Math.min(VANGUARD_OPS.length, s.mission.index + 2));
             const newlyUnlocked =
-              nextUnlocked > current.unlockedCount && VANGUARD_MISSIONS[s.mission.index + 1]
-                ? `${VANGUARD_MISSIONS[s.mission.index + 1].code}: ${VANGUARD_MISSIONS[s.mission.index + 1].title}`
+              nextUnlocked > current.unlockedCount && VANGUARD_OPS[s.mission.index + 1]
+                ? `${VANGUARD_OPS[s.mission.index + 1].code}: ${VANGUARD_OPS[s.mission.index + 1].title}`
                 : "";
-
             const updated = {
               unlockedCount: nextUnlocked,
               records: {
@@ -1309,7 +1459,6 @@ export default function VanguardArmy3D() {
             saveCampaign(updated);
             setCampaign(updated);
             setJustUnlockedTitle(newlyUnlocked);
-
             phaseRef.current = "victory";
             setPhase("victory");
             document.exitPointerLock?.();
@@ -1317,10 +1466,9 @@ export default function VanguardArmy3D() {
             syncHud(rank);
           }
 
-          // Articulated 3D Soldier Tactical AI (respects Standing / Crouching / Prone Stealth!)
+          // ---------- Enemy tactical AI ----------
           const playerEyeY = s.eyeHeight + s.playerY;
           const stealthMult = s.stance === "prone" ? 0.44 : s.stance === "crouch" ? 0.72 : 1;
-
           for (const e of s.enemies) {
             if (!e.alive) {
               if (e.deathAnim < 1) e.deathAnim = Math.min(1, e.deathAnim + dt * 3.0);
@@ -1332,75 +1480,88 @@ export default function VanguardArmy3D() {
             const dx = s.px - e.x;
             const dz = s.pz - e.z;
             const dist = Math.hypot(dx, dz);
-            const sightRange = (e.kind === "sniper" ? 24 : 18) * stealthMult;
-            const canSee =
-              dist < sightRange &&
-              hasLineOfSight3D(world.colliders, e.x, 1.45, e.z, s.px, playerEyeY, s.pz);
-
-            if (canSee) e.state = "combat";
+            const sightRange = (e.kind === "sniper" ? 36 : 24) * stealthMult;
+            // vision cone: patrolling soldiers only see what is in front of them
+            const facing = Math.sin(e.yaw) * dx + Math.cos(e.yaw) * dz;
+            const inCone = e.state === "combat" || dist < 5 || facing > dist * 0.25;
+            const canSee = dist < sightRange && inCone && hasLineOfSight3D(world.colliders, e.x, 1.6, e.z, s.px, playerEyeY, s.pz);
+            if (canSee) {
+              if (e.state !== "combat") {
+                // alert the squad
+                for (const o of s.enemies) if (o.alive && Math.hypot(o.x - e.x, o.z - e.z) < 12) o.state = "combat";
+              }
+              e.state = "combat";
+              e.lastSeenX = s.px;
+              e.lastSeenZ = s.pz;
+            }
 
             if (e.state === "patrol") {
-              const vx = Math.sin(e.patrolDir) * e.speed * 0.45 * dt;
-              const vz = Math.cos(e.patrolDir) * e.speed * 0.45 * dt;
-              const dOrigin = Math.hypot(e.x + vx - e.patrolOriginX, e.z + vz - e.patrolOriginZ);
-              if (dOrigin < 3.6 && !collidesWalk(world.colliders, e.x + vx, e.z + vz, 0.48)) {
-                e.x += vx;
-                e.z += vz;
-                e.yaw = e.patrolDir;
-                e.walkCycle += dt * 5.2;
+              const pr = e.patrolRadius || 4.5;
+              const vx = Math.sin(e.patrolDir) * e.speed * 0.42 * dt;
+              const vz = Math.cos(e.patrolDir) * e.speed * 0.42 * dt;
+              e.pauseT = (e.pauseT || 0) - dt;
+              if (e.pauseT > 0) {
+                // stand & scan
               } else {
-                e.patrolDir += Math.PI * 0.55 + (Math.random() - 0.5) * 0.6;
+                const dOrigin = Math.hypot(e.x + vx - e.patrolOriginX, e.z + vz - e.patrolOriginZ);
+                if (dOrigin < pr && !collidesWalk(world.colliders, e.x + vx, e.z + vz, 0.45)) {
+                  e.x += vx;
+                  e.z += vz;
+                  e.yaw = e.patrolDir;
+                } else {
+                  e.patrolDir += Math.PI * 0.55 + (Math.random() - 0.5) * 0.8;
+                  if (Math.random() < 0.5) e.pauseT = 1 + Math.random() * 2.5;
+                }
               }
             } else if (e.state === "combat") {
-              e.yaw = Math.atan2(dx, dz);
-              const idealRange = e.kind === "sniper" ? 11.5 : 5.5;
-              if (dist > idealRange && dist < 26) {
-                const mx = (dx / dist) * e.speed * dt;
-                const mz = (dz / dist) * e.speed * dt;
-                let moved = false;
-                if (!collidesWalk(world.colliders, e.x + mx, e.z, 0.45)) {
-                  e.x += mx;
-                  moved = true;
+              const tx = canSee ? s.px : e.lastSeenX ?? s.px;
+              const tz = canSee ? s.pz : e.lastSeenZ ?? s.pz;
+              const ddx = tx - e.x;
+              const ddz = tz - e.z;
+              const dd = Math.hypot(ddx, ddz) || 1;
+              e.yaw = Math.atan2(ddx, ddz);
+              const idealRange = e.kind === "sniper" ? 16 : 7;
+              if ((dd > idealRange || !canSee) && dd > 1.2 && dist < 46) {
+                const run = canSee ? 1 : 1.25;
+                const mx = (ddx / dd) * e.speed * run * dt;
+                const mz = (ddz / dd) * e.speed * run * dt;
+                if (!collidesWalk(world.colliders, e.x + mx, e.z, 0.45)) e.x += mx;
+                if (!collidesWalk(world.colliders, e.x, e.z + mz, 0.45)) e.z += mz;
+              } else if (canSee && dd < idealRange * 0.6 && e.kind !== "heavy") {
+                // strafe sideways to stay a harder target
+                const side = Math.sin(time * 0.9 + e.x) > 0 ? 1 : -1;
+                const sx = (ddz / dd) * side * e.speed * 0.5 * dt;
+                const sz = (-ddx / dd) * side * e.speed * 0.5 * dt;
+                if (!collidesWalk(world.colliders, e.x + sx, e.z + sz, 0.45)) {
+                  e.x += sx;
+                  e.z += sz;
                 }
-                if (!collidesWalk(world.colliders, e.x, e.z + mz, 0.45)) {
-                  e.z += mz;
-                  moved = true;
-                }
-                if (moved) e.walkCycle += dt * 7.5;
               }
 
               if (canSee) {
                 e.shootCd -= dt;
                 if (e.shootCd <= 0) {
-                  e.shootCd =
-                    e.kind === "heavy"
-                      ? 0.62
-                      : e.kind === "officer"
-                      ? 0.65
-                      : e.kind === "sniper"
-                      ? 1.55
-                      : 0.98;
+                  e.shootCd = e.kind === "heavy" ? 0.62 : e.kind === "officer" ? 0.65 : e.kind === "sniper" ? 1.7 : 0.98;
                   e.muzzleFlash = 1;
-                  audioRef.current?.enemyShot(mutedRef.current);
-
-                  s.tracers.push({
-                    x: e.x,
-                    y: 1.35,
-                    z: e.z,
-                    tx: s.px + (Math.random() - 0.5) * 0.6,
-                    ty: playerEyeY - 0.25,
-                    tz: s.pz + (Math.random() - 0.5) * 0.6,
-                    life: 1.0,
-                  });
+                  audioRef.current?.enemyShot(mutedRef.current, dist);
 
                   const stanceDodge = s.stance === "prone" ? 0.52 : s.stance === "crouch" ? 0.74 : 1;
-                  const hitChance = Math.max(0.14, (0.72 - dist * 0.024) * stanceDodge);
-                  if (Math.random() < hitChance) {
-                    const dmg =
-                      e.kind === "sniper" ? 15 : e.kind === "officer" ? 12 : e.kind === "heavy" ? 10 : 7;
+                  const moveDodge = moving ? (sprinting ? 0.6 : 0.8) : 1;
+                  const hitChance = Math.max(0.1, (0.7 - dist * 0.02) * stanceDodge * moveDodge);
+                  const isHit = Math.random() < hitChance;
+
+                  const view = soldierViewsRef.current.get(e.id);
+                  const from = view ? soldiersRef.current.muzzleWorld(view, tmpMuzzle) : V(e.x, 1.4, e.z);
+                  const miss = isHit ? 0.15 : 1.2;
+                  const to = V(s.px + (Math.random() - 0.5) * miss, playerEyeY - 0.3 + (Math.random() - 0.5) * miss, s.pz + (Math.random() - 0.5) * miss);
+                  fxRef.current?.spawnTracer(from, to, 120);
+
+                  if (isHit) {
+                    const dmg = e.kind === "sniper" ? 15 : e.kind === "officer" ? 12 : e.kind === "heavy" ? 10 : 7;
                     s.hp -= dmg;
                     s.damageFlash = 1;
                     s.damageAngle = Math.atan2(e.x - s.px, -(e.z - s.pz)) - s.yaw;
+                    audioRef.current?.hurt?.(mutedRef.current);
                     if (s.hp <= 0) {
                       s.hp = 0;
                       phaseRef.current = "failed";
@@ -1408,6 +1569,8 @@ export default function VanguardArmy3D() {
                       document.exitPointerLock?.();
                       syncHud();
                     }
+                  } else {
+                    audioRef.current?.whiz?.(mutedRef.current);
                   }
                 }
               }
@@ -1421,282 +1584,175 @@ export default function VanguardArmy3D() {
           }
         }
 
-        // ================= 3D WEBGL WORLD RENDER PASS =================
-        gl.viewport(0, 0, glCanvas.width, glCanvas.height);
-
-        // Clear sky background (with lightning flash if stormy)
-        const lf = s.lightningFlash * 0.55;
-        gl.clearColor(
-          Math.min(1, env.skyHorizon[0] + lf),
-          Math.min(1, env.skyHorizon[1] + lf),
-          Math.min(1, env.skyHorizon[2] + lf * 1.1),
-          1.0
-        );
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        gl.useProgram(prog);
-
-        // Compute Camera Matrices (Live orbit preview in Briefing, First-Person in Playing!)
-        let eye;
-        let target;
-        let fovDeg = 68;
-
+        // ================= THREE.JS RENDER PASS =================
+        let fovDeg = 72;
         if (phaseRef.current === "briefing") {
-          const orbitA = now * 0.0002;
+          const orbitA = time * 0.06;
           const mid = s.mission.size * 0.5;
-          eye = [mid + Math.cos(orbitA) * 26, 13.5, mid + Math.sin(orbitA) * 26];
-          target = [mid, 2.2, mid];
+          camera.position.set(mid + Math.cos(orbitA) * 70, 32, mid + Math.sin(orbitA) * 70);
+          camera.lookAt(mid, 2, mid);
         } else {
           const wp = ARMY_WEAPONS[s.weaponId];
-          fovDeg = 68 + (wp.adsFov - 68) * s.adsLerp;
-          const bobAmp = s.stance === "prone" ? 0.014 : 0.032;
+          fovDeg = 72 + (wp.adsFov - 72) * s.adsLerp + (sprinting ? 4 : 0);
+          const bobAmp = s.stance === "prone" ? 0.014 : 0.03;
           const bobY = Math.sin(s.walkBob * 2) * bobAmp * (1 - s.adsLerp * 0.7);
           const shakeX = (Math.random() - 0.5) * s.shake * 0.012;
           const shakeY = (Math.random() - 0.5) * s.shake * 0.012;
           const eyeY = Math.max(0.36, s.eyeHeight + s.playerY + bobY + shakeY - s.landDip);
-          eye = [s.px + shakeX, eyeY, s.pz];
-          const lx = Math.sin(s.yaw) * Math.cos(s.pitch);
-          const ly = Math.sin(s.pitch);
-          const lz = -Math.cos(s.yaw) * Math.cos(s.pitch);
-          target = [eye[0] + lx, eye[1] + ly, eye[2] + lz];
+          camera.position.set(s.px + shakeX, eyeY, s.pz);
+          camera.rotation.set(s.pitch + s.recoil * 0.012, -s.yaw, Math.cos(s.walkBob) * 0.004 * (moving ? 1 : 0));
         }
+        if (Math.abs(camera.fov - fovDeg) > 0.01) {
+          camera.fov = fovDeg;
+          camera.updateProjectionMatrix();
+        }
+        camera.updateMatrixWorld();
 
-        const projMat = mat4Perspective((fovDeg * Math.PI) / 180, w / Math.max(1, h), 0.12, 165);
-        const viewMat = mat4LookAt(eye, target, [0, 1, 0]);
+        const indoors = phaseRef.current === "playing" && Boolean(findBuildingAt(s.mission.buildings, s.px, s.pz));
+        const lf = s.lightningFlash;
 
-        gl.uniformMatrix4fv(loc.uProj, false, projMat);
-        gl.uniformMatrix4fv(loc.uView, false, viewMat);
-        gl.uniform3fv(loc.uCamPos, eye);
-        gl.uniform3fv(loc.uSunDir, env.sunDir);
-        gl.uniform3fv(loc.uSunColor, [
-          Math.min(1.4, env.sunColor[0] + lf),
-          Math.min(1.4, env.sunColor[1] + lf),
-          Math.min(1.5, env.sunColor[2] + lf * 1.15),
-        ]);
-        gl.uniform3fv(loc.uAmbient, [
-          env.ambient[0] + lf * 0.4,
-          env.ambient[1] + lf * 0.4,
-          env.ambient[2] + lf * 0.45,
-        ]);
-        gl.uniform3fv(loc.uFogColor, env.fogColor);
-        gl.uniform1f(loc.uFogDensity, env.fogDensity);
-        gl.uniform1f(loc.uNvg, nvgRef.current ? 1.0 : 0.0);
-
-        // Choose strongest dynamic point light (Explosion -> Muzzle Flash -> Nearest Indoor Building Lamp!)
-        let ptPos = [0, -50, 0];
-        let ptCol = [1, 0.8, 0.5];
-        let ptInt = 0;
-
+        // dynamic flash light: explosion > muzzle flash
+        let flashPos = null;
+        let flashI = 0;
+        let flashCol = null;
         if (s.explosions.length > 0) {
           const ex = s.explosions[0];
-          ptPos = [ex.x, ex.y + 0.5, ex.z];
-          ptCol = [1.0, 0.55, 0.15];
-          ptInt = ex.life * 6.5;
-        } else if (s.muzzleFlash > 0.15 && phaseRef.current === "playing") {
-          ptPos = [eye[0] + Math.sin(s.yaw) * 0.8, eye[1], eye[2] - Math.cos(s.yaw) * 0.8];
-          ptCol = [1.0, 0.78, 0.42];
-          ptInt = s.muzzleFlash * 2.4;
-        } else {
-          // Nearest indoor building ceiling lamp or streetlamp illuminates nearby rooms!
-          let nearLamp = null;
-          let nearDist = 11;
-          for (const lm of world.lamps) {
-            const d = Math.hypot(lm.x - eye[0], lm.z - eye[2]);
-            if (d < nearDist) {
-              nearDist = d;
-              nearLamp = lm;
+          flashPos = tmpV.set(ex.x, ex.y + 1, ex.z);
+          flashI = ex.life * 60;
+          flashCol = explosionColor;
+        } else if (s.muzzleFlash > 0.2 && phaseRef.current === "playing" && s.weaponId !== 1) {
+          flashPos = tmpV.set(camera.position.x + Math.sin(s.yaw), camera.position.y, camera.position.z - Math.cos(s.yaw));
+          flashI = s.muzzleFlash * 7;
+          flashCol = muzzleColor;
+        }
+        world.update(time, camera.position, { lightning: lf, flashPos, flashIntensity: flashI, flashColor: flashCol });
+
+        // soldiers
+        const fac = soldiersRef.current;
+        if (fac) {
+          for (const e of s.enemies) {
+            const v = soldierViewsRef.current.get(e.id);
+            if (v) fac.update(v, dt, camera.position);
+          }
+        }
+
+        // effects
+        const fx = fxRef.current;
+        if (fx) {
+          let beacon = null;
+          if (phaseRef.current === "playing") {
+            const cur = s.objectives[s.taskIndex];
+            if (cur) {
+              let bx = cur.x;
+              let bz = cur.z;
+              if (cur.type === "eliminate" && cur.targetId) {
+                const t = s.enemies.find((en) => en.id === cur.targetId);
+                if (t && t.alive) {
+                  bx = t.x;
+                  bz = t.z;
+                }
+              }
+              beacon = { x: bx, z: bz, color: cur.color || "#00D4FF" };
+            } else {
+              beacon = { x: s.extraction.x, z: s.extraction.z, color: "#34D399", smoke: true };
             }
           }
-          if (nearLamp) {
-            ptPos = [nearLamp.x, nearLamp.y, nearLamp.z];
-            ptCol = nearLamp.color;
-            ptInt = 1.65;
-          }
-        }
-        gl.uniform3fv(loc.uPointPos, ptPos);
-        gl.uniform3fv(loc.uPointColor, ptCol);
-        gl.uniform1f(loc.uPointIntensity, ptInt);
-
-        // 1. Static Textured World Meshes (Ground, Buildings, Roofs, Indoor Floors, Vehicles, Cover!)
-        for (const sm of world.staticMeshes) {
-          drawMesh(sm.mesh, null, textures[sm.texName], [1, 1, 1], 0, 1);
-        }
-        drawMesh(world.solidMesh, null, null, [1, 1, 1], 0, 1);
-        drawMesh(world.emissiveMesh, null, null, [1, 1, 1], 1.0, 1);
-
-        // 2. Animated Hinged Building Doors
-        for (const d of world.doors) {
-          const ang = d.baseAngle + d.openAmount * 1.52;
-          const dx = d.hingeX + Math.cos(ang) * (d.w * 0.5);
-          const dz = d.hingeZ - Math.sin(ang) * (d.w * 0.5);
-          drawMesh(unitBox, mat4Transform(dx, d.h * 0.5, dz, ang, d.w, d.h, 0.12), textures.door, [1, 1, 1], 0, 1);
+          fx.syncDynamic(s, time, beacon);
+          fx.update(dt, camera.position, indoors);
         }
 
-        // 3. Intact Explosive Red Fuel Barrels
-        for (const b of world.barrels) {
-          if (!b.intact) continue;
-          drawMesh(unitBox, mat4Transform(b.x, 0.62, b.z, 0, 0.72, 1.24, 0.72), textures.barrel, [1, 1, 1], 0, 1);
+        renderer.toneMappingExposure = (world.night ? 1.35 : 0.48) * (nvgRef.current ? 2.6 : 1) + lf * 0.8;
+        renderer.clear();
+        renderer.render(scene, camera);
+
+        // first-person weapon
+        const vm = viewModelRef.current;
+        if (vm && phaseRef.current === "playing") {
+          const wp = ARMY_WEAPONS[s.weaponId];
+          sunView.copy(world.sunDir || sunWorld).applyQuaternion(camQuatInv.copy(camera.quaternion).invert());
+          vm.update(dt, {
+            weaponId: s.weaponId,
+            adsLerp: s.adsLerp,
+            walkBob: s.walkBob,
+            moving,
+            sprinting,
+            recoil: s.recoil,
+            reloadP: s.reloading > 0 ? 1 - s.reloading / wp.reloadTime : 0,
+            cycleP: s.cycle ? 1 - s.cycle : 0,
+            muzzleFlash: s.muzzleFlash,
+            landDip: s.landDip,
+            stance: s.stance,
+            sunDirView: sunView,
+            night: world.night,
+            hidden: wp.isSniper && s.adsLerp > 0.65,
+            idleBreath: Math.sin(time * 1.6),
+          });
+          vm.render(renderer);
         }
 
-        // 4. Medkits & Military Ammo Crates (gently hovering/rotating)
-        for (const pk of s.pickups) {
-          if (pk.taken) continue;
-          const hover = 0.34 + Math.sin(now * 0.004 + pk.x) * 0.06;
-          if (pk.kind === "medkit") {
-            drawMesh(unitBox, mat4Transform(pk.x, hover, pk.z, now * 0.0012, 0.56, 0.38, 0.38), null, [0.92, 0.94, 0.96], 0.15, 1);
-            drawMesh(unitBox, mat4Transform(pk.x, hover + 0.01, pk.z, now * 0.0012, 0.28, 0.40, 0.12), null, [0.9, 0.14, 0.18], 0.5, 1);
-          } else {
-            drawMesh(unitBox, mat4Transform(pk.x, hover, pk.z, now * 0.001, 0.62, 0.42, 0.42), textures.crate, [1, 1, 1], 0.1, 1);
-          }
-        }
-
-        // 5. Glowing 3D Objective & Extraction Beacon Columns
-        const allDone = s.objectives.every((o) => o.completed);
-        if (!allDone) {
-          for (const o of s.objectives) {
-            if (o.completed || o.type !== "interact") continue;
-            const pulse = 0.28 + Math.sin(now * 0.006) * 0.08;
-            drawMesh(unitBox, mat4Transform(o.x, 1.15, o.z, now * 0.002, 0.42, 2.2, 0.42), null, [0.05, 0.85, 1.0], 1.0, pulse);
-          }
-        } else {
-          const pulse = 0.32 + Math.sin(now * 0.007) * 0.1;
-          drawMesh(
-            unitBox,
-            mat4Transform(s.extraction.x, 3.0, s.extraction.z, now * 0.0015, 1.2, 6.0, 1.2),
-            null,
-            [0.2, 0.95, 0.55],
-            1.0,
-            pulse
-          );
-        }
-
-        // 6. Articulated True-3D Army Soldiers!
-        for (const e of s.enemies) {
-          drawSoldier3D(renderer, e, env.uniform);
-        }
-
-        // 7. Active 3D Flying Grenades, Bullet Impacts, Tracers & Fireball Explosions!
-        for (const g of s.activeGrenades) {
-          drawMesh(unitBox, mat4Transform(g.x, g.y, g.z, now * 0.01, 0.22, 0.26, 0.22), null, [0.22, 0.35, 0.2], 0.2, 1);
-          if (Math.floor(now / 120) % 2 === 0) {
-            drawMesh(unitBox, mat4Transform(g.x, g.y + 0.16, g.z, 0, 0.1, 0.1, 0.1), null, [1.0, 0.15, 0.15], 1.0, 1);
-          }
-        }
-        for (const imp of s.impacts) {
-          drawMesh(unitBox, mat4Transform(imp.x, imp.y, imp.z, now * 0.01, 0.16, 0.16, 0.16), null, imp.color, 1.0, imp.life * 2.5);
-        }
-        for (const tr of s.tracers) {
-          const t = 1 - tr.life;
-          const bx = tr.x + (tr.tx - tr.x) * t;
-          const by = tr.y + (tr.ty - tr.y) * t;
-          const bz = tr.z + (tr.tz - tr.z) * t;
-          drawMesh(unitBox, mat4Transform(bx, by, bz, 0, 0.08, 0.08, 0.6), null, [1.0, 0.88, 0.38], 1.0, tr.life);
-        }
-        for (const ex of s.explosions) {
-          const progE = 1 - ex.life;
-          const rad = 0.8 + progE * ex.maxRadius * 1.4;
-          drawMesh(unitBox, mat4Transform(ex.x, ex.y + progE * 1.1, ex.z, progE * 3, rad, rad, rad), null, [1.0, 0.52, 0.1], 1.0, ex.life * 0.85);
-          drawMesh(unitBox, mat4Transform(ex.x, ex.y + progE * 0.8, ex.z, -progE * 2, rad * 0.65, rad * 0.65, rad * 0.65), null, [1.0, 0.94, 0.6], 1.0, ex.life);
-        }
-
-        // ================= 2D TACTICAL HUD, COMPASS, WEAPON & WEATHER OVERLAY =================
+        // ================= 2D TACTICAL HUD =================
         if (hudCtx) {
           hudCtx.clearRect(0, 0, w, h);
 
-          // Weather Visor Particles (paused cleanly when player steps INSIDE a roofed building!)
-          const indoors = phaseRef.current === "playing" && Boolean(findBuildingAt(s.mission.buildings, s.px, s.pz));
-          if (!indoors) {
-            if (env.weather === "rain" || env.weather === "storm") {
-              hudCtx.strokeStyle = "rgba(186, 230, 253, 0.3)";
-              hudCtx.lineWidth = 1.2;
-              hudCtx.beginPath();
-              for (const wd of s.weatherDrops) {
-                const rx = wd.x * w;
-                const ry = wd.y * h;
-                hudCtx.moveTo(rx, ry);
-                hudCtx.lineTo(rx - 5, ry + 20);
-              }
-              hudCtx.stroke();
-            } else if (env.weather === "snow") {
-              hudCtx.fillStyle = "rgba(241, 245, 249, 0.78)";
-              for (const wd of s.weatherDrops) {
-                hudCtx.beginPath();
-                hudCtx.arc(wd.x * w, wd.y * h, wd.size, 0, Math.PI * 2);
-                hudCtx.fill();
-              }
-            } else if (env.weather === "dust") {
-              hudCtx.fillStyle = "rgba(245, 195, 120, 0.25)";
-              for (const wd of s.weatherDrops) {
-                hudCtx.beginPath();
-                hudCtx.arc(wd.x * w, wd.y * h, wd.size * 1.3, 0, Math.PI * 2);
-                hudCtx.fill();
-              }
-            } else if (env.weather === "embers") {
-              hudCtx.fillStyle = "rgba(255, 138, 31, 0.65)";
-              for (const wd of s.weatherDrops) {
-                hudCtx.beginPath();
-                hudCtx.arc(wd.x * w, (1 - wd.y) * h, wd.size * 0.95, 0, Math.PI * 2);
-                hudCtx.fill();
-              }
-            }
-          }
-
           if (phaseRef.current === "playing") {
-            // 1. Projected 3D Objective / Extraction / Boss Waypoint Diamonds
+            const allDone = s.taskIndex >= s.objectives.length;
+
+            // 1. Projected waypoint for the ACTIVE task only
             const markers = [];
-            if (!allDone) {
-              for (const o of s.objectives) {
-                if (o.completed) continue;
-                let ox = o.x;
-                let oz = o.z;
-                if (o.type === "eliminate" && o.targetId) {
-                  const t = s.enemies.find((en) => en.id === o.targetId);
-                  if (t && t.alive) {
-                    ox = t.x;
-                    oz = t.z;
-                  }
+            const cur = s.objectives[s.taskIndex];
+            if (cur) {
+              let ox = cur.x;
+              let oz = cur.z;
+              if (cur.type === "eliminate" && cur.targetId) {
+                const t = s.enemies.find((en) => en.id === cur.targetId);
+                if (t && t.alive) {
+                  ox = t.x;
+                  oz = t.z;
                 }
-                markers.push({ x: ox, y: 2.1, z: oz, color: o.color || "#00D4FF", label: `${Math.round(Math.hypot(ox - s.px, oz - s.pz))}m` });
               }
-            } else {
-              markers.push({
-                x: s.extraction.x,
-                y: 2.4,
-                z: s.extraction.z,
-                color: "#34D399",
-                label: `EXFIL ${Math.round(Math.hypot(s.extraction.x - s.px, s.extraction.z - s.pz))}m`,
-              });
+              markers.push({ x: ox, y: 2.3, z: oz, color: cur.color || "#00D4FF", label: `${cur.taskLabel} • ${Math.round(Math.hypot(ox - s.px, oz - s.pz))}m` });
+            } else if (allDone) {
+              markers.push({ x: s.extraction.x, y: 2.6, z: s.extraction.z, color: "#34D399", label: `EXFIL • ${Math.round(Math.hypot(s.extraction.x - s.px, s.extraction.z - s.pz))}m` });
             }
 
             for (const mk of markers) {
-              const p2 = projectToScreen(mk.x, mk.y, mk.z, viewMat, projMat, w, h);
-              if (p2 && p2.visible) {
-                hudCtx.save();
-                hudCtx.translate(p2.x, p2.y);
-                hudCtx.strokeStyle = mk.color;
-                hudCtx.fillStyle = "rgba(6, 10, 18, 0.72)";
-                hudCtx.lineWidth = 2;
-                hudCtx.beginPath();
-                hudCtx.moveTo(0, -10);
-                hudCtx.lineTo(10, 0);
-                hudCtx.lineTo(0, 10);
-                hudCtx.lineTo(-10, 0);
-                hudCtx.closePath();
-                hudCtx.fill();
-                hudCtx.stroke();
-                hudCtx.fillStyle = mk.color;
-                hudCtx.font = "700 10px 'JetBrains Mono', monospace";
-                hudCtx.textAlign = "center";
-                hudCtx.fillText(mk.label, 0, -15);
-                hudCtx.restore();
+              tmpV.set(mk.x, mk.y, mk.z).project(camera);
+              const behind = tmpV.z > 1;
+              let sx = (tmpV.x * 0.5 + 0.5) * w;
+              let sy = (-tmpV.y * 0.5 + 0.5) * h;
+              if (behind) {
+                sx = w - sx;
+                sy = h - 40;
               }
+              const clamped = sx < 30 || sx > w - 30 || sy < 50 || sy > h - 60 || behind;
+              sx = Math.max(30, Math.min(w - 30, sx));
+              sy = Math.max(50, Math.min(h - 60, sy));
+              hudCtx.save();
+              hudCtx.translate(sx, sy);
+              hudCtx.strokeStyle = mk.color;
+              hudCtx.fillStyle = "rgba(6, 10, 18, 0.72)";
+              hudCtx.lineWidth = 2;
+              hudCtx.beginPath();
+              hudCtx.moveTo(0, -10);
+              hudCtx.lineTo(10, 0);
+              hudCtx.lineTo(0, 10);
+              hudCtx.lineTo(-10, 0);
+              hudCtx.closePath();
+              hudCtx.fill();
+              hudCtx.stroke();
+              hudCtx.fillStyle = mk.color;
+              hudCtx.font = "700 10px 'JetBrains Mono', monospace";
+              hudCtx.textAlign = "center";
+              hudCtx.fillText(mk.label, 0, clamped ? 24 : -15);
+              hudCtx.restore();
             }
 
-            // 2. Call-of-Duty Top Tactical Compass Strip
-            const compW = Math.min(340, w * 0.42);
+            // 2. Compass strip
+            const compW = Math.min(360, w * 0.42);
             const compX = (w - compW) * 0.5;
             const compY = 14;
             hudCtx.save();
-            hudCtx.fillStyle = "rgba(6, 10, 18, 0.68)";
+            hudCtx.fillStyle = "rgba(6, 10, 18, 0.62)";
             rrect(hudCtx, compX, compY, compW, 24, 12);
             hudCtx.fill();
             hudCtx.strokeStyle = "rgba(255,255,255,0.14)";
@@ -1704,7 +1760,6 @@ export default function VanguardArmy3D() {
             hudCtx.beginPath();
             hudCtx.rect(compX + 8, compY, compW - 16, 24);
             hudCtx.clip();
-
             const dirs = [
               { a: 0, t: "N" },
               { a: Math.PI * 0.25, t: "NE" },
@@ -1725,232 +1780,177 @@ export default function VanguardArmy3D() {
               hudCtx.fillStyle = d.t === "N" ? "#FF8A1F" : "rgba(226,232,240,0.85)";
               hudCtx.fillText(d.t, px, compY + 15);
             }
+            if (markers[0]) {
+              let diff = Math.atan2(markers[0].x - s.px, -(markers[0].z - s.pz)) - s.yaw;
+              while (diff > Math.PI) diff -= Math.PI * 2;
+              while (diff < -Math.PI) diff += Math.PI * 2;
+              const px = w * 0.5 + (diff / (Math.PI * 0.55)) * (compW * 0.5);
+              hudCtx.fillStyle = markers[0].color;
+              hudCtx.beginPath();
+              hudCtx.moveTo(px, compY + 20);
+              hudCtx.lineTo(px - 5, compY + 24);
+              hudCtx.lineTo(px + 5, compY + 24);
+              hudCtx.fill();
+            }
             hudCtx.restore();
 
-            // 3. Sniper Scope OR Dynamic First-Person Weapon + Crosshair
+            // 3. Sniper scope or crosshair
             const wp = ARMY_WEAPONS[s.weaponId];
             if (wp.isSniper && s.adsLerp > 0.65) {
               const rad = Math.min(w, h) * 0.43;
               hudCtx.save();
-              hudCtx.fillStyle = "rgba(3, 5, 10, 0.95)";
+              hudCtx.fillStyle = "rgba(3, 5, 10, 0.97)";
               hudCtx.beginPath();
               hudCtx.rect(0, 0, w, h);
               hudCtx.arc(w / 2, h / 2, rad, 0, Math.PI * 2, true);
               hudCtx.fill();
-              hudCtx.strokeStyle = "#334155";
-              hudCtx.lineWidth = 5;
+              const vg = hudCtx.createRadialGradient(w / 2, h / 2, rad * 0.75, w / 2, h / 2, rad);
+              vg.addColorStop(0, "rgba(0,0,0,0)");
+              vg.addColorStop(1, "rgba(0,0,0,0.75)");
+              hudCtx.fillStyle = vg;
               hudCtx.beginPath();
               hudCtx.arc(w / 2, h / 2, rad, 0, Math.PI * 2);
-              hudCtx.stroke();
-
-              hudCtx.strokeStyle = "rgba(0, 212, 255, 0.9)";
-              hudCtx.lineWidth = 1.2;
+              hudCtx.fill();
+              hudCtx.strokeStyle = "rgba(10,10,10,0.95)";
+              hudCtx.lineWidth = 1.4;
               hudCtx.beginPath();
               hudCtx.moveTo(w / 2 - rad, h / 2);
               hudCtx.lineTo(w / 2 + rad, h / 2);
               hudCtx.moveTo(w / 2, h / 2 - rad);
               hudCtx.lineTo(w / 2, h / 2 + rad);
               hudCtx.stroke();
+              hudCtx.lineWidth = 4;
+              hudCtx.beginPath();
+              hudCtx.moveTo(w / 2 - rad, h / 2);
+              hudCtx.lineTo(w / 2 - rad * 0.35, h / 2);
+              hudCtx.moveTo(w / 2 + rad * 0.35, h / 2);
+              hudCtx.lineTo(w / 2 + rad, h / 2);
+              hudCtx.moveTo(w / 2, h / 2 + rad * 0.35);
+              hudCtx.lineTo(w / 2, h / 2 + rad);
+              hudCtx.stroke();
               for (let m = -4; m <= 4; m++) {
                 if (m === 0) continue;
-                hudCtx.fillStyle = "#FF2E63";
-                hudCtx.fillRect(w / 2 + m * 24 - 1, h / 2 - 4, 2, 8);
-                hudCtx.fillRect(w / 2 - 4, h / 2 + m * 24 - 1, 8, 2);
+                hudCtx.fillStyle = "rgba(10,10,10,0.95)";
+                hudCtx.beginPath();
+                hudCtx.arc(w / 2 + m * 22, h / 2, 2, 0, Math.PI * 2);
+                hudCtx.arc(w / 2, h / 2 + m * 22, 2, 0, Math.PI * 2);
+                hudCtx.fill();
               }
-              hudCtx.restore();
-            } else {
-              // Crosshair + Hitmarker
-              hudCtx.save();
-              const baseGap = s.ads ? 3.5 : s.stance === "prone" ? 4.5 : s.stance === "crouch" ? 6.5 : 9.5;
-              const gap = baseGap + s.recoil * 10 + (s.playerY > 0.1 ? 7 : 0);
-              hudCtx.strokeStyle =
-                s.headshotFlash > 0 ? "#FACC15" : s.hitMarker > 0 ? "#FF2E63" : nvgRef.current ? "#4ADE80" : "#FFFFFF";
-              hudCtx.lineWidth = 1.8;
+              hudCtx.fillStyle = "#FF2E63";
               hudCtx.beginPath();
-              hudCtx.moveTo(w / 2 - gap - 9, h / 2);
+              hudCtx.arc(w / 2, h / 2, 1.6, 0, Math.PI * 2);
+              hudCtx.fill();
+              hudCtx.restore();
+            } else if (s.adsLerp < 0.6) {
+              hudCtx.save();
+              const baseGap = s.stance === "prone" ? 4.5 : s.stance === "crouch" ? 6.5 : 9.5;
+              const gap = baseGap + s.recoil * 10 + (s.playerY > 0.1 ? 7 : 0) + (moving ? 5 : 0);
+              hudCtx.globalAlpha = 1 - s.adsLerp * 1.6;
+              hudCtx.strokeStyle = s.headshotFlash > 0 ? "#FACC15" : s.hitMarker > 0 ? "#FF2E63" : "#FFFFFF";
+              hudCtx.shadowColor = "rgba(0,0,0,0.7)";
+              hudCtx.shadowBlur = 3;
+              hudCtx.lineWidth = 1.6;
+              hudCtx.beginPath();
+              hudCtx.moveTo(w / 2 - gap - 8, h / 2);
               hudCtx.lineTo(w / 2 - gap, h / 2);
               hudCtx.moveTo(w / 2 + gap, h / 2);
-              hudCtx.lineTo(w / 2 + gap + 9, h / 2);
-              hudCtx.moveTo(w / 2, h / 2 - gap - 9);
-              hudCtx.lineTo(w / 2, h / 2 - gap);
+              hudCtx.lineTo(w / 2 + gap + 8, h / 2);
               hudCtx.moveTo(w / 2, h / 2 + gap);
-              hudCtx.lineTo(w / 2, h / 2 + gap + 9);
+              hudCtx.lineTo(w / 2, h / 2 + gap + 8);
+              hudCtx.moveTo(w / 2, h / 2 - gap - 8);
+              hudCtx.lineTo(w / 2, h / 2 - gap);
               hudCtx.stroke();
-
-              if (s.hitMarker > 0.15) {
-                hudCtx.strokeStyle = s.headshotFlash > 0 ? "#FACC15" : "#FF2E63";
-                hudCtx.lineWidth = 2.2;
-                hudCtx.beginPath();
-                hudCtx.moveTo(w / 2 - 10, h / 2 - 10);
-                hudCtx.lineTo(w / 2 - 4, h / 2 - 4);
-                hudCtx.moveTo(w / 2 + 10, h / 2 - 10);
-                hudCtx.lineTo(w / 2 + 4, h / 2 - 4);
-                hudCtx.moveTo(w / 2 - 10, h / 2 + 10);
-                hudCtx.lineTo(w / 2 - 4, h / 2 + 4);
-                hudCtx.moveTo(w / 2 + 10, h / 2 + 10);
-                hudCtx.lineTo(w / 2 + 4, h / 2 + 4);
-                hudCtx.stroke();
-              }
-              if (s.headshotFlash > 0.2) {
-                hudCtx.fillStyle = "#FACC15";
-                hudCtx.font = "800 12px 'JetBrains Mono', monospace";
-                hudCtx.textAlign = "center";
-                hudCtx.fillText("HEADSHOT!", w / 2, h / 2 - 28);
-              }
-              hudCtx.restore();
-
-              // Sculpted First-Person Army Weapon + Ejecting Brass Shell Casings!
-              for (const sh of s.shells) {
-                hudCtx.save();
-                hudCtx.translate(sh.x, sh.y);
-                hudCtx.rotate(sh.rot);
-                hudCtx.fillStyle = sh.isShotgun ? "#DC2626" : "#F59E0B";
-                hudCtx.fillRect(-5, -2, 10, 4);
-                hudCtx.fillStyle = "#FDE047";
-                hudCtx.fillRect(-5, -2, 3, 4);
-                hudCtx.restore();
-              }
-
-              const bobX = Math.cos(s.walkBob) * 7 * (1 - s.adsLerp * 0.75);
-              const bobY =
-                Math.abs(Math.sin(s.walkBob)) * 7 * (1 - s.adsLerp * 0.75) +
-                s.recoil * 22 +
-                s.landDip * 55 +
-                (s.stance === "prone" ? 16 : 0) +
-                (s.reloading > 0 ? Math.sin(s.reloading * 5) * 16 + 60 : 0);
-              const gx = w * (0.68 - s.adsLerp * 0.18) + bobX;
-              const gy = h - (108 + s.adsLerp * 34) + bobY;
-
-              hudCtx.save();
-              // Tactical Camo Jacket Sleeve Cuff + Gloved Forearm & Grip
-              hudCtx.fillStyle = "#364431";
-              rrect(hudCtx, gx - 42, gy + 58, 84, 72, 16);
-              hudCtx.fill();
-              hudCtx.fillStyle = "#181C24";
-              rrect(hudCtx, gx - 34, gy + 26, 68, 48, 12);
-              hudCtx.fill();
-
-              // Weapon receiver body
-              const rg = hudCtx.createLinearGradient(gx - 28, gy - 20, gx + 28, gy + 45);
-              rg.addColorStop(0, "#3D4657");
-              rg.addColorStop(0.5, "#1E2430");
-              rg.addColorStop(1, "#0E121A");
-              hudCtx.fillStyle = rg;
-              rrect(hudCtx, gx - 26, gy - 14, 52, 74, 6);
-              hudCtx.fill();
-
-              // Barrel / Suppressor / Quad Rail
-              if (wp.id === 1) {
-                // MP5SD Integrated Suppressor
-                hudCtx.fillStyle = "#151922";
-                rrect(hudCtx, gx - 12, gy - 95, 24, 86, 6);
-                hudCtx.fill();
-              } else if (wp.id === 3) {
-                // M870 Pump-Action Shotgun
-                hudCtx.fillStyle = "#11161F";
-                hudCtx.fillRect(gx - 11, gy - 108, 22, 96);
-                hudCtx.fillStyle = "#3E2C22"; // Ribbed forend pump grip
-                rrect(hudCtx, gx - 16, gy - 68, 32, 42, 4);
-                hudCtx.fill();
-              } else {
-                // M4A1 / M24 barrel & rail
-                hudCtx.fillStyle = "#171C26";
-                hudCtx.fillRect(gx - 14, gy - (wp.id === 2 ? 122 : 96), 28, wp.id === 2 ? 112 : 84);
-                hudCtx.fillStyle = "#475569";
-                for (let ry = gy - 82; ry < gy - 18; ry += 9) {
-                  hudCtx.fillRect(gx - 12, ry, 24, 2);
-                }
-              }
-
-              // Holographic Red-Dot Optic on M4A1 & MP5SD
-              if (wp.id === 0 || wp.id === 1) {
-                hudCtx.fillStyle = "#0F141D";
-                hudCtx.strokeStyle = "#64748B";
-                hudCtx.lineWidth = 2;
-                rrect(hudCtx, gx - 19, gy - 34, 38, 24, 4);
-                hudCtx.fill();
-                hudCtx.stroke();
-                hudCtx.fillStyle = "rgba(0, 212, 255, 0.14)";
-                hudCtx.fillRect(gx - 14, gy - 30, 28, 16);
-                hudCtx.fillStyle = "#FF2E63";
-                hudCtx.beginPath();
-                hudCtx.arc(gx, gy - 22, 2.3, 0, Math.PI * 2);
-                hudCtx.fill();
-              }
-
-              // Muzzle Blast Glow
-              if (s.muzzleFlash > 0.18) {
-                const ty = gy - (wp.id === 2 ? 128 : wp.id === 3 ? 112 : 100);
-                const fr = (wp.id === 1 ? 18 : wp.id === 3 ? 48 : 34) * s.muzzleFlash;
-                const mg = hudCtx.createRadialGradient(gx, ty, 2, gx, ty, fr);
-                mg.addColorStop(0, "#FFFFFF");
-                mg.addColorStop(0.35, wp.id === 1 ? "rgba(125,211,252,0.75)" : "rgba(254,240,138,0.95)");
-                mg.addColorStop(1, "rgba(249,115,22,0)");
-                hudCtx.fillStyle = mg;
-                hudCtx.beginPath();
-                hudCtx.arc(gx, ty, fr, 0, Math.PI * 2);
-                hudCtx.fill();
-              }
               hudCtx.restore();
             }
+            if (s.hitMarker > 0.15) {
+              hudCtx.save();
+              hudCtx.strokeStyle = s.headshotFlash > 0 ? "#FACC15" : "#FFFFFF";
+              hudCtx.lineWidth = 2.2;
+              hudCtx.beginPath();
+              hudCtx.moveTo(w / 2 - 11, h / 2 - 11);
+              hudCtx.lineTo(w / 2 - 5, h / 2 - 5);
+              hudCtx.moveTo(w / 2 + 11, h / 2 - 11);
+              hudCtx.lineTo(w / 2 + 5, h / 2 - 5);
+              hudCtx.moveTo(w / 2 - 11, h / 2 + 11);
+              hudCtx.lineTo(w / 2 - 5, h / 2 + 5);
+              hudCtx.moveTo(w / 2 + 11, h / 2 + 11);
+              hudCtx.lineTo(w / 2 + 5, h / 2 + 5);
+              hudCtx.stroke();
+              hudCtx.restore();
+            }
+            if (s.headshotFlash > 0.2) {
+              hudCtx.fillStyle = "#FACC15";
+              hudCtx.font = "800 12px 'JetBrains Mono', monospace";
+              hudCtx.textAlign = "center";
+              hudCtx.fillText("HEADSHOT!", w / 2, h / 2 - 30);
+            }
 
-            // 4. Tactical Minimap (Top-Left showing Enterable Buildings, Doors, Hostiles & Objectives!)
-            const mapPx = 136;
+            // 4. Tactical minimap (player-centred, 70 m window, roads + buildings)
+            const mapPx = 150;
             const mx = 14;
             const my = 14;
-            const scale = mapPx / s.mission.size;
-
+            const viewM = 70;
+            const scale = mapPx / viewM;
+            const toMap = (x, z) => [mx + mapPx / 2 + (x - s.px) * scale, my + mapPx / 2 + (z - s.pz) * scale];
             hudCtx.save();
-            hudCtx.fillStyle = "rgba(6, 12, 20, 0.84)";
-            hudCtx.strokeStyle = "rgba(0, 212, 255, 0.5)";
+            hudCtx.fillStyle = "rgba(6, 12, 20, 0.8)";
+            hudCtx.strokeStyle = "rgba(0, 212, 255, 0.45)";
             hudCtx.lineWidth = 1.5;
-            rrect(hudCtx, mx, my, mapPx, mapPx, 10);
+            rrect(hudCtx, mx, my, mapPx, mapPx, 12);
             hudCtx.fill();
             hudCtx.stroke();
-
-            // Draw enterable building footprints
+            hudCtx.clip();
+            hudCtx.strokeStyle = "rgba(196, 170, 120, 0.4)";
+            hudCtx.lineCap = "round";
+            for (const r of s.mission.roads || []) {
+              hudCtx.lineWidth = r.w * scale;
+              const [ax, az] = toMap(r.ax, r.az);
+              const [bx, bz] = toMap(r.bx, r.bz);
+              hudCtx.beginPath();
+              hudCtx.moveTo(ax, az);
+              hudCtx.lineTo(bx, bz);
+              hudCtx.stroke();
+            }
+            // map boundary
+            {
+              const [ax, az] = toMap(0, 0);
+              hudCtx.strokeStyle = "rgba(255,255,255,0.35)";
+              hudCtx.lineWidth = 1;
+              hudCtx.strokeRect(ax, az, s.mission.size * scale, s.mission.size * scale);
+            }
             for (const b of s.mission.buildings) {
               const inside = findBuildingAt([b], s.px, s.pz);
-              hudCtx.fillStyle = inside ? "rgba(0, 212, 255, 0.28)" : "rgba(148, 163, 184, 0.25)";
-              hudCtx.strokeStyle = inside ? "#00D4FF" : "rgba(148, 163, 184, 0.65)";
+              const [bx, bz] = toMap(b.x, b.z);
+              hudCtx.fillStyle = inside ? "rgba(0, 212, 255, 0.3)" : "rgba(148, 163, 184, 0.3)";
+              hudCtx.strokeStyle = inside ? "#00D4FF" : "rgba(148, 163, 184, 0.7)";
               hudCtx.lineWidth = 1.2;
-              hudCtx.fillRect(mx + b.x * scale, my + b.z * scale, b.w * scale, b.d * scale);
-              hudCtx.strokeRect(mx + b.x * scale, my + b.z * scale, b.w * scale, b.d * scale);
+              hudCtx.fillRect(bx, bz, b.w * scale, b.d * scale);
+              hudCtx.strokeRect(bx, bz, b.w * scale, b.d * scale);
             }
-
-            // Objective / Extraction blips
-            if (!allDone) {
-              for (const o of s.objectives) {
-                if (o.completed) continue;
-                hudCtx.fillStyle = o.color || "#00D4FF";
-                hudCtx.beginPath();
-                hudCtx.arc(mx + o.x * scale, my + o.z * scale, 4, 0, Math.PI * 2);
-                hudCtx.fill();
-              }
-            } else {
-              hudCtx.fillStyle = "#34D399";
+            if (markers[0]) {
+              const [ox, oz] = toMap(markers[0].x, markers[0].z);
+              const cx = Math.max(mx + 6, Math.min(mx + mapPx - 6, ox));
+              const cz = Math.max(my + 6, Math.min(my + mapPx - 6, oz));
+              hudCtx.fillStyle = markers[0].color;
               hudCtx.beginPath();
-              hudCtx.arc(mx + s.extraction.x * scale, my + s.extraction.z * scale, 4.6, 0, Math.PI * 2);
+              hudCtx.arc(cx, cz, 4.5, 0, Math.PI * 2);
               hudCtx.fill();
             }
-
-            // Hostile soldier blips
             for (const e of s.enemies) {
-              if (!e.alive) continue;
+              if (!e.alive || e.state !== "combat") continue; // only hostiles that have revealed themselves
+              const [ex, ez] = toMap(e.x, e.z);
               hudCtx.fillStyle = e.kind === "officer" ? "#F012A8" : "#EF4444";
               hudCtx.beginPath();
-              hudCtx.arc(mx + e.x * scale, my + e.z * scale, e.kind === "officer" ? 3.5 : 2.5, 0, Math.PI * 2);
+              hudCtx.arc(ex, ez, e.kind === "officer" ? 3.5 : 2.5, 0, Math.PI * 2);
               hudCtx.fill();
             }
-
-            // Player dot + view cone
-            const pxM = mx + s.px * scale;
-            const pzM = my + s.pz * scale;
+            const pxM = mx + mapPx / 2;
+            const pzM = my + mapPx / 2;
             const viewAng = s.yaw - Math.PI * 0.5;
-            hudCtx.fillStyle = "rgba(52, 211, 153, 0.28)";
+            hudCtx.fillStyle = "rgba(52, 211, 153, 0.25)";
             hudCtx.beginPath();
             hudCtx.moveTo(pxM, pzM);
-            hudCtx.arc(pxM, pzM, 20, viewAng - 0.5, viewAng + 0.5);
+            hudCtx.arc(pxM, pzM, 26, viewAng - 0.5, viewAng + 0.5);
             hudCtx.closePath();
             hudCtx.fill();
             hudCtx.fillStyle = "#FFFFFF";
@@ -1959,33 +1959,86 @@ export default function VanguardArmy3D() {
             hudCtx.fill();
             hudCtx.restore();
 
-            // 5. NVG Scanline Overlay + Combat Damage Vignette
+            // 5. Task banner
+            if (s.taskBanner) {
+              const a = Math.min(1, s.taskBanner.t / 0.5, (3.6 - s.taskBanner.t) / 0.3 + 0.0001);
+              hudCtx.save();
+              hudCtx.globalAlpha = Math.max(0, Math.min(1, a));
+              const bw = Math.min(520, w * 0.8);
+              const bx = (w - bw) / 2;
+              const by = h * 0.2;
+              hudCtx.fillStyle = "rgba(6, 12, 20, 0.82)";
+              rrect(hudCtx, bx, by, bw, 62, 14);
+              hudCtx.fill();
+              hudCtx.strokeStyle = "rgba(52, 211, 153, 0.8)";
+              hudCtx.lineWidth = 1.5;
+              hudCtx.stroke();
+              hudCtx.textAlign = "center";
+              hudCtx.fillStyle = "#34D399";
+              hudCtx.font = "800 18px 'Space Grotesk', sans-serif";
+              hudCtx.fillText(`✓ ${s.taskBanner.title}`, w / 2, by + 26);
+              hudCtx.fillStyle = "rgba(226,232,240,0.9)";
+              hudCtx.font = "600 11px 'JetBrains Mono', monospace";
+              hudCtx.fillText(s.taskBanner.sub, w / 2, by + 47);
+              hudCtx.restore();
+            }
+
+            // 6. NVG scanlines, damage direction & vignette
             if (nvgRef.current) {
-              hudCtx.fillStyle = "rgba(0, 28, 12, 0.2)";
+              hudCtx.fillStyle = "rgba(0, 28, 12, 0.18)";
               for (let sy = 0; sy < h; sy += 4) hudCtx.fillRect(0, sy, w, 1.5);
             }
             if (s.damageFlash > 0) {
-              hudCtx.fillStyle = `rgba(220, 38, 38, ${Math.min(0.42, s.damageFlash * 0.36)})`;
+              const g = hudCtx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.25, w / 2, h / 2, Math.max(w, h) * 0.7);
+              g.addColorStop(0, "rgba(220, 38, 38, 0)");
+              g.addColorStop(1, `rgba(180, 20, 20, ${Math.min(0.65, s.damageFlash * 0.6)})`);
+              hudCtx.fillStyle = g;
+              hudCtx.fillRect(0, 0, w, h);
+              hudCtx.save();
+              hudCtx.translate(w / 2, h / 2);
+              hudCtx.rotate(s.damageAngle);
+              hudCtx.fillStyle = `rgba(255, 60, 60, ${s.damageFlash * 0.85})`;
+              hudCtx.beginPath();
+              hudCtx.moveTo(-26, -Math.min(w, h) * 0.22);
+              hudCtx.lineTo(0, -Math.min(w, h) * 0.22 - 18);
+              hudCtx.lineTo(26, -Math.min(w, h) * 0.22);
+              hudCtx.fill();
+              hudCtx.restore();
+            }
+            if (s.hp < 35) {
+              const pulse = 0.25 + Math.sin(time * 5) * 0.08;
+              const g = hudCtx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.3, w / 2, h / 2, Math.max(w, h) * 0.7);
+              g.addColorStop(0, "rgba(0,0,0,0)");
+              g.addColorStop(1, `rgba(90, 0, 0, ${pulse})`);
+              hudCtx.fillStyle = g;
               hudCtx.fillRect(0, 0, w, h);
             }
           }
         }
       } catch (err) {
-        console.error("[VanguardArmy3D error]", err);
+        console.error("[Vanguard3D error]", err);
       }
     };
+
+    const sunWorld = new THREE.Vector3(0.5, 0.8, 0.3).normalize();
+    const sunView = new THREE.Vector3();
+    const camQuatInv = new THREE.Quaternion();
+    const explosionColor = new THREE.Color(1, 0.55, 0.2);
+    const muzzleColor = new THREE.Color(1, 0.75, 0.4);
 
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       ro?.disconnect();
-      worldRef.current?.dispose();
+      disposeWorld();
+      renderer.dispose();
+      rendererRef.current = null;
     };
-  }, [syncHud]);
+  }, [syncHud, rebuildWorldForMission, disposeWorld]);
 
   const activeWeapon = ARMY_WEAPONS[hud.weaponId];
-  const nextMission = VANGUARD_MISSIONS[selectedIdx + 1] || null;
+  const nextMission = VANGUARD_OPS[selectedIdx + 1] || null;
 
   return (
     <div
@@ -2065,7 +2118,7 @@ export default function VanguardArmy3D() {
           >
             <ListChecks className="h-3.5 w-3.5" />
             <span>
-              Ops ({campaign.unlockedCount}/{VANGUARD_MISSIONS.length})
+              Ops ({campaign.unlockedCount}/{VANGUARD_OPS.length})
             </span>
           </button>
 
@@ -2139,6 +2192,7 @@ export default function VanguardArmy3D() {
           }}
           onContextMenu={(e) => e.preventDefault()}
           className="block h-full w-full cursor-crosshair"
+          style={nvg ? { filter: "grayscale(1) sepia(1) hue-rotate(62deg) saturate(3.2) contrast(1.15)" } : undefined}
         />
         <canvas
           ref={hudCanvasRef}
@@ -2183,14 +2237,22 @@ export default function VanguardArmy3D() {
                 {hud.objectives.map((o) => (
                   <li
                     key={o.id}
-                    className={`flex items-center justify-between gap-2 ${
-                      o.completed ? "text-emerald-300 line-through opacity-75" : "text-white"
+                    className={`rounded-lg px-2 py-1 ${
+                      o.status === "done"
+                        ? "text-emerald-300/80"
+                        : o.status === "active"
+                        ? "border border-[#FFC247]/50 bg-[#FFC247]/10 text-white"
+                        : "text-ink-muted/70"
                     }`}
                   >
-                    <span className="truncate">
-                      {o.completed ? "✓" : "▸"} {o.label}
-                    </span>
-                    {!o.completed && <span className="shrink-0 text-[#00D4FF]">{o.dist}m</span>}
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="shrink-0 font-bold">
+                        {o.status === "done" ? "✓" : o.status === "active" ? "▶" : "🔒"} {o.taskLabel}
+                      </span>
+                      {o.status === "active" && <span className="shrink-0 text-[#00D4FF]">{o.dist}m</span>}
+                      {o.status === "done" && <span className="shrink-0 text-[9px]">SUBMITTED</span>}
+                    </div>
+                    <div className={`truncate ${o.status === "done" ? "line-through" : ""}`}>{o.label}</div>
                   </li>
                 ))}
                 <li
@@ -2297,20 +2359,20 @@ export default function VanguardArmy3D() {
                 <div>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-[#FF8A1F]/55 bg-[#FF8A1F]/15 px-3 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-[#FFC247]">
                     <Target className="h-3 w-3" />
-                    True WebGL 3D Army Special Forces • Sequential Campaign
+                    Realistic 3D Special Forces • Ordered Tasks • Large Maps
                   </span>
                   <h2 className="mt-1.5 font-display text-2xl font-extrabold text-white sm:text-4xl">
                     VANGUARD: <span className="text-neon-gradient">FRONTLINE OPS</span>
                   </h2>
                 </div>
                 <span className="rounded-full border border-emerald-400/35 bg-emerald-500/15 px-3 py-1 font-mono text-[11px] font-semibold text-emerald-300">
-                  Unlocked: {campaign.unlockedCount} / {VANGUARD_MISSIONS.length} Theaters
+                  Unlocked: {campaign.unlockedCount} / {VANGUARD_OPS.length} Theaters
                 </span>
               </div>
 
               {/* 5 Unique Global War Theaters (Sequential Unlock Lock System!) */}
               <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-5">
-                {VANGUARD_MISSIONS.map((m, idx) => {
+                {VANGUARD_OPS.map((m, idx) => {
                   const unlocked = idx < campaign.unlockedCount;
                   const active = idx === selectedIdx;
                   const rec = campaign.records[m.id];
@@ -2351,7 +2413,7 @@ export default function VanguardArmy3D() {
                       <p className="mt-1 inline-flex items-center gap-1 font-mono text-[9px] text-ink-muted">
                         <CloudRain className="h-2.5 w-2.5 text-[#00D4FF]" />
                         {!unlocked
-                          ? `Complete ${VANGUARD_MISSIONS[idx - 1].code} to unlock`
+                          ? `Complete ${VANGUARD_OPS[idx - 1].code} to unlock`
                           : m.weatherLabel}
                       </p>
                     </button>
@@ -2372,7 +2434,7 @@ export default function VanguardArmy3D() {
                     </span>
                   </div>
                   <span className="font-mono text-[11px] text-ink-muted">
-                    Enterable Buildings: {selectedMission.buildings.length} • Hostiles:{" "}
+                    Map: {selectedMission.size}×{selectedMission.size}m • Buildings: {selectedMission.buildings.length} • Hostiles:{" "}
                     {selectedMission.enemies.length}
                   </span>
                 </div>
@@ -2384,11 +2446,11 @@ export default function VanguardArmy3D() {
                 <div className="mt-3.5 flex flex-wrap items-center justify-between gap-3">
                   <div className="flex flex-wrap gap-2 font-mono text-[10px]">
                     {selectedMission.objectives.map((o, i) => (
-                      <span
+                      <span title="Tasks must be completed in order"
                         key={o.id}
                         className="rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-white"
                       >
-                        OBJ 0{i + 1}: {o.label}
+                        {o.taskLabel || `TASK ${i + 1}`}: {o.label}
                       </span>
                     ))}
                   </div>
@@ -2396,14 +2458,15 @@ export default function VanguardArmy3D() {
                   <button
                     type="button"
                     onClick={() => deployMission(selectedIdx)}
-                    className="inline-flex items-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-bold tracking-wide text-white shadow-neon-magenta transition hover:scale-105"
+                    disabled={!assetsReady}
+                    className="inline-flex items-center gap-2 rounded-full px-7 py-3 font-heading text-sm font-bold tracking-wide text-white shadow-neon-magenta transition hover:scale-105 disabled:cursor-wait disabled:opacity-60"
                     style={{
                       background:
                         "linear-gradient(110deg, #FF8A1F 0%, #F012A8 52%, #0099FF 100%)",
                     }}
                   >
                     <Play className="h-4 w-4 fill-white" />
-                    <span>Deploy {selectedMission.code}</span>
+                    <span>{assetsReady ? `Deploy ${selectedMission.code}` : "Loading 3D assets…"}</span>
                   </button>
                 </div>
               </div>

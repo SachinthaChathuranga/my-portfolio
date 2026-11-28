@@ -1,23 +1,7 @@
 {
   "projects": [
     {
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503372/smsc_portfolio/wkhxndsgfnciwora6dlg.png",
-      "teamMembers": [
-        "INTTEQ Team",
-        "Sachintha"
-      ],
-      "id": "cv-dealrax",
-      "learnings": "Production mobile release management for US consumer apps.",
-      "subtitle": "USA • Ceyrax Solutions LLC",
-      "isPublic": true,
-      "features": [
-        "Community-verified deals & coupon discovery",
-        "Real-time push notifications",
-        "Cross-platform iOS & Android builds"
-      ],
-      "featured": true,
-      "role": "Associate Software Engineer",
-      "more": "Engineered with React Native & Expo with REST API integrations, real-time deal discovery, push notifications, and production releases prepared for both the Apple App Store and Google Play Store.",
+      "date": "2025",
       "technologies": [
         "React Native",
         "Expo",
@@ -26,13 +10,12 @@
         "App Store",
         "Play Store"
       ],
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503355/smsc_portfolio/udu08j1sdslvagxzggyo.png",
-      "duration": "Commercial Release",
-      "challenges": "Delivering fast deal feeds and reliable store release pipelines across iOS and Android.",
+      "title": "Dealrax — Deals & Rewards App",
+      "appStoreUrl": "https://apps.apple.com/us/app/dealrax/id6837411366",
+      "subtitle": "USA • Ceyrax Solutions LLC",
       "liveUrl": "",
-      "status": "Published",
-      "category": "mobile",
-      "projectType": "React Native (Expo)",
+      "learnings": "Production mobile release management for US consumer apps.",
+      "duration": "Commercial Release",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503400/smsc_portfolio/hxb7etvxh2t1t3xk7mha.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503427/smsc_portfolio/hl99uascf7ev99ydi14w.png",
@@ -55,67 +38,105 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503644/smsc_portfolio/ophgwljsax02bwoakigb.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503646/smsc_portfolio/w2palda9tzadnceszzvw.png"
       ],
-      "date": "2025",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dealrax.mobile",
-      "repoUrl": "",
-      "description": "Cross-platform mobile deals and rewards application built for Ceyrax Solutions LLC (USA), helping shoppers discover genuine deals and verified coupon codes shared by the community.",
-      "title": "Dealrax — Deals & Rewards App",
-      "appStoreUrl": "https://apps.apple.com/us/app/dealrax/id6837411366"
-    },
-    {
-      "isPublic": true,
-      "subtitle": "Paris, France • International Release",
-      "title": "Mangaliyam — Tamil Matrimonial App",
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503742/smsc_portfolio/cbgzzshwnlxv4rm1gv5s.png",
-      "id": "cv-mangaliyam",
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
       ],
-      "learnings": "International mobile UX and cross-platform performance tuning.",
-      "challenges": "Designing culturally thoughtful matchmaking flows with strong privacy controls.",
-      "date": "2025",
-      "images": [
-        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503760/smsc_portfolio/vq3wk45ibhm2twwledis.png",
-        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503783/smsc_portfolio/j2efgtftdxmyiyacivdi.png",
-        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503805/smsc_portfolio/xnsafsmrep2trnpm8eoi.png"
+      "challenges": "Delivering fast deal feeds and reliable store release pipelines across iOS and Android.",
+      "repoUrl": "",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.dealrax.mobile",
+      "status": "Published",
+      "more": "Engineered with React Native & Expo with REST API integrations, real-time deal discovery, push notifications, and production releases prepared for both the Apple App Store and Google Play Store.",
+      "role": "Associate Software Engineer",
+      "category": "mobile",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503372/smsc_portfolio/wkhxndsgfnciwora6dlg.png",
+      "featured": true,
+      "features": [
+        "Community-verified deals & coupon discovery",
+        "Real-time push notifications",
+        "Cross-platform iOS & Android builds"
       ],
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503355/smsc_portfolio/udu08j1sdslvagxzggyo.png",
+      "id": "cv-dealrax",
+      "isPublic": true,
+      "description": "Cross-platform mobile deals and rewards application built for Ceyrax Solutions LLC (USA), helping shoppers discover genuine deals and verified coupon codes shared by the community.",
+      "projectType": "React Native (Expo)"
+    },
+    {
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503696/smsc_portfolio/dssmj2zzsf0bgvcjujb8.png",
+      "subtitle": "Paris, France • International Release",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.mangaliyam.app",
       "projectType": "React Native (Expo)",
-      "status": "Published",
-      "category": "mobile",
-      "appStoreUrl": "https://apps.apple.com/us/app/mangaliyam/id6836705877",
       "description": "Cross-platform Tamil matrimonial application crafted for an international audience in Paris, France — enabling users to build profiles, discover compatible matches, and connect safely.",
-      "repoUrl": "",
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503696/smsc_portfolio/dssmj2zzsf0bgvcjujb8.png",
-      "duration": "Commercial Release",
+      "role": "Associate Software Engineer",
+      "more": "Built with React Native and Expo with smooth profile discovery, privacy-aware match browsing, and store-ready builds for iOS and Android.",
+      "learnings": "International mobile UX and cross-platform performance tuning.",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503742/smsc_portfolio/cbgzzshwnlxv4rm1gv5s.png",
       "technologies": [
         "React Native",
         "Expo",
         "REST API",
         "iOS & Android"
       ],
-      "featured": false,
-      "role": "Associate Software Engineer",
-      "more": "Built with React Native and Expo with smooth profile discovery, privacy-aware match browsing, and store-ready builds for iOS and Android.",
+      "duration": "Commercial Release",
+      "challenges": "Designing culturally thoughtful matchmaking flows with strong privacy controls.",
       "liveUrl": "",
-      "features": [
-        "Guided profile creation",
-        "Smart match browsing & filters",
-        "Direct connection workflows"
-      ]
-    },
-    {
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
       ],
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505930/smsc_portfolio/lmiocpnl3jo18epo1qp1.png",
+      "features": [
+        "Guided profile creation",
+        "Smart match browsing & filters",
+        "Direct connection workflows"
+      ],
+      "featured": false,
+      "category": "mobile",
+      "title": "Mangaliyam — Tamil Matrimonial App",
+      "id": "cv-mangaliyam",
+      "date": "2025",
+      "status": "Published",
       "isPublic": true,
-      "subtitle": "Sri Lanka • INTTEQ (Pvt) Ltd",
-      "title": "Doc4Baby — Child Healthcare Platform",
       "repoUrl": "",
+      "images": [
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503760/smsc_portfolio/vq3wk45ibhm2twwledis.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503783/smsc_portfolio/j2efgtftdxmyiyacivdi.png",
+        "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503805/smsc_portfolio/xnsafsmrep2trnpm8eoi.png"
+      ],
+      "appStoreUrl": "https://apps.apple.com/us/app/mangaliyam/id6836705877"
+    },
+    {
+      "learnings": "Healthcare UX trust patterns and third-party payment gateway integration.",
+      "isPublic": true,
+      "category": "mobile",
+      "featured": true,
+      "projectType": "React Native (Expo) + Next.js",
+      "date": "2025",
+      "description": "Healthcare mobile and web ecosystem by INTTEQ (Pvt) Ltd connecting parents with pediatric doctors, supporting child health management and PayHere subscription payments.",
+      "challenges": "Coordinating seamless subscription billing via PayHere across mobile and Next.js web clients.",
+      "id": "cv-doc4baby",
+      "features": [
+        "Parent-to-doctor healthcare connection",
+        "Child health & milestone tracking",
+        "PayHere subscription payment integration",
+        "Web, iOS & Android ecosystem"
+      ],
+      "appStoreUrl": "",
+      "duration": "Commercial Release",
       "liveUrl": "",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505930/smsc_portfolio/lmiocpnl3jo18epo1qp1.png",
+      "technologies": [
+        "React Native",
+        "Expo",
+        "Next.js",
+        "PayHere",
+        "REST API",
+        "Push Notifications"
+      ],
+      "repoUrl": "",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.doc4baby",
+      "role": "Associate Software Engineer",
+      "more": "Built across React Native (Expo) for iOS/Android and Next.js for the web portal, integrating secure PayHere payment gateway subscriptions, doctor consultations, and timely health push notifications.\n\nDoc4Baby is a baby and child health record app that keeps your child's clinic visits, vaccinations, medicine reminders and growth in one secure place, from newborn to school age.\n\nCHILD HEALTH RECORDS\n• Save clinic visits, doctor notes, prescriptions and lab reports\n• Add photos and PDF documents to each record\n• Share records with your child's pediatrician\n• See your child's full medical history anytime, anywhere\n\nVACCINATION & IMMUNIZATION TRACKER\n• Keep track of your child's vaccination schedule and history\n• Get reminders so you never miss a vaccine\n• Save batch numbers, dates and vaccine card photos\n\nMEDICINE & APPOINTMENT REMINDERS\n• Baby medicine reminders for morning, afternoon, evening and night\n• Repeat every 4, 6, 8, 12 or 24 hours\n• Doctor appointment and checkup reminders\n• Full-screen alerts that are hard to miss\n• Swipe to mark a dose as done\n\nBABY GROWTH TRACKER\n• Record weight, height and head circumference\n• See your child's growth over time with clear charts\n\nDOCTOR & CARE TEAM SHARING\n• Connect with your child's doctor using a QR code\n• Invite family members and caregivers\n• You choose who can view and manage your child's profile\n• Doctors get a simple patient view to follow your child's health\n\nHOME HEALTH LOG\n• Log temperature, symptoms and home care\n• Track fever, cold, rash and other symptoms between doctor visits\n\nMULTIPLE CHILDREN\n• Manage all your children from one parent account\n• Switch between child profiles in one tap\n• Separate, organised records for each child\n\nPRIVATE & SECURE\n• PIN lock and Face ID / fingerprint protection\n• Your child's health data is shared only with people you invite\n\nPLANS\n• New users get a 1-month free trial\n• Monthly plan: renews automatically every month until you cancel. Cancel anytime in the app under Profile > Your Plan. You keep access until the end of the paid month.\n• Annual plan: one payment for 12 months. It does not renew automatically and you won't be charged again.\n\nDoc4Baby helps you organise your child's health information. It does not provide medical advice, diagnosis or treatment. Always speak to a qualified doctor about your child's health.\n\nPrivacy Policy: https://dashboard.doc4baby.com/privacy\nTerms of Use: https://dashboard.doc4baby.com/terms\nRefund Policy: https://dashboard.doc4baby.com/refund-policy",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505989/smsc_portfolio/kbtl1hnsug5mwlfhqmya.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506025/smsc_portfolio/ahjg9mxwyeuhb4xt8brg.png",
@@ -126,66 +147,26 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506161/smsc_portfolio/ooitpbo4m3dfq8ewkdi9.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795506300/smsc_portfolio/ugmvnqbtymhxttgsb1ia.png"
       ],
-      "category": "mobile",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.doc4baby",
-      "id": "cv-doc4baby",
-      "challenges": "Coordinating seamless subscription billing via PayHere across mobile and Next.js web clients.",
-      "date": "2025",
-      "status": "Published",
-      "featured": true,
-      "appStoreUrl": "",
-      "description": "Healthcare mobile and web ecosystem by INTTEQ (Pvt) Ltd connecting parents with pediatric doctors, supporting child health management and PayHere subscription payments.",
-      "role": "Associate Software Engineer",
-      "more": "Built across React Native (Expo) for iOS/Android and Next.js for the web portal, integrating secure PayHere payment gateway subscriptions, doctor consultations, and timely health push notifications.\n\nDoc4Baby is a baby and child health record app that keeps your child's clinic visits, vaccinations, medicine reminders and growth in one secure place, from newborn to school age.\n\nCHILD HEALTH RECORDS\n• Save clinic visits, doctor notes, prescriptions and lab reports\n• Add photos and PDF documents to each record\n• Share records with your child's pediatrician\n• See your child's full medical history anytime, anywhere\n\nVACCINATION & IMMUNIZATION TRACKER\n• Keep track of your child's vaccination schedule and history\n• Get reminders so you never miss a vaccine\n• Save batch numbers, dates and vaccine card photos\n\nMEDICINE & APPOINTMENT REMINDERS\n• Baby medicine reminders for morning, afternoon, evening and night\n• Repeat every 4, 6, 8, 12 or 24 hours\n• Doctor appointment and checkup reminders\n• Full-screen alerts that are hard to miss\n• Swipe to mark a dose as done\n\nBABY GROWTH TRACKER\n• Record weight, height and head circumference\n• See your child's growth over time with clear charts\n\nDOCTOR & CARE TEAM SHARING\n• Connect with your child's doctor using a QR code\n• Invite family members and caregivers\n• You choose who can view and manage your child's profile\n• Doctors get a simple patient view to follow your child's health\n\nHOME HEALTH LOG\n• Log temperature, symptoms and home care\n• Track fever, cold, rash and other symptoms between doctor visits\n\nMULTIPLE CHILDREN\n• Manage all your children from one parent account\n• Switch between child profiles in one tap\n• Separate, organised records for each child\n\nPRIVATE & SECURE\n• PIN lock and Face ID / fingerprint protection\n• Your child's health data is shared only with people you invite\n\nPLANS\n• New users get a 1-month free trial\n• Monthly plan: renews automatically every month until you cancel. Cancel anytime in the app under Profile > Your Plan. You keep access until the end of the paid month.\n• Annual plan: one payment for 12 months. It does not renew automatically and you won't be charged again.\n\nDoc4Baby helps you organise your child's health information. It does not provide medical advice, diagnosis or treatment. Always speak to a qualified doctor about your child's health.\n\nPrivacy Policy: https://dashboard.doc4baby.com/privacy\nTerms of Use: https://dashboard.doc4baby.com/terms\nRefund Policy: https://dashboard.doc4baby.com/refund-policy",
-      "features": [
-        "Parent-to-doctor healthcare connection",
-        "Child health & milestone tracking",
-        "PayHere subscription payment integration",
-        "Web, iOS & Android ecosystem"
-      ],
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505728/smsc_portfolio/hhy3zvqsata8jirprake.png",
-      "technologies": [
-        "React Native",
-        "Expo",
-        "Next.js",
-        "PayHere",
-        "REST API",
-        "Push Notifications"
-      ],
-      "projectType": "React Native (Expo) + Next.js",
-      "learnings": "Healthcare UX trust patterns and third-party payment gateway integration.",
-      "duration": "Commercial Release"
-    },
-    {
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795595245/smsc_portfolio/ougfotyi5rhmkmw7nfdw.png",
+      "title": "Doc4Baby — Child Healthcare Platform",
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
       ],
-      "status": "Private Release",
-      "subtitle": "Sri Lanka • BigBlast Events (Private)",
-      "playStoreUrl": "",
-      "isPublic": true,
-      "category": "mobile",
-      "images": [],
-      "more": "Engineered for high-throughput event gates where internet connectivity is unreliable — validates tickets instantaneously offline and syncs across gate devices via a local relay server. Distributed privately (not publicly listed).",
-      "role": "Associate Software Engineer",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505728/smsc_portfolio/hhy3zvqsata8jirprake.png",
+      "status": "Published",
+      "subtitle": "Sri Lanka • INTTEQ (Pvt) Ltd"
+    },
+    {
       "date": "2025",
-      "id": "cv-bigblast",
-      "repoUrl": "",
-      "duration": "Private Enterprise Release",
-      "description": "Private QR ticket-scanning mobile application built for BigBlast Events gate staff, supporting offline ticket validation and real-time synchronization through a local relay server.",
-      "appStoreUrl": "",
       "challenges": "Preventing duplicate ticket entries across multiple gate scanners under offline conditions.",
-      "liveUrl": "",
-      "title": "BigBlast — Offline QR Ticket Scanner",
-      "learnings": "Offline-first mobile architecture and local network relay synchronization.",
-      "features": [
-        "High-speed QR ticket scanning",
-        "Offline gate validation",
-        "Local relay server synchronization",
-        "Private enterprise distribution"
+      "isPublic": true,
+      "role": "Associate Software Engineer",
+      "teamMembers": [
+        "INTTEQ Team",
+        "Sachintha"
       ],
+      "more": "Engineered for high-throughput event gates where internet connectivity is unreliable — validates tickets instantaneously offline and syncs across gate devices via a local relay server. Distributed privately (not publicly listed).",
+      "id": "cv-bigblast",
       "technologies": [
         "React Native",
         "Expo",
@@ -193,17 +174,44 @@
         "Offline Sync",
         "Local Relay Server"
       ],
+      "repoUrl": "",
+      "duration": "Private Enterprise Release",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795595245/smsc_portfolio/ougfotyi5rhmkmw7nfdw.png",
       "projectType": "React Native (Expo) • Private",
-      "featured": false
+      "description": "Private QR ticket-scanning mobile application built for BigBlast Events gate staff, supporting offline ticket validation and real-time synchronization through a local relay server.",
+      "title": "BigBlast — Offline QR Ticket Scanner",
+      "images": [],
+      "features": [
+        "High-speed QR ticket scanning",
+        "Offline gate validation",
+        "Local relay server synchronization",
+        "Private enterprise distribution"
+      ],
+      "subtitle": "Sri Lanka • BigBlast Events (Private)",
+      "learnings": "Offline-first mobile architecture and local network relay synchronization.",
+      "playStoreUrl": "",
+      "appStoreUrl": "",
+      "status": "Private Release",
+      "liveUrl": "",
+      "featured": false,
+      "category": "mobile"
     },
     {
-      "description": "Sports facility booking mobile application by INTTEQ (Pvt) Ltd enabling players to book sports grounds, form teams, and chat in groups while owners manage facilities and branches.",
-      "appStoreUrl": "https://apps.apple.com/us/app/playzone-booking/id6758370079",
       "category": "mobile",
-      "date": "2025",
-      "challenges": "Synchronizing live ground availability alongside team chat and notifications.",
+      "featured": true,
       "learnings": "Multi-role mobile app architecture for marketplaces.",
-      "projectType": "React Native (Expo)",
+      "liveUrl": "",
+      "appStoreUrl": "https://apps.apple.com/us/app/playzone-booking/id6758370079",
+      "title": "PlayZone — Sports Ground Booking",
+      "status": "Published",
+      "subtitle": "Sri Lanka • INTTEQ (Pvt) Ltd",
+      "images": [],
+      "id": "cv-playzone",
+      "features": [
+        "Real-time sports ground booking",
+        "Team creation & group chat",
+        "Multi-branch facility management for owners"
+      ],
       "technologies": [
         "React Native",
         "Expo",
@@ -211,78 +219,83 @@
         "REST API",
         "Push Notifications"
       ],
-      "subtitle": "Sri Lanka • INTTEQ (Pvt) Ltd",
-      "isPublic": true,
-      "features": [
-        "Real-time sports ground booking",
-        "Team creation & group chat",
-        "Multi-branch facility management for owners"
-      ],
-      "featured": true,
-      "status": "Published",
+      "description": "Sports facility booking mobile application by INTTEQ (Pvt) Ltd enabling players to book sports grounds, form teams, and chat in groups while owners manage facilities and branches.",
+      "date": "2025",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.playzone",
-      "liveUrl": "",
+      "projectType": "React Native (Expo)",
+      "repoUrl": "",
+      "duration": "Commercial Release",
+      "role": "Associate Software Engineer",
+      "challenges": "Synchronizing live ground availability alongside team chat and notifications.",
+      "more": "Dual-sided experience bridging recreational athletes and venue owners with real-time slot scheduling, team group messaging, and multi-branch management.",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795595010/smsc_portfolio/rosbzrxgrixvki9c2v0b.png",
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
       ],
-      "id": "cv-playzone",
-      "more": "Dual-sided experience bridging recreational athletes and venue owners with real-time slot scheduling, team group messaging, and multi-branch management.",
-      "role": "Associate Software Engineer",
-      "images": [],
-      "duration": "Commercial Release",
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795595010/smsc_portfolio/rosbzrxgrixvki9c2v0b.png",
-      "repoUrl": "",
-      "title": "PlayZone — Sports Ground Booking"
+      "isPublic": true
     },
     {
-      "role": "Mobile App Developer",
-      "more": "Supports multi-stop route optimization, live job assignment, and delivery completion tracking across mobile fleets.",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.routeoptimizerapp",
-      "id": "cv-golumbiaprint",
-      "challenges": "Keeping field-service workflows responsive and clear for drivers on the move.",
-      "features": [
-        "Automated route optimization",
-        "Driver job assignment",
-        "Real-time completion tracking"
-      ],
-      "featured": false,
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795595098/smsc_portfolio/kt26rvpki7ssamo1li3o.png",
-      "duration": "Commercial Release",
-      "teamMembers": [
-        "INTTEQ Team",
-        "Sachintha"
-      ],
-      "projectType": "Flutter Mobile App",
-      "category": "mobile",
-      "status": "Published",
-      "learnings": "Production Flutter development and logistics domain workflows.",
       "repoUrl": "",
-      "subtitle": "Canada • Logistics & Field Delivery",
-      "images": [],
-      "description": "Route planning and job management mobile application built with Flutter for Canadian delivery drivers, logistics teams, and field service businesses.",
-      "appStoreUrl": "",
-      "liveUrl": "",
-      "isPublic": true,
       "title": "Golumbiaprint — Route Optimisation App",
+      "category": "mobile",
+      "challenges": "Keeping field-service workflows responsive and clear for drivers on the move.",
+      "appStoreUrl": "",
+      "featured": false,
       "technologies": [
         "Flutter",
         "Dart",
         "Route Optimization",
         "REST API"
       ],
-      "date": "2025"
+      "id": "cv-golumbiaprint",
+      "images": [],
+      "features": [
+        "Automated route optimization",
+        "Driver job assignment",
+        "Real-time completion tracking"
+      ],
+      "status": "Published",
+      "subtitle": "Canada • Logistics & Field Delivery",
+      "learnings": "Production Flutter development and logistics domain workflows.",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795595098/smsc_portfolio/kt26rvpki7ssamo1li3o.png",
+      "projectType": "Flutter Mobile App",
+      "duration": "Commercial Release",
+      "liveUrl": "",
+      "description": "Route planning and job management mobile application built with Flutter for Canadian delivery drivers, logistics teams, and field service businesses.",
+      "date": "2025",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.intteq.routeoptimizerapp",
+      "teamMembers": [
+        "INTTEQ Team",
+        "Sachintha"
+      ],
+      "role": "Mobile App Developer",
+      "more": "Supports multi-stop route optimization, live job assignment, and delivery completion tracking across mobile fleets.",
+      "isPublic": true
     },
     {
-      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795595049/smsc_portfolio/gqafkoubagbkoi47svkl.png",
-      "challenges": "Making rapid classroom attendance marking effortless for educators.",
-      "subtitle": "United Kingdom • EdTech",
-      "isPublic": true,
       "appStoreUrl": "https://apps.apple.com/us/app/three-dots-learning-attendance/id6759114278",
-      "description": "Digital attendance management mobile application built for schools, educational institutes, and training centres in the UK.",
-      "learnings": "EdTech workflows and Apple App Store publishing standards.",
-      "role": "Associate Software Engineer",
       "more": "Streamlines classroom roll-calls, institute attendance tracking, and reporting inside a clean React Native interface.",
+      "role": "Associate Software Engineer",
+      "repoUrl": "",
+      "isPublic": true,
+      "title": "Three Dots Learning — Attendance App",
+      "playStoreUrl": "",
+      "date": "2025",
+      "logo": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795595049/smsc_portfolio/gqafkoubagbkoi47svkl.png",
+      "duration": "Commercial Release",
+      "learnings": "EdTech workflows and Apple App Store publishing standards.",
+      "challenges": "Making rapid classroom attendance marking effortless for educators.",
+      "liveUrl": "",
+      "subtitle": "United Kingdom • EdTech",
+      "projectType": "React Native (Expo)",
+      "status": "Published",
+      "description": "Digital attendance management mobile application built for schools, educational institutes, and training centres in the UK.",
+      "features": [
+        "Fast digital attendance marking",
+        "Multi-class & institute management",
+        "Attendance record synchronization"
+      ],
       "category": "mobile",
       "technologies": [
         "React Native",
@@ -290,66 +303,31 @@
         "REST API",
         "iOS App Store"
       ],
-      "projectType": "React Native (Expo)",
+      "featured": false,
+      "id": "cv-threedots",
+      "images": [],
       "teamMembers": [
         "INTTEQ Team",
         "Sachintha"
-      ],
-      "date": "2025",
-      "playStoreUrl": "",
-      "duration": "Commercial Release",
-      "status": "Published",
-      "liveUrl": "",
-      "id": "cv-threedots",
-      "features": [
-        "Fast digital attendance marking",
-        "Multi-class & institute management",
-        "Attendance record synchronization"
-      ],
-      "title": "Three Dots Learning — Attendance App",
-      "images": [],
-      "featured": false,
-      "repoUrl": ""
+      ]
     },
     {
-      "liveUrl": "https://dev.wasanabakers.lk",
-      "date": "Dec 2024",
-      "category": "web",
-      "projectType": "Full-Stack Web App",
+      "appStoreUrl": "",
+      "duration": "1 Year",
+      "title": "Wasana Bakers Group Ecosystem",
+      "id": "w02",
+      "repoUrl": "",
+      "isPublic": true,
       "technologies": [
         "React",
         "Tailwind CSS",
         "MySQL",
         "REST API"
       ],
-      "challenges": "Managing complex evolving requirements across three distinct business divisions.",
-      "subtitle": "Sri Lanka • Wasana Bakers, Horana",
-      "isPublic": true,
-      "description": "Comprehensive web system built exclusively for Wasana Bakers Group of Companies featuring branch mapping, online ordering, hall & room bookings, and inter-branch request workflows.",
-      "appStoreUrl": "",
-      "repoUrl": "",
-      "features": [
-        "Interactive Branch Map",
-        "Online Ordering System",
-        "Branch Stock Requests",
-        "Reception Hall & Room Booking"
-      ],
-      "title": "Wasana Bakers Group Ecosystem",
-      "featured": true,
-      "id": "w02",
-      "playStoreUrl": "",
       "learnings": "Enterprise database design, scalable responsive systems, and agile team leadership.",
-      "status": "Completed",
-      "duration": "1 Year",
-      "teamMembers": [
-        "Ravindu",
-        "Channa",
-        "Sandeepa",
-        "Nipuni",
-        "Sachintha"
-      ],
-      "more": "Wasana Bakers Group of Company is a renowned Sri Lankan brand specializing in high-quality baked goods, catering, and hospitality. We architected an integrated web ecosystem covering their Bakery, Gimanahala, and Reception Hall divisions with real-time branch coordination and responsive customer experiences.",
-      "role": "Full-Stack Developer",
+      "playStoreUrl": "",
+      "challenges": "Managing complex evolving requirements across three distinct business divisions.",
+      "description": "Comprehensive web system built exclusively for Wasana Bakers Group of Companies featuring branch mapping, online ordering, hall & room bookings, and inter-branch request workflows.",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503818/smsc_portfolio/upmlei5nzcy2bcos8zbj.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503828/smsc_portfolio/ekr4f8aqco133y3w9j38.png",
@@ -370,37 +348,36 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503925/smsc_portfolio/dxlkj6maiamjkzfm8g2q.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503934/smsc_portfolio/kj4bxxznsp2jhjbxgby7.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503940/smsc_portfolio/sxhhn4lub8afobf69dzs.png"
+      ],
+      "category": "web",
+      "projectType": "Full-Stack Web App",
+      "featured": true,
+      "date": "Dec 2024",
+      "features": [
+        "Interactive Branch Map",
+        "Online Ordering System",
+        "Branch Stock Requests",
+        "Reception Hall & Room Booking"
+      ],
+      "subtitle": "Sri Lanka • Wasana Bakers, Horana",
+      "role": "Full-Stack Developer",
+      "status": "Completed",
+      "more": "Wasana Bakers Group of Company is a renowned Sri Lankan brand specializing in high-quality baked goods, catering, and hospitality. We architected an integrated web ecosystem covering their Bakery, Gimanahala, and Reception Hall divisions with real-time branch coordination and responsive customer experiences.",
+      "liveUrl": "https://dev.wasanabakers.lk",
+      "teamMembers": [
+        "Ravindu",
+        "Channa",
+        "Sandeepa",
+        "Nipuni",
+        "Sachintha"
       ]
     },
     {
-      "status": "Presented at SL-SWCS’25",
-      "category": "research",
-      "playStoreUrl": "",
-      "repoUrl": "",
-      "teamMembers": [
-        "S.M. Sachintha Chathuranga",
-        "Supervised by Dr. (Ms.) J. Samantha Tharani"
-      ],
-      "subtitle": "SL-SWCS’25 Research Poster • University of Jaffna",
-      "liveUrl": "",
-      "images": [],
       "isPublic": true,
-      "role": "Undergraduate Researcher",
-      "more": "Conducted as undergraduate Honours research at the Department of Computer Science, University of Jaffna under Dr. (Ms.) J. Samantha Tharani, and presented as a research poster at SL-SWCS’25.",
-      "date": "2025",
-      "description": "Computer vision research project developing YOLO-based deep learning models (YOLOv8 and YOLO11) to detect and classify 13 electrical components in hand-drawn circuit diagrams with high detection accuracy.",
+      "learnings": "Object detection pipelines, dataset augmentation, and rigorous academic evaluation.",
+      "liveUrl": "",
       "appStoreUrl": "",
-      "id": "cv-research-circuit",
-      "features": [
-        "Detects & classifies 13 electrical components",
-        "Comparative evaluation of YOLOv8 vs YOLO11",
-        "Hand-drawn circuit diagram dataset curation",
-        "Poster presentation at SL-SWCS’25"
-      ],
-      "featured": true,
-      "challenges": "Handling wide handwriting variability and overlapping strokes in freehand electrical schematics.",
-      "projectType": "Computer Vision • YOLOv8 & YOLO11",
-      "title": "Hand-Drawn Circuit Component Recognition",
+      "duration": "Honours Research",
       "technologies": [
         "Python",
         "YOLOv8",
@@ -408,50 +385,85 @@
         "Computer Vision",
         "Deep Learning"
       ],
-      "duration": "Honours Research",
-      "learnings": "Object detection pipelines, dataset augmentation, and rigorous academic evaluation."
+      "title": "Hand-Drawn Circuit Component Recognition",
+      "subtitle": "SL-SWCS’25 Research Poster • University of Jaffna",
+      "status": "Presented at SL-SWCS’25",
+      "features": [
+        "Detects & classifies 13 electrical components",
+        "Comparative evaluation of YOLOv8 vs YOLO11",
+        "Hand-drawn circuit diagram dataset curation",
+        "Poster presentation at SL-SWCS’25"
+      ],
+      "playStoreUrl": "",
+      "challenges": "Handling wide handwriting variability and overlapping strokes in freehand electrical schematics.",
+      "teamMembers": [
+        "S.M. Sachintha Chathuranga",
+        "Supervised by Dr. (Ms.) J. Samantha Tharani"
+      ],
+      "id": "cv-research-circuit",
+      "images": [],
+      "date": "2025",
+      "featured": true,
+      "description": "Computer vision research project developing YOLO-based deep learning models (YOLOv8 and YOLO11) to detect and classify 13 electrical components in hand-drawn circuit diagrams with high detection accuracy.",
+      "category": "research",
+      "more": "Conducted as undergraduate Honours research at the Department of Computer Science, University of Jaffna under Dr. (Ms.) J. Samantha Tharani, and presented as a research poster at SL-SWCS’25.",
+      "projectType": "Computer Vision • YOLOv8 & YOLO11",
+      "repoUrl": "",
+      "role": "Undergraduate Researcher"
     },
     {
-      "appStoreUrl": "",
+      "liveUrl": "",
+      "teamMembers": [
+        "Sachintha"
+      ],
+      "status": "Completed",
       "challenges": "",
+      "duration": "1 Month",
+      "images": [],
+      "projectType": "React Web App",
       "description": "",
-      "category": "web",
-      "title": "New Project",
+      "isPublic": true,
       "technologies": [
         "React",
         "Tailwind CSS"
       ],
-      "date": "Nov 2026",
-      "isPublic": true,
-      "projectType": "React Web App",
-      "learnings": "",
-      "subtitle": "",
       "featured": false,
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "features": [],
       "id": "p-mwtsaod3",
-      "images": [],
+      "category": "web",
+      "date": "Nov 2026",
+      "playStoreUrl": "",
       "more": "",
       "role": "Full-Stack Developer",
-      "liveUrl": "",
-      "playStoreUrl": "",
+      "learnings": "",
       "repoUrl": "",
-      "duration": "1 Month",
-      "status": "Completed"
+      "subtitle": "",
+      "features": [],
+      "appStoreUrl": "",
+      "title": "New Project"
     },
     {
-      "learnings": "Firebase integration, localization architecture, and smooth mobile-first UX.",
       "duration": "2 Months",
       "projectType": "React Native Mobile App",
-      "role": "Full-Stack Mobile Developer",
-      "more": "Designed and developed end-to-end with Expo and Firebase, delivering fast offline-friendly browsing, authentication, personal favorites, and seamless localization for Sri Lankan and international audiences.",
-      "liveUrl": "https://play.google.com/store/apps/details?id=com.recipebook",
-      "repoUrl": "",
-      "featured": true,
-      "id": "m01",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.recipebook",
+      "description": "A cross-platform mobile application to browse, search, and save curated recipes with categorized ingredients, step-by-step instructions, YouTube tutorials, and Sinhala/English language switching.",
+      "id": "m01",
+      "isPublic": true,
+      "teamMembers": [
+        "Nipuni",
+        "Sachintha"
+      ],
+      "challenges": "Optimizing media-heavy list performance and seamless real-time language switching.",
+      "liveUrl": "https://play.google.com/store/apps/details?id=com.recipebook",
+      "date": "Nov 2024",
+      "category": "mobile",
+      "role": "Full-Stack Mobile Developer",
+      "featured": true,
+      "more": "Designed and developed end-to-end with Expo and Firebase, delivering fast offline-friendly browsing, authentication, personal favorites, and seamless localization for Sri Lankan and international audiences.",
+      "learnings": "Firebase integration, localization architecture, and smooth mobile-first UX.",
+      "title": "Dish & Delight — Food Recipe App",
+      "appStoreUrl": "",
+      "status": "Published",
+      "subtitle": "Bilingual Mobile Culinary Companion",
       "features": [
         "Browse recipes by category",
         "Instant search & filters",
@@ -459,8 +471,6 @@
         "Embedded video tutorials",
         "Multi-language support (Sinhala & English)"
       ],
-      "description": "A cross-platform mobile application to browse, search, and save curated recipes with categorized ingredients, step-by-step instructions, YouTube tutorials, and Sinhala/English language switching.",
-      "appStoreUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503942/smsc_portfolio/s23qz7uzmp5hyyyztbmr.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503948/smsc_portfolio/ff6jypbpoduuthxyjj38.png",
@@ -477,80 +487,55 @@
         "Context API",
         "YouTube API"
       ],
-      "isPublic": true,
-      "subtitle": "Bilingual Mobile Culinary Companion",
-      "teamMembers": [
-        "Nipuni",
-        "Sachintha"
-      ],
-      "date": "Nov 2024",
-      "status": "Published",
-      "challenges": "Optimizing media-heavy list performance and seamless real-time language switching.",
-      "title": "Dish & Delight — Food Recipe App",
-      "category": "mobile"
+      "repoUrl": ""
     },
     {
-      "repoUrl": "https://github.com/SachinthaChathuranga/my-portfolio",
+      "learnings": "Advanced motion design, Vite custom middleware, and modern editorial layouts.",
+      "liveUrl": "https://sachinthachathuranga.github.io/my-portfolio/",
+      "duration": "Ongoing",
+      "id": "w01",
+      "appStoreUrl": "",
+      "playStoreUrl": "",
+      "challenges": "Balancing rich visual depth and 3D interactions with smooth 60fps performance.",
+      "isPublic": true,
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503989/smsc_portfolio/rcgwzyviuctns9l0eoa0.png"
       ],
-      "projectType": "React + Motion UI",
+      "more": "Engineered for speed and expressive storytelling, deployed via automated GitHub Actions to GitHub Pages.",
       "featured": true,
-      "features": [
-        "3D Perspective Preloader",
-        "Motion UI & Tilt Cards",
-        "Interactive Media Lightbox",
-        "Local Studio CMS"
+      "repoUrl": "https://github.com/SachinthaChathuranga/my-portfolio",
+      "teamMembers": [
+        "Sachintha"
       ],
+      "role": "Creator & Frontend Engineer",
+      "category": "web",
       "technologies": [
         "React",
         "Vite",
         "Tailwind CSS",
         "Framer Motion"
       ],
-      "id": "w01",
-      "status": "Completed",
-      "challenges": "Balancing rich visual depth and 3D interactions with smooth 60fps performance.",
-      "description": "Personal portfolio showcasing software engineering, mobile applications, UI/UX design systems, and graphic art with custom motion choreography and a local-only CMS.",
-      "appStoreUrl": "",
-      "liveUrl": "https://sachinthachathuranga.github.io/my-portfolio/",
-      "more": "Engineered for speed and expressive storytelling, deployed via automated GitHub Actions to GitHub Pages.",
-      "role": "Creator & Frontend Engineer",
-      "duration": "Ongoing",
-      "learnings": "Advanced motion design, Vite custom middleware, and modern editorial layouts.",
       "date": "2024 - 2026",
-      "category": "web",
-      "playStoreUrl": "",
-      "isPublic": true,
-      "teamMembers": [
-        "Sachintha"
+      "description": "Personal portfolio showcasing software engineering, mobile applications, UI/UX design systems, and graphic art with custom motion choreography and a local-only CMS.",
+      "status": "Completed",
+      "projectType": "React + Motion UI",
+      "features": [
+        "3D Perspective Preloader",
+        "Motion UI & Tilt Cards",
+        "Interactive Media Lightbox",
+        "Local Studio CMS"
       ],
-      "subtitle": "Personal Brand & Project Showcase",
-      "title": "Interactive Developer Portfolio"
+      "title": "Interactive Developer Portfolio",
+      "subtitle": "Personal Brand & Project Showcase"
     },
     {
-      "learnings": "Structured PHP/MySQL workflows and collaborative university team development.",
-      "featured": false,
-      "technologies": [
-        "PHP",
-        "JavaScript",
-        "CSS",
-        "MySQL"
-      ],
-      "images": [],
-      "features": [
-        "Departmental resource directory",
-        "Conflict-free booking workflow",
-        "Responsive admin views"
-      ],
       "description": "Web platform enabling university departments to manage, request, and allocate shared academic rooms, lab equipment, and institutional resources.",
-      "appStoreUrl": "",
-      "liveUrl": "",
-      "date": "May 2023",
       "status": "Completed",
-      "repoUrl": "",
-      "duration": "3 Months",
       "projectType": "PHP Web Platform",
+      "playStoreUrl": "",
+      "duration": "3 Months",
+      "repoUrl": "",
+      "date": "May 2023",
       "teamMembers": [
         "Sankalpa",
         "Ruwini",
@@ -558,78 +543,77 @@
         "Amila",
         "Sachintha"
       ],
-      "challenges": "Coordinating multi-department data models and third-party integrations.",
-      "category": "web",
+      "images": [],
       "title": "University Resource Hub",
-      "more": "Built to eliminate scheduling conflicts across faculty departments with role-based approvals and clear availability calendars.",
-      "role": "Frontend Developer",
       "isPublic": true,
-      "playStoreUrl": "",
+      "role": "Frontend Developer",
       "id": "w03",
-      "subtitle": "Departmental Allocation System"
+      "more": "Built to eliminate scheduling conflicts across faculty departments with role-based approvals and clear availability calendars.",
+      "liveUrl": "",
+      "featured": false,
+      "category": "web",
+      "learnings": "Structured PHP/MySQL workflows and collaborative university team development.",
+      "appStoreUrl": "",
+      "technologies": [
+        "PHP",
+        "JavaScript",
+        "CSS",
+        "MySQL"
+      ],
+      "subtitle": "Departmental Allocation System",
+      "features": [
+        "Departmental resource directory",
+        "Conflict-free booking workflow",
+        "Responsive admin views"
+      ],
+      "challenges": "Coordinating multi-department data models and third-party integrations."
     },
     {
-      "date": "Dec 2024",
-      "subtitle": "Smart Personal Finance Tracker",
+      "duration": "3 Months",
       "status": "In Progress",
-      "teamMembers": [
-        "Nipuni",
-        "Sachintha"
-      ],
-      "isPublic": true,
-      "category": "mobile",
-      "playStoreUrl": "",
-      "images": [],
-      "challenges": "Ensuring accurate real-time synchronization of financial records across devices.",
-      "repoUrl": "",
-      "appStoreUrl": "",
       "description": "Mobile finance companion for scheduling recurring incomes, tracking daily expenses, and visualizing monthly cash-flow insights across devices.",
+      "challenges": "Ensuring accurate real-time synchronization of financial records across devices.",
+      "projectType": "React Native + Redux",
       "technologies": [
         "React Native",
         "Redux",
         "Firebase Auth",
         "Cloud Firestore"
       ],
-      "duration": "3 Months",
-      "id": "m02",
       "liveUrl": "",
+      "isPublic": true,
+      "images": [],
       "title": "Astro Budget App",
       "learnings": "Predictable Redux state architecture and mobile data visualization.",
+      "teamMembers": [
+        "Nipuni",
+        "Sachintha"
+      ],
+      "appStoreUrl": "",
       "more": "Architected with Redux state management and Cloud Firestore synchronization for instant multi-device reliability.",
       "role": "Mobile App Developer",
+      "featured": false,
+      "category": "mobile",
+      "date": "Dec 2024",
+      "subtitle": "Smart Personal Finance Tracker",
       "features": [
         "Scheduled income & expense tracking",
         "Financial summaries & charts",
         "Cloud sync across devices"
       ],
-      "projectType": "React Native + Redux",
-      "featured": false
+      "playStoreUrl": "",
+      "id": "m02",
+      "repoUrl": ""
     },
     {
-      "role": "Mobile App Developer",
       "more": "Integrates Expo Notifications and Google Calendar workflows to keep busy professionals on track.",
-      "projectType": "React Native + Expo",
-      "challenges": "Implementing reliable cross-platform background notifications.",
-      "features": [
-        "Smart shift scheduling",
-        "Push reminder alerts",
-        "Calendar synchronization"
-      ],
-      "featured": false,
-      "description": "Productivity mobile application to organize work shifts, plan daily schedules, and fire reliable cross-platform task reminders.",
-      "appStoreUrl": "",
-      "duration": "2 Months",
+      "isPublic": true,
+      "role": "Mobile App Developer",
       "playStoreUrl": "",
-      "category": "mobile",
-      "technologies": [
-        "React Native",
-        "Expo",
-        "Expo Notifications",
-        "Google Calendar API"
-      ],
-      "id": "m03",
+      "date": "Dec 2024",
       "status": "In Progress",
       "learnings": "Push notification lifecycles and external calendar API integration.",
+      "duration": "2 Months",
       "repoUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503995/smsc_portfolio/zcvgpaygmftekjxg6opr.png",
@@ -637,44 +621,43 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503997/smsc_portfolio/ozqccspywpd6ol35bzwc.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504000/smsc_portfolio/n5z4mzk4f848a4fqp2ge.png"
       ],
-      "subtitle": "Task & Reminder Planner",
-      "liveUrl": "",
-      "isPublic": true,
-      "title": "Work Schedule App",
-      "date": "Dec 2024",
+      "appStoreUrl": "",
       "teamMembers": [
         "Sachintha"
-      ]
+      ],
+      "subtitle": "Task & Reminder Planner",
+      "features": [
+        "Smart shift scheduling",
+        "Push reminder alerts",
+        "Calendar synchronization"
+      ],
+      "id": "m03",
+      "title": "Work Schedule App",
+      "technologies": [
+        "React Native",
+        "Expo",
+        "Expo Notifications",
+        "Google Calendar API"
+      ],
+      "projectType": "React Native + Expo",
+      "description": "Productivity mobile application to organize work shifts, plan daily schedules, and fire reliable cross-platform task reminders.",
+      "challenges": "Implementing reliable cross-platform background notifications.",
+      "liveUrl": "",
+      "category": "mobile",
+      "featured": false
     },
     {
-      "technologies": [
-        "Figma",
-        "Design System",
-        "Mobile UX"
-      ],
-      "role": "UI/UX Designer",
-      "more": "Crafted end-to-end in Figma with reusable component libraries, typography scales, and interactive user flows.",
-      "projectType": "Figma Mobile Design",
-      "duration": "3 Weeks",
-      "id": "u01",
-      "repoUrl": "",
-      "liveUrl": "",
-      "challenges": "Keeping ingredient lists and step-by-step instructions readable while cooking.",
-      "description": "Complete mobile interface design system for the Recipe Book app featuring warm culinary hierarchy, intuitive filtering, and distraction-free cooking screens.",
+      "category": "uiux",
       "appStoreUrl": "",
-      "features": [
-        "13+ high-fidelity mobile screens",
-        "Component library",
-        "Interactive onboarding & recipe flow"
-      ],
       "featured": true,
       "learnings": "Mobile accessibility, touch-target ergonomics, and visual appetite appeal.",
-      "subtitle": "Mobile App Figma Case Study",
-      "isPublic": true,
-      "title": "Dish & Delight — UI/UX System",
+      "repoUrl": "",
       "status": "Completed",
-      "category": "uiux",
       "date": "2024",
+      "more": "Crafted end-to-end in Figma with reusable component libraries, typography scales, and interactive user flows.",
+      "subtitle": "Mobile App Figma Case Study",
+      "playStoreUrl": "",
+      "role": "UI/UX Designer",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504003/smsc_portfolio/uikqrfgg1bdvup9ukgml.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504006/smsc_portfolio/frkouagwuijpasphjncx.png",
@@ -690,41 +673,33 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504029/smsc_portfolio/czp06drirv47varck1wr.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504030/smsc_portfolio/c0ub5kd0jm3gxbis5ioc.png"
       ],
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "playStoreUrl": ""
-    },
-    {
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "subtitle": "Multi-Device Commerce Experience",
-      "playStoreUrl": "",
-      "isPublic": true,
-      "id": "u02",
-      "challenges": "Unifying bakery, hospitality, and branch management flows under one visual language.",
-      "title": "Wasana Bakers — Web & Mobile UX",
-      "category": "uiux",
-      "more": "Designed cohesive desktop and mobile journeys bridging brand heritage with modern e-commerce clarity.",
-      "role": "UI/UX Designer",
-      "duration": "1 Month",
-      "status": "Completed",
-      "liveUrl": "",
-      "date": "2024",
-      "appStoreUrl": "",
-      "description": "Responsive web and mobile interface concepts for Wasana Bakers covering storefront ordering, branch locator, and corporate applications.",
       "features": [
-        "Desktop & mobile views",
-        "Branch application workflows",
-        "Product showcase layouts"
+        "13+ high-fidelity mobile screens",
+        "Component library",
+        "Interactive onboarding & recipe flow"
       ],
-      "learnings": "Responsive grid adaptation and multi-audience information architecture.",
       "technologies": [
         "Figma",
-        "Responsive UI",
-        "E-Commerce UX"
+        "Design System",
+        "Mobile UX"
       ],
+      "id": "u01",
+      "title": "Dish & Delight — UI/UX System",
+      "liveUrl": "",
+      "duration": "3 Weeks",
+      "description": "Complete mobile interface design system for the Recipe Book app featuring warm culinary hierarchy, intuitive filtering, and distraction-free cooking screens.",
+      "challenges": "Keeping ingredient lists and step-by-step instructions readable while cooking.",
+      "projectType": "Figma Mobile Design",
+      "isPublic": true,
+      "teamMembers": [
+        "Sachintha"
+      ]
+    },
+    {
+      "status": "Completed",
+      "featured": false,
+      "category": "uiux",
+      "subtitle": "Multi-Device Commerce Experience",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504043/smsc_portfolio/py9vew9efovxtrgd457k.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504112/smsc_portfolio/ah1bkugaximzi2oa4rdn.jpg",
@@ -740,43 +715,36 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504228/smsc_portfolio/ooredssgwknwy4gxnu8c.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504242/smsc_portfolio/gdsijluxjspxrpyfbwhw.jpg"
       ],
-      "featured": false,
-      "repoUrl": "",
-      "projectType": "Figma Web & Mobile UI"
-    },
-    {
-      "id": "u04",
-      "learnings": "Dark-mode color contrast and entertainment UX patterns.",
+      "liveUrl": "",
+      "features": [
+        "Desktop & mobile views",
+        "Branch application workflows",
+        "Product showcase layouts"
+      ],
+      "appStoreUrl": "",
       "technologies": [
         "Figma",
-        "Prototyping",
-        "Visual Design"
+        "Responsive UI",
+        "E-Commerce UX"
       ],
-      "duration": "2 Weeks",
+      "more": "Designed cohesive desktop and mobile journeys bridging brand heritage with modern e-commerce clarity.",
+      "role": "UI/UX Designer",
+      "playStoreUrl": "",
+      "challenges": "Unifying bakery, hospitality, and branch management flows under one visual language.",
+      "duration": "1 Month",
+      "id": "u02",
       "teamMembers": [
         "Sachintha"
       ],
-      "repoUrl": "",
-      "liveUrl": "",
-      "features": [
-        "12+ mobile screens",
-        "Character & show discovery",
-        "Custom dark UI accents"
-      ],
       "date": "2024",
-      "featured": false,
-      "more": "Explored energetic visual storytelling tailored for animation fans with dark-mode cinema appeal.",
-      "role": "UI/UX Designer",
-      "subtitle": "Playful Mobile Streaming Concept",
-      "appStoreUrl": "",
       "isPublic": true,
-      "description": "Vibrant cartoon and animation discovery app interface featuring expressive character cards, bold color blocks, and smooth episode browsing.",
-      "title": "Toon Galaxy — Entertainment App UI",
-      "status": "Completed",
-      "challenges": "Balancing playful illustration vibrancy with legible navigation.",
-      "category": "uiux",
-      "projectType": "Figma Mobile UI",
-      "playStoreUrl": "",
+      "learnings": "Responsive grid adaptation and multi-audience information architecture.",
+      "projectType": "Figma Web & Mobile UI",
+      "title": "Wasana Bakers — Web & Mobile UX",
+      "repoUrl": "",
+      "description": "Responsive web and mobile interface concepts for Wasana Bakers covering storefront ordering, branch locator, and corporate applications."
+    },
+    {
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504247/smsc_portfolio/s4jwo3ht3oxbdt3bhkcg.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504252/smsc_portfolio/f7apf91zpltronywoyal.png",
@@ -790,41 +758,62 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504273/smsc_portfolio/tbcmrxuwwazw0kkxf5kd.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504274/smsc_portfolio/koc4ugblmzegz6dkm2il.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504278/smsc_portfolio/wfwytrwvvw92gos9nuwl.png"
-      ]
-    },
-    {
-      "subtitle": "Conversational AI Interface",
-      "isPublic": true,
-      "date": "2024",
-      "challenges": "Structuring rich AI responses without overwhelming small viewports.",
-      "appStoreUrl": "",
-      "description": "Sleek conversational AI assistant mobile interface designed for prompt discovery, clean chat threads, and rapid voice/text interaction.",
+      ],
+      "id": "u04",
+      "featured": false,
+      "challenges": "Balancing playful illustration vibrancy with legible navigation.",
       "category": "uiux",
+      "status": "Completed",
+      "features": [
+        "12+ mobile screens",
+        "Character & show discovery",
+        "Custom dark UI accents"
+      ],
+      "title": "Toon Galaxy — Entertainment App UI",
+      "role": "UI/UX Designer",
+      "more": "Explored energetic visual storytelling tailored for animation fans with dark-mode cinema appeal.",
+      "appStoreUrl": "",
+      "subtitle": "Playful Mobile Streaming Concept",
+      "repoUrl": "",
+      "date": "2024",
+      "technologies": [
+        "Figma",
+        "Prototyping",
+        "Visual Design"
+      ],
       "playStoreUrl": "",
-      "projectType": "Figma Mobile UI",
-      "title": "Chat AI Assistant — Mobile UI",
-      "id": "u06",
+      "duration": "2 Weeks",
       "teamMembers": [
         "Sachintha"
+      ],
+      "learnings": "Dark-mode color contrast and entertainment UX patterns.",
+      "isPublic": true,
+      "liveUrl": "",
+      "description": "Vibrant cartoon and animation discovery app interface featuring expressive character cards, bold color blocks, and smooth episode browsing.",
+      "projectType": "Figma Mobile UI"
+    },
+    {
+      "features": [
+        "Clean chat thread UX",
+        "Prompt suggestion cards",
+        "Minimalist dark/light contrast"
       ],
       "technologies": [
         "Figma",
         "AI UX",
         "Mobile Interface"
       ],
-      "learnings": "Conversational UI spacing and micro-interaction affordances.",
-      "duration": "2 Weeks",
-      "status": "Completed",
+      "id": "u06",
+      "subtitle": "Conversational AI Interface",
+      "description": "Sleek conversational AI assistant mobile interface designed for prompt discovery, clean chat threads, and rapid voice/text interaction.",
+      "projectType": "Figma Mobile UI",
       "repoUrl": "",
-      "more": "Focused on reducing cognitive clutter in AI chat experiences with clear message hierarchy.",
-      "role": "UI/UX Designer",
-      "liveUrl": "",
-      "features": [
-        "Clean chat thread UX",
-        "Prompt suggestion cards",
-        "Minimalist dark/light contrast"
-      ],
+      "title": "Chat AI Assistant — Mobile UI",
       "featured": false,
+      "category": "uiux",
+      "teamMembers": [
+        "Sachintha"
+      ],
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504279/smsc_portfolio/j9zrtgtprzvhajnrfmo4.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504281/smsc_portfolio/xus51hs1cll11pjxbyok.png",
@@ -833,28 +822,22 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504288/smsc_portfolio/xmv8hnishvqx2nagcewx.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504289/smsc_portfolio/apo8keqf41y1ovrijt6t.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504291/smsc_portfolio/s0s9dvuya6qqvm850q4n.png"
-      ]
+      ],
+      "appStoreUrl": "",
+      "date": "2024",
+      "isPublic": true,
+      "more": "Focused on reducing cognitive clutter in AI chat experiences with clear message hierarchy.",
+      "role": "UI/UX Designer",
+      "duration": "2 Weeks",
+      "status": "Completed",
+      "challenges": "Structuring rich AI responses without overwhelming small viewports.",
+      "playStoreUrl": "",
+      "liveUrl": "",
+      "learnings": "Conversational UI spacing and micro-interaction affordances."
     },
     {
-      "featured": false,
-      "features": [
-        "Timeline schedule view",
-        "Task priority indicators",
-        "Reminder configuration flow"
-      ],
-      "role": "UI/UX Designer",
-      "more": "Complete 13-screen Figma blueprint later translated into the React Native application.",
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "duration": "2 Weeks",
-      "learnings": "Calendar density balance and visual hierarchy for productivity tools.",
       "playStoreUrl": "",
-      "technologies": [
-        "Figma",
-        "Productivity UX",
-        "Mobile Design"
-      ],
+      "appStoreUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503995/smsc_portfolio/zcvgpaygmftekjxg6opr.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503996/smsc_portfolio/rjctixunuoeopbwloonv.png",
@@ -870,22 +853,45 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504309/smsc_portfolio/kr3deohgkqd4b9uxwi9r.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504310/smsc_portfolio/uwtcqpdd4jb2acpvtokk.png"
       ],
-      "liveUrl": "",
-      "projectType": "Figma Mobile UI",
-      "category": "uiux",
-      "title": "Work Schedule — Mobile UX",
-      "date": "2024",
       "repoUrl": "",
-      "challenges": "Making dense schedules feel calm and scannable at a glance.",
+      "learnings": "Calendar density balance and visual hierarchy for productivity tools.",
+      "duration": "2 Weeks",
+      "status": "Completed",
+      "date": "2024",
+      "role": "UI/UX Designer",
+      "more": "Complete 13-screen Figma blueprint later translated into the React Native application.",
       "isPublic": true,
-      "id": "u05",
+      "featured": false,
+      "category": "uiux",
+      "projectType": "Figma Mobile UI",
+      "liveUrl": "",
       "description": "Time-blocking and shift planning mobile UI crafted for effortless calendar navigation, quick task creation, and notification clarity.",
-      "appStoreUrl": "",
-      "subtitle": "Productivity Planner Interface",
-      "status": "Completed"
+      "challenges": "Making dense schedules feel calm and scannable at a glance.",
+      "title": "Work Schedule — Mobile UX",
+      "id": "u05",
+      "features": [
+        "Timeline schedule view",
+        "Task priority indicators",
+        "Reminder configuration flow"
+      ],
+      "technologies": [
+        "Figma",
+        "Productivity UX",
+        "Mobile Design"
+      ],
+      "teamMembers": [
+        "Sachintha"
+      ],
+      "subtitle": "Productivity Planner Interface"
     },
     {
-      "duration": "2 Weeks",
+      "features": [
+        "7 mobile frames",
+        "Category browsing",
+        "Cart & checkout flow"
+      ],
+      "subtitle": "Bakery Ordering Experience",
+      "appStoreUrl": "",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504339/smsc_portfolio/gsr7xd7bees1cxs37aqo.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504362/smsc_portfolio/aggn4quktzzrrgysf0c1.png",
@@ -895,83 +901,90 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504454/smsc_portfolio/sox3irxznncyrpqmohu9.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504460/smsc_portfolio/lg3o5znjnbomg1c3bhmq.png"
       ],
-      "learnings": "Food commerce visual psychology and conversion-focused layouts.",
-      "date": "2024",
-      "id": "u07",
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "challenges": "Keeping checkout frictionless in minimal taps.",
-      "status": "Completed",
-      "title": "Samson Bakers — Mobile UI",
-      "featured": false,
-      "features": [
-        "7 mobile frames",
-        "Category browsing",
-        "Cart & checkout flow"
-      ],
       "playStoreUrl": "",
-      "appStoreUrl": "",
+      "learnings": "Food commerce visual psychology and conversion-focused layouts.",
+      "status": "Completed",
+      "id": "u07",
+      "category": "uiux",
+      "liveUrl": "",
+      "challenges": "Keeping checkout frictionless in minimal taps.",
+      "featured": false,
       "description": "Warm, appetizing mobile ordering experience crafted for Samson Bakers with streamlined product customization and checkout screens.",
+      "title": "Samson Bakers — Mobile UI",
+      "isPublic": true,
+      "projectType": "Figma Mobile UI",
       "technologies": [
         "Figma",
         "Mobile Commerce",
         "UI Design"
       ],
-      "isPublic": true,
-      "liveUrl": "",
-      "subtitle": "Bakery Ordering Experience",
-      "projectType": "Figma Mobile UI",
-      "role": "UI/UX Designer",
-      "more": "Designed focused mobile flows emphasizing product photography and quick reordering.",
       "repoUrl": "",
-      "category": "uiux"
+      "role": "UI/UX Designer",
+      "teamMembers": [
+        "Sachintha"
+      ],
+      "duration": "2 Weeks",
+      "more": "Designed focused mobile flows emphasizing product photography and quick reordering.",
+      "date": "2024"
     },
     {
-      "subtitle": "Desktop Layout Exploration",
-      "isPublic": true,
-      "description": "Early desktop UI explorations and layout wireframes designed in Figma for personal portfolio architecture.",
+      "liveUrl": "",
+      "duration": "1 Week",
+      "learnings": "Editorial composition and section rhythm.",
+      "id": "u03",
+      "playStoreUrl": "",
       "appStoreUrl": "",
+      "title": "Portfolio Concept — Web UI",
+      "isPublic": true,
+      "featured": false,
+      "category": "uiux",
+      "challenges": "Balancing personal story with technical credibility.",
+      "teamMembers": [
+        "Sachintha"
+      ],
       "status": "Completed",
+      "more": "Explored hero composition, project galleries, and typography pacing.",
+      "role": "UI/UX Designer",
       "repoUrl": "",
+      "date": "2024",
+      "technologies": [
+        "Figma",
+        "Web Design"
+      ],
+      "description": "Early desktop UI explorations and layout wireframes designed in Figma for personal portfolio architecture.",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504464/smsc_portfolio/knjj6kwlz6jrrhhmrbyu.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504466/smsc_portfolio/herzb2awp7cvp16wjruf.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504468/smsc_portfolio/ih0cljqiuwc5ck0o62wu.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504469/smsc_portfolio/ryril1gjvmpwftp89ehc.png"
       ],
-      "date": "2024",
-      "category": "uiux",
       "projectType": "Figma Web Design",
-      "learnings": "Editorial composition and section rhythm.",
-      "playStoreUrl": "",
-      "liveUrl": "",
-      "challenges": "Balancing personal story with technical credibility.",
-      "technologies": [
-        "Figma",
-        "Web Design"
-      ],
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "duration": "1 Week",
-      "more": "Explored hero composition, project galleries, and typography pacing.",
-      "role": "UI/UX Designer",
-      "id": "u03",
+      "subtitle": "Desktop Layout Exploration",
       "features": [
         "4 desktop layouts",
         "Grid & section pacing"
-      ],
-      "title": "Portfolio Concept — Web UI",
-      "featured": false
+      ]
     },
     {
-      "status": "Completed",
+      "description": "Extensive collection of official posters, speaker spotlights, certificates, invitations, and campaign banners crafted for IEEE Student Branch of University of Jaffna, INSL, and Gavel Club.",
+      "features": [
+        "27+ campaign artworks",
+        "Event banners & agendas",
+        "Certificates & social media kits"
+      ],
       "subtitle": "INSL, Gavel Club & IEEE SB UOJ",
+      "projectType": "Event Branding & Social Media",
+      "playStoreUrl": "",
+      "challenges": "Maintaining consistent institutional branding under rapid event deadlines.",
+      "repoUrl": "",
+      "teamMembers": [
+        "Sachintha"
+      ],
+      "category": "graphic",
+      "featured": true,
+      "date": "2024",
       "isPublic": true,
       "appStoreUrl": "",
-      "description": "Extensive collection of official posters, speaker spotlights, certificates, invitations, and campaign banners crafted for IEEE Student Branch of University of Jaffna, INSL, and Gavel Club.",
-      "category": "graphic",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504480/smsc_portfolio/g1zfwsx4vzag2jcaqrwd.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795504498/smsc_portfolio/tgbwrfippdsjikhzw4nn.jpg",
@@ -1001,65 +1014,46 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505034/smsc_portfolio/woetnmoh9wc4w9seagsy.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505070/smsc_portfolio/giiklkiiodmgayh0rsas.jpg"
       ],
-      "title": "IEEE & University Event Visuals",
-      "playStoreUrl": "",
+      "learnings": "High-speed campaign systems, print/digital layout precision, and typography.",
       "role": "Lead Graphic Designer",
+      "title": "IEEE & University Event Visuals",
       "more": "Delivered 25+ cohesive campaign visuals across competitions, workshops, ceremonies, and student leadership announcements.",
-      "projectType": "Event Branding & Social Media",
-      "teamMembers": [
-        "Sachintha"
-      ],
+      "duration": "2023 - 2025",
+      "id": "g05",
       "technologies": [
         "Adobe Illustrator",
         "Adobe Photoshop",
         "Brand Design"
       ],
-      "date": "2024",
-      "duration": "2023 - 2025",
-      "repoUrl": "",
-      "challenges": "Maintaining consistent institutional branding under rapid event deadlines.",
       "liveUrl": "",
-      "id": "g05",
-      "learnings": "High-speed campaign systems, print/digital layout precision, and typography.",
-      "features": [
-        "27+ campaign artworks",
-        "Event banners & agendas",
-        "Certificates & social media kits"
-      ],
-      "featured": true
+      "status": "Completed"
     },
     {
-      "category": "graphic",
       "title": "Digital Art & Vector Portraits",
-      "playStoreUrl": "",
-      "appStoreUrl": "",
+      "duration": "Collection",
       "repoUrl": "",
-      "description": "Expressive vector illustrations, cinematic movie poster tributes, and stylized digital portraits crafted in Adobe Illustrator.",
-      "subtitle": "Stylized Character & Portrait Art",
-      "liveUrl": "",
       "challenges": "Capturing human likeness and dramatic light using crisp vector geometry.",
-      "isPublic": true,
-      "more": "Explores bold lighting, dramatic silhouettes, and layered shading techniques.",
-      "role": "Digital Illustrator",
-      "id": "g01",
-      "projectType": "Vector Illustration",
+      "playStoreUrl": "",
       "learnings": "Color theory, shading gradients, and pen-tool precision.",
+      "appStoreUrl": "",
+      "id": "g01",
+      "isPublic": true,
+      "category": "graphic",
+      "featured": false,
+      "liveUrl": "",
       "teamMembers": [
         "Sachintha"
       ],
       "status": "Completed",
-      "features": [
-        "Vector portraits",
-        "Pop-culture & movie art",
-        "Layered lighting studies"
-      ],
-      "featured": false,
-      "date": "2024",
-      "duration": "Collection",
       "technologies": [
         "Adobe Illustrator",
         "Digital Art"
       ],
+      "role": "Digital Illustrator",
+      "more": "Explores bold lighting, dramatic silhouettes, and layered shading techniques.",
+      "subtitle": "Stylized Character & Portrait Art",
+      "projectType": "Vector Illustration",
+      "date": "2024",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505073/smsc_portfolio/a8obfbyxrpyuzng7vpgj.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505077/smsc_portfolio/buifvhxeqavj10fniqwe.jpg",
@@ -1067,22 +1061,21 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505081/smsc_portfolio/c188o54hoxz262f5brjn.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505082/smsc_portfolio/wmr4wcbumhf0u6wigazb.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505084/smsc_portfolio/upejfqfydfvjbapdpe4p.jpg"
+      ],
+      "description": "Expressive vector illustrations, cinematic movie poster tributes, and stylized digital portraits crafted in Adobe Illustrator.",
+      "features": [
+        "Vector portraits",
+        "Pop-culture & movie art",
+        "Layered lighting studies"
       ]
     },
     {
-      "category": "graphic",
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "status": "Completed",
-      "repoUrl": "",
-      "subtitle": "Custom Marks & App Icons",
-      "liveUrl": "",
-      "playStoreUrl": "",
-      "isPublic": true,
       "learnings": "Grid construction, optical balance, and scalable iconography.",
-      "role": "Brand Designer",
-      "more": "Built as scalable vector marks that stay sharp from tiny app icons to large banners.",
+      "isPublic": true,
+      "playStoreUrl": "",
+      "appStoreUrl": "",
+      "repoUrl": "",
+      "duration": "Collection",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505085/smsc_portfolio/ltjuyqegztzlu78eswdy.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505093/smsc_portfolio/brg8jrdrcge28cekl3wu.png",
@@ -1090,44 +1083,53 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505106/smsc_portfolio/or79gmwic6ccaefb9jhs.png",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505108/smsc_portfolio/rnbzuwyncul5lk6h0ewb.png"
       ],
-      "date": "2024",
-      "challenges": "Distilling brand personality into memorable, minimal silhouettes.",
-      "title": "Brand Identities & Logos",
       "features": [
         "App icons",
         "Community & club marks",
         "Scalable vector geometry"
       ],
-      "id": "g03",
-      "featured": false,
-      "appStoreUrl": "",
+      "projectType": "Logo Design",
       "description": "Original brand marks, club emblems, developer monograms, and mobile app icons crafted for digital products and student communities.",
+      "subtitle": "Custom Marks & App Icons",
+      "date": "2024",
+      "more": "Built as scalable vector marks that stay sharp from tiny app icons to large banners.",
+      "role": "Brand Designer",
+      "teamMembers": [
+        "Sachintha"
+      ],
+      "id": "g03",
+      "challenges": "Distilling brand personality into memorable, minimal silhouettes.",
+      "status": "Completed",
+      "liveUrl": "",
       "technologies": [
         "Adobe Illustrator",
         "Brand Identity"
       ],
-      "duration": "Collection",
-      "projectType": "Logo Design"
+      "featured": false,
+      "title": "Brand Identities & Logos",
+      "category": "graphic"
     },
     {
-      "date": "2024",
       "description": "High-impact promotional flyers, event invitations, and large-format banners combining bold typography and clean visual hierarchy.",
-      "appStoreUrl": "",
+      "learnings": "Print bleed/margins, visual contrast, and focal composition.",
+      "date": "2024",
+      "projectType": "Commercial Graphics",
+      "subtitle": "Print & Digital Campaigns",
+      "repoUrl": "",
+      "more": "Designed for both digital social feeds and high-resolution physical print.",
+      "title": "Promotional Flyers & Banners",
+      "role": "Graphic Designer",
       "features": [
         "Print-ready invitations",
         "Large-format banners",
         "Social campaign posters"
       ],
       "status": "Completed",
+      "category": "graphic",
       "featured": false,
-      "repoUrl": "",
-      "liveUrl": "",
-      "projectType": "Commercial Graphics",
-      "technologies": [
-        "Adobe Illustrator",
-        "Adobe Photoshop"
+      "teamMembers": [
+        "Sachintha"
       ],
-      "duration": "Collection",
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505111/smsc_portfolio/buy75sxcnfishas5ezn7.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505115/smsc_portfolio/cymal2ocwfymhfxzr9wb.jpg",
@@ -1135,49 +1137,22 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505267/smsc_portfolio/xyewmvpgounibnxqxknr.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505271/smsc_portfolio/lrdemasz3mwbee3d403l.jpg"
       ],
-      "learnings": "Print bleed/margins, visual contrast, and focal composition.",
-      "category": "graphic",
-      "id": "g04",
-      "title": "Promotional Flyers & Banners",
-      "challenges": "Communicating dense event information while keeping designs eye-catching.",
-      "playStoreUrl": "",
-      "teamMembers": [
-        "Sachintha"
+      "technologies": [
+        "Adobe Illustrator",
+        "Adobe Photoshop"
       ],
-      "subtitle": "Print & Digital Campaigns",
+      "playStoreUrl": "",
+      "liveUrl": "",
       "isPublic": true,
-      "role": "Graphic Designer",
-      "more": "Designed for both digital social feeds and high-resolution physical print."
+      "appStoreUrl": "",
+      "id": "g04",
+      "duration": "Collection",
+      "challenges": "Communicating dense event information while keeping designs eye-catching."
     },
     {
-      "subtitle": "Hand-Drawn Graphite Artwork",
-      "teamMembers": [
-        "Sachintha"
-      ],
-      "isPublic": true,
-      "more": "Traditional art practice that directly informs my sense of lighting, shadow, and composition in digital UI design.",
-      "role": "Fine Artist",
-      "title": "Traditional Pencil Portraits",
-      "repoUrl": "",
-      "category": "graphic",
       "liveUrl": "",
-      "playStoreUrl": "",
-      "technologies": [
-        "Graphite Pencils",
-        "Fine Art Shading"
-      ],
-      "duration": "Collection",
-      "appStoreUrl": "",
-      "description": "Hand-drawn graphite pencil portraits exploring realistic shading, subtle skin textures, and expressive portraiture.",
       "status": "Completed",
-      "learnings": "Observation, patience, and mastery of light and shadow.",
-      "challenges": "Achieving lifelike depth and expression purely through tonal gradation.",
-      "features": [
-        "Hand-drawn portraits",
-        "Value & contrast studies"
-      ],
-      "id": "g02",
-      "projectType": "Fine Art",
+      "isPublic": true,
       "images": [
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505273/smsc_portfolio/p49tgg58mlawrjykpmwp.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505274/smsc_portfolio/ozgd6dcdjmxim3abmqwv.jpg",
@@ -1185,12 +1160,727 @@
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505279/smsc_portfolio/tlgexytuku6izrzs72ry.jpg",
         "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505281/smsc_portfolio/frgkctitcg3kihwzmnwv.jpg"
       ],
+      "title": "Traditional Pencil Portraits",
+      "id": "g02",
+      "technologies": [
+        "Graphite Pencils",
+        "Fine Art Shading"
+      ],
+      "duration": "Collection",
+      "appStoreUrl": "",
+      "teamMembers": [
+        "Sachintha"
+      ],
+      "subtitle": "Hand-Drawn Graphite Artwork",
+      "features": [
+        "Hand-drawn portraits",
+        "Value & contrast studies"
+      ],
+      "learnings": "Observation, patience, and mastery of light and shadow.",
+      "playStoreUrl": "",
+      "repoUrl": "",
+      "featured": false,
+      "projectType": "Fine Art",
+      "category": "graphic",
+      "description": "Hand-drawn graphite pencil portraits exploring realistic shading, subtle skin textures, and expressive portraiture.",
       "date": "2023 - 2024",
-      "featured": false
+      "challenges": "Achieving lifelike depth and expression purely through tonal gradation.",
+      "more": "Traditional art practice that directly informs my sense of lighting, shadow, and composition in digital UI design.",
+      "role": "Fine Artist"
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Jaffna",
+      "period": "2021 — 2025",
+      "details": "Completed honours research on YOLO-based recognition of electrical components in hand-drawn circuit diagrams (presented at SL-SWCS’25).",
+      "id": "edu-1",
+      "highlight": "Second Class Lower Division • GPA: 3.17",
+      "degree": "Bachelor of Science (Hons) in Computer Science"
+    },
+    {
+      "details": "Physical Science stream with strong foundations in Combined Mathematics, Physics, and Chemistry.",
+      "degree": "G.C.E. Advanced Level (Physical Science)",
+      "institution": "Ch/ Senanayake National School, Madampe",
+      "period": "Aug 2019",
+      "id": "edu-2",
+      "highlight": "Results: BCC • Z-Score: 1.0067"
+    },
+    {
+      "highlight": "Results: 7As & 2Cs",
+      "period": "Dec 2016",
+      "institution": "Ch/ Senanayake National School, Madampe",
+      "id": "edu-3",
+      "degree": "G.C.E. Ordinary Level",
+      "details": "Strong academic foundation across mathematics, science, ICT, and arts."
+    }
+  ],
+  "experience": [
+    {
+      "role": "Associate Software Engineer",
+      "type": "Full-Time",
+      "company": "INTTEQ",
+      "period": "1 Dec 2025 — Present",
+      "id": "exp-1",
+      "highlights": [
+        "Develop and maintain cross-platform mobile applications using React Native and Expo.",
+        "Integrate mobile applications with backend REST APIs and third-party payment services (including PayHere).",
+        "Implement push-notification functionality to support timely in-app user communication.",
+        "Prepare production application builds and support releases to the Apple App Store and Google Play Store."
+      ]
+    },
+    {
+      "id": "exp-2",
+      "period": "1 Jun 2025 — 30 Nov 2025",
+      "company": "INTTEQ",
+      "highlights": [
+        "Completed a six-month internship gaining hands-on commercial experience in mobile application development.",
+        "Collaborated with the engineering team on cross-platform application features and production deliverables."
+      ],
+      "type": "Internship",
+      "role": "Software Engineer Intern"
+    },
+    {
+      "role": "Graphic Designer (Volunteer)",
+      "highlights": [
+        "Designed flyers, banners, certificates, and tokens of appreciation for the INSL Provincial Competitions as part of the organizing team."
+      ],
+      "type": "Volunteering",
+      "id": "exp-3",
+      "period": "2022 — 2023",
+      "company": "IEEE Innovation Nation Sri Lanka — Northern Province"
+    },
+    {
+      "id": "exp-4",
+      "type": "Banking",
+      "role": "Trainee",
+      "period": "17 Sep 2020 — 17 Aug 2021",
+      "company": "People’s Bank Nattandiya",
+      "highlights": [
+        "Assisted with cash-counter operations and day-to-day customer transactions.",
+        "Supported account-opening procedures, pawning-related services, and daily collection activities."
+      ]
+    }
+  ],
+  "gallery": [
+    {
+      "tag": "Graduation Album",
+      "title": "Graduation — Neon Corridor Edition",
+      "photos": [
+        {
+          "caption": "Vertical Neon Rim-Light Study",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png",
+          "id": "ph-grad-2"
+        },
+        {
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795513108/smsc_portfolio/qcmljlajgsybqgacgq7d.png",
+          "caption": "Neon Graduation Portrait in a Moody Corridor",
+          "id": "ph-mwui59ig-tdl"
+        },
+        {
+          "id": "ph-mwui4m5s-e4h",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795513077/smsc_portfolio/aapk9thuwp442d4biqgl.png",
+          "caption": "Cinematic Graduate with Diploma and Gown"
+        },
+        {
+          "id": "ph-mwui60q8-21a",
+          "caption": "Neon Graduation Portrait in an Elevator",
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795513143/smsc_portfolio/g8d3r6cxnqgj0kbqizb7.png"
+        },
+        {
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
+          "id": "ph-grad-1",
+          "caption": "Neon Corridor Full-Frame Graduation Portrait"
+        },
+        {
+          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png",
+          "caption": "Ceremonial Scroll Close-Up",
+          "id": "ph-grad-3"
+        }
+      ],
+      "isPublic": true,
+      "caption": "Complete 4-frame BSc (Hons) Computer Science graduation portrait series.",
+      "aspect": "wide",
+      "type": "album",
+      "id": "alb-neon-graduation",
+      "date": "2025"
+    },
+    {
+      "id": "gal-mwtt309v-6gq",
+      "photos": [],
+      "tag": "Family",
+      "title": "Amma & Thaththa",
+      "type": "photo",
+      "isPublic": true,
+      "date": "2026",
+      "caption": "",
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505408/smsc_portfolio/e89us1vc6dchccw5l1ve.jpg",
+      "aspect": "tall"
+    },
+    {
+      "isPublic": true,
+      "title": "Amma & Thaththa",
+      "aspect": "wide",
+      "id": "gal-mwtt2x5l-3dp",
+      "tag": "Convocation",
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505475/smsc_portfolio/qipnybwxqut52hsuorrf.jpg",
+      "type": "photo",
+      "photos": [],
+      "caption": "",
+      "date": "2026"
+    },
+    {
+      "isPublic": true,
+      "date": "2025",
+      "caption": "BSc (Hons) Computer Science graduation portrait under magenta & cyan corridor lights.",
+      "photos": [],
+      "type": "photo",
+      "id": "gal-1",
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
+      "tag": "Graduation",
+      "aspect": "wide",
+      "title": "Neon Corridor — Graduation Portrait"
+    },
+    {
+      "tag": "Portrait",
+      "aspect": "tall",
+      "caption": "Vertical cinematic editorial study illuminated by electric blue, magenta, and warm amber.",
+      "type": "photo",
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png",
+      "isPublic": true,
+      "title": "Ceremonial Scroll & Neon Rim Light",
+      "date": "2025",
+      "photos": [],
+      "id": "gal-2"
+    },
+    {
+      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png",
+      "date": "2025",
+      "aspect": "standard",
+      "caption": "Celebrating the University of Jaffna Computer Science Honours milestone.",
+      "id": "gal-3",
+      "isPublic": true,
+      "type": "photo",
+      "title": "Close-Up — Neon Corridor Edition",
+      "photos": [],
+      "tag": "Milestone"
     }
   ],
   "blogs": [
     {
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795590472/smsc_portfolio/cn5bwzabcfctydnmsl1b.png",
+      "readTime": "2 min read",
+      "date": "Nov 2026",
+      "category": "Mobile App Development",
+      "id": "note-mwvrr1n3",
+      "subtitle": "A step-by-step look at setting up an automated CI/CD pipeline to build and submit React Native apps to the Apple App Store and Google Play Store whenever a new version is merged into the development branch.",
+      "isPublic": true,
+      "blocks": [
+        {
+          "content": "Releasing a mobile app by hand gets old fast: bump the version, run a build for iOS, run another for Android, wait, download, upload to App Store Connect, upload to Play Console… and repeat for every release.\n\nIn this post I'll show how I automated the whole thing with GitHub Actions and EAS (Expo Application Services). The rule is simple: when a branch is merged into dev and the app version went up (for example 1.0.0 → 1.0.1), GitHub Actions builds the app for both platforms and EAS submits the builds to App Store Connect and Google Play. If the version didn't change, nothing gets built.\n\nI'll also go through the problems I ran into along the way, including Google Cloud's \"Service account key creation is disabled\" error, and how I solved them.",
+          "id": "blk-mww55rog-zd3",
+          "image": "",
+          "type": "paragraph",
+          "caption": ""
+        },
+        {
+          "type": "divider",
+          "image": "",
+          "content": "",
+          "id": "blk-mww56gj0-7re",
+          "caption": ""
+        },
+        {
+          "content": "What We're Building",
+          "type": "h2",
+          "caption": "",
+          "image": "",
+          "id": "blk-mww56mu7-x98"
+        },
+        {
+          "caption": "",
+          "image": "",
+          "type": "paragraph",
+          "id": "blk-mww57554-o1w",
+          "content": "The pipeline has four pieces:\n\nA small Node script that compares the version in app.json before and after the merge.\nA GitHub Actions workflow that runs on every push to dev and only continues if the version increased.\nAn eas.json configured with a production build profile and submit settings for both stores.\nStore credentials saved on EAS (an App Store Connect API key for iOS, a Google Service Account key for Android) so builds can be submitted without anyone at the keyboard."
+        },
+        {
+          "caption": "",
+          "image": "",
+          "content": "Prerequisites: an Expo project that already builds with EAS (eas build works locally), an Apple Developer account, a Google Play Console account, and an app that already exists in both stores.",
+          "id": "blk-mww57a82-w5n",
+          "type": "quote"
+        },
+        {
+          "caption": "",
+          "type": "divider",
+          "id": "blk-mww57otb-dva",
+          "content": "",
+          "image": ""
+        },
+        {
+          "caption": "",
+          "content": "Step 1: The Version Bump Checker",
+          "image": "",
+          "id": "blk-mww57q6e-5mz",
+          "type": "h2"
+        },
+        {
+          "caption": "",
+          "type": "paragraph",
+          "id": "blk-mww5829a-d3g",
+          "image": "",
+          "content": "GitHub gives us the commit SHA from before the push (github.event.before). The script reads app.json at that commit and at the new HEAD, compares expo.version, and writes should_release=true or false as a step output for the rest of the workflow to use.\n\nCreate scripts/check-version-bump.mjs:"
+        },
+        {
+          "id": "blk-mww58y4g-25f",
+          "content": "import {\n  execSync\n} from \"node:child_process\";\nimport fs from \"node:fs\";\n\nconst ZERO_SHA = \"0000000000000000000000000000000000000000\";\n\nfunction parseSemver(version) {\n  if (typeof version !== \"string\") return null;\n  const clean = version.trim().replace(/^v/, \"\").split(\"-\")[0];\n  const parts = clean.split(\".\").map((n) => Number.parseInt(n, 10));\n  if (parts.length < 2 || parts.some((n) => Number.isNaN(n) || n < 0)) return null;\n  while (parts.length < 3) parts.push(0);\n  return parts.slice(0, 3);\n}\n\nfunction isGreaterVersion(nextVer, prevVer) {\n  const next = parseSemver(nextVer);\n  const prev = parseSemver(prevVer);\n  if (!next || !prev) return false;\n  for (let i = 0; i < 3; i++) {\n    if (next[i] > prev[i]) return true;\n    if (next[i] < prev[i]) return false;\n  }\n  return false;\n}\n\nfunction readJsonAtRef(ref, filePath) {\n  try {\n    const content = execSync(git show $ {\n      ref\n    }: $ {\n      filePath\n    }, {\n      encoding: \"utf8\",\n      stdio: [\"ignore\", \"pipe\", \"pipe\"],\n    });\n    return JSON.parse(content);\n  } catch {\n    return null;\n  }\n}\n\nfunction writeOutput(key, value) {\n  if (process.env.GITHUB_OUTPUT) {\n    fs.appendFileSync(process.env.GITHUB_OUTPUT, $ {\n        key\n      } = $ {\n        value\n      }\\\n      n);\n  }\n  console.log($ {\n    key\n  } = $ {\n    value\n  });\n}\n\nconst eventName = process.env.GITHUB_EVENT_NAME || \"push\";\nconst beforeRef = process.argv[2] || process.env.BEFORE_SHA || \"\";\nconst currentRef = process.argv[3] || \"HEAD\";\n\nconst currentAppJson = readJsonAtRef(currentRef, \"app.json\") || JSON.parse(fs.readFileSync(\"app.json\", \"utf8\"));\nconst newVersion = currentAppJson?.expo?.version || \"\";\n\nlet oldVersion = \"\";\nlet shouldRelease = false;\nlet reason = \"\";\n\nif (eventName === \"workflow_dispatch\") {\n  shouldRelease = true;\n  reason = Manual release\n  for $ {\n    newVersion\n  };\n} else if (!beforeRef || beforeRef === ZERO_SHA) {\n  reason = \"No previous commit to compare against.\";\n} else {\n  oldVersion = readJsonAtRef(beforeRef, \"app.json\")?.expo?.version || \"\";\n  if (!oldVersion) {\n    reason = Could not read expo.version at $ {\n      beforeRef\n    }.;\n  } else if (isGreaterVersion(newVersion, oldVersion)) {\n    shouldRelease = true;\n    reason = Version bumped: $ {\n      oldVersion\n    } - > $ {\n      newVersion\n    };\n  } else {\n    reason = Version did not increase($ {\n      oldVersion\n    } - > $ {\n      newVersion\n    }).Skipping.;\n  }\n}\n\nwriteOutput(\"should_release\", shouldRelease ? \"true\" : \"false\");\nwriteOutput(\"old_version\", oldVersion || \"none\");\nwriteOutput(\"new_version\", newVersion || \"none\");\nwriteOutput(\"reason\", reason);",
+          "image": "",
+          "caption": "scripts/check-version-bump.mjs",
+          "type": "code"
+        },
+        {
+          "type": "paragraph",
+          "image": "",
+          "content": "You can test it locally before pushing anything. Pass the old ref and the new ref:",
+          "id": "blk-mww5eqeh-hr6",
+          "caption": ""
+        },
+        {
+          "caption": "terminal",
+          "image": "",
+          "id": "blk-mww5etbw-cwb",
+          "content": "ode scripts/check-version-bump.mjs origin/dev HEAD",
+          "type": "code"
+        },
+        {
+          "content": "should_release=true\nold_version=1.0.0\nnew_version=1.0.1",
+          "image": "",
+          "type": "quote",
+          "caption": "Tip: keep the version in package.json in sync with expo.version in app.json. The script only reads app.json, but having two different version numbers will confuse your team.",
+          "id": "blk-mww5h82u-jax"
+        },
+        {
+          "id": "blk-mww5hz5y-0p1",
+          "image": "",
+          "content": "",
+          "caption": "",
+          "type": "divider"
+        },
+        {
+          "image": "",
+          "caption": "",
+          "type": "h2",
+          "content": "Step 2: The GitHub Actions Workflow",
+          "id": "blk-mww5hxhy-g69"
+        },
+        {
+          "image": "",
+          "caption": "",
+          "type": "paragraph",
+          "content": "The workflow has three jobs. check-version always runs. The iOS and Android jobs only run when check-version says should_release is true, and they run in parallel. There's also a manual trigger (workflow_dispatch), so you can release just one platform from the Actions tab when you need to.\n\nCreate .github/workflows/auto-release.yml:",
+          "id": "blk-mww5ibrd-3zw"
+        },
+        {
+          "image": "",
+          "content": "name: Auto Build & Submit to App Store and Play Store\n\non:\n  push:\n    branches:\n      - dev\n  workflow_dispatch:\n    inputs:\n      platform:\n        description: \"Platform(s) to build and submit\"\n        required: true\n        default: \"all\"\n        type: choice\n        options:\n          - all\n          - ios\n          - android\n\nconcurrency:\n  group: eas-auto-release-${{ github.ref }}\n  cancel-in-progress: false\n\njobs:\n  check-version:\n    runs-on: ubuntu-latest\n    outputs:\n      should_release: ${{ steps.version.outputs.should_release }}\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - name: Compare version against previous commit\n        id: version\n        env:\n          BEFORE_SHA: ${{ github.event.before }}\n        run: node scripts/check-version-bump.mjs\n\n  build-and-submit-ios:\n    needs: check-version\n    if: >-\n      needs.check-version.outputs.should_release == 'true' &&\n      (github.event_name != 'workflow_dispatch' ||\n      github.event.inputs.platform == 'all' ||\n      github.event.inputs.platform == 'ios')\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: \"22\"\n          cache: \"npm\"\n      - run: npm ci\n      - uses: expo/expo-github-action@v8\n        with:\n          eas-version: latest\n          token: ${{ secrets.EXPO_TOKEN }}\n      - name: Build iOS & auto-submit to App Store Connect\n        run: eas build --platform ios --profile production --auto-submit --non-interactive --no-wait\n\n  build-and-submit-android:\n    needs: check-version\n    if: >-\n      needs.check-version.outputs.should_release == 'true' &&\n      (github.event_name != 'workflow_dispatch' ||\n      github.event.inputs.platform == 'all' ||\n      github.event.inputs.platform == 'android')\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: \"22\"\n          cache: \"npm\"\n      - run: npm ci\n      - name: Restore google-services.json from secret\n        env:\n          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}\n        run: |\n          if [ -n \"$GOOGLE_SERVICES_JSON\" ]; then\n            printf '%s' \"$GOOGLE_SERVICES_JSON\" > google-services.json\n            sed -i '/^google-services.json$/d' .gitignore\n          fi\n      - uses: expo/expo-github-action@v8\n        with:\n          eas-version: latest\n          token: ${{ secrets.EXPO_TOKEN }}\n      - name: Build Android & auto-submit to Google Play\n        run: eas build --platform android --profile production --auto-submit --non-interactive --no-wait\n",
+          "caption": ".github/workflows/auto-release.yml",
+          "id": "blk-mww5igye-13y",
+          "type": "code"
+        },
+        {
+          "content": "What the important flags do:\n\n--auto-submit: as soon as the cloud build finishes, EAS starts a submission to the store using the submit profile with the same name (production).\n--non-interactive: CI can't answer prompts, so every credential has to be stored on EAS already.\n--no-wait: the GitHub job ends once the build is queued, so you don't burn Actions minutes waiting. Follow the build and submission progress on expo.dev instead.\nnode-version: use the Node version your Expo SDK requires.",
+          "image": "",
+          "caption": "",
+          "id": "blk-mww5q9z2-33t",
+          "type": "paragraph"
+        },
+        {
+          "caption": "",
+          "type": "quote",
+          "image": "",
+          "content": "Why the google-services.json step? That file is usually gitignored, so a fresh CI checkout doesn't have it. We write it from a GitHub secret. EAS skips gitignored files when it uploads your project, so the step also removes that line from .gitignore inside the CI runner only. Your real .gitignore isn't touched. A cleaner alternative is to store the file as an EAS \"file\" environment variable and point app.json at it.",
+          "id": "blk-mww5qm8b-wer"
+        },
+        {
+          "type": "divider",
+          "id": "blk-mww5qpjv-874",
+          "content": "",
+          "image": "",
+          "caption": ""
+        },
+        {
+          "caption": "",
+          "id": "blk-mww5qqz9-8a9",
+          "type": "h2",
+          "content": "Step 3: Configure eas.json",
+          "image": ""
+        },
+        {
+          "type": "paragraph",
+          "id": "blk-mww5rf2m-ldj",
+          "image": "",
+          "content": "Three things matter here: Android must build an .aab (Google Play requires App Bundles), build numbers should increment automatically, and the submit profile needs to know where to send each build.",
+          "caption": ""
+        },
+        {
+          "id": "blk-mww5rprm-5mr",
+          "type": "code",
+          "caption": "eas.json",
+          "content": "{\n  \"cli\" : {\"appVersionSource\" : \"remote\"},\n            \"build\"\n      : {\"production\" : {\"autoIncrement\" : true, \"android\" : {\"buildType\" : \"app-bundle\"}}},\n        \"submit\" : {\n    \"production\" : {\n      \"ios\" : {\"ascAppId\" : \"YOUR_ASC_APP_ID\"}, \"android\" : {\n        \"track\" : \"production\", \"releaseStatus\" : \"draft\"\n      }\n    }\n  }\n}",
+          "image": ""
+        },
+        {
+          "id": "blk-mww5te8i-q3a",
+          "caption": "",
+          "image": "",
+          "type": "paragraph",
+          "content": "appVersionSource: \"remote\" + autoIncrement: true: EAS manages the iOS buildNumber and Android versionCode and increments them on every build, so you only bump the human-readable version (1.0.0 → 1.0.1).\nascAppId: the numeric ID from your App Store URL (apps.apple.com/app/id YOUR_ASC_APP_ID).\ntrack: which Play track receives the build: production, beta, alpha or internal.\nreleaseStatus: \"draft\" uploads the build without rolling it out, so you can add release notes and press Rollout yourself. Use \"completed\" to send it straight out."
+        },
+        {
+          "image": "",
+          "content": "Common mix-up: \"internal\" is a track, not a releaseStatus. To ship to internal testers automatically, set \"track\": \"internal\".",
+          "caption": "",
+          "type": "quote",
+          "id": "blk-mww5thgg-5p8"
+        },
+        {
+          "type": "divider",
+          "id": "blk-mww5trgs-rss",
+          "image": "",
+          "caption": "",
+          "content": ""
+        },
+        {
+          "id": "blk-mww5tztl-rf5",
+          "caption": "",
+          "image": "",
+          "type": "h2",
+          "content": "Step 4: GitHub Secrets"
+        },
+        {
+          "caption": "",
+          "content": "Go to GitHub → YOUR_GITHUB_ORG/YOUR_REPO → Settings → Secrets and variables → Actions → New repository secret and add:\n\nEXPO_TOKEN: an access token so CI can run EAS commands as your account.\nGOOGLE_SERVICES_JSON: the full contents of your google-services.json (only needed if your Android app uses Firebase, e.g. for push notifications).",
+          "image": "",
+          "id": "blk-mww5uect-94s",
+          "type": "paragraph"
+        },
+        {
+          "image": "",
+          "content": "Creating the EXPO_TOKEN with a robot user",
+          "id": "blk-mww5ump2-2ou",
+          "type": "h3",
+          "caption": ""
+        },
+        {
+          "content": "Don't use your personal token. In your Expo organization (YOUR_EXPO_ORG), open the members/access-token settings, create a robot user (e.g. YOUR_ROBOT_USER) with the Developer role, and generate a token for it. If the token ever leaks, you can revoke it without touching anyone's personal account.",
+          "caption": "",
+          "image": "",
+          "id": "blk-mww5uy7w-7gw",
+          "type": "paragraph"
+        },
+        {
+          "caption": "",
+          "image": "",
+          "content": "Never commit a token to the repo or paste it into a chat, a ticket or a screenshot. If one gets exposed, revoke it on expo.dev right away, generate a new one, and update the GitHub secret.",
+          "id": "blk-mww5v1ob-lib",
+          "type": "quote"
+        },
+        {
+          "type": "image",
+          "id": "blk-mww5w0c3-oiq",
+          "image": "",
+          "content": "",
+          "caption": ""
+        },
+        {
+          "type": "divider",
+          "id": "blk-mww5w2pw-a53",
+          "caption": "",
+          "image": "",
+          "content": ""
+        },
+        {
+          "content": "Step 5: iOS Credentials (App Store Connect API Key)",
+          "image": "",
+          "type": "h2",
+          "id": "blk-mww5w4zd-wmq",
+          "caption": ""
+        },
+        {
+          "content": "For --non-interactive submissions, EAS needs an App Store Connect API key so it never hits an Apple ID 2FA prompt. Run:",
+          "type": "paragraph",
+          "caption": "",
+          "image": "",
+          "id": "blk-mww5wlui-559"
+        },
+        {
+          "id": "blk-mww5wt3m-cuq",
+          "caption": "terminal",
+          "image": "",
+          "type": "code",
+          "content": "npx eas credentials -p ios"
+        },
+        {
+          "type": "paragraph",
+          "content": "Choose the production profile and log in to your Apple account. If the summary already lists an App Store Connect API Key, a Distribution Certificate and an active Provisioning Profile, iOS is ready. If no API key is listed, choose \"App Store Connect: Manage your API Key\" and let EAS create one.",
+          "id": "blk-mww5x7s7-6jx",
+          "image": "",
+          "caption": ""
+        },
+        {
+          "type": "quote",
+          "content": "Check the expiry dates on the distribution certificate and provisioning profile while you're in there. Put a reminder in your calendar a few weeks before they expire.",
+          "id": "blk-mww5xasj-ag7",
+          "image": "",
+          "caption": ""
+        },
+        {
+          "caption": "",
+          "image": "",
+          "id": "blk-mww5xlql-2nb",
+          "type": "image",
+          "content": ""
+        },
+        {
+          "content": "",
+          "id": "blk-mww5y71o-19g",
+          "image": "",
+          "type": "divider",
+          "caption": ""
+        },
+        {
+          "content": "Step 6: Android Credentials (Google Play Service Account)",
+          "image": "",
+          "type": "h2",
+          "id": "blk-mww5y8th-0en",
+          "caption": ""
+        },
+        {
+          "caption": "",
+          "id": "blk-mww5yi86-fe9",
+          "image": "",
+          "type": "paragraph",
+          "content": "This was the longest part. Google Play only accepts automated uploads from a Google Cloud service account that has been invited into your Play Console."
+        },
+        {
+          "type": "h3",
+          "caption": "",
+          "id": "blk-mww5yq9m-tt2",
+          "content": "6.1 Enable the API and create a service account",
+          "image": ""
+        },
+        {
+          "content": "1. Open Google Cloud Console and select (or create) a project, e.g. YOUR_GCP_PROJECT_ID.\n2. Search for \"Google Play Android Developer API\" and click Enable.\n3. Go to IAM & Admin → Service Accounts → Create Service Account. Name it something like YOUR_SERVICE_ACCOUNT_NAME (description: \"Automated Play Store submissions via EAS\"). You can skip the optional role step.\n4. Open the new account and copy its email: YOUR_SERVICE_ACCOUNT_NAME@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com\n5. Open the Keys tab → Add Key → Create new key → JSON → Create. A .json file downloads.",
+          "type": "paragraph",
+          "image": "",
+          "caption": "",
+          "id": "blk-mww5yytm-opi"
+        },
+        {
+          "id": "blk-mww608z4-ls7",
+          "caption": "",
+          "image": "",
+          "type": "h3",
+          "content": "6.2 Problem: \"Service account key creation is disabled\""
+        },
+        {
+          "content": "On step 5, I got this error instead of a download:",
+          "id": "blk-mww60kbd-kql",
+          "image": "",
+          "type": "paragraph",
+          "caption": ""
+        },
+        {
+          "id": "blk-mww60zxr-7u2",
+          "type": "quote",
+          "caption": "",
+          "content": "\"Service account key creation is disabled\" — an Organization Policy (iam.disableServiceAccountKeyCreation) is enforced on your organization.",
+          "image": ""
+        },
+        {
+          "image": "",
+          "caption": "",
+          "id": "blk-mww61fb6-4yi",
+          "content": "Newer Google Cloud organizations get \"Secure by Default\" policies, and one of them blocks JSON key creation. If you're an admin of the organization, you can switch it off for this one project only:\n\n1. Give yourself the Organization Policy Administrator role. This role only shows up at the organization level: in the top-left resource picker, select the organization (the building icon), not a project. Then go to IAM & Admin → IAM, edit your account, and add Organization Policy Administrator.\n2. Switch the picker back to your project (YOUR_GCP_PROJECT_ID) and go to IAM & Admin → Organization Policies.\n3. Open \"Disable service account key creation\" (iam.disableServiceAccountKeyCreation) → Manage policy.\n4. Select \"Override parent's policy\" → Add a rule → Enforcement: Off → Done → Set policy.\n5. Wait about a minute and create the JSON key again. It should download this time.",
+          "type": "paragraph"
+        },
+        {
+          "caption": "",
+          "id": "blk-mww62m86-6zz",
+          "type": "quote",
+          "image": "",
+          "content": "If you aren't an org admin, either ask the admin to do the steps above, or create the service account in a Google Cloud project that isn't under an organization. Play Console accepts a service account from any project."
+        },
+        {
+          "content": "",
+          "image": "",
+          "id": "blk-mww630va-2st",
+          "caption": "",
+          "type": "image"
+        },
+        {
+          "content": "6.3 Invite the service account into Play Console",
+          "image": "",
+          "type": "h3",
+          "caption": "",
+          "id": "blk-mww63278-g5q"
+        },
+        {
+          "content": "1. Open Google Play Console → Users and permissions → Invite new users.\n2. Paste the service account email.\n3. Under App permissions → Add app → select YOUR_APP_NAME (COM.YOURCOMPANY.YOURAPP).\n4. Grant at least: View app information (read-only), Release to production / exclude devices / use Play App Signing, Release apps to testing tracks, and Manage testing tracks.\n5. Click Invite user. Service accounts are accepted automatically.",
+          "type": "paragraph",
+          "id": "blk-mww63bxb-931",
+          "caption": "",
+          "image": ""
+        },
+        {
+          "id": "blk-mww63yew-ff3",
+          "caption": "",
+          "image": "",
+          "content": "6.4 Upload the key to EAS",
+          "type": "h3"
+        },
+        {
+          "content": "npx eas credentials -p android",
+          "type": "code",
+          "caption": "",
+          "id": "blk-mww646eo-259",
+          "image": ""
+        },
+        {
+          "content": "production\n→ Google Service Account\n→ Manage your Google Service Account Key for Play Store Submissions\n→ Set up a new service account key\n→ select the downloaded .json file",
+          "id": "blk-mww64oi0-1wf",
+          "type": "quote",
+          "image": "",
+          "caption": ""
+        },
+        {
+          "id": "blk-mww65042-rsr",
+          "content": "When it's done, the credentials summary should show \"Submissions: Google Service Account Key for Play Store Submissions\" with your service account email.",
+          "type": "paragraph",
+          "image": "",
+          "caption": ""
+        },
+        {
+          "content": "Once the key is on EAS, delete the .json file from your machine (or move it into a password manager), and add a pattern like YOUR_GCP_PROJECT_ID-*.json to .gitignore so it can never be committed by accident. If you only switched the org policy off to create this key, consider switching it back on.",
+          "image": "",
+          "type": "quote",
+          "id": "blk-mww65a7z-rfw",
+          "caption": ""
+        },
+        {
+          "content": "",
+          "id": "blk-mww65k6z-ou5",
+          "caption": "",
+          "image": "",
+          "type": "divider"
+        },
+        {
+          "content": "Step 7: Ship It",
+          "type": "h2",
+          "id": "blk-mww65kyx-oif",
+          "image": "",
+          "caption": ""
+        },
+        {
+          "image": "",
+          "caption": "",
+          "id": "blk-mww65wwd-bj3",
+          "content": "The day-to-day flow is now:\n\n1. Work on your feature branch.\n2. Bump the version in app.json (and package.json), e.g. 1.0.0 → 1.0.1.\n3. Merge into dev.\n\nGitHub Actions detects the bump and starts both builds. Watch them at expo.dev → YOUR_EXPO_ORG / YOUR_EXPO_PROJECT → Builds and Submissions.",
+          "type": "paragraph"
+        },
+        {
+          "caption": "",
+          "type": "h3",
+          "id": "blk-mww66jcm-lpu",
+          "image": "",
+          "content": "What happens after the upload"
+        },
+        {
+          "content": "iOS",
+          "id": "blk-mww66si1-edr",
+          "image": "",
+          "type": "h4",
+          "caption": ""
+        },
+        {
+          "type": "paragraph",
+          "content": "The build is uploaded to App Store Connect and shows up in TestFlight after Apple processes it (usually 10–20 minutes). EAS does not send it for review. Open App Store Connect, attach the build to your new version, and click Submit for Review.",
+          "caption": "",
+          "image": "",
+          "id": "blk-mww671g5-2zi"
+        },
+        {
+          "content": "Android",
+          "id": "blk-mww67fxt-5nh",
+          "image": "",
+          "type": "h4",
+          "caption": ""
+        },
+        {
+          "caption": "",
+          "image": "",
+          "type": "paragraph",
+          "id": "blk-mww67olo-vb6",
+          "content": "The .aab goes to the track you configured. With releaseStatus \"draft\", open Play Console → your track → edit the draft release, add release notes, and start the rollout. Switch to \"completed\" once you trust the pipeline enough to skip that step."
+        },
+        {
+          "type": "quote",
+          "caption": "",
+          "image": "",
+          "id": "blk-mww682fy-ewz",
+          "content": "Gotcha: Google Play's API can't create the very first release of an app. If your app has never been uploaded, upload the first .aab manually in Play Console. Automated submissions work from then on."
+        },
+        {
+          "type": "image",
+          "caption": "",
+          "id": "blk-mww689a0-2yb",
+          "content": "",
+          "image": ""
+        },
+        {
+          "caption": "",
+          "id": "blk-mww68b1f-rc0",
+          "type": "divider",
+          "image": "",
+          "content": ""
+        },
+        {
+          "type": "h2",
+          "id": "blk-mww68kzj-xts",
+          "caption": "",
+          "image": "",
+          "content": "Troubleshooting Checklist"
+        },
+        {
+          "id": "blk-mww68tol-m5t",
+          "content": "The workflow ran but both store jobs were skipped → the version didn't increase. Check the reason output of the check-version job.\nThe EAS step fails with an auth error → EXPO_TOKEN is missing or revoked, or the robot user lacks permission in the organization.\nThe iOS submit fails → there's no App Store Connect API key on EAS, or ascAppId is wrong.\nThe Android submit fails with a permission error → the service account wasn't invited in Play Console, or it doesn't have release permissions for this app.\nThe Android build fails because google-services.json is missing → the GOOGLE_SERVICES_JSON secret is empty or isn't valid JSON.",
+          "type": "paragraph",
+          "image": "",
+          "caption": ""
+        },
+        {
+          "id": "blk-mww68wnm-ffa",
+          "caption": "",
+          "image": "",
+          "content": "",
+          "type": "divider"
+        },
+        {
+          "type": "h2",
+          "id": "blk-mww694g7-1nf",
+          "caption": "",
+          "image": "",
+          "content": "Wrapping Up"
+        },
+        {
+          "id": "blk-mww69e9t-ccn",
+          "content": "With one script, one workflow and a one-time credentials setup, a release now means bumping a version number and merging. Builds are consistent, nobody uploads binaries by hand, and the store review step stays under your control.\n\nIf you try this and get stuck, Contact me or chat. I'm happy to help.",
+          "type": "paragraph",
+          "image": "",
+          "caption": ""
+        }
+      ],
       "tags": [
         "GitHub Actions",
         "Expo EAS",
@@ -1205,647 +1895,75 @@
         "GitHub Workflows",
         "Version Management"
       ],
-      "category": "Mobile App Development",
-      "title": "Automating Mobile App Releases with GitHub Actions and Expo EAS",
-      "blocks": [
-        {
-          "id": "blk-mww55rog-zd3",
-          "image": "",
-          "type": "paragraph",
-          "content": "Releasing a mobile app by hand gets old fast: bump the version, run a build for iOS, run another for Android, wait, download, upload to App Store Connect, upload to Play Console… and repeat for every release.\n\nIn this post I'll show how I automated the whole thing with GitHub Actions and EAS (Expo Application Services). The rule is simple: when a branch is merged into dev and the app version went up (for example 1.0.0 → 1.0.1), GitHub Actions builds the app for both platforms and EAS submits the builds to App Store Connect and Google Play. If the version didn't change, nothing gets built.\n\nI'll also go through the problems I ran into along the way, including Google Cloud's \"Service account key creation is disabled\" error, and how I solved them.",
-          "caption": ""
-        },
-        {
-          "image": "",
-          "content": "",
-          "id": "blk-mww56gj0-7re",
-          "type": "divider",
-          "caption": ""
-        },
-        {
-          "content": "What We're Building",
-          "image": "",
-          "type": "h2",
-          "caption": "",
-          "id": "blk-mww56mu7-x98"
-        },
-        {
-          "type": "paragraph",
-          "image": "",
-          "content": "The pipeline has four pieces:\n\nA small Node script that compares the version in app.json before and after the merge.\nA GitHub Actions workflow that runs on every push to dev and only continues if the version increased.\nAn eas.json configured with a production build profile and submit settings for both stores.\nStore credentials saved on EAS (an App Store Connect API key for iOS, a Google Service Account key for Android) so builds can be submitted without anyone at the keyboard.",
-          "id": "blk-mww57554-o1w",
-          "caption": ""
-        },
-        {
-          "id": "blk-mww57a82-w5n",
-          "caption": "",
-          "type": "quote",
-          "image": "",
-          "content": "Prerequisites: an Expo project that already builds with EAS (eas build works locally), an Apple Developer account, a Google Play Console account, and an app that already exists in both stores."
-        },
-        {
-          "caption": "",
-          "id": "blk-mww57otb-dva",
-          "image": "",
-          "type": "divider",
-          "content": ""
-        },
-        {
-          "caption": "",
-          "image": "",
-          "type": "h2",
-          "id": "blk-mww57q6e-5mz",
-          "content": "Step 1: The Version Bump Checker"
-        },
-        {
-          "caption": "",
-          "image": "",
-          "type": "paragraph",
-          "id": "blk-mww5829a-d3g",
-          "content": "GitHub gives us the commit SHA from before the push (github.event.before). The script reads app.json at that commit and at the new HEAD, compares expo.version, and writes should_release=true or false as a step output for the rest of the workflow to use.\n\nCreate scripts/check-version-bump.mjs:"
-        },
-        {
-          "image": "",
-          "caption": "scripts/check-version-bump.mjs",
-          "type": "code",
-          "id": "blk-mww58y4g-25f",
-          "content": "import {\n  execSync\n} from \"node:child_process\";\nimport fs from \"node:fs\";\n\nconst ZERO_SHA = \"0000000000000000000000000000000000000000\";\n\nfunction parseSemver(version) {\n  if (typeof version !== \"string\") return null;\n  const clean = version.trim().replace(/^v/, \"\").split(\"-\")[0];\n  const parts = clean.split(\".\").map((n) => Number.parseInt(n, 10));\n  if (parts.length < 2 || parts.some((n) => Number.isNaN(n) || n < 0)) return null;\n  while (parts.length < 3) parts.push(0);\n  return parts.slice(0, 3);\n}\n\nfunction isGreaterVersion(nextVer, prevVer) {\n  const next = parseSemver(nextVer);\n  const prev = parseSemver(prevVer);\n  if (!next || !prev) return false;\n  for (let i = 0; i < 3; i++) {\n    if (next[i] > prev[i]) return true;\n    if (next[i] < prev[i]) return false;\n  }\n  return false;\n}\n\nfunction readJsonAtRef(ref, filePath) {\n  try {\n    const content = execSync(git show $ {\n      ref\n    }: $ {\n      filePath\n    }, {\n      encoding: \"utf8\",\n      stdio: [\"ignore\", \"pipe\", \"pipe\"],\n    });\n    return JSON.parse(content);\n  } catch {\n    return null;\n  }\n}\n\nfunction writeOutput(key, value) {\n  if (process.env.GITHUB_OUTPUT) {\n    fs.appendFileSync(process.env.GITHUB_OUTPUT, $ {\n        key\n      } = $ {\n        value\n      }\\\n      n);\n  }\n  console.log($ {\n    key\n  } = $ {\n    value\n  });\n}\n\nconst eventName = process.env.GITHUB_EVENT_NAME || \"push\";\nconst beforeRef = process.argv[2] || process.env.BEFORE_SHA || \"\";\nconst currentRef = process.argv[3] || \"HEAD\";\n\nconst currentAppJson = readJsonAtRef(currentRef, \"app.json\") || JSON.parse(fs.readFileSync(\"app.json\", \"utf8\"));\nconst newVersion = currentAppJson?.expo?.version || \"\";\n\nlet oldVersion = \"\";\nlet shouldRelease = false;\nlet reason = \"\";\n\nif (eventName === \"workflow_dispatch\") {\n  shouldRelease = true;\n  reason = Manual release\n  for $ {\n    newVersion\n  };\n} else if (!beforeRef || beforeRef === ZERO_SHA) {\n  reason = \"No previous commit to compare against.\";\n} else {\n  oldVersion = readJsonAtRef(beforeRef, \"app.json\")?.expo?.version || \"\";\n  if (!oldVersion) {\n    reason = Could not read expo.version at $ {\n      beforeRef\n    }.;\n  } else if (isGreaterVersion(newVersion, oldVersion)) {\n    shouldRelease = true;\n    reason = Version bumped: $ {\n      oldVersion\n    } - > $ {\n      newVersion\n    };\n  } else {\n    reason = Version did not increase($ {\n      oldVersion\n    } - > $ {\n      newVersion\n    }).Skipping.;\n  }\n}\n\nwriteOutput(\"should_release\", shouldRelease ? \"true\" : \"false\");\nwriteOutput(\"old_version\", oldVersion || \"none\");\nwriteOutput(\"new_version\", newVersion || \"none\");\nwriteOutput(\"reason\", reason);"
-        },
-        {
-          "caption": "",
-          "type": "paragraph",
-          "content": "You can test it locally before pushing anything. Pass the old ref and the new ref:",
-          "image": "",
-          "id": "blk-mww5eqeh-hr6"
-        },
-        {
-          "id": "blk-mww5etbw-cwb",
-          "caption": "terminal",
-          "image": "",
-          "content": "ode scripts/check-version-bump.mjs origin/dev HEAD",
-          "type": "code"
-        },
-        {
-          "image": "",
-          "caption": "Tip: keep the version in package.json in sync with expo.version in app.json. The script only reads app.json, but having two different version numbers will confuse your team.",
-          "type": "quote",
-          "id": "blk-mww5h82u-jax",
-          "content": "should_release=true\nold_version=1.0.0\nnew_version=1.0.1"
-        },
-        {
-          "caption": "",
-          "id": "blk-mww5hz5y-0p1",
-          "type": "divider",
-          "content": "",
-          "image": ""
-        },
-        {
-          "type": "h2",
-          "image": "",
-          "caption": "",
-          "id": "blk-mww5hxhy-g69",
-          "content": "Step 2: The GitHub Actions Workflow"
-        },
-        {
-          "type": "paragraph",
-          "caption": "",
-          "id": "blk-mww5ibrd-3zw",
-          "content": "The workflow has three jobs. check-version always runs. The iOS and Android jobs only run when check-version says should_release is true, and they run in parallel. There's also a manual trigger (workflow_dispatch), so you can release just one platform from the Actions tab when you need to.\n\nCreate .github/workflows/auto-release.yml:",
-          "image": ""
-        },
-        {
-          "caption": ".github/workflows/auto-release.yml",
-          "content": "name: Auto Build & Submit to App Store and Play Store\n\non:\n  push:\n    branches:\n      - dev\n  workflow_dispatch:\n    inputs:\n      platform:\n        description: \"Platform(s) to build and submit\"\n        required: true\n        default: \"all\"\n        type: choice\n        options:\n          - all\n          - ios\n          - android\n\nconcurrency:\n  group: eas-auto-release-${{ github.ref }}\n  cancel-in-progress: false\n\njobs:\n  check-version:\n    runs-on: ubuntu-latest\n    outputs:\n      should_release: ${{ steps.version.outputs.should_release }}\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n      - name: Compare version against previous commit\n        id: version\n        env:\n          BEFORE_SHA: ${{ github.event.before }}\n        run: node scripts/check-version-bump.mjs\n\n  build-and-submit-ios:\n    needs: check-version\n    if: >-\n      needs.check-version.outputs.should_release == 'true' &&\n      (github.event_name != 'workflow_dispatch' ||\n      github.event.inputs.platform == 'all' ||\n      github.event.inputs.platform == 'ios')\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: \"22\"\n          cache: \"npm\"\n      - run: npm ci\n      - uses: expo/expo-github-action@v8\n        with:\n          eas-version: latest\n          token: ${{ secrets.EXPO_TOKEN }}\n      - name: Build iOS & auto-submit to App Store Connect\n        run: eas build --platform ios --profile production --auto-submit --non-interactive --no-wait\n\n  build-and-submit-android:\n    needs: check-version\n    if: >-\n      needs.check-version.outputs.should_release == 'true' &&\n      (github.event_name != 'workflow_dispatch' ||\n      github.event.inputs.platform == 'all' ||\n      github.event.inputs.platform == 'android')\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: \"22\"\n          cache: \"npm\"\n      - run: npm ci\n      - name: Restore google-services.json from secret\n        env:\n          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}\n        run: |\n          if [ -n \"$GOOGLE_SERVICES_JSON\" ]; then\n            printf '%s' \"$GOOGLE_SERVICES_JSON\" > google-services.json\n            sed -i '/^google-services.json$/d' .gitignore\n          fi\n      - uses: expo/expo-github-action@v8\n        with:\n          eas-version: latest\n          token: ${{ secrets.EXPO_TOKEN }}\n      - name: Build Android & auto-submit to Google Play\n        run: eas build --platform android --profile production --auto-submit --non-interactive --no-wait\n",
-          "image": "",
-          "type": "code",
-          "id": "blk-mww5igye-13y"
-        },
-        {
-          "type": "paragraph",
-          "caption": "",
-          "image": "",
-          "id": "blk-mww5q9z2-33t",
-          "content": "What the important flags do:\n\n--auto-submit: as soon as the cloud build finishes, EAS starts a submission to the store using the submit profile with the same name (production).\n--non-interactive: CI can't answer prompts, so every credential has to be stored on EAS already.\n--no-wait: the GitHub job ends once the build is queued, so you don't burn Actions minutes waiting. Follow the build and submission progress on expo.dev instead.\nnode-version: use the Node version your Expo SDK requires."
-        },
-        {
-          "content": "Why the google-services.json step? That file is usually gitignored, so a fresh CI checkout doesn't have it. We write it from a GitHub secret. EAS skips gitignored files when it uploads your project, so the step also removes that line from .gitignore inside the CI runner only. Your real .gitignore isn't touched. A cleaner alternative is to store the file as an EAS \"file\" environment variable and point app.json at it.",
-          "image": "",
-          "type": "quote",
-          "caption": "",
-          "id": "blk-mww5qm8b-wer"
-        },
-        {
-          "type": "divider",
-          "content": "",
-          "id": "blk-mww5qpjv-874",
-          "caption": "",
-          "image": ""
-        },
-        {
-          "id": "blk-mww5qqz9-8a9",
-          "content": "Step 3: Configure eas.json",
-          "image": "",
-          "caption": "",
-          "type": "h2"
-        },
-        {
-          "caption": "",
-          "id": "blk-mww5rf2m-ldj",
-          "image": "",
-          "content": "Three things matter here: Android must build an .aab (Google Play requires App Bundles), build numbers should increment automatically, and the submit profile needs to know where to send each build.",
-          "type": "paragraph"
-        },
-        {
-          "id": "blk-mww5rprm-5mr",
-          "caption": "eas.json",
-          "type": "code",
-          "content": "{\n  \"cli\" : {\"appVersionSource\" : \"remote\"},\n            \"build\"\n      : {\"production\" : {\"autoIncrement\" : true, \"android\" : {\"buildType\" : \"app-bundle\"}}},\n        \"submit\" : {\n    \"production\" : {\n      \"ios\" : {\"ascAppId\" : \"YOUR_ASC_APP_ID\"}, \"android\" : {\n        \"track\" : \"production\", \"releaseStatus\" : \"draft\"\n      }\n    }\n  }\n}",
-          "image": ""
-        },
-        {
-          "image": "",
-          "content": "appVersionSource: \"remote\" + autoIncrement: true: EAS manages the iOS buildNumber and Android versionCode and increments them on every build, so you only bump the human-readable version (1.0.0 → 1.0.1).\nascAppId: the numeric ID from your App Store URL (apps.apple.com/app/id YOUR_ASC_APP_ID).\ntrack: which Play track receives the build: production, beta, alpha or internal.\nreleaseStatus: \"draft\" uploads the build without rolling it out, so you can add release notes and press Rollout yourself. Use \"completed\" to send it straight out.",
-          "caption": "",
-          "type": "paragraph",
-          "id": "blk-mww5te8i-q3a"
-        },
-        {
-          "content": "Common mix-up: \"internal\" is a track, not a releaseStatus. To ship to internal testers automatically, set \"track\": \"internal\".",
-          "image": "",
-          "type": "quote",
-          "caption": "",
-          "id": "blk-mww5thgg-5p8"
-        },
-        {
-          "caption": "",
-          "image": "",
-          "type": "divider",
-          "content": "",
-          "id": "blk-mww5trgs-rss"
-        },
-        {
-          "caption": "",
-          "image": "",
-          "type": "h2",
-          "content": "Step 4: GitHub Secrets",
-          "id": "blk-mww5tztl-rf5"
-        },
-        {
-          "caption": "",
-          "image": "",
-          "content": "Go to GitHub → YOUR_GITHUB_ORG/YOUR_REPO → Settings → Secrets and variables → Actions → New repository secret and add:\n\nEXPO_TOKEN: an access token so CI can run EAS commands as your account.\nGOOGLE_SERVICES_JSON: the full contents of your google-services.json (only needed if your Android app uses Firebase, e.g. for push notifications).",
-          "id": "blk-mww5uect-94s",
-          "type": "paragraph"
-        },
-        {
-          "content": "Creating the EXPO_TOKEN with a robot user",
-          "id": "blk-mww5ump2-2ou",
-          "image": "",
-          "type": "h3",
-          "caption": ""
-        },
-        {
-          "caption": "",
-          "id": "blk-mww5uy7w-7gw",
-          "image": "",
-          "content": "Don't use your personal token. In your Expo organization (YOUR_EXPO_ORG), open the members/access-token settings, create a robot user (e.g. YOUR_ROBOT_USER) with the Developer role, and generate a token for it. If the token ever leaks, you can revoke it without touching anyone's personal account.",
-          "type": "paragraph"
-        },
-        {
-          "content": "Never commit a token to the repo or paste it into a chat, a ticket or a screenshot. If one gets exposed, revoke it on expo.dev right away, generate a new one, and update the GitHub secret.",
-          "type": "quote",
-          "id": "blk-mww5v1ob-lib",
-          "caption": "",
-          "image": ""
-        },
-        {
-          "image": "",
-          "caption": "",
-          "id": "blk-mww5w0c3-oiq",
-          "content": "",
-          "type": "image"
-        },
-        {
-          "content": "",
-          "id": "blk-mww5w2pw-a53",
-          "type": "divider",
-          "caption": "",
-          "image": ""
-        },
-        {
-          "type": "h2",
-          "id": "blk-mww5w4zd-wmq",
-          "content": "Step 5: iOS Credentials (App Store Connect API Key)",
-          "image": "",
-          "caption": ""
-        },
-        {
-          "caption": "",
-          "image": "",
-          "type": "paragraph",
-          "id": "blk-mww5wlui-559",
-          "content": "For --non-interactive submissions, EAS needs an App Store Connect API key so it never hits an Apple ID 2FA prompt. Run:"
-        },
-        {
-          "caption": "terminal",
-          "image": "",
-          "content": "npx eas credentials -p ios",
-          "type": "code",
-          "id": "blk-mww5wt3m-cuq"
-        },
-        {
-          "image": "",
-          "id": "blk-mww5x7s7-6jx",
-          "content": "Choose the production profile and log in to your Apple account. If the summary already lists an App Store Connect API Key, a Distribution Certificate and an active Provisioning Profile, iOS is ready. If no API key is listed, choose \"App Store Connect: Manage your API Key\" and let EAS create one.",
-          "type": "paragraph",
-          "caption": ""
-        },
-        {
-          "image": "",
-          "id": "blk-mww5xasj-ag7",
-          "caption": "",
-          "content": "Check the expiry dates on the distribution certificate and provisioning profile while you're in there. Put a reminder in your calendar a few weeks before they expire.",
-          "type": "quote"
-        },
-        {
-          "caption": "",
-          "content": "",
-          "image": "",
-          "id": "blk-mww5xlql-2nb",
-          "type": "image"
-        },
-        {
-          "image": "",
-          "content": "",
-          "caption": "",
-          "id": "blk-mww5y71o-19g",
-          "type": "divider"
-        },
-        {
-          "content": "Step 6: Android Credentials (Google Play Service Account)",
-          "image": "",
-          "caption": "",
-          "id": "blk-mww5y8th-0en",
-          "type": "h2"
-        },
-        {
-          "image": "",
-          "content": "This was the longest part. Google Play only accepts automated uploads from a Google Cloud service account that has been invited into your Play Console.",
-          "id": "blk-mww5yi86-fe9",
-          "type": "paragraph",
-          "caption": ""
-        },
-        {
-          "content": "6.1 Enable the API and create a service account",
-          "image": "",
-          "caption": "",
-          "type": "h3",
-          "id": "blk-mww5yq9m-tt2"
-        },
-        {
-          "id": "blk-mww5yytm-opi",
-          "image": "",
-          "type": "paragraph",
-          "caption": "",
-          "content": "1. Open Google Cloud Console and select (or create) a project, e.g. YOUR_GCP_PROJECT_ID.\n2. Search for \"Google Play Android Developer API\" and click Enable.\n3. Go to IAM & Admin → Service Accounts → Create Service Account. Name it something like YOUR_SERVICE_ACCOUNT_NAME (description: \"Automated Play Store submissions via EAS\"). You can skip the optional role step.\n4. Open the new account and copy its email: YOUR_SERVICE_ACCOUNT_NAME@YOUR_GCP_PROJECT_ID.iam.gserviceaccount.com\n5. Open the Keys tab → Add Key → Create new key → JSON → Create. A .json file downloads."
-        },
-        {
-          "content": "6.2 Problem: \"Service account key creation is disabled\"",
-          "id": "blk-mww608z4-ls7",
-          "type": "h3",
-          "caption": "",
-          "image": ""
-        },
-        {
-          "caption": "",
-          "type": "paragraph",
-          "id": "blk-mww60kbd-kql",
-          "image": "",
-          "content": "On step 5, I got this error instead of a download:"
-        },
-        {
-          "caption": "",
-          "image": "",
-          "id": "blk-mww60zxr-7u2",
-          "content": "\"Service account key creation is disabled\" — an Organization Policy (iam.disableServiceAccountKeyCreation) is enforced on your organization.",
-          "type": "quote"
-        },
-        {
-          "content": "Newer Google Cloud organizations get \"Secure by Default\" policies, and one of them blocks JSON key creation. If you're an admin of the organization, you can switch it off for this one project only:\n\n1. Give yourself the Organization Policy Administrator role. This role only shows up at the organization level: in the top-left resource picker, select the organization (the building icon), not a project. Then go to IAM & Admin → IAM, edit your account, and add Organization Policy Administrator.\n2. Switch the picker back to your project (YOUR_GCP_PROJECT_ID) and go to IAM & Admin → Organization Policies.\n3. Open \"Disable service account key creation\" (iam.disableServiceAccountKeyCreation) → Manage policy.\n4. Select \"Override parent's policy\" → Add a rule → Enforcement: Off → Done → Set policy.\n5. Wait about a minute and create the JSON key again. It should download this time.",
-          "image": "",
-          "type": "paragraph",
-          "caption": "",
-          "id": "blk-mww61fb6-4yi"
-        },
-        {
-          "id": "blk-mww62m86-6zz",
-          "caption": "",
-          "type": "quote",
-          "image": "",
-          "content": "If you aren't an org admin, either ask the admin to do the steps above, or create the service account in a Google Cloud project that isn't under an organization. Play Console accepts a service account from any project."
-        },
-        {
-          "caption": "",
-          "content": "",
-          "type": "image",
-          "image": "",
-          "id": "blk-mww630va-2st"
-        },
-        {
-          "image": "",
-          "id": "blk-mww63278-g5q",
-          "caption": "",
-          "type": "h3",
-          "content": "6.3 Invite the service account into Play Console"
-        },
-        {
-          "type": "paragraph",
-          "caption": "",
-          "id": "blk-mww63bxb-931",
-          "image": "",
-          "content": "1. Open Google Play Console → Users and permissions → Invite new users.\n2. Paste the service account email.\n3. Under App permissions → Add app → select YOUR_APP_NAME (COM.YOURCOMPANY.YOURAPP).\n4. Grant at least: View app information (read-only), Release to production / exclude devices / use Play App Signing, Release apps to testing tracks, and Manage testing tracks.\n5. Click Invite user. Service accounts are accepted automatically."
-        },
-        {
-          "caption": "",
-          "type": "h3",
-          "id": "blk-mww63yew-ff3",
-          "content": "6.4 Upload the key to EAS",
-          "image": ""
-        },
-        {
-          "id": "blk-mww646eo-259",
-          "type": "code",
-          "caption": "",
-          "content": "npx eas credentials -p android",
-          "image": ""
-        },
-        {
-          "image": "",
-          "caption": "",
-          "id": "blk-mww64oi0-1wf",
-          "type": "quote",
-          "content": "production\n→ Google Service Account\n→ Manage your Google Service Account Key for Play Store Submissions\n→ Set up a new service account key\n→ select the downloaded .json file"
-        },
-        {
-          "content": "When it's done, the credentials summary should show \"Submissions: Google Service Account Key for Play Store Submissions\" with your service account email.",
-          "type": "paragraph",
-          "image": "",
-          "id": "blk-mww65042-rsr",
-          "caption": ""
-        },
-        {
-          "image": "",
-          "content": "Once the key is on EAS, delete the .json file from your machine (or move it into a password manager), and add a pattern like YOUR_GCP_PROJECT_ID-*.json to .gitignore so it can never be committed by accident. If you only switched the org policy off to create this key, consider switching it back on.",
-          "type": "quote",
-          "caption": "",
-          "id": "blk-mww65a7z-rfw"
-        },
-        {
-          "id": "blk-mww65k6z-ou5",
-          "image": "",
-          "caption": "",
-          "type": "divider",
-          "content": ""
-        },
-        {
-          "image": "",
-          "caption": "",
-          "type": "h2",
-          "content": "Step 7: Ship It",
-          "id": "blk-mww65kyx-oif"
-        },
-        {
-          "type": "paragraph",
-          "caption": "",
-          "content": "The day-to-day flow is now:\n\n1. Work on your feature branch.\n2. Bump the version in app.json (and package.json), e.g. 1.0.0 → 1.0.1.\n3. Merge into dev.\n\nGitHub Actions detects the bump and starts both builds. Watch them at expo.dev → YOUR_EXPO_ORG / YOUR_EXPO_PROJECT → Builds and Submissions.",
-          "image": "",
-          "id": "blk-mww65wwd-bj3"
-        },
-        {
-          "image": "",
-          "id": "blk-mww66jcm-lpu",
-          "content": "What happens after the upload",
-          "type": "h3",
-          "caption": ""
-        },
-        {
-          "content": "iOS",
-          "id": "blk-mww66si1-edr",
-          "image": "",
-          "caption": "",
-          "type": "h4"
-        },
-        {
-          "id": "blk-mww671g5-2zi",
-          "image": "",
-          "caption": "",
-          "type": "paragraph",
-          "content": "The build is uploaded to App Store Connect and shows up in TestFlight after Apple processes it (usually 10–20 minutes). EAS does not send it for review. Open App Store Connect, attach the build to your new version, and click Submit for Review."
-        },
-        {
-          "image": "",
-          "type": "h4",
-          "content": "Android",
-          "id": "blk-mww67fxt-5nh",
-          "caption": ""
-        },
-        {
-          "type": "paragraph",
-          "id": "blk-mww67olo-vb6",
-          "image": "",
-          "caption": "",
-          "content": "The .aab goes to the track you configured. With releaseStatus \"draft\", open Play Console → your track → edit the draft release, add release notes, and start the rollout. Switch to \"completed\" once you trust the pipeline enough to skip that step."
-        },
-        {
-          "id": "blk-mww682fy-ewz",
-          "image": "",
-          "type": "quote",
-          "caption": "",
-          "content": "Gotcha: Google Play's API can't create the very first release of an app. If your app has never been uploaded, upload the first .aab manually in Play Console. Automated submissions work from then on."
-        },
-        {
-          "image": "",
-          "id": "blk-mww689a0-2yb",
-          "content": "",
-          "type": "image",
-          "caption": ""
-        },
-        {
-          "content": "",
-          "id": "blk-mww68b1f-rc0",
-          "type": "divider",
-          "caption": "",
-          "image": ""
-        },
-        {
-          "content": "Troubleshooting Checklist",
-          "image": "",
-          "caption": "",
-          "type": "h2",
-          "id": "blk-mww68kzj-xts"
-        },
-        {
-          "content": "The workflow ran but both store jobs were skipped → the version didn't increase. Check the reason output of the check-version job.\nThe EAS step fails with an auth error → EXPO_TOKEN is missing or revoked, or the robot user lacks permission in the organization.\nThe iOS submit fails → there's no App Store Connect API key on EAS, or ascAppId is wrong.\nThe Android submit fails with a permission error → the service account wasn't invited in Play Console, or it doesn't have release permissions for this app.\nThe Android build fails because google-services.json is missing → the GOOGLE_SERVICES_JSON secret is empty or isn't valid JSON.",
-          "type": "paragraph",
-          "caption": "",
-          "image": "",
-          "id": "blk-mww68tol-m5t"
-        },
-        {
-          "image": "",
-          "caption": "",
-          "content": "",
-          "id": "blk-mww68wnm-ffa",
-          "type": "divider"
-        },
-        {
-          "content": "Wrapping Up",
-          "id": "blk-mww694g7-1nf",
-          "type": "h2",
-          "caption": "",
-          "image": ""
-        },
-        {
-          "id": "blk-mww69e9t-ccn",
-          "content": "With one script, one workflow and a one-time credentials setup, a release now means bumping a version number and merging. Builds are consistent, nobody uploads binaries by hand, and the store review step stays under your control.\n\nIf you try this and get stuck, Contact me or chat. I'm happy to help.",
-          "image": "",
-          "type": "paragraph",
-          "caption": ""
-        }
-      ],
-      "id": "note-mwvrr1n3",
-      "subtitle": "A step-by-step look at setting up an automated CI/CD pipeline to build and submit React Native apps to the Apple App Store and Google Play Store whenever a new version is merged into the development branch.",
-      "readTime": "2 min read",
-      "isPublic": true,
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795590472/smsc_portfolio/cn5bwzabcfctydnmsl1b.png",
-      "date": "Nov 2026"
+      "title": "Automating Mobile App Releases with GitHub Actions and Expo EAS"
     },
     {
-      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png",
-      "date": "Nov 2026",
-      "category": "Engineering",
-      "title": "Shipping Cross-Platform Apps to App Store & Google Play with Expo",
       "tags": [
         "React Native",
         "Expo",
         "Mobile",
         "Notes"
       ],
+      "category": "Engineering",
+      "coverImage": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png",
+      "id": "blog-shipping-expo-apps",
       "blocks": [
         {
-          "id": "blk-1",
           "type": "h2",
-          "content": "Why React Native + Expo Scales Fast"
+          "content": "Why React Native + Expo Scales Fast",
+          "id": "blk-1"
         },
         {
-          "content": "Building production mobile applications across iOS and Android demands predictable release pipelines, rock-solid native integrations, and fast iteration cycles. Across projects like Dealrax, Doc4Baby, PlayZone, and Mangaliyam, Expo EAS builds dramatically reduced store submission friction.",
+          "id": "blk-2",
           "type": "paragraph",
-          "id": "blk-2"
+          "content": "Building production mobile applications across iOS and Android demands predictable release pipelines, rock-solid native integrations, and fast iteration cycles. Across projects like Dealrax, Doc4Baby, PlayZone, and Mangaliyam, Expo EAS builds dramatically reduced store submission friction."
         },
         {
-          "content": "Good mobile architecture isn’t just about screens — it’s reliable push notifications, resilient offline sync, and clean payment flows.",
+          "type": "quote",
           "id": "blk-3",
-          "type": "quote"
+          "content": "Good mobile architecture isn’t just about screens — it’s reliable push notifications, resilient offline sync, and clean payment flows."
         },
         {
-          "type": "h3",
           "id": "blk-4",
-          "content": "Production Release Checklist"
+          "content": "Production Release Checklist",
+          "type": "h3"
         },
         {
+          "content": "Always verify deep-link handling, test PayHere and third-party payment callbacks on physical devices, and validate push notification payloads in background, killed, and foreground states before submitting to App Store Connect or Play Console.",
           "id": "blk-5",
-          "type": "paragraph",
-          "content": "Always verify deep-link handling, test PayHere and third-party payment callbacks on physical devices, and validate push notification payloads in background, killed, and foreground states before submitting to App Store Connect or Play Console."
+          "type": "paragraph"
         }
       ],
+      "readTime": "3 min read",
+      "title": "Shipping Cross-Platform Apps to App Store & Google Play with Expo",
+      "date": "Nov 2026",
       "isPublic": true,
-      "id": "blog-shipping-expo-apps",
-      "subtitle": "Field notes from building production React Native applications at INTTEQ.",
-      "readTime": "3 min read"
+      "subtitle": "Field notes from building production React Native applications at INTTEQ."
     }
   ],
-  "education": [
+  "references": [
     {
-      "highlight": "Second Class Lower Division • GPA: 3.17",
-      "institution": "University of Jaffna",
-      "period": "2021 — 2025",
-      "id": "edu-1",
-      "details": "Completed honours research on YOLO-based recognition of electrical components in hand-drawn circuit diagrams (presented at SL-SWCS’25).",
-      "degree": "Bachelor of Science (Hons) in Computer Science"
+      "phone": "+94 76 369 2831",
+      "title": "University Research Supervisor • Senior Lecturer Gr.II",
+      "organization": "Department of Computer Science, University of Jaffna",
+      "id": "ref-1",
+      "email": "samantha@univ.jfn.ac.lk",
+      "name": "Dr. (Ms.) J. Samantha Tharani"
     },
     {
-      "period": "Aug 2019",
-      "degree": "G.C.E. Advanced Level (Physical Science)",
-      "id": "edu-2",
-      "details": "Physical Science stream with strong foundations in Combined Mathematics, Physics, and Chemistry.",
-      "highlight": "Results: BCC • Z-Score: 1.0067",
-      "institution": "Ch/ Senanayake National School, Madampe"
-    },
-    {
-      "institution": "Ch/ Senanayake National School, Madampe",
-      "highlight": "Results: 7As & 2Cs",
-      "period": "Dec 2016",
-      "id": "edu-3",
-      "details": "Strong academic foundation across mathematics, science, ICT, and arts.",
-      "degree": "G.C.E. Ordinary Level"
+      "name": "K. Mathotkadar",
+      "email": "mathot@intteq.com",
+      "id": "ref-2",
+      "organization": "INTTEQ",
+      "title": "CTO & Founder",
+      "phone": "+94 77 209 2673"
     }
   ],
-  "updatedAt": "2026-11-28T03:50:08.354Z",
-  "profile": {
-    "availability": "Associate Software Engineer @ INTTEQ",
-    "roleTitle": "Associate Software Engineer",
-    "birthday": "Dec 3, 2000",
-    "portraits": {
-      "about": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795513612/smsc_portfolio/x7c11xhp03nxutgitxa1.png",
-      "contact": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503341/smsc_portfolio/n77spvhqy1wpjhcvxgyz.png",
-      "hero": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png"
-    },
-    "brand": "SMSC",
-    "lastName": "Chathuranga",
-    "phone": "+94 76 686 2420",
-    "socials": {
-      "youtube": "https://youtube.com/@sms_chathuranga",
-      "facebook": "https://web.facebook.com/sms.chathu.79",
-      "twitter": "",
-      "github": "https://github.com/SachinthaChathuranga",
-      "instagram": "https://www.instagram.com/sms_chathu_79/",
-      "linkedin": "https://www.linkedin.com/in/smschathuranga/",
-      "tiktok": "https://www.tiktok.com/@aryasmsc?is_from_webapp=1&sender_device=pc"
-    },
-    "location": "Madampe, Chilaw, Sri Lanka",
-    "roles": [
-      "Associate Software Engineer",
-      "React Native & Expo Developer",
-      "Full-Stack Web Developer",
-      "UI/UX & Graphic Designer"
-    ],
-    "firstName": "Sachintha",
-    "headline": "Associate Software Engineer crafting cross-platform mobile apps, scalable web platforms & expressive visual interfaces.",
-    "emailjs": {
-      "serviceId": "service_ayccxmc",
-      "templateId": "template_z8relid",
-      "publicKey": "ErooJ7sWSFqBZCdv3"
-    },
-    "bio": "Associate Software Engineer at INTTEQ with a BSc (Hons) in Computer Science (Second Class Lower Division, GPA 3.17) from the University of Jaffna. Hands-on experience building cross-platform mobile apps with React Native, Expo, Flutter, and Next.js — integrating REST APIs, PayHere & third-party payment gateways, push notifications, and publishing releases to the Apple App Store and Google Play Store.",
-    "fullName": "S.M. Sachintha Chathuranga",
-    "email": "smschathu1234@gmail.com",
-    "languages": [
-      "Sinhala",
-      "English"
-    ],
-    "socialOrder": [
-      "linkedin",
-      "github",
-      "youtube",
-      "instagram",
-      "facebook",
-      "tiktok"
-    ]
-  },
   "skills": [
     {
-      "accent": "magenta",
       "category": "Mobile & Front-End",
+      "id": "sk-mobile-web",
+      "accent": "magenta",
       "items": [
         "React Native",
         "Expo",
@@ -1855,13 +1973,12 @@
         "Tailwind CSS",
         "JavaScript",
         "Framer Motion"
-      ],
-      "id": "sk-mobile-web"
+      ]
     },
     {
-      "category": "APIs, Payments & AI",
-      "accent": "cyan",
       "id": "sk-backend-release",
+      "accent": "cyan",
+      "category": "APIs, Payments & AI",
       "items": [
         "REST APIs",
         "PayHere Payments",
@@ -1874,8 +1991,6 @@
       ]
     },
     {
-      "accent": "amber",
-      "category": "UI/UX & Visual Craft",
       "items": [
         "Figma",
         "UI/UX Design",
@@ -1885,176 +2000,61 @@
         "Brand Identity",
         "Git & GitHub"
       ],
-      "id": "sk-design"
+      "accent": "amber",
+      "id": "sk-design",
+      "category": "UI/UX & Visual Craft"
     }
   ],
-  "gallery": [
-    {
-      "date": "2025",
-      "photos": [
-        {
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png",
-          "id": "ph-grad-2",
-          "caption": "Vertical Neon Rim-Light Study"
-        },
-        {
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795513108/smsc_portfolio/qcmljlajgsybqgacgq7d.png",
-          "caption": "Neon Graduation Portrait in a Moody Corridor",
-          "id": "ph-mwui59ig-tdl"
-        },
-        {
-          "caption": "Cinematic Graduate with Diploma and Gown",
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795513077/smsc_portfolio/aapk9thuwp442d4biqgl.png",
-          "id": "ph-mwui4m5s-e4h"
-        },
-        {
-          "id": "ph-mwui60q8-21a",
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795513143/smsc_portfolio/g8d3r6cxnqgj0kbqizb7.png",
-          "caption": "Neon Graduation Portrait in an Elevator"
-        },
-        {
-          "caption": "Neon Corridor Full-Frame Graduation Portrait",
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
-          "id": "ph-grad-1"
-        },
-        {
-          "caption": "Ceremonial Scroll Close-Up",
-          "id": "ph-grad-3",
-          "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png"
-        }
-      ],
-      "isPublic": true,
-      "id": "alb-neon-graduation",
-      "aspect": "wide",
-      "title": "Graduation — Neon Corridor Edition",
-      "caption": "Complete 4-frame BSc (Hons) Computer Science graduation portrait series.",
-      "type": "album",
-      "tag": "Graduation Album"
+  "updatedAt": "2026-11-28T04:18:40.393Z",
+  "profile": {
+    "emailjs": {
+      "templateId": "template_z8relid",
+      "serviceId": "service_ayccxmc",
+      "publicKey": "ErooJ7sWSFqBZCdv3"
     },
-    {
-      "tag": "Family",
-      "aspect": "tall",
-      "type": "photo",
-      "caption": "",
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505408/smsc_portfolio/e89us1vc6dchccw5l1ve.jpg",
-      "photos": [],
-      "id": "gal-mwtt309v-6gq",
-      "isPublic": true,
-      "title": "Amma & Thaththa",
-      "date": "2026"
+    "birthday": "Dec 3, 2000",
+    "availability": "Associate Software Engineer @ INTTEQ",
+    "phone": "+94 76 686 2420",
+    "location": "Madampe, Chilaw, Sri Lanka",
+    "brand": "SMSC",
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/smschathuranga/",
+      "github": "https://github.com/SachinthaChathuranga",
+      "tiktok": "https://www.tiktok.com/@aryasmsc?is_from_webapp=1&sender_device=pc",
+      "twitter": "",
+      "facebook": "https://web.facebook.com/sms.chathu.79",
+      "youtube": "https://youtube.com/@sms_chathuranga",
+      "instagram": "https://www.instagram.com/sms_chathu_79/"
     },
-    {
-      "caption": "",
-      "date": "2026",
-      "title": "Amma & Thaththa",
-      "photos": [],
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505475/smsc_portfolio/qipnybwxqut52hsuorrf.jpg",
-      "isPublic": true,
-      "tag": "Convocation",
-      "aspect": "wide",
-      "id": "gal-mwtt2x5l-3dp",
-      "type": "photo"
+    "firstName": "Sachintha",
+    "bio": "Associate Software Engineer at INTTEQ with a BSc (Hons) in Computer Science (Second Class Lower Division, GPA 3.17) from the University of Jaffna. Hands-on experience building cross-platform mobile apps with React Native, Expo, Flutter, and Next.js — integrating REST APIs, PayHere & third-party payment gateways, push notifications, and publishing releases to the Apple App Store and Google Play Store.",
+    "portraits": {
+      "contact": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503341/smsc_portfolio/n77spvhqy1wpjhcvxgyz.png",
+      "hero": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795503296/smsc_portfolio/epzokpzbuag3j7f1ity1.png",
+      "about": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795513612/smsc_portfolio/x7c11xhp03nxutgitxa1.png"
     },
-    {
-      "caption": "BSc (Hons) Computer Science graduation portrait under magenta & cyan corridor lights.",
-      "tag": "Graduation",
-      "type": "photo",
-      "photos": [],
-      "title": "Neon Corridor — Graduation Portrait",
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505297/smsc_portfolio/ys0xc8utw9v0jfhi4e2q.png",
-      "aspect": "wide",
-      "date": "2025",
-      "id": "gal-1",
-      "isPublic": true
-    },
-    {
-      "aspect": "tall",
-      "tag": "Portrait",
-      "type": "photo",
-      "isPublic": true,
-      "caption": "Vertical cinematic editorial study illuminated by electric blue, magenta, and warm amber.",
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505315/smsc_portfolio/wava8popdyiexmfdwvxr.png",
-      "photos": [],
-      "title": "Ceremonial Scroll & Neon Rim Light",
-      "date": "2025",
-      "id": "gal-2"
-    },
-    {
-      "tag": "Milestone",
-      "image": "https://res.cloudinary.com/dtpff8781/image/upload/f_auto,q_auto/v1795505332/smsc_portfolio/xpluxjulfagov8rluj7z.png",
-      "isPublic": true,
-      "photos": [],
-      "date": "2025",
-      "aspect": "standard",
-      "title": "Close-Up — Neon Corridor Edition",
-      "type": "photo",
-      "caption": "Celebrating the University of Jaffna Computer Science Honours milestone.",
-      "id": "gal-3"
-    }
-  ],
-  "experience": [
-    {
-      "id": "exp-1",
-      "company": "INTTEQ",
-      "period": "1 Dec 2025 — Present",
-      "type": "Full-Time",
-      "role": "Associate Software Engineer",
-      "highlights": [
-        "Develop and maintain cross-platform mobile applications using React Native and Expo.",
-        "Integrate mobile applications with backend REST APIs and third-party payment services (including PayHere).",
-        "Implement push-notification functionality to support timely in-app user communication.",
-        "Prepare production application builds and support releases to the Apple App Store and Google Play Store."
-      ]
-    },
-    {
-      "company": "INTTEQ",
-      "highlights": [
-        "Completed a six-month internship gaining hands-on commercial experience in mobile application development.",
-        "Collaborated with the engineering team on cross-platform application features and production deliverables."
-      ],
-      "type": "Internship",
-      "role": "Software Engineer Intern",
-      "period": "1 Jun 2025 — 30 Nov 2025",
-      "id": "exp-2"
-    },
-    {
-      "highlights": [
-        "Designed flyers, banners, certificates, and tokens of appreciation for the INSL Provincial Competitions as part of the organizing team."
-      ],
-      "role": "Graphic Designer (Volunteer)",
-      "type": "Volunteering",
-      "id": "exp-3",
-      "company": "IEEE Innovation Nation Sri Lanka — Northern Province",
-      "period": "2022 — 2023"
-    },
-    {
-      "highlights": [
-        "Assisted with cash-counter operations and day-to-day customer transactions.",
-        "Supported account-opening procedures, pawning-related services, and daily collection activities."
-      ],
-      "period": "17 Sep 2020 — 17 Aug 2021",
-      "type": "Banking",
-      "role": "Trainee",
-      "company": "People’s Bank Nattandiya",
-      "id": "exp-4"
-    }
-  ],
-  "references": [
-    {
-      "phone": "+94 76 369 2831",
-      "name": "Dr. (Ms.) J. Samantha Tharani",
-      "email": "samantha@univ.jfn.ac.lk",
-      "organization": "Department of Computer Science, University of Jaffna",
-      "title": "University Research Supervisor • Senior Lecturer Gr.II",
-      "id": "ref-1"
-    },
-    {
-      "title": "CTO & Founder",
-      "organization": "INTTEQ",
-      "name": "K. Mathotkadar",
-      "email": "mathot@intteq.com",
-      "phone": "+94 77 209 2673",
-      "id": "ref-2"
-    }
-  ]
+    "languages": [
+      "Sinhala",
+      "English"
+    ],
+    "socialOrder": [
+      "linkedin",
+      "github",
+      "youtube",
+      "instagram",
+      "facebook",
+      "tiktok"
+    ],
+    "roles": [
+      "Associate Software Engineer",
+      "React Native & Expo Developer",
+      "Full-Stack Web Developer",
+      "UI/UX & Graphic Designer"
+    ],
+    "headline": "Associate Software Engineer crafting cross-platform mobile apps, scalable web platforms & expressive visual interfaces.",
+    "fullName": "S.M. Sachintha Chathuranga",
+    "roleTitle": "Associate Software Engineer",
+    "lastName": "Chathuranga",
+    "email": "smschathu1234@gmail.com"
+  }
 }

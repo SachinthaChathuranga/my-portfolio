@@ -9,6 +9,7 @@ export const LEADERBOARD_GAMES = [
   { id: "racer", title: "Apex Horizon: Night Drive", short: "Apex Horizon", accent: "#FF8A1F" },
   { id: "igi", title: "Operation: Neon I.G.I.", short: "Neon I.G.I.", accent: "#00D4FF" },
   { id: "corridor", title: "Neon Corridor: Overdrive", short: "Neon Corridor", accent: "#F012A8" },
+  { id: "cricket", title: "SMSC Cricket 26", short: "Cricket 26", accent: "#22C55E" },
 ];
 
 function sanitizeEntries(rawList) {

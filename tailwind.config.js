@@ -31,6 +31,7 @@ export default {
         heading: ["Space Grotesk", "Plus Jakarta Sans", "sans-serif"],
         sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
+        serif: ["Instrument Serif", "Times New Roman", "serif"],
       },
       boxShadow: {
         "neon-magenta": "0 0 40px -8px rgba(240, 18, 168, 0.55)",

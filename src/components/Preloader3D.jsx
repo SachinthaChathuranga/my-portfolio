@@ -19,7 +19,7 @@ export default function Preloader3D({ ready, onComplete }) {
 
     const tick = (now) => {
       const elapsed = now - start;
-      const ratio = Math.min(1, elapsed / minDuration);
+      const ratio = Math.min(1, Math.max(0, elapsed / minDuration));
       const eased = 1 - Math.pow(1 - ratio, 3);
       const cap = ready ? 100 : 88;
       const next = Math.min(cap, Math.round(eased * 100));

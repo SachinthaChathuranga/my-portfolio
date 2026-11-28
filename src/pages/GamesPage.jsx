@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Gamepad2, Crosshair, Target, Sparkles, Car, Shield } from "lucide-react";
+import { ArrowLeft, Gamepad2, Crosshair, Target, Sparkles, Car, Shield, Trophy } from "lucide-react";
 import NeonShooter3D from "../games/NeonShooter3D";
 import TacticalIgi3D from "../games/TacticalIgi3D";
 import ApexRacer3D from "../games/ApexRacer3D";
 import VanguardArmy3D from "../games/VanguardArmy3D";
+import CricketGame from "../games/CricketGame";
 import GameLeaderboard from "../components/GameLeaderboard";
 
 const GAMES = [
   {
+    id: "cricket",
+    title: "SMSC Cricket 26",
+    tag: "Full 3D Cricket Sim",
+    badge: "NEW • T20 / ODI / Test",
+    desc: "10 nations, 6 stadiums, T20/ODI/Test/custom overs. Bat & bowl with timing, set your field, DRS with Hawk-Eye & UltraEdge, replays, 4s & 6s, and 50/100/wicket celebrations.",
+    accent: "border-emerald-400/60 bg-emerald-500/10",
+  },
+  {
     id: "vanguard",
     title: "Vanguard: Frontline Ops",
-    tag: "True WebGL 3D Army FPS",
-    badge: "NEW • 5 War Theaters",
-    desc: "Massive 58×58m WebGL 3D Special Forces campaign with 4–5 enterable buildings per map, Standing/Crouching/Prone crawl, 3D Jump, 5 weather theaters, sequential unlocks & Global Top-20 board.",
+    tag: "Realistic 3D Army FPS",
+    badge: "UPDATED • 130m Maps",
+    desc: "Huge 130×130m theaters with photo-real terrain, forests & weather, animated rifle-carrying soldiers, real shadows, 3D weapons, and ordered TASK 1 → 2 → 3 missions across 5 war zones.",
     accent: "border-emerald-400/60 bg-emerald-500/10",
   },
   {
@@ -43,7 +52,7 @@ const GAMES = [
 ];
 
 export default function GamesPage({ onBackHome, isOwnerPreview = false }) {
-  const [activeGame, setActiveGame] = useState("vanguard");
+  const [activeGame, setActiveGame] = useState("cricket");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -106,7 +115,9 @@ export default function GamesPage({ onBackHome, isOwnerPreview = false }) {
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="inline-flex items-center gap-1.5 font-mono text-[9.5px] font-bold uppercase tracking-wider text-[#FFC247]">
-                    {g.id === "vanguard" ? (
+                    {g.id === "cricket" ? (
+                      <Trophy className="h-3.5 w-3.5 text-emerald-400" />
+                    ) : g.id === "vanguard" ? (
                       <Shield className="h-3.5 w-3.5 text-emerald-400" />
                     ) : g.id === "racer" ? (
                       <Car className="h-3.5 w-3.5 text-[#FF8A1F]" />
@@ -139,7 +150,9 @@ export default function GamesPage({ onBackHome, isOwnerPreview = false }) {
         </div>
 
         {/* Active 3D Game Stage */}
-        {activeGame === "vanguard" ? (
+        {activeGame === "cricket" ? (
+          <CricketGame />
+        ) : activeGame === "vanguard" ? (
           <VanguardArmy3D />
         ) : activeGame === "racer" ? (
           <ApexRacer3D />

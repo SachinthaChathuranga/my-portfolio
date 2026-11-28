@@ -32,8 +32,8 @@ export default function HeroSection({ profile }) {
   const smoothX = useSpring(mouseX, { stiffness: 70, damping: 20 });
   const smoothY = useSpring(mouseY, { stiffness: 70, damping: 20 });
 
-  const bgShiftX = useTransform(smoothX, [-1, 1], [18, -18]);
-  const bgShiftY = useTransform(smoothY, [-1, 1], [12, -12]);
+  const chipShiftX = useTransform(smoothX, [-1, 1], [14, -14]);
+  const chipShiftY = useTransform(smoothY, [-1, 1], [10, -10]);
   const ringShiftX = useTransform(smoothX, [-1, 1], [-24, 24]);
   const ringShiftY = useTransform(smoothY, [-1, 1], [-18, 18]);
 
@@ -57,20 +57,9 @@ export default function HeroSection({ profile }) {
       onPointerMove={handlePointerMove}
       className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24"
     >
-      {/* Full-bleed subtle parallax corridor atmosphere derived from hero portrait */}
-      <motion.div
-        style={{ x: bgShiftX, y: bgShiftY }}
-        className="pointer-events-none absolute inset-[-4%] z-0 opacity-25"
-      >
-        <img
-          src={portraitGallery[0].src}
-          alt=""
-          aria-hidden="true"
-          className="h-full w-full object-cover object-center blur-[2px] saturate-125"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#06040D]/80 via-[#06040D]/75 to-[#06040D]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#06040D] via-[#06040D]/65 to-[#06040D]/85" />
-      </motion.div>
+      {/* Soft legibility wash so the live 3D scene sits behind the type */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-[#06040D]/75 via-[#06040D]/25 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-40 bg-gradient-to-b from-transparent to-[#06040D]/80" />
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10">
         {/* Left Editorial Typography Stage */}
@@ -154,7 +143,7 @@ export default function HeroSection({ profile }) {
           >
             <a
               href="#work"
-              className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full px-7 py-3.5 font-heading text-sm font-semibold tracking-wide text-white shadow-neon-magenta transition-transform duration-300 hover:scale-[1.03]"
+              className="btn-sheen group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full px-7 py-3.5 font-heading text-sm font-semibold tracking-wide text-white shadow-neon-magenta transition-transform duration-300 hover:scale-[1.03]"
               style={{
                 background:
                   "linear-gradient(110deg, #F012A8 0%, #9E1EFF 48%, #0099FF 100%)",
@@ -181,16 +170,64 @@ export default function HeroSection({ profile }) {
           transition={{ duration: 0.85, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
           className="relative lg:col-span-5"
         >
-          {/* Floating 3D Neon Halo Rings behind portrait */}
+          {/* Floating neon halo light behind portrait */}
           <motion.div
             style={{ x: ringShiftX, y: ringShiftY }}
             className="pointer-events-none absolute -inset-6 -z-10"
           >
-            <div className="absolute -left-6 top-8 h-48 w-48 rounded-full bg-[#F012A8]/35 blur-[70px]" />
-            <div className="absolute -right-6 bottom-10 h-52 w-52 rounded-full bg-[#00D4FF]/35 blur-[75px]" />
-            <div className="absolute bottom-2 left-1/3 h-36 w-36 rounded-full bg-[#FF8A1F]/30 blur-[65px]" />
-            <div className="absolute inset-4 rounded-[36px] border border-[#F012A8]/20 rotate-3" />
-            <div className="absolute inset-4 rounded-[36px] border border-[#00D4FF]/20 -rotate-3" />
+            <div className="absolute -left-6 top-8 h-48 w-48 rounded-full bg-[#F012A8]/30 blur-[80px]" />
+            <div className="absolute -right-6 bottom-10 h-52 w-52 rounded-full bg-[#00D4FF]/30 blur-[85px]" />
+            <div className="absolute bottom-2 left-1/3 h-36 w-36 rounded-full bg-[#FF8A1F]/25 blur-[70px]" />
+          </motion.div>
+
+          {/* 3D orbit rings circling the portrait */}
+          <div
+            className="pointer-events-none absolute left-1/2 top-[58%] -z-10 h-[125%] w-[125%] -translate-x-1/2 -translate-y-1/2"
+            style={{ perspective: "1100px" }}
+            aria-hidden="true"
+          >
+            <div className="orbit-stage absolute inset-0">
+              <div className="orbit-ring border border-[#F012A8]/35 shadow-[0_0_40px_rgba(240,18,168,0.18)]">
+                <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF3CC7] shadow-[0_0_18px_4px_rgba(255,60,199,0.7)]" />
+              </div>
+              <div className="orbit-ring orbit-ring--reverse inset-[9%] border border-[#00D4FF]/30">
+                <span className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 translate-y-1/2 rounded-full bg-[#00D4FF] shadow-[0_0_16px_4px_rgba(0,212,255,0.7)]" />
+              </div>
+            </div>
+          </div>
+
+          {/* Floating role chips hovering in front of the portrait */}
+          <motion.div
+            style={{ x: chipShiftX, y: chipShiftY }}
+            className="pointer-events-none absolute inset-0 z-30 hidden sm:block"
+            aria-hidden="true"
+          >
+            {roles.slice(0, 3).map((role, i) => {
+              const spots = [
+                "-left-10 top-[14%]",
+                "-right-8 top-[42%]",
+                "-left-6 bottom-[22%]",
+              ];
+              const dots = ["bg-[#FF3CC7]", "bg-[#00D4FF]", "bg-[#FFC247]"];
+              return (
+                <motion.div
+                  key={role}
+                  initial={{ opacity: 0, y: 12, scale: 0.9 }}
+                  animate={{ opacity: 1, y: [0, -8, 0], scale: 1 }}
+                  transition={{
+                    opacity: { delay: 0.9 + i * 0.15, duration: 0.6 },
+                    scale: { delay: 0.9 + i * 0.15, duration: 0.6 },
+                    y: { delay: 1 + i * 0.4, duration: 5 + i, repeat: Infinity, ease: "easeInOut" },
+                  }}
+                  className={`absolute ${spots[i]} flex items-center gap-2 rounded-full border border-white/15 bg-[#0B0716]/70 px-3.5 py-2 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.8)] backdrop-blur-xl`}
+                >
+                  <span className={`h-1.5 w-1.5 rounded-full ${dots[i]}`} />
+                  <span className="whitespace-nowrap font-heading text-[11px] font-semibold tracking-wide text-white/90">
+                    {role}
+                  </span>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           <Tilt3DCard

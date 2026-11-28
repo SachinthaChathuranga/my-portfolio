@@ -236,7 +236,7 @@ export default function ContactSection({ profile }) {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 font-heading text-sm font-semibold text-white shadow-neon-magenta transition-transform duration-300 hover:scale-[1.03] disabled:cursor-not-allowed disabled:opacity-55"
+                  className="btn-sheen inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 font-heading text-sm font-semibold text-white shadow-neon-magenta transition-transform duration-300 hover:scale-[1.03] disabled:cursor-not-allowed disabled:opacity-55"
                   style={{
                     background:
                       "linear-gradient(110deg, #F012A8 0%, #9E1EFF 48%, #0099FF 100%)",

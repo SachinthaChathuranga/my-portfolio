@@ -3,6 +3,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import AmbientCorridor3D from "./components/AmbientCorridor3D";
 import Preloader3D from "./components/Preloader3D";
 import Navbar from "./components/Navbar";
+import ScrollProgress from "./components/ScrollProgress";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import WorkSection from "./components/WorkSection";
@@ -16,12 +17,13 @@ import StorePreviewModal from "./components/StorePreviewModal";
 import WorkArchivePage from "./pages/WorkArchivePage";
 import GalleryArchivePage from "./pages/GalleryArchivePage";
 import BlogPage from "./pages/BlogPage";
-import GamesPage from "./pages/GamesPage";
 import StudioAuthGate from "./studio/StudioAuthGate";
 import { auth } from "./utils/firebase";
 import { assetUrl, fetchPortfolioData } from "./utils/portfolioApi";
 
 const LocalStudioDashboard = lazy(() => import("./studio/LocalStudioDashboard"));
+// Games (three.js engines + assets) load only when the arcade is opened
+const GamesPage = lazy(() => import("./pages/GamesPage"));
 
 function parseHashRoute() {
   const raw = window.location.hash || "";
@@ -221,7 +223,8 @@ export default function App() {
         />
       )}
 
-      <AmbientCorridor3D />
+      <AmbientCorridor3D enabled={preloaderDone && route.page !== "games"} />
+      <ScrollProgress />
 
       {portfolio && (
         <>
@@ -283,10 +286,18 @@ export default function App() {
                 </div>
               </div>
             ) : (
-              <GamesPage
-                onBackHome={() => navigateHome(null)}
-                isOwnerPreview={portfolio.showGames === false && Boolean(authUser)}
-              />
+              <Suspense
+                fallback={
+                  <div className="relative z-10 flex min-h-screen items-center justify-center font-mono text-xs text-ink-secondary">
+                    Loading Games Arcade…
+                  </div>
+                }
+              >
+                <GamesPage
+                  onBackHome={() => navigateHome(null)}
+                  isOwnerPreview={portfolio.showGames === false && Boolean(authUser)}
+                />
+              </Suspense>
             )
           ) : (
             <main className="relative z-10">

@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Trophy, RefreshCw, Medal, Crown, Globe, HardDrive } from "lucide-react";
+import { Trophy, RefreshCw, Medal, Crown, Globe, AlertTriangle } from "lucide-react";
 import {
   fetchGameLeaderboard,
   LEADERBOARD_GAMES,
+  MAX_LEADERBOARD_ENTRIES,
   subscribeGameLeaderboard,
 } from "../utils/leaderboardApi";
 
@@ -11,32 +12,30 @@ export default function GameLeaderboard({ activeGame }) {
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cloudConnected, setCloudConnected] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  // Sync leaderboard tab automatically when user switches active game
   useEffect(() => {
     if (activeGame) setSelectedTab(activeGame);
   }, [activeGame]);
 
-  // Real-time Firebase Firestore subscription (updates live automatically across all devices!)
+  // Real-Time Global Firebase Firestore Top-20 Listener (zero localStorage)
   useEffect(() => {
     setLoading(true);
-    const unsub = subscribeGameLeaderboard(
-      selectedTab,
-      (res) => {
-        setEntries(res.entries);
-        setCloudConnected(res.cloudConnected);
-        setLoading(false);
-      },
-      12
-    );
+    const unsub = subscribeGameLeaderboard(selectedTab, (res) => {
+      setEntries(res.entries);
+      setCloudConnected(res.cloudConnected);
+      setErrorMsg(res.error || "");
+      setLoading(false);
+    });
     return () => unsub();
   }, [selectedTab]);
 
   const manualRefresh = useCallback(async () => {
     setLoading(true);
-    const res = await fetchGameLeaderboard(selectedTab, 12);
+    const res = await fetchGameLeaderboard(selectedTab);
     setEntries(res.entries);
     setCloudConnected(res.cloudConnected);
+    setErrorMsg(res.error || "");
     setLoading(false);
   }, [selectedTab]);
 
@@ -58,10 +57,10 @@ export default function GameLeaderboard({ activeGame }) {
         <div>
           <p className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.24em] text-[#FFC247]">
             <Trophy className="h-3.5 w-3.5" />
-            Hall of Fame • Per-Game Live Rankings
+            Global Hall of Fame • Top {MAX_LEADERBOARD_ENTRIES} Worldwide
           </p>
           <h3 className="mt-1 font-display text-2xl font-extrabold text-white sm:text-3xl">
-            Arcade <span className="text-neon-gradient">Leaderboard</span>
+            Global <span className="text-neon-gradient">Leaderboard</span>
           </h3>
         </div>
 
@@ -70,17 +69,17 @@ export default function GameLeaderboard({ activeGame }) {
             className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[10px] font-semibold ${
               cloudConnected
                 ? "border-emerald-400/40 bg-emerald-500/15 text-emerald-300"
-                : "border-white/15 bg-white/5 text-ink-muted"
+                : "border-rose-400/40 bg-rose-500/15 text-rose-300"
             }`}
           >
             {cloudConnected ? (
               <>
                 <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-                <Globe className="h-3 w-3" /> Live Firebase Sync
+                <Globe className="h-3 w-3" /> Live Firebase Top {MAX_LEADERBOARD_ENTRIES}
               </>
             ) : (
               <>
-                <HardDrive className="h-3 w-3" /> Local Board
+                <AlertTriangle className="h-3 w-3" /> Connecting Firebase...
               </>
             )}
           </span>
@@ -89,7 +88,7 @@ export default function GameLeaderboard({ activeGame }) {
             type="button"
             onClick={manualRefresh}
             className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 font-mono text-[11px] font-semibold text-white transition hover:border-[#00D4FF]/60 hover:bg-[#00D4FF]/15"
-            title="Refresh Leaderboard"
+            title="Refresh Global Leaderboard"
           >
             <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
             <span>Refresh</span>
@@ -119,20 +118,26 @@ export default function GameLeaderboard({ activeGame }) {
         })}
       </div>
 
-      {/* Rankings Table */}
+      {errorMsg && (
+        <div className="mt-4 rounded-xl border border-amber-400/35 bg-amber-500/10 px-4 py-2.5 font-mono text-[11px] text-amber-200">
+          Firebase Leaderboard Error: {errorMsg}
+        </div>
+      )}
+
+      {/* Global Top-20 Table */}
       <div className="mt-5">
         {loading && entries.length === 0 ? (
           <div className="py-10 text-center font-mono text-xs text-ink-muted">
-            Connecting to Firebase live rankings for {activeMeta.title}...
+            Loading global Top {MAX_LEADERBOARD_ENTRIES} from Firebase for {activeMeta.title}...
           </div>
         ) : entries.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-white/15 bg-white/[0.02] px-6 py-10 text-center">
             <Trophy className="mx-auto h-8 w-8 text-[#FFC247]/60" />
             <p className="mt-3 font-display text-base font-bold text-white">
-              No records yet for {activeMeta.title}
+              No global records yet for {activeMeta.title}
             </p>
             <p className="mt-1 font-mono text-xs text-ink-muted">
-              Complete a mission or set a Best Score above to put your name at #1!
+              Complete a mission or set a Best Score above to claim #1 globally!
             </p>
           </div>
         ) : (
@@ -160,7 +165,7 @@ export default function GameLeaderboard({ activeGame }) {
                       : "text-ink-muted";
                   return (
                     <tr
-                      key={row.clientId || row.id || idx}
+                      key={row.id || idx}
                       className={`transition hover:bg-white/[0.04] ${
                         rank === 1 ? "bg-[#FFC247]/[0.05]" : ""
                       }`}

@@ -40,8 +40,11 @@ import {
   Cloud,
   LogOut,
   Shield,
+  Gamepad2,
 } from "lucide-react";
 import BlogStudioTab from "./BlogStudioTab";
+import GamesStudioTab from "./GamesStudioTab";
+import { getOrderedSocialKeys, SOCIAL_PLATFORMS } from "../utils/socials";
 import {
   assetUrl,
   checkLocalCmsHealth,
@@ -62,7 +65,8 @@ const TABS = [
   { id: "projects", label: "Projects", icon: FolderKanban },
   { id: "gallery", label: "My Gallery", icon: Camera },
   { id: "blog", label: "Blog & Notes", icon: BookOpen },
-  { id: "profile", label: "Profile & Portraits", icon: User },
+  { id: "games", label: "Games & Leaderboard", icon: Gamepad2 },
+  { id: "profile", label: "Profile & Socials", icon: User },
   { id: "skills", label: "Experience & Skills", icon: GraduationCap },
   { id: "publish", label: "Cloud & Publish", icon: Cloud },
 ];
@@ -2198,6 +2202,15 @@ export default function LocalStudioDashboard({
             />
           )}
 
+          {/* ================= GAMES & LEADERBOARD TAB ================= */}
+          {activeTab === "games" && (
+            <GamesStudioTab
+              draft={draft}
+              updateDraft={updateDraft}
+              showToast={showToast}
+            />
+          )}
+
           {/* ================= PROFILE & PORTRAITS TAB ================= */}
           {activeTab === "profile" && (
             <div className="space-y-6 rounded-2xl border border-white/10 bg-[#100B20] p-6">
@@ -2328,29 +2341,109 @@ export default function LocalStudioDashboard({
               </div>
 
               <div>
-                <label className={labelClass}>Social Links</label>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {["github", "linkedin", "instagram", "facebook", "youtube"].map((net) => (
-                    <input
-                      key={net}
-                      type="url"
-                      placeholder={`${net} URL`}
-                      value={draft.profile?.socials?.[net] || ""}
-                      onChange={(e) =>
-                        updateDraft((prev) => ({
-                          ...prev,
-                          profile: {
-                            ...prev.profile,
-                            socials: {
-                              ...(prev.profile?.socials || {}),
-                              [net]: e.target.value,
-                            },
-                          },
-                        }))
-                      }
-                      className={inputClass}
-                    />
-                  ))}
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <label className="font-mono text-[11px] uppercase tracking-wider text-ink-muted">
+                    Social Links & Display Order (YouTube, LinkedIn, Facebook, Instagram, TikTok, GitHub)
+                  </label>
+                  <span className="font-mono text-[10px] text-[#00D4FF]">
+                    Use ↑ / ↓ to reorder how they appear on your site
+                  </span>
+                </div>
+                <div className="space-y-2.5">
+                  {getOrderedSocialKeys(draft.profile).map((netKey, idx, list) => {
+                    const meta =
+                      SOCIAL_PLATFORMS.find((p) => p.key === netKey) || {
+                        key: netKey,
+                        label: netKey,
+                        placeholder: `https://${netKey}.com/...`,
+                      };
+                    const moveSocial = (delta) => {
+                      const target = idx + delta;
+                      if (target < 0 || target >= list.length) return;
+                      const nextOrder = [...list];
+                      [nextOrder[idx], nextOrder[target]] = [nextOrder[target], nextOrder[idx]];
+                      updateDraft((prev) => ({
+                        ...prev,
+                        profile: {
+                          ...prev.profile,
+                          socialOrder: nextOrder,
+                        },
+                      }));
+                    };
+                    return (
+                      <div
+                        key={netKey}
+                        className="flex flex-col gap-2 rounded-xl border border-white/10 bg-[#0A0716] p-3 sm:flex-row sm:items-center"
+                      >
+                        <div className="flex items-center gap-2 sm:w-40">
+                          <div className="flex items-center gap-0.5">
+                            <button
+                              type="button"
+                              onClick={() => moveSocial(-1)}
+                              disabled={idx === 0}
+                              title="Move up"
+                              className="rounded p-1 text-ink-muted hover:bg-white/10 hover:text-white disabled:opacity-25"
+                            >
+                              <ChevronUp className="h-3.5 w-3.5" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => moveSocial(1)}
+                              disabled={idx === list.length - 1}
+                              title="Move down"
+                              className="rounded p-1 text-ink-muted hover:bg-white/10 hover:text-white disabled:opacity-25"
+                            >
+                              <ChevronDown className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+                          <span className="font-mono text-[10px] text-ink-muted">#{idx + 1}</span>
+                          <span className="text-xs font-bold text-white">{meta.label}</span>
+                        </div>
+
+                        <input
+                          type="url"
+                          placeholder={meta.placeholder}
+                          value={draft.profile?.socials?.[netKey] || ""}
+                          onChange={(e) =>
+                            updateDraft((prev) => ({
+                              ...prev,
+                              profile: {
+                                ...prev.profile,
+                                socialOrder: getOrderedSocialKeys(prev.profile),
+                                socials: {
+                                  ...(prev.profile?.socials || {}),
+                                  [netKey]: e.target.value,
+                                },
+                              },
+                            }))
+                          }
+                          className={`${inputClass} flex-1`}
+                        />
+
+                        {draft.profile?.socials?.[netKey] && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              updateDraft((prev) => ({
+                                ...prev,
+                                profile: {
+                                  ...prev.profile,
+                                  socials: {
+                                    ...(prev.profile?.socials || {}),
+                                    [netKey]: "",
+                                  },
+                                },
+                              }))
+                            }
+                            title={`Clear ${meta.label} link`}
+                            className="rounded-lg p-2 text-rose-400 hover:bg-rose-500/15"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>

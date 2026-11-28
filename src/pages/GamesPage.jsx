@@ -13,7 +13,7 @@ const GAMES = [
     title: "Vanguard: Frontline Ops",
     tag: "True WebGL 3D Army FPS",
     badge: "NEW • 5 War Theaters",
-    desc: "Next-gen WebGL 3D Special Forces campaign with enterable buildings, breachable doors, shoot-through windows, 5 distinct weather theaters, sequential mission unlocks, frag grenades & 3D soldiers.",
+    desc: "Massive 58×58m WebGL 3D Special Forces campaign with 4–5 enterable buildings per map, Standing/Crouching/Prone crawl, 3D Jump, 5 weather theaters, sequential unlocks & Global Top-20 board.",
     accent: "border-emerald-400/60 bg-emerald-500/10",
   },
   {
@@ -42,7 +42,7 @@ const GAMES = [
   },
 ];
 
-export default function GamesPage({ onBackHome }) {
+export default function GamesPage({ onBackHome, isOwnerPreview = false }) {
   const [activeGame, setActiveGame] = useState("vanguard");
 
   useEffect(() => {
@@ -67,6 +67,12 @@ export default function GamesPage({ onBackHome }) {
             SMSC Interactive 3D Arcade
           </span>
         </div>
+
+        {isOwnerPreview && (
+          <div className="mb-6 rounded-2xl border border-amber-400/45 bg-amber-500/15 px-4 py-2.5 font-mono text-xs text-amber-200">
+            Owner Preview: Games Arcade is currently set to HIDDEN from public visitors in Studio.
+          </div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 18 }}

@@ -3,6 +3,7 @@ import { Lock } from "lucide-react";
 
 export default function Footer({
   profile,
+  showGames = true,
   onNavigateHome,
   onNavigateWork,
   onNavigateGallery,
@@ -53,13 +54,15 @@ export default function Footer({
           >
             Blog
           </button>
-          <button
-            type="button"
-            onClick={() => onNavigateGames?.()}
-            className="transition hover:text-white"
-          >
-            Games
-          </button>
+          {showGames && (
+            <button
+              type="button"
+              onClick={() => onNavigateGames?.()}
+              className="transition hover:text-white"
+            >
+              Games
+            </button>
+          )}
           <button
             type="button"
             onClick={() => onNavigateHome?.("contact")}

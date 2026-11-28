@@ -349,5 +349,43 @@ export function createVanguardTextures(gl) {
     bank.barrel = uploadTexture(gl, c);
   }
 
+  // 11. Military Camo Tent Tarp
+  {
+    const c = makeCanvas();
+    const ctx = c.getContext("2d");
+    ctx.fillStyle = "#48563A";
+    ctx.fillRect(0, 0, SIZE, SIZE);
+    for (let i = 0; i < 48; i++) {
+      ctx.fillStyle = i % 3 === 0 ? "#344028" : i % 3 === 1 ? "#5D6949" : "#3E3829";
+      ctx.beginPath();
+      ctx.ellipse(hash(i * 4.3) * SIZE, hash(i * 9.1) * SIZE, 18, 10, hash(i) * 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.strokeStyle = "rgba(0,0,0,0.28)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(2, 2, SIZE - 4, SIZE - 4);
+    addGrain(ctx, 18, 111);
+    bank.camoTent = uploadTexture(gl, c);
+  }
+
+  // 12. Extraction Helipad Painted 'H' Asphalt Pad
+  {
+    const c = makeCanvas();
+    const ctx = c.getContext("2d");
+    ctx.fillStyle = "#2A303B";
+    ctx.fillRect(0, 0, SIZE, SIZE);
+    ctx.strokeStyle = "#FACC15";
+    ctx.lineWidth = 7;
+    ctx.beginPath();
+    ctx.arc(SIZE / 2, SIZE / 2, SIZE * 0.42, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.fillStyle = "#FACC15";
+    ctx.fillRect(38, 32, 12, 64);
+    ctx.fillRect(78, 32, 12, 64);
+    ctx.fillRect(38, 58, 52, 12);
+    addGrain(ctx, 20, 123);
+    bank.helipad = uploadTexture(gl, c);
+  }
+
   return bank;
 }

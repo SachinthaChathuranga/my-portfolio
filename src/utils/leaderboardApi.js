@@ -1,9 +1,8 @@
-import { addDoc, collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
+import { doc, getDoc, onSnapshot, runTransaction, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
-const LOCAL_LB_KEY = "smsc_arcade_leaderboards_v1";
-const PLAYER_NAME_KEY = "smsc_arcade_player_name_v1";
 const COLLECTION_NAME = "game_leaderboards";
+export const MAX_LEADERBOARD_ENTRIES = 20;
 
 export const LEADERBOARD_GAMES = [
   { id: "vanguard", title: "Vanguard: Frontline Ops", short: "Vanguard Ops", accent: "#34D399" },
@@ -12,159 +11,67 @@ export const LEADERBOARD_GAMES = [
   { id: "corridor", title: "Neon Corridor: Overdrive", short: "Neon Corridor", accent: "#F012A8" },
 ];
 
-export function getSavedPlayerName() {
-  try {
-    return localStorage.getItem(PLAYER_NAME_KEY) || "";
-  } catch {
-    return "";
-  }
-}
-
-export function savePlayerName(name) {
-  try {
-    localStorage.setItem(PLAYER_NAME_KEY, name);
-  } catch {
-    // ignore
-  }
-}
-
-function readLocalAll() {
-  try {
-    const raw = localStorage.getItem(LOCAL_LB_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch {
-    return {};
-  }
-}
-
-function writeLocalAll(data) {
-  try {
-    localStorage.setItem(LOCAL_LB_KEY, JSON.stringify(data));
-  } catch {
-    // ignore
-  }
-}
-
-function parseSnapshot(snap) {
-  const list = [];
-  snap.forEach((docSnap) => {
-    const d = docSnap.data();
-    if (d && typeof d.score === "number" && d.playerName) {
-      list.push({
-        id: docSnap.id,
-        clientId: d.clientId || docSnap.id,
-        gameId: d.gameId,
-        playerName: String(d.playerName).slice(0, 24),
-        score: Math.floor(d.score),
-        badge: d.badge || "",
-        meta: d.meta || "",
-        createdAt: Number(d.createdAt || Date.now()),
-        fromCloud: true,
-      });
-    }
-  });
-  return list;
-}
-
-function mergeAndSort(cloudList, localList, maxCount = 15) {
-  const seen = new Map();
-  // Prefer cloud records first so `fromCloud` flag stays true
-  for (const item of [...cloudList, ...localList]) {
-    if (!item || !item.playerName) continue;
-    const key = item.clientId || `${item.playerName}_${item.score}_${item.createdAt}`;
-    if (!seen.has(key)) seen.set(key, item);
-  }
-  return Array.from(seen.values())
-    .sort((a, b) => (b.score || 0) - (a.score || 0) || (a.createdAt || 0) - (b.createdAt || 0))
-    .slice(0, maxCount);
+function sanitizeEntries(rawList) {
+  if (!Array.isArray(rawList)) return [];
+  return rawList
+    .filter((item) => item && item.playerName && typeof item.score === "number")
+    .map((item) => ({
+      id: String(item.id || `${item.createdAt || Date.now()}_${Math.random().toString(36).slice(2, 6)}`),
+      playerName: String(item.playerName).trim().slice(0, 24),
+      score: Math.max(0, Math.floor(Number(item.score) || 0)),
+      badge: String(item.badge || "").slice(0, 32),
+      meta: String(item.meta || "").slice(0, 64),
+      createdAt: Number(item.createdAt || Date.now()),
+    }))
+    .sort((a, b) => b.score - a.score || a.createdAt - b.createdAt)
+    .slice(0, MAX_LEADERBOARD_ENTRIES);
 }
 
 /**
- * One-shot fetch (used for manual refresh button).
+ * Pure Firebase Firestore one-shot fetch (ZERO device localStorage).
  */
-export async function fetchGameLeaderboard(gameId, maxCount = 15) {
-  const localAll = readLocalAll();
-  const localEntries = Array.isArray(localAll[gameId]) ? localAll[gameId] : [];
-
+export async function fetchGameLeaderboard(gameId) {
   try {
-    const q = query(collection(db, COLLECTION_NAME), where("gameId", "==", gameId));
-    const snap = await getDocs(q);
-    const cloudEntries = parseSnapshot(snap);
-    return {
-      entries: mergeAndSort(cloudEntries, localEntries, maxCount),
-      cloudConnected: true,
-      error: "",
-    };
+    const snap = await getDoc(doc(db, COLLECTION_NAME, gameId));
+    const entries = snap.exists() ? sanitizeEntries(snap.data()?.entries) : [];
+    return { entries, cloudConnected: true, error: "" };
   } catch (err) {
     return {
-      entries: mergeAndSort([], localEntries, maxCount),
+      entries: [],
       cloudConnected: false,
-      error: err?.code || err?.message || "offline",
+      error: err?.code || err?.message || "Failed to load Firebase leaderboard",
     };
   }
 }
 
 /**
- * Real-time Firebase Firestore listener (onSnapshot) for instant live leaderboard updates
- * across all players and devices!
+ * Pure Global Real-Time Firebase Firestore Listener (onSnapshot).
+ * Every device worldwide sees the exact same live Top 20 leaderboard with zero device localStorage.
  */
-export function subscribeGameLeaderboard(gameId, onData, maxCount = 15) {
-  const getLocal = () => {
-    const all = readLocalAll();
-    return Array.isArray(all[gameId]) ? all[gameId] : [];
-  };
-
-  let lastCloudEntries = [];
-  let isCloudLive = false;
-
-  const emitLocalRefresh = () => {
-    onData({
-      entries: mergeAndSort(lastCloudEntries, getLocal(), maxCount),
-      cloudConnected: isCloudLive,
-      error: "",
-    });
-  };
-
-  // Emit cached local entries immediately for zero-flicker render
-  emitLocalRefresh();
-
-  const onLocalEvent = (e) => {
-    if (!e?.detail?.gameId || e.detail.gameId === gameId) {
-      emitLocalRefresh();
-    }
-  };
-  if (typeof window !== "undefined") {
-    window.addEventListener("smsc-leaderboard-updated", onLocalEvent);
-  }
-
+export function subscribeGameLeaderboard(gameId, onData) {
+  const ref = doc(db, COLLECTION_NAME, gameId);
   let unsub = () => {};
+
   try {
-    const q = query(collection(db, COLLECTION_NAME), where("gameId", "==", gameId));
     unsub = onSnapshot(
-      q,
+      ref,
       (snap) => {
-        isCloudLive = true;
-        lastCloudEntries = parseSnapshot(snap);
-        onData({
-          entries: mergeAndSort(lastCloudEntries, getLocal(), maxCount),
-          cloudConnected: true,
-          error: "",
-        });
+        const entries = snap.exists() ? sanitizeEntries(snap.data()?.entries) : [];
+        onData({ entries, cloudConnected: true, error: "" });
       },
       (err) => {
-        isCloudLive = false;
         onData({
-          entries: mergeAndSort([], getLocal(), maxCount),
+          entries: [],
           cloudConnected: false,
-          error: err?.code || err?.message || "firestore-error",
+          error: err?.code || err?.message || "Firestore connection error",
         });
       }
     );
   } catch (err) {
     onData({
-      entries: mergeAndSort([], getLocal(), maxCount),
+      entries: [],
       cloudConnected: false,
-      error: err?.message || "init-error",
+      error: err?.message || "Could not connect to Firebase",
     });
   }
 
@@ -174,14 +81,13 @@ export function subscribeGameLeaderboard(gameId, onData, maxCount = 15) {
     } catch {
       // ignore
     }
-    if (typeof window !== "undefined") {
-      window.removeEventListener("smsc-leaderboard-updated", onLocalEvent);
-    }
   };
 }
 
 /**
- * Submit a player's score & name to both localStorage (instant) and Firebase Firestore (live global).
+ * Atomically submits a score to Firebase Firestore (`game_leaderboards/{gameId}`).
+ * Automatically sorts and prunes entries beyond Top 20 directly in the DB!
+ * Never stores leaderboard rows in device localStorage.
  */
 export async function submitGameScore({ gameId, playerName, score, badge = "", meta = "" }) {
   const cleanName = String(playerName || "")
@@ -192,11 +98,8 @@ export async function submitGameScore({ gameId, playerName, score, badge = "", m
     throw new Error("Please enter your name.");
   }
 
-  savePlayerName(cleanName);
-
   const entry = {
-    clientId: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-    gameId,
+    id: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     playerName: cleanName,
     score: Math.max(0, Math.floor(Number(score) || 0)),
     badge: String(badge || "").slice(0, 32),
@@ -204,28 +107,62 @@ export async function submitGameScore({ gameId, playerName, score, badge = "", m
     createdAt: Date.now(),
   };
 
-  // 1. Save locally for instant feedback
-  const localAll = readLocalAll();
-  const prev = Array.isArray(localAll[gameId]) ? localAll[gameId] : [];
-  localAll[gameId] = mergeAndSort([], [entry, ...prev], 30);
-  writeLocalAll(localAll);
+  const ref = doc(db, COLLECTION_NAME, gameId);
 
-  // 2. Push to Firebase Firestore (`game_leaderboards` collection)
-  let syncedToCloud = false;
-  let cloudError = "";
-  try {
-    await addDoc(collection(db, COLLECTION_NAME), entry);
-    syncedToCloud = true;
-  } catch (err) {
-    syncedToCloud = false;
-    cloudError = err?.code || err?.message || "permission-denied";
-    console.warn("[Leaderboard Firebase write skipped]", cloudError);
-  }
+  const result = await runTransaction(db, async (tx) => {
+    const snap = await tx.get(ref);
+    const existing = snap.exists() ? sanitizeEntries(snap.data()?.entries) : [];
 
-  // 3. Notify local listeners immediately
-  if (typeof window !== "undefined") {
-    window.dispatchEvent(new CustomEvent("smsc-leaderboard-updated", { detail: { gameId } }));
-  }
+    // Sort all entries descending & strictly keep ONLY Top 20 (rank 21+ auto-removed from DB!)
+    const combined = [...existing, entry].sort(
+      (a, b) => b.score - a.score || a.createdAt - b.createdAt
+    );
+    const top20 = combined.slice(0, MAX_LEADERBOARD_ENTRIES);
+    const rankIndex = top20.findIndex((item) => item.id === entry.id);
 
-  return { entry, syncedToCloud, cloudError };
+    if (rankIndex === -1) {
+      const minTopScore = top20[top20.length - 1]?.score || 0;
+      return { madeTop20: false, rank: null, minTopScore, entry };
+    }
+
+    tx.set(ref, {
+      gameId,
+      entries: top20,
+      updatedAt: Date.now(),
+    });
+
+    return { madeTop20: true, rank: rankIndex + 1, minTopScore: null, entry };
+  });
+
+  return result;
+}
+
+/**
+ * Admin Action (Studio): Remove a single player entry from a game's Firebase leaderboard.
+ */
+export async function removeLeaderboardEntry(gameId, entryId) {
+  const ref = doc(db, COLLECTION_NAME, gameId);
+  await runTransaction(db, async (tx) => {
+    const snap = await tx.get(ref);
+    if (!snap.exists()) return;
+    const existing = sanitizeEntries(snap.data()?.entries);
+    const filtered = existing.filter((item) => item.id !== entryId);
+    tx.set(ref, {
+      gameId,
+      entries: filtered,
+      updatedAt: Date.now(),
+    });
+  });
+}
+
+/**
+ * Admin Action (Studio): Clear all leaderboard scores for a game in Firebase.
+ */
+export async function clearGameLeaderboard(gameId) {
+  const ref = doc(db, COLLECTION_NAME, gameId);
+  await setDoc(ref, {
+    gameId,
+    entries: [],
+    updatedAt: Date.now(),
+  });
 }

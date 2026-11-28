@@ -273,10 +273,12 @@ function createArmyAudio() {
 }
 
 // ================= 3D COLLISION & RAYCAST HELPERS =================
-function collidesWalk(colliders, x, z, radius = 0.42) {
+function collidesWalk(colliders, x, z, radius = 0.42, footY = 0) {
   for (let i = 0; i < colliders.length; i++) {
     const c = colliders[i];
     if (!c.blocksWalk) continue;
+    // Allow jumping cleanly over low sandbags, crates & Jersey barriers when airborne!
+    if (footY > 0.12 && c.maxBulletY <= footY + 0.18) continue;
     if (x + radius > c.minX && x - radius < c.maxX && z + radius > c.minZ && z - radius < c.maxZ) {
       return true;
     }
@@ -357,6 +359,8 @@ function createRuntimeState(mission) {
     mission,
     px: mission.playerStart.x,
     pz: mission.playerStart.z,
+    playerY: 0,
+    playerVy: 0,
     yaw: mission.playerStart.yaw || 0,
     pitch: 0,
     hp: 100,
@@ -368,8 +372,10 @@ function createRuntimeState(mission) {
     fireCd: 0,
     ads: false,
     adsLerp: 0,
-    crouched: false,
-    crouchLerp: 0,
+    stance: "stand", // "stand" | "crouch" | "prone"
+    eyeHeight: 1.68,
+    landDip: 0,
+    shells: [],
     muzzleFlash: 0,
     recoil: 0,
     walkBob: 0,
@@ -472,7 +478,7 @@ export default function VanguardArmy3D() {
     grenades: 3,
     reloading: false,
     ads: false,
-    crouched: false,
+    stance: "stand",
     insideBuilding: null,
     allObjectivesDone: false,
     objectives: selectedMission.objectives.map((o) => ({
@@ -560,7 +566,7 @@ export default function VanguardArmy3D() {
       grenades: s.grenades,
       reloading: s.reloading > 0,
       ads: s.ads,
-      crouched: s.crouched,
+      stance: s.stance,
       insideBuilding: bldg ? bldg.label : null,
       allObjectivesDone,
       objectives: objList,
@@ -650,7 +656,7 @@ export default function VanguardArmy3D() {
     const s = simRef.current;
     if (!s || phaseRef.current !== "playing" || s.grenades <= 0) return;
     s.grenades -= 1;
-    const eyeY = s.crouched ? 1.05 : 1.6;
+    const eyeY = s.eyeHeight + s.playerY;
     const fx = Math.sin(s.yaw) * Math.cos(s.pitch);
     const fy = Math.sin(s.pitch) + 0.28;
     const fz = -Math.cos(s.yaw) * Math.cos(s.pitch);
@@ -671,6 +677,9 @@ export default function VanguardArmy3D() {
   useEffect(() => {
     const s = simRef.current;
     const onKeyDown = (e) => {
+      const tag = e.target?.tagName?.toLowerCase();
+      if (tag === "input" || tag === "textarea") return;
+
       const k = (e.key || "").toLowerCase();
       const c = e.code || "";
       s.keys[k] = true;
@@ -683,6 +692,20 @@ export default function VanguardArmy3D() {
         ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(c)
       ) {
         e.preventDefault();
+      }
+
+      // [Space] -> Jump (or rise quickly from Prone / Crouch!)
+      if (k === " " || c === "Space") {
+        if (s.stance === "prone") {
+          s.stance = "crouch";
+          syncHud();
+        } else if (s.stance === "crouch") {
+          s.stance = "stand";
+          syncHud();
+        } else if (s.playerY <= 0.02) {
+          s.playerVy = 6.6;
+        }
+        return;
       }
 
       const wMap = { "1": 0, Digit1: 0, "2": 1, Digit2: 1, "3": 2, Digit3: 2, "4": 3, Digit4: 3 };
@@ -704,7 +727,11 @@ export default function VanguardArmy3D() {
         }
       }
       if (k === "c" || c === "KeyC") {
-        s.crouched = !s.crouched;
+        s.stance = s.stance === "crouch" ? "stand" : "crouch";
+        syncHud();
+      }
+      if (k === "z" || c === "KeyZ" || k === "x" || c === "KeyX") {
+        s.stance = s.stance === "prone" ? "stand" : "prone";
         syncHud();
       }
       if (k === "n" || c === "KeyN") {
@@ -877,7 +904,19 @@ export default function VanguardArmy3D() {
       s.mags[s.weaponId] -= 1;
       s.fireCd = wp.fireRate;
       s.muzzleFlash = 1;
-      s.recoil = wp.id === 2 || wp.id === 3 ? 1.25 : 0.85;
+      const stanceRecoil = s.stance === "prone" ? 0.45 : s.stance === "crouch" ? 0.72 : 1.0;
+      s.recoil = (wp.id === 2 || wp.id === 3 ? 1.25 : 0.85) * stanceRecoil;
+      // Eject spinning brass shell casing on screen!
+      s.shells.push({
+        x: s.width * (0.68 - s.adsLerp * 0.16) + 18,
+        y: s.height - 120,
+        vx: 150 + Math.random() * 110,
+        vy: -140 - Math.random() * 80,
+        rot: Math.random() * Math.PI,
+        vrot: 10 + Math.random() * 12,
+        life: 0.75,
+        isShotgun: wp.id === 3,
+      });
       audioRef.current?.shoot(s.weaponId, mutedRef.current);
 
       // Alert enemies within gunshot hearing range
@@ -888,8 +927,10 @@ export default function VanguardArmy3D() {
         }
       }
 
-      const eyeY = 1.65 - s.crouchLerp * 0.58;
-      const spread = (s.ads ? wp.adsSpread : wp.spread) * (s.crouched ? 0.7 : 1);
+      const eyeY = s.eyeHeight + s.playerY;
+      const stanceSpread = s.stance === "prone" ? 0.42 : s.stance === "crouch" ? 0.7 : 1;
+      const airPenalty = s.playerY > 0.1 ? 1.65 : 1;
+      const spread = (s.ads ? wp.adsSpread : wp.spread) * stanceSpread * airPenalty;
 
       for (let p = 0; p < wp.pellets; p++) {
         const syaw = s.yaw + (Math.random() - 0.5) * spread * 2;
@@ -1053,7 +1094,31 @@ export default function VanguardArmy3D() {
           s.damageFlash = Math.max(0, s.damageFlash - dt * 2.4);
           s.shake = Math.max(0, s.shake - dt * 34);
           s.adsLerp += ((s.ads ? 1 : 0) - s.adsLerp) * Math.min(1, dt * 14);
-          s.crouchLerp += ((s.crouched ? 1 : 0) - s.crouchLerp) * Math.min(1, dt * 11);
+          const targetEyeH = s.stance === "prone" ? 0.42 : s.stance === "crouch" ? 1.04 : 1.68;
+          s.eyeHeight += (targetEyeH - s.eyeHeight) * Math.min(1, dt * 10.5);
+          s.landDip = Math.max(0, s.landDip - dt * 4.5);
+
+          // Real 3D Jump & Gravity Physics!
+          if (s.playerY > 0 || s.playerVy > 0) {
+            s.playerVy -= 18.5 * dt;
+            s.playerY += s.playerVy * dt;
+            if (s.playerY <= 0) {
+              s.playerY = 0;
+              if (s.playerVy < -3.5) s.landDip = 0.22;
+              s.playerVy = 0;
+            }
+          }
+
+          // Update ejecting brass shell casings
+          for (let sh = s.shells.length - 1; sh >= 0; sh--) {
+            const c = s.shells[sh];
+            c.vy += 680 * dt;
+            c.x += c.vx * dt;
+            c.y += c.vy * dt;
+            c.rot += c.vrot * dt;
+            c.life -= dt;
+            if (c.life <= 0) s.shells.splice(sh, 1);
+          }
 
           for (let k = s.killFeed.length - 1; k >= 0; k--) {
             s.killFeed[k].ttl -= dt;
@@ -1076,7 +1141,7 @@ export default function VanguardArmy3D() {
           if (s.keys["arrowleft"] || s.codes["ArrowLeft"] || s.keys["q"] || s.codes["KeyQ"]) s.yaw -= turnSpd * dt;
           if (s.keys["arrowright"] || s.codes["ArrowRight"]) s.yaw += turnSpd * dt;
 
-          // Movement (WASD / Arrows + Sprint + Crouch)
+          // Movement (WASD / Arrows + Sprint + Standing / Crouching / Prone Crawl!)
           let mf = 0;
           let ms = 0;
           if (s.keys["w"] || s.codes["KeyW"] || s.keys["arrowup"] || s.codes["ArrowUp"]) mf += 1;
@@ -1084,8 +1149,23 @@ export default function VanguardArmy3D() {
           if (s.keys["a"] || s.codes["KeyA"]) ms -= 1;
           if (s.keys["d"] || s.codes["KeyD"]) ms += 1;
 
-          const sprinting = Boolean((s.keys["shift"] || s.codes["ShiftLeft"] || s.codes["ShiftRight"]) && !s.ads);
-          const spd = s.ads ? 3.2 : s.crouched ? 3.4 : sprinting ? 7.4 : 5.4;
+          const wantSprint = Boolean(
+            (s.keys["shift"] || s.codes["ShiftLeft"] || s.codes["ShiftRight"]) && !s.ads && mf > 0
+          );
+          if (wantSprint && s.stance !== "stand" && s.playerY <= 0.02) {
+            s.stance = "stand";
+          }
+          const sprinting = wantSprint && s.stance === "stand";
+          const spd =
+            s.stance === "prone"
+              ? 1.95
+              : s.stance === "crouch"
+              ? 3.6
+              : s.ads
+              ? 3.4
+              : sprinting
+              ? 8.4
+              : 5.8;
 
           if (mf !== 0 || ms !== 0) {
             const len = Math.hypot(mf, ms);
@@ -1097,9 +1177,11 @@ export default function VanguardArmy3D() {
             const rz = Math.sin(s.yaw);
             const vx = (fx * mf + rx * ms) * spd * dt;
             const vz = (fz * mf + rz * ms) * spd * dt;
-            if (!collidesWalk(world.colliders, s.px + vx, s.pz)) s.px += vx;
-            if (!collidesWalk(world.colliders, s.px, s.pz + vz)) s.pz += vz;
-            s.walkBob += dt * (sprinting ? 12 : s.crouched ? 5.5 : 8.5);
+            if (!collidesWalk(world.colliders, s.px + vx, s.pz, 0.42, s.playerY)) s.px += vx;
+            if (!collidesWalk(world.colliders, s.px, s.pz + vz, 0.42, s.playerY)) s.pz += vz;
+            if (s.playerY <= 0.05) {
+              s.walkBob += dt * (sprinting ? 12 : s.stance === "prone" ? 4.2 : s.stance === "crouch" ? 5.8 : 8.5);
+            }
           }
 
           // Animate Enterable Building Doors (auto-swing open when player or soldier approaches!)
@@ -1110,8 +1192,8 @@ export default function VanguardArmy3D() {
             d.openAmount += (target - d.openAmount) * Math.min(1, dt * 6.5);
           }
 
-          // Weapon Fire
-          if (s.mouseDown || s.keys[" "] || s.codes["Space"]) {
+          // Weapon Fire (Left-Click — Spacebar is now dedicated to 3D Jump!)
+          if (s.mouseDown) {
             fireWeapon(s, world);
             if (!ARMY_WEAPONS[s.weaponId].auto) s.mouseDown = false;
           }
@@ -1235,9 +1317,9 @@ export default function VanguardArmy3D() {
             syncHud(rank);
           }
 
-          // Articulated 3D Soldier Tactical AI
-          const playerEyeY = 1.65 - s.crouchLerp * 0.58;
-          const stealthMult = s.crouched ? 0.72 : 1;
+          // Articulated 3D Soldier Tactical AI (respects Standing / Crouching / Prone Stealth!)
+          const playerEyeY = s.eyeHeight + s.playerY;
+          const stealthMult = s.stance === "prone" ? 0.44 : s.stance === "crouch" ? 0.72 : 1;
 
           for (const e of s.enemies) {
             if (!e.alive) {
@@ -1311,7 +1393,8 @@ export default function VanguardArmy3D() {
                     life: 1.0,
                   });
 
-                  const hitChance = Math.max(0.18, (0.72 - dist * 0.028) * (s.crouched ? 0.72 : 1));
+                  const stanceDodge = s.stance === "prone" ? 0.52 : s.stance === "crouch" ? 0.74 : 1;
+                  const hitChance = Math.max(0.14, (0.72 - dist * 0.024) * stanceDodge);
                   if (Math.random() < hitChance) {
                     const dmg =
                       e.kind === "sniper" ? 15 : e.kind === "officer" ? 12 : e.kind === "heavy" ? 10 : 7;
@@ -1358,17 +1441,18 @@ export default function VanguardArmy3D() {
         let fovDeg = 68;
 
         if (phaseRef.current === "briefing") {
-          const orbitA = now * 0.00022;
+          const orbitA = now * 0.0002;
           const mid = s.mission.size * 0.5;
-          eye = [mid + Math.cos(orbitA) * 18, 9.5, mid + Math.sin(orbitA) * 18];
-          target = [mid, 1.8, mid];
+          eye = [mid + Math.cos(orbitA) * 26, 13.5, mid + Math.sin(orbitA) * 26];
+          target = [mid, 2.2, mid];
         } else {
           const wp = ARMY_WEAPONS[s.weaponId];
           fovDeg = 68 + (wp.adsFov - 68) * s.adsLerp;
-          const bobY = Math.sin(s.walkBob * 2) * 0.032 * (1 - s.adsLerp * 0.7);
+          const bobAmp = s.stance === "prone" ? 0.014 : 0.032;
+          const bobY = Math.sin(s.walkBob * 2) * bobAmp * (1 - s.adsLerp * 0.7);
           const shakeX = (Math.random() - 0.5) * s.shake * 0.012;
           const shakeY = (Math.random() - 0.5) * s.shake * 0.012;
-          const eyeY = 1.65 - s.crouchLerp * 0.58 + bobY + shakeY;
+          const eyeY = Math.max(0.36, s.eyeHeight + s.playerY + bobY + shakeY - s.landDip);
           eye = [s.px + shakeX, eyeY, s.pz];
           const lx = Math.sin(s.yaw) * Math.cos(s.pitch);
           const ly = Math.sin(s.pitch);
@@ -1376,7 +1460,7 @@ export default function VanguardArmy3D() {
           target = [eye[0] + lx, eye[1] + ly, eye[2] + lz];
         }
 
-        const projMat = mat4Perspective((fovDeg * Math.PI) / 180, w / Math.max(1, h), 0.12, 130);
+        const projMat = mat4Perspective((fovDeg * Math.PI) / 180, w / Math.max(1, h), 0.12, 165);
         const viewMat = mat4LookAt(eye, target, [0, 1, 0]);
 
         gl.uniformMatrix4fv(loc.uProj, false, projMat);
@@ -1677,7 +1761,8 @@ export default function VanguardArmy3D() {
             } else {
               // Crosshair + Hitmarker
               hudCtx.save();
-              const gap = (s.ads ? 4 : s.crouched ? 6 : 9) + s.recoil * 10;
+              const baseGap = s.ads ? 3.5 : s.stance === "prone" ? 4.5 : s.stance === "crouch" ? 6.5 : 9.5;
+              const gap = baseGap + s.recoil * 10 + (s.playerY > 0.1 ? 7 : 0);
               hudCtx.strokeStyle =
                 s.headshotFlash > 0 ? "#FACC15" : s.hitMarker > 0 ? "#FF2E63" : nvgRef.current ? "#4ADE80" : "#FFFFFF";
               hudCtx.lineWidth = 1.8;
@@ -1714,19 +1799,35 @@ export default function VanguardArmy3D() {
               }
               hudCtx.restore();
 
-              // Sculpted First-Person Army Weapon (glides smoothly to center when Right-Click ADS!)
+              // Sculpted First-Person Army Weapon + Ejecting Brass Shell Casings!
+              for (const sh of s.shells) {
+                hudCtx.save();
+                hudCtx.translate(sh.x, sh.y);
+                hudCtx.rotate(sh.rot);
+                hudCtx.fillStyle = sh.isShotgun ? "#DC2626" : "#F59E0B";
+                hudCtx.fillRect(-5, -2, 10, 4);
+                hudCtx.fillStyle = "#FDE047";
+                hudCtx.fillRect(-5, -2, 3, 4);
+                hudCtx.restore();
+              }
+
               const bobX = Math.cos(s.walkBob) * 7 * (1 - s.adsLerp * 0.75);
               const bobY =
                 Math.abs(Math.sin(s.walkBob)) * 7 * (1 - s.adsLerp * 0.75) +
                 s.recoil * 22 +
+                s.landDip * 55 +
+                (s.stance === "prone" ? 16 : 0) +
                 (s.reloading > 0 ? Math.sin(s.reloading * 5) * 16 + 60 : 0);
               const gx = w * (0.68 - s.adsLerp * 0.18) + bobX;
               const gy = h - (108 + s.adsLerp * 34) + bobY;
 
               hudCtx.save();
-              // Gloved soldier forearm & grip
+              // Tactical Camo Jacket Sleeve Cuff + Gloved Forearm & Grip
+              hudCtx.fillStyle = "#364431";
+              rrect(hudCtx, gx - 42, gy + 58, 84, 72, 16);
+              hudCtx.fill();
               hudCtx.fillStyle = "#181C24";
-              rrect(hudCtx, gx - 34, gy + 28, 68, 96, 14);
+              rrect(hudCtx, gx - 34, gy + 26, 68, 48, 12);
               hudCtx.fill();
 
               // Weapon receiver body
@@ -2058,11 +2159,17 @@ export default function VanguardArmy3D() {
                 <span>
                   {selectedMission.code}: {selectedMission.title}
                 </span>
-                {hud.crouched && (
-                  <span className="rounded bg-emerald-500/25 px-1.5 py-0.5 text-[9px] text-emerald-300">
-                    CROUCH
-                  </span>
-                )}
+                <span
+                  className={`rounded px-1.5 py-0.5 text-[9px] font-bold uppercase ${
+                    hud.stance === "prone"
+                      ? "bg-[#00D4FF]/25 text-[#7EE8FF]"
+                      : hud.stance === "crouch"
+                      ? "bg-emerald-500/25 text-emerald-300"
+                      : "bg-white/10 text-ink-secondary"
+                  }`}
+                >
+                  {hud.stance}
+                </span>
               </div>
 
               {hud.insideBuilding && (
@@ -2114,30 +2221,69 @@ export default function VanguardArmy3D() {
           </div>
         )}
 
-        {/* Bottom Comms & Action Prompt */}
+        {/* Bottom Comms, Interactive Stance Selector (STAND / CROUCH / PRONE) & Action Prompt */}
         {phase === "playing" && (
           <div className="pointer-events-none absolute inset-x-4 bottom-4 z-10 flex flex-wrap items-end justify-between gap-2">
-            <div className="rounded-xl border border-white/15 bg-black/75 px-3.5 py-2 font-mono text-[11px] text-[#7EE8FF] backdrop-blur-md">
-              {hud.nearInteract ? (
-                <div className="space-y-1">
-                  <div className="font-bold text-[#FFC247]">
-                    HOLD [E] — {hud.nearInteract.verb} ({hud.nearInteract.progress}%)
+            <div className="flex flex-col gap-2">
+              {/* Clickable Stance Pills: Standing / Crouching / Prone + Jump */}
+              <div className="pointer-events-auto inline-flex items-center gap-1 rounded-xl border border-white/12 bg-black/70 p-1 font-mono text-[10px] backdrop-blur-md">
+                {[
+                  { id: "stand", label: "STAND" },
+                  { id: "crouch", label: "CROUCH [C]" },
+                  { id: "prone", label: "PRONE [Z]" },
+                ].map((st) => (
+                  <button
+                    key={st.id}
+                    type="button"
+                    onClick={() => {
+                      simRef.current.stance = st.id;
+                      syncHud();
+                    }}
+                    className={`rounded-lg px-2.5 py-1 font-bold transition ${
+                      hud.stance === st.id
+                        ? "bg-[#00D4FF] text-[#06040D]"
+                        : "text-ink-muted hover:text-white"
+                    }`}
+                  >
+                    {st.label}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const s = simRef.current;
+                    if (s.stance !== "stand") s.stance = "stand";
+                    else if (s.playerY <= 0.02) s.playerVy = 6.6;
+                    syncHud();
+                  }}
+                  className="rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 font-bold text-[#FFC247] hover:bg-white/15"
+                >
+                  JUMP [SPACE]
+                </button>
+              </div>
+
+              <div className="rounded-xl border border-white/15 bg-black/75 px-3.5 py-2 font-mono text-[11px] text-[#7EE8FF] backdrop-blur-md">
+                {hud.nearInteract ? (
+                  <div className="space-y-1">
+                    <div className="font-bold text-[#FFC247]">
+                      HOLD [E] — {hud.nearInteract.verb} ({hud.nearInteract.progress}%)
+                    </div>
+                    <div className="h-1.5 w-48 overflow-hidden rounded-full bg-white/15">
+                      <div
+                        className="h-full bg-[#FF8A1F] transition-all"
+                        style={{ width: `${hud.nearInteract.progress}%` }}
+                      />
+                    </div>
                   </div>
-                  <div className="h-1.5 w-48 overflow-hidden rounded-full bg-white/15">
-                    <div
-                      className="h-full bg-[#FF8A1F] transition-all"
-                      style={{ width: `${hud.nearInteract.progress}%` }}
-                    />
-                  </div>
-                </div>
-              ) : (
-                hud.alertText
-              )}
+                ) : (
+                  hud.alertText
+                )}
+              </div>
             </div>
 
             {!pointerLocked && (
               <div className="rounded-xl border border-[#FFC247]/40 bg-black/75 px-3 py-1.5 font-mono text-[10px] text-[#FFC247] backdrop-blur-md">
-                Click screen to lock 360° look • RMB Aim/Scope • [G] Frag Grenade • [C] Crouch • [N] NVG
+                Click screen to lock 360° look • [Space] Jump • [C] Crouch • [Z] Prone • [G] Frag • RMB Scope
               </div>
             )}
           </div>
@@ -2397,7 +2543,7 @@ export default function VanguardArmy3D() {
         <span>
           Loadout: <strong className="text-white">{activeWeapon.name}</strong> • Walk through doors to breach buildings & shoot red fuel barrels!
         </span>
-        <span>[1–4] Weapons • [RMB] ADS/Scope • [G] Frag • [C] Crouch • [N] NVG • [E] Action</span>
+        <span>[Space] Jump • [C] Crouch • [Z] Prone • [1–4] Weapons • [RMB] Scope • [G] Frag • [N] NVG • [E] Action</span>
       </div>
     </div>
   );

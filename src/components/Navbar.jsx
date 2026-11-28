@@ -5,6 +5,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 export default function Navbar({
   brand = "SMSC",
   activePage = "home",
+  showGames = true,
   onNavigateHome,
   onNavigateWork,
   onNavigateGallery,
@@ -36,11 +37,15 @@ export default function Navbar({
       action: () => onNavigateBlog?.(),
       active: activePage === "blog",
     },
-    {
-      label: "Games",
-      action: () => onNavigateGames?.(),
-      active: activePage === "games",
-    },
+    ...(showGames
+      ? [
+          {
+            label: "Games",
+            action: () => onNavigateGames?.(),
+            active: activePage === "games",
+          },
+        ]
+      : []),
     { label: "Contact", action: () => onNavigateHome?.("contact"), active: false },
   ];
 

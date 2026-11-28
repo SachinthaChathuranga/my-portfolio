@@ -228,6 +228,7 @@ export default function App() {
           <Navbar
             brand={portfolio.profile?.brand}
             activePage={route.page}
+            showGames={portfolio.showGames !== false}
             onNavigateHome={navigateHome}
             onNavigateWork={() => navigateWork("all")}
             onNavigateGallery={() => navigateGallery("all")}
@@ -260,7 +261,33 @@ export default function App() {
               onBackHome={() => navigateHome(null)}
             />
           ) : route.page === "games" ? (
-            <GamesPage onBackHome={() => navigateHome(null)} />
+            portfolio.showGames === false && !authUser ? (
+              <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
+                <div className="max-w-md rounded-3xl border border-white/12 bg-[#100B20]/90 p-8 backdrop-blur-md">
+                  <p className="font-mono text-xs uppercase tracking-[0.24em] text-[#FFC247]">
+                    Arcade Offline
+                  </p>
+                  <h1 className="mt-3 font-display text-3xl font-extrabold text-white">
+                    Games Are Currently Private
+                  </h1>
+                  <p className="mt-2 text-sm text-ink-secondary">
+                    The portfolio owner has temporarily hidden the interactive Games Arcade from public view.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => navigateHome(null)}
+                    className="mt-6 rounded-full bg-[#00D4FF] px-6 py-2.5 font-mono text-xs font-bold text-[#06040D]"
+                  >
+                    Back to Portfolio
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <GamesPage
+                onBackHome={() => navigateHome(null)}
+                isOwnerPreview={portfolio.showGames === false && Boolean(authUser)}
+              />
+            )
           ) : (
             <main className="relative z-10">
               <HeroSection profile={portfolio.profile} />
@@ -292,6 +319,7 @@ export default function App() {
 
           <Footer
             profile={portfolio.profile}
+            showGames={portfolio.showGames !== false}
             onNavigateHome={navigateHome}
             onNavigateWork={() => navigateWork("all")}
             onNavigateGallery={() => navigateGallery("all")}

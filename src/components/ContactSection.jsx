@@ -2,7 +2,25 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { Send, Check, Copy, Mail, Phone, MapPin, Sparkles } from "lucide-react";
+import {
+  FaGithub,
+  FaLinkedinIn,
+  FaInstagram,
+  FaFacebookF,
+  FaYoutube,
+  FaTiktok,
+} from "react-icons/fa";
 import { assetUrl } from "../utils/portfolioApi";
+import { getActiveSocials } from "../utils/socials";
+
+const CONTACT_SOCIAL_ICONS = {
+  github: FaGithub,
+  linkedin: FaLinkedinIn,
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+  youtube: FaYoutube,
+  tiktok: FaTiktok,
+};
 
 export default function ContactSection({ profile }) {
   const [formData, setFormData] = useState({
@@ -130,6 +148,29 @@ export default function ContactSection({ profile }) {
                   <MapPin className="h-4 w-4 text-[#FFC247]" />
                   <span>{profile?.location || "Madampe, Chilaw, Sri Lanka"}</span>
                 </div>
+
+                {/* Ordered Social Links */}
+                {getActiveSocials(profile).length > 0 && (
+                  <div className="flex flex-wrap items-center gap-2 pt-2">
+                    {getActiveSocials(profile).map((s) => {
+                      const Icon = CONTACT_SOCIAL_ICONS[s.key] || FaGithub;
+                      return (
+                        <a
+                          key={s.key}
+                          href={s.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          title={s.label}
+                          aria-label={s.label}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-black/45 px-3 py-1.5 text-xs font-medium text-ink-secondary backdrop-blur-md transition hover:border-[#00D4FF]/60 hover:bg-[#00D4FF]/15 hover:text-white"
+                        >
+                          <Icon className="h-3.5 w-3.5" />
+                          <span>{s.label}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
 

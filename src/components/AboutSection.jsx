@@ -14,9 +14,20 @@ import {
   FaInstagram,
   FaFacebookF,
   FaYoutube,
+  FaTiktok,
 } from "react-icons/fa";
 import Tilt3DCard from "./Tilt3DCard";
 import { assetUrl } from "../utils/portfolioApi";
+import { getActiveSocials } from "../utils/socials";
+
+const SOCIAL_ICONS = {
+  github: FaGithub,
+  linkedin: FaLinkedinIn,
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+  youtube: FaYoutube,
+  tiktok: FaTiktok,
+};
 
 export default function AboutSection({ profile }) {
   const portraitSrc = assetUrl(
@@ -56,13 +67,10 @@ export default function AboutSection({ profile }) {
     },
   ];
 
-  const socials = [
-    { key: "github", icon: FaGithub, label: "GitHub", href: profile?.socials?.github },
-    { key: "linkedin", icon: FaLinkedinIn, label: "LinkedIn", href: profile?.socials?.linkedin },
-    { key: "instagram", icon: FaInstagram, label: "Instagram", href: profile?.socials?.instagram },
-    { key: "facebook", icon: FaFacebookF, label: "Facebook", href: profile?.socials?.facebook },
-    { key: "youtube", icon: FaYoutube, label: "YouTube", href: profile?.socials?.youtube },
-  ].filter((s) => Boolean(s.href));
+  const socials = getActiveSocials(profile).map((s) => ({
+    ...s,
+    icon: SOCIAL_ICONS[s.key] || FaGithub,
+  }));
 
   return (
     <section id="about" className="relative z-10 py-24 sm:py-32">

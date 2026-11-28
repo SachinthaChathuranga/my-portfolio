@@ -390,19 +390,41 @@ export function buildMissionWorld(gl, mission) {
   // 1. Textured Battlefield Ground Plane (extends beyond perimeter for seamless horizon)
   pushQuad(
     getBucket(env.groundTex),
-    [-25, 0, S + 25],
-    [S + 25, 0, S + 25],
-    [S + 25, 0, -25],
-    [-25, 0, -25],
+    [-35, 0, S + 35],
+    [S + 35, 0, S + 35],
+    [S + 35, 0, -35],
+    [-35, 0, -35],
     [0, 1, 0],
-    34,
-    34,
+    48,
+    48,
     [1, 1, 1]
   );
 
+  // 1b. Painted Extraction Helipad ('H') & Corner Beacon Lights at Extraction LZ!
+  if (mission.extraction) {
+    const ex = mission.extraction.x;
+    const ez = mission.extraction.z;
+    pushQuad(
+      getBucket("helipad"),
+      [ex - 2.6, 0.035, ez + 2.6],
+      [ex + 2.6, 0.035, ez + 2.6],
+      [ex + 2.6, 0.035, ez - 2.6],
+      [ex - 2.6, 0.035, ez - 2.6],
+      [0, 1, 0],
+      1,
+      1,
+      [1, 1, 1]
+    );
+    for (const ox of [-2.5, 2.5]) {
+      for (const oz of [-2.5, 2.5]) {
+        pushBox(emissiveBucket, ex + ox - 0.14, 0.04, ez + oz - 0.14, ex + ox + 0.14, 0.24, ez + oz + 0.14, 1, [0.2, 0.95, 0.55]);
+      }
+    }
+  }
+
   // 2. Outer Perimeter Fortification Walls
   const pTex = getBucket(env.perimeterTex);
-  const pH = 4.2;
+  const pH = 4.5;
   const pT = 0.7;
   // North, South, West, East
   pushBox(pTex, -pT, 0, -pT, S + pT, pH, 0.2, 2.5);
@@ -415,18 +437,18 @@ export function buildMissionWorld(gl, mission) {
   addCollider(-2, 0.4, -2, S + 2);
   addCollider(S - 0.4, S + 2, -2, S + 2);
 
-  // 3. Distant 3D Horizon Mountain Ring / Urban Ruined Towers (Unique per theater!)
+  // 3. Distant 3D Horizon Mountain Ring / Ruined City Skyline + Glowing Sun/Moon Disc!
   const mCol = env.mountainColor;
   const cx = S * 0.5;
   const cz = S * 0.5;
-  for (let i = 0; i < 24; i++) {
-    const a = (i / 24) * Math.PI * 2;
-    const dist = S * 0.95 + (i % 3) * 8;
+  for (let i = 0; i < 28; i++) {
+    const a = (i / 28) * Math.PI * 2;
+    const dist = S * 0.85 + (i % 3) * 10;
     const mx = cx + Math.cos(a) * dist;
     const mz = cz + Math.sin(a) * dist;
-    const mw = env.treeStyle === "dead" ? 8 + (i % 4) * 3 : 16 + (i % 5) * 4;
-    const mh = env.treeStyle === "dead" ? 12 + (i % 5) * 5 : 14 + (i % 4) * 6;
-    const shade = 0.85 + (i % 3) * 0.1;
+    const mw = env.treeStyle === "dead" ? 9 + (i % 4) * 3 : 18 + (i % 5) * 5;
+    const mh = env.treeStyle === "dead" ? 14 + (i % 5) * 6 : 16 + (i % 4) * 8;
+    const shade = 0.8 + (i % 3) * 0.12;
     pushBox(
       solidBucket,
       mx - mw * 0.5,
@@ -439,6 +461,35 @@ export function buildMissionWorld(gl, mission) {
       [mCol[0] * shade, mCol[1] * shade, mCol[2] * shade]
     );
   }
+  // Upper Sky Dome Cloud Deck & Sun/Moon Disc in direction of sunDir
+  const sd = env.sunDir;
+  const sdLen = Math.hypot(sd[0], sd[1], sd[2]) || 1;
+  const sunX = cx + (sd[0] / sdLen) * 78;
+  const sunY = Math.max(22, (sd[1] / sdLen) * 65);
+  const sunZ = cz + (sd[2] / sdLen) * 78;
+  pushBox(
+    emissiveBucket,
+    sunX - 4.2,
+    sunY - 4.2,
+    sunZ - 4.2,
+    sunX + 4.2,
+    sunY + 4.2,
+    sunZ + 4.2,
+    1,
+    env.sunColor
+  );
+  // Subtle high-altitude sky roof canopy tinting overhead skyTop
+  pushQuad(
+    emissiveBucket,
+    [cx - 110, 56, cz + 110],
+    [cx + 110, 56, cz + 110],
+    [cx + 110, 56, cz - 110],
+    [cx - 110, 56, cz - 110],
+    [0, -1, 0],
+    1,
+    1,
+    env.skyTop
+  );
 
   // 4. Enterable Multi-Room Buildings (Doors + Shoot-Through Windows + Floors + Roofs + Indoor Lights!)
   const wallT = 0.34;
@@ -573,13 +624,32 @@ export function buildMissionWorld(gl, mission) {
     }
   }
 
-  // 5. Outdoor Battlefield Props (Vehicles, Sandbags, Containers, Watchtowers, Trees, Lamps, Explosive Barrels)
+  // 5. Outdoor Battlefield Props (Vehicles, Sandbags, Barriers, Tents, Containers, Watchtowers, Trees, Lamps, Barrels)
   for (const p of mission.props || []) {
     if (p.kind === "sandbags") {
       const hw = (p.w || 3.2) * 0.5;
       const hd = (p.d || 0.9) * 0.5;
-      pushBox(getBucket("sandbags"), p.x - hw, 0, p.z - hd, p.x + hw, 1.12, p.z + hd, 1.2);
-      addCollider(p.x - hw, p.x + hw, p.z - hd, p.z + hd, 1.12, 0, true);
+      pushBox(getBucket("sandbags"), p.x - hw, 0, p.z - hd, p.x + hw, 1.08, p.z + hd, 1.2);
+      addCollider(p.x - hw, p.x + hw, p.z - hd, p.z + hd, 1.08, 0, true);
+    } else if (p.kind === "barrier") {
+      // Concrete Military Jersey Barrier (waist-high, crouch/prone cover, jumpable!)
+      const hw = (p.w || 3.4) * 0.5;
+      const hd = (p.d || 0.7) * 0.5;
+      pushBox(getBucket("concrete"), p.x - hw, 0, p.z - hd, p.x + hw, 0.42, p.z + hd, 1.4, [0.82, 0.84, 0.86]);
+      pushBox(getBucket("concrete"), p.x - hw, 0.42, p.z - hd * 0.68, p.x + hw, 1.05, p.z + hd * 0.68, 1.4, [0.9, 0.92, 0.94]);
+      addCollider(p.x - hw, p.x + hw, p.z - hd, p.z + hd, 1.05, 0, true);
+    } else if (p.kind === "tent") {
+      // Walk-under Open-Sided Military Command Canopy Tent!
+      const hw = 2.6;
+      const hd = 2.2;
+      for (const ox of [-hw + 0.15, hw - 0.15]) {
+        for (const oz of [-hd + 0.15, hd - 0.15]) {
+          pushBox(solidBucket, p.x + ox - 0.08, 0, p.z + oz - 0.08, p.x + ox + 0.08, 2.7, p.z + oz + 0.08, 1, [0.22, 0.25, 0.28]);
+          addCollider(p.x + ox - 0.16, p.x + ox + 0.16, p.z + oz - 0.16, p.z + oz + 0.16, 2.7, 0, true);
+        }
+      }
+      pushBox(getBucket("camoTent"), p.x - hw - 0.2, 2.65, p.z - hd - 0.2, p.x + hw + 0.2, 2.95, p.z + hd + 0.2, 2.0);
+      pushBox(getBucket("camoTent"), p.x - hw * 0.65, 2.95, p.z - hd * 0.65, p.x + hw * 0.65, 3.35, p.z + hd * 0.65, 2.0);
     } else if (p.kind === "crate") {
       pushBox(getBucket("crate"), p.x - 0.65, 0, p.z - 0.65, p.x + 0.65, 1.25, p.z + 0.65, 1.25);
       addCollider(p.x - 0.65, p.x + 0.65, p.z - 0.65, p.z + 0.65, 1.25, 0, true);
@@ -721,15 +791,24 @@ export function drawSoldier3D(renderer, enemy, uniform) {
     drawMesh(unitBox, m, null, color, emissive, 1);
   };
 
-  // Boots & Swinging Legs
-  drawPart(-0.14 * scaleW, 0.12, stride, 0.16, 0.24, 0.24, cBoot);
-  drawPart(0.14 * scaleW, 0.12, -stride, 0.16, 0.24, 0.24, cBoot);
+  // Boots, Knee Pads & Swinging Legs
+  drawPart(-0.14 * scaleW, 0.12, stride, 0.16, 0.24, 0.25, cBoot);
+  drawPart(0.14 * scaleW, 0.12, -stride, 0.16, 0.24, 0.25, cBoot);
   drawPart(-0.14 * scaleW, 0.48, stride * 0.65, 0.17 * scaleW, 0.52, 0.18, cPants);
   drawPart(0.14 * scaleW, 0.48, -stride * 0.65, 0.17 * scaleW, 0.52, 0.18, cPants);
+  // Tactical Knee Pads
+  drawPart(-0.14 * scaleW, 0.44, stride * 0.65 + 0.09, 0.14, 0.12, 0.05, cBoot);
+  drawPart(0.14 * scaleW, 0.44, -stride * 0.65 + 0.09, 0.14, 0.12, 0.05, cBoot);
 
-  // Sculpted Torso, Kevlar Vest & Tactical Backpack
+  // Sculpted Torso, Tactical Waist Belt, Kevlar Plate Carrier & Backpack
   drawPart(0, 1.02, 0, 0.44 * scaleW, 0.60, 0.26 * scaleW, cJacket);
-  drawPart(0, 1.04, 0, 0.47 * scaleW, 0.44, 0.30 * scaleW, cVest);
+  drawPart(0, 1.04, 0, 0.48 * scaleW, 0.44, 0.31 * scaleW, cVest);
+  drawPart(0, 0.78, 0.01, 0.48 * scaleW, 0.10, 0.30 * scaleW, [0.10, 0.11, 0.13]);
+  // Heavy Shoulder Pauldrons
+  if (isHeavy || isOfficer) {
+    drawPart(-0.29 * scaleW, 1.24, 0, 0.18, 0.18, 0.24, isOfficer ? [0.55, 0.12, 0.14] : cVest);
+    drawPart(0.29 * scaleW, 1.24, 0, 0.18, 0.18, 0.24, isOfficer ? [0.55, 0.12, 0.14] : cVest);
+  }
   // Tactical Backpack on Soldier's Back (-Z in soldier local forward=+Z)
   drawPart(0, 1.06, -0.20, 0.30, 0.40, 0.15, [0.16, 0.18, 0.15]);
 
